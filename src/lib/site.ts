@@ -1,0 +1,40 @@
+export const BOOKING_URL = "https://bookingengine.stayflexi.com/?hotel_id=32336";
+
+export const WHATSAPP_NUMBER = "919945794925";
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+  "Hi Abhishta, I'd like to know more about a stay at the farm.",
+)}`;
+
+export const CONTACT = {
+  reservation: { label: "+91 9945 7949 25", href: "tel:+919945794925" },
+  landline: { label: "+91 9379 1963 00", href: "tel:+919379196300" },
+  email: { label: "hello@abhishtaagrifarmstay.com", href: "mailto:hello@abhishtaagrifarmstay.com" },
+  address: "Jiddigere Village, Yediyuru Hobli, Kunigal Taluk, Tumkur, Karnataka 572134",
+  mapUrl: "https://www.google.com/maps?cid=10453955536286770963",
+} as const;
+
+export const TOUR_360_URL = "https://www.turiya.co/360/Abhishta/";
+export const STORY_VIDEO_URL = "https://www.youtube-nocookie.com/embed/4L4cuBmsb38?autoplay=1&rel=0";
+
+export const REVIEW_URL = CONTACT.mapUrl;
+
+// TODO(client): confirm Instagram, Facebook and TripAdvisor handles — they are not on the live site.
+export const SOCIALS = [
+  { name: "Instagram", href: "https://www.instagram.com/abhishtaagrifarmstay/" },
+  { name: "Facebook", href: "https://www.facebook.com/abhishtaagrifarmstay" },
+  { name: "YouTube", href: "https://www.youtube.com/watch?v=4L4cuBmsb38" },
+  { name: "WhatsApp", href: WHATSAPP_URL },
+  { name: "TripAdvisor", href: "https://www.tripadvisor.in/Search?q=Abhishta%20Agri%20Farm%20Stay" },
+] as const;
+
+// Instagram reel URLs for the reviews strip. Empty until the client supplies them —
+// the strip then shows framed farm stills linking to Instagram.
+export const REEL_URLS: string[] = [];
+
+export const NAV_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "Our nests", href: "/our-nests" },
+  { label: "The living farm", href: "/the-living-farm" },
+  { label: "Group enquiries", href: "/group-enquiries" },
+  { label: "Field notes & 360° atlas", href: "/field-notes" },
+] as const;
