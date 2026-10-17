@@ -52,7 +52,7 @@ export function Groups() {
   const [picked, setPicked] = useState(false);
 
   return (
-    <section id="groups" data-nav="dark" className={`on-dark overflow-hidden bg-forest text-paper ${sectionPad}`}>
+    <section id="groups" data-nav="dark" data-snap="" className={`on-dark overflow-hidden bg-forest text-paper ${sectionPad}`}>
       <div className={`${container} grid items-center gap-s55 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
         <div>
           <SectionHeader
@@ -93,19 +93,17 @@ export function Groups() {
           active={active}
           onActiveChange={setActive}
           interval={picked ? null : 5500}
-          className="mx-auto h-[420px] w-full max-w-[640px] translate-y-s34 sm:h-[500px] lg:-translate-x-s34"
+          className="mx-auto h-[460px] w-full max-w-[640px] translate-y-s34 sm:h-[520px] lg:-translate-x-s34"
         >
           {GROUPS.map((g) => (
-            <article key={g.name} className="relative aspect-[4/5] overflow-hidden rounded-card bg-[#0b4a2e] shadow-float ring-1 ring-paper/10 sm:aspect-[5/4]">
-              <Image src={g.image} alt={g.alt} fill sizes="(min-width: 1024px) 560px, 90vw" placeholder="blur" className="object-cover" />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-[linear-gradient(0deg,rgba(7,59,36,0.95)_0%,rgba(7,59,36,0.7)_35%,transparent_70%)]"
-              />
-              <div className="absolute inset-x-0 bottom-0 p-s21 sm:p-s34">
-                <h3 className="font-display text-[clamp(22px,2.6vw,28px)] leading-[1.15] text-paper">{g.name}</h3>
-                <p className="mt-s8 max-w-[28em] text-[15px] leading-[1.55] text-paper/85 sm:text-body">{g.body}</p>
-                <a href={g.href} className="link-gold mt-s13 inline-block text-[15px] font-medium text-paper">
+            <article key={g.name} className="overflow-hidden rounded-card bg-card text-ink shadow-float">
+              <div className="relative aspect-[16/10]">
+                <Image src={g.image} alt={g.alt} fill sizes="(min-width: 1024px) 560px, 90vw" placeholder="blur" className="object-cover" />
+              </div>
+              <div className="p-s21 sm:px-s34 sm:py-s21">
+                <h3 className="font-display text-[clamp(22px,2.4vw,28px)] leading-[1.15] text-forest">{g.name}</h3>
+                <p className="mt-s8 max-w-[30em] text-[15px] leading-[1.55] text-ink-muted">{g.body}</p>
+                <a href={g.href} className="link-gold mt-s13 inline-block text-[15px] font-medium text-forest">
                   Enquire about {g.name.toLowerCase()}
                 </a>
               </div>

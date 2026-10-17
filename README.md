@@ -11,18 +11,15 @@ npm run lint
 
 ## Where things live
 - `src/app/` — layout (Fraunces + DM Sans via `next/font`), page, 404, `globals.css` (brand tokens in `@theme`)
-- `src/components/sections/` — Hero (+ AvailabilityBar), About (+ Preview360), Stays, DayOnFarm, Groups, Reviews, Footer
-- `src/components/bits/` — React Bits components rebuilt in the brand system: SplitText, ScrollReveal, StaggeredMenu, CircularText, GradualBlur, ScrollExpand, ScrollStack, CardSwap, CircularGallery
-- `src/components/SmoothScroll.tsx` — Lenis driven by GSAP's ticker, feeding ScrollTrigger; off under reduced motion
+- `src/components/sections/` — Hero, About (+ Preview360), Stays, DayOnFarm, Groups, Reviews, Footer
+- `src/components/bits/` — React Bits components rebuilt in the brand system: SplitText, ScrollReveal, StaggeredMenu, CircularText, GradualBlur, ScrollExpand, ScrollStack, CardSwap (CircularGallery was dropped for a steady review grid)
+- `src/components/SmoothScroll.tsx` — Lenis driven by GSAP's ticker, feeding ScrollTrigger, with Lenis Snap on every `[data-snap]` section; off under reduced motion
 - `src/lib/site.ts` — booking/WhatsApp URLs, contact details, socials, nav, reel URLs
 - `component-library/` — the original React Bits registry sources, kept for reference only (not imported)
 
 ## Open items for the client
 - Instagram, Facebook and TripAdvisor URLs in `src/lib/site.ts` are best guesses — not listed on the live site. Confirm them.
-- Add Instagram reel URLs to `REEL_URLS` in `src/lib/site.ts`; until then the strip shows farm stills linking to Instagram.
-- Logo is an interim vector (line palm + Fraunces wordmark) in `src/components/Logo.tsx` — swap for the redrawn mark.
-- The newsletter form drafts an email to hello@… (no mailing-list service yet).
-- The availability bar opens Stayflexi in a new tab; the details typed into it are not passed on.
+- Logo uses `assets/logo-current.png` (margins trimmed to `assets/logo-trimmed.png`); on dark bands it renders as a white silhouette. Swap in a vector when the redraw arrives.
 - Corporate offsites and destination events use Unsplash stock photos (`assets/images/stock/`).
 - Inner pages (`/our-nests`, `/the-living-farm`, `/group-enquiries`, `/field-notes`) are not built yet; they show the branded 404.
 

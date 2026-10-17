@@ -1,12 +1,6 @@
-import Image, { type StaticImageData } from "next/image";
-import cows from "../../../assets/images/slider/slider-8.jpg";
-import feeding from "../../../assets/images/slider/slider-2.jpg";
-import beds from "../../../assets/images/unlock-section/4.webp";
-import mangoes from "../../../assets/images/slider/slider-3.jpg";
-import { CircularGallery } from "@/components/bits/CircularGallery";
-import { IconInstagram, IconPlay, IconStar } from "@/components/icons";
+import { IconStar } from "@/components/icons";
 import { SectionHeader, container, sectionPad } from "@/components/ui";
-import { REEL_URLS, REVIEW_URL, SOCIALS } from "@/lib/site";
+import { REVIEW_URL } from "@/lib/site";
 
 // Excerpts as they appear on the farm's Google reviews widget.
 const REVIEWS = [
@@ -25,15 +19,6 @@ const REVIEWS = [
   { name: "Prashanth K", text: "A perfect family getaway!" },
 ];
 
-const REEL_STILLS: { image: StaticImageData; alt: string }[] = [
-  { image: cows, alt: "Bulls feeding at the trough in the cow shed" },
-  { image: feeding, alt: "A guest feeding cows by hand" },
-  { image: beds, alt: "Terracotta-edged vegetable beds under coconut palms" },
-  { image: mangoes, alt: "Mango trees in the orchard" },
-];
-
-const instagram = SOCIALS.find((s) => s.name === "Instagram")!.href;
-
 function Stars({ className = "" }: { className?: string }) {
   return (
     <span role="img" aria-label="5 out of 5 stars" className={`inline-flex gap-[2px] text-gold ${className}`}>
@@ -44,10 +29,10 @@ function Stars({ className = "" }: { className?: string }) {
   );
 }
 
-/** Reviews — Google rating, a bending gallery of review cards, and a vertical Reels strip. */
+/** Reviews — the Google rating and the guests' review cards in a steady grid (swipeable row on phones). */
 export function Reviews() {
   return (
-    <section id="reviews" data-nav="light" className={`overflow-hidden bg-paper ${sectionPad}`}>
+    <section id="reviews" data-nav="light" data-snap="" className={`overflow-hidden bg-paper ${sectionPad}`}>
       <div className={`${container} grid gap-s34 md:grid-cols-[1.618fr_1fr] md:items-end`}>
         <SectionHeader
           eyebrow="Guest notes"
@@ -71,81 +56,35 @@ export function Reviews() {
         </div>
       </div>
 
-      <CircularGallery label="Google reviews" className="mt-s55">
-        {REVIEWS.map((r) => (
-          <figure key={r.name} className="flex h-[300px] flex-col rounded-card bg-card p-s34 shadow-card ring-1 ring-line">
-            <Stars />
-            <blockquote className="mt-s21 flex-1 font-display text-h3 leading-[1.35] font-light text-ink italic">
-              “{r.text}”
-            </blockquote>
-            <figcaption className="mt-s21 flex items-end justify-between gap-s13 border-t border-line pt-s13">
-              <span>
-                <span className="block font-medium text-forest">{r.name}</span>
-                <span className="block text-[13px] text-ink-muted">Google review</span>
-              </span>
-              <a
-                href={REVIEW_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link-gold text-[13px] font-medium text-farm"
-              >
-                Read on Google
-              </a>
-            </figcaption>
-          </figure>
-        ))}
-      </CircularGallery>
-
-      <div className={`${container} mt-s89`}>
-        <div className="flex flex-wrap items-end justify-between gap-s13">
-          <h3 className="font-display text-h2 text-forest">Recent reels from the farm</h3>
-          <a
-            href={instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-gold inline-flex items-center gap-s8 text-[15px] font-medium text-forest"
-          >
-            <IconInstagram size={20} className="text-farm" />
-            Follow on Instagram
-          </a>
-        </div>
-        <ul className="mt-s34 grid grid-cols-2 gap-s13 md:grid-cols-4 md:gap-s21">
-          {REEL_STILLS.map((still, i) => {
-            const reel = REEL_URLS[i];
-            return (
-              <li key={i} className="relative aspect-[9/16] overflow-hidden rounded-card bg-paper-deep shadow-card">
-                {reel ? (
-                  <iframe
-                    src={`${reel.replace(/\/$/, "")}/embed`}
-                    title={`Instagram reel ${i + 1} from Abhishta`}
-                    loading="lazy"
-                    className="absolute inset-0 size-full"
-                  />
-                ) : (
-                  <a href={instagram} target="_blank" rel="noopener noreferrer" className="group block size-full">
-                    <Image
-                      src={still.image}
-                      alt={still.alt}
-                      fill
-                      sizes="(min-width: 768px) 25vw, 50vw"
-                      placeholder="blur"
-                      className="object-cover transition-transform duration-700 ease-[var(--ease-earth)] group-hover:scale-[1.04]"
-                    />
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-0 bg-[linear-gradient(0deg,rgba(7,59,36,0.6),transparent_45%)]"
-                    />
-                    <span className="absolute bottom-s13 left-s13 grid size-[44px] place-items-center rounded-full bg-paper/90 text-farm">
-                      <IconPlay size={20} />
-                      <span className="sr-only">Watch on Instagram</span>
-                    </span>
-                  </a>
-                )}
-              </li>
-            );
-          })}
+      <div className={`${container} mt-s55`}>
+        <ul className="-mx-s21 flex snap-x snap-mandatory gap-s21 overflow-x-auto px-s21 pb-s13 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
+          {REVIEWS.map((r) => (
+            <li key={r.name} className="w-[82%] shrink-0 snap-start sm:w-auto">
+              <figure className="flex h-full flex-col rounded-card bg-card p-s34 shadow-card ring-1 ring-line">
+                <Stars />
+                <blockquote className="mt-s21 flex-1 font-display text-h3 leading-[1.4] font-light text-ink italic">
+                  “{r.text}”
+                </blockquote>
+                <figcaption className="mt-s21 border-t border-line pt-s13">
+                  <span className="block font-medium text-forest">{r.name}</span>
+                  <span className="flex items-center justify-between gap-s13 text-[13px] text-ink-muted">
+                    Google review
+                    <a
+                      href={REVIEW_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="link-gold font-medium text-farm"
+                    >
+                      Read on Google
+                    </a>
+                  </span>
+                </figcaption>
+              </figure>
+            </li>
+          ))}
         </ul>
       </div>
+
     </section>
   );
 }

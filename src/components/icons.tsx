@@ -125,6 +125,41 @@ export const IconCart = (p: IconProps) => (
   </Icon>
 );
 
+export const IconDining = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M3.5 12.5h17a8.5 8.5 0 0 1-17 0z" />
+    <path d="M12 9.5c0-2.5 1.5-4.5 4-5-.2 2.6-1.6 4.4-4 5zM12 9.5C11.6 7.6 10.2 6.4 8 6.2c.3 2 1.7 3.2 4 3.3z" />
+  </Icon>
+);
+
+export const IconFire = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12 3c.5 3 3.5 4.5 3.5 8.5a3.5 3.5 0 0 1-7 0c0-1.5.7-2.6 1.5-3.5.3 1.3.9 2 1.7 2.2C11 8 11 5.5 12 3z" />
+    <path d="M5 20.5 19 17M5 17l14 3.5" />
+  </Icon>
+);
+
+export const IconParking = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="4" y="4" width="16" height="16" rx="4" />
+    <path d="M10 16.5v-9h3a2.6 2.6 0 0 1 0 5.2h-3" />
+  </Icon>
+);
+
+export const IconTrail = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M8 21c0-3 4-4 4-7s-4-3.5-4-6.5S10.5 3 12 3" />
+    <path d="M16 21c0-3 3-4 3-7M17.5 6.5a2 2 0 1 0 0-.01" />
+  </Icon>
+);
+
+export const IconLeaf = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5 19C5 10 10 5 20 4c-.5 10-5.5 15-15 15z" />
+    <path d="M5 19 13 11" />
+  </Icon>
+);
+
 export const IconPhone = (p: IconProps) => (
   <Icon {...p}>
     <path d="M5 4h3.5l1.5 4-2 1.3a10 10 0 0 0 6.7 6.7L16 14l4 1.5V19a1.5 1.5 0 0 1-1.6 1.5A15.5 15.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z" />

@@ -1,32 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { BOOKING_URL, WHATSAPP_URL } from "@/lib/site";
 import { IconBooking, IconWhatsApp } from "@/components/icons";
 
-/**
- * Always-on-screen WhatsApp + booking buttons, bottom-right. While the hero is
- * in view they ride above the docked availability bar so they never cover it.
- */
+/** Always-on-screen WhatsApp + booking buttons, bottom-right. */
 export function FloatingActions() {
-  const [overHero, setOverHero] = useState(true);
-
-  useEffect(() => {
-    const hero = document.getElementById("top");
-    if (!hero) return;
-    const io = new IntersectionObserver(([entry]) => setOverHero(entry.isIntersecting), {
-      rootMargin: "0px 0px -100% 0px",
-      threshold: 0,
-    });
-    io.observe(hero);
-    return () => io.disconnect();
-  }, []);
-
   return (
     <div
-      className={`pointer-events-none fixed right-s13 bottom-[calc(13px+env(safe-area-inset-bottom))] z-[65] flex flex-row-reverse items-end gap-s13 sm:flex-col sm:items-end transition-transform duration-700 ease-[var(--ease-earth)] sm:right-s21 sm:bottom-[calc(21px+env(safe-area-inset-bottom))] ${
-        overHero ? "md:-translate-y-[110px]" : ""
-      }`}
+      className="pointer-events-none fixed right-s13 bottom-[calc(13px+env(safe-area-inset-bottom))] z-[65] flex flex-row-reverse items-end gap-s13 sm:right-s21 sm:bottom-[calc(21px+env(safe-area-inset-bottom))] sm:flex-col"
     >
       <a
         href={WHATSAPP_URL}

@@ -69,7 +69,7 @@ const MOMENTS: Moment[] = [
 /** A day in the farm — four moments, dawn to dusk, stacked as you scroll (ScrollStack). */
 export function DayOnFarm() {
   return (
-    <section id="a-day-on-the-farm" data-nav="light" className={`bg-paper ${sectionPad}`}>
+    <section id="a-day-on-the-farm" data-nav="light" data-snap="" className={`bg-paper ${sectionPad}`}>
       <div className={container}>
         <div className="grid gap-s21 md:grid-cols-[1.618fr_1fr] md:items-end">
           <SectionHeader

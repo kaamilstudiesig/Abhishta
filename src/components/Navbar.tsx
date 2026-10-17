@@ -38,16 +38,16 @@ export function Navbar() {
         position="top"
         height="110px"
         strength={1.2}
-        tint={dark ? "rgba(7,59,36,0.35)" : "rgba(250,246,239,0.85)"}
+        tint={dark ? undefined : "rgba(250,246,239,0.92)"}
         className="transition-opacity duration-500 [&>div:last-child]:transition-[background] [&>div:last-child]:duration-500"
       />
-      <div className="relative mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-s21 sm:px-s34">
+      <div className="relative mx-auto flex h-[80px] max-w-[1440px] items-center justify-between px-s21 sm:px-s34">
         <Link
           href="/"
           aria-label="Abhishta Agri Farm Stay — home"
           className={`transition-colors duration-500 ${dark ? "on-dark text-paper" : "text-forest"}`}
         >
-          <Logo />
+          <Logo tone={dark ? "light" : "color"} />
         </Link>
         <div className="flex items-center gap-s8 sm:gap-s13">
           <a

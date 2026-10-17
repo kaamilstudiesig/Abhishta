@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -29,22 +29,21 @@ const SOCIAL_ICONS = {
   TripAdvisor: IconTripAdvisor,
 } as const;
 
-const CONTACT_CARDS = [
+const CONTACTS = [
   { label: "Reservation", value: CONTACT.reservation.label, href: CONTACT.reservation.href, icon: IconPhone },
   { label: "Landline", value: CONTACT.landline.label, href: CONTACT.landline.href, icon: IconLandline },
   { label: "Email", value: CONTACT.email.label, href: CONTACT.email.href, icon: IconMail },
-  { label: "Find us", value: CONTACT.address, href: CONTACT.mapUrl, icon: IconPin },
+  { label: "Address", value: CONTACT.address, href: CONTACT.mapUrl, icon: IconPin },
 ];
 
 /**
- * Footer — sits under the page (position: sticky; bottom: 0) and is revealed as
- * the last section scrolls away; the giant "Abhishta" wordmark rises out of the
- * ground as it does. On phones the footer is taller than the screen, so it
- * simply follows the page.
+ * Compact footer. On screens tall enough to hold it, it sits under the page
+ * (position: sticky; bottom: 0) and is revealed as the last section scrolls
+ * away, with the "Abhishta" wordmark rising as it does. Elsewhere it simply
+ * follows the page, so every link is always reachable.
  */
 export function Footer() {
   const ref = useRef<HTMLElement>(null);
-  const [subscribed, setSubscribed] = useState(false);
 
   useGSAP(
     () => {
@@ -64,112 +63,71 @@ export function Footer() {
     { scope: ref },
   );
 
-  // No mailing-list service yet: subscribing drafts an email to the farm.
-  const onSubscribe = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const email = new FormData(e.currentTarget).get("email");
-    const mailto = `${CONTACT.email.href}?subject=${encodeURIComponent(
-      "Harvest news sign-up",
-    )}&body=${encodeURIComponent(`Please add ${email} to harvest news and seasonal notes.`)}`;
-    window.open(mailto, "_self");
-    setSubscribed(true);
-  };
-
   return (
     <footer
       ref={ref}
       data-nav="dark"
-      className="on-dark bottom-0 z-0 overflow-hidden bg-forest text-paper md:sticky"
+      className="on-dark bottom-0 z-0 overflow-hidden bg-forest text-paper [@media(min-width:768px)_and_(min-height:680px)]:sticky"
     >
-      <div className={`${container} pt-s89 pb-s34`}>
-        <div className="grid gap-s55 lg:grid-cols-[1fr_1.618fr] lg:gap-s89">
-          <div>
-            <Logo className="text-paper" />
-            <h2 className="mt-s34 font-display text-[clamp(28px,3vw,34px)] leading-[1.15] font-light">
-              Harvest news and seasonal notes
-            </h2>
-            <p className="mt-s8 max-w-[28em] text-paper/75">
-              What&apos;s ripening, what&apos;s on the table, and when the cottages open up. A few letters a season.
-            </p>
-            <form onSubmit={onSubscribe} className="mt-s21 flex max-w-[460px] flex-col gap-s8 sm:flex-row">
-              <label htmlFor="newsletter-email" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="newsletter-email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                spellCheck={false}
-                placeholder="you@example.com"
-                className="h-[52px] flex-1 rounded-btn border border-paper/25 bg-paper/5 px-s13 text-paper outline-none placeholder:text-paper/45 focus:border-gold focus:shadow-[0_0_0_3px_rgba(233,163,33,0.25)]"
-              />
-              <button
-                type="submit"
-                className="h-[52px] rounded-btn bg-gold px-s21 text-[15px] font-bold text-forest transition-colors duration-300 hover:bg-gold-soft"
-              >
-                Subscribe
-              </button>
-            </form>
-            <p aria-live="polite" className="mt-s8 min-h-[1.6em] text-[13px] text-paper/70">
-              {subscribed ? "Your email app should open with the sign-up ready to send." : ""}
-            </p>
-            <p className="eyebrow mt-s21 text-gold">Follow</p>
-            <ul className="mt-s13 flex flex-wrap gap-s8">
-              {SOCIALS.map((s) => {
-                const Icon = SOCIAL_ICONS[s.name];
-                return (
-                  <li key={s.name}>
-                    <a
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={s.name}
-                      title={s.name}
-                      className="grid size-[44px] place-items-center rounded-full border border-paper/20 text-paper transition-colors duration-300 hover:border-gold hover:text-gold"
-                    >
-                      <Icon size={21} />
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          <div className="grid gap-s34 sm:grid-cols-[1fr_1.618fr]">
-            <nav aria-label="Footer">
-              <p className="eyebrow text-gold">Explore</p>
-              <ul className="mt-s13 grid gap-s8">
-                {NAV_LINKS.map((l) => (
-                  <li key={l.href}>
-                    <a href={l.href} className="link-gold text-paper/90 hover:text-paper">
-                      {l.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <ul className="grid content-start gap-s13">
-              {CONTACT_CARDS.map(({ label, value, href, icon: Icon }) => (
-                <li key={label}>
+      <div className={`${container} grid gap-s34 pt-s55 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1.6fr] lg:gap-s55`}>
+        <div>
+          <Logo tone="light" />
+          <p className="mt-s13 max-w-[22em] text-[15px] text-paper/75">
+            A working farm stay ninety kilometres from Bangalore.
+          </p>
+          <ul className="mt-s21 flex flex-wrap gap-s8">
+            {SOCIALS.map((s) => {
+              const Icon = SOCIAL_ICONS[s.name];
+              return (
+                <li key={s.name}>
                   <a
-                    href={href}
-                    {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="group flex gap-s13 rounded-card border border-paper/15 p-s13 transition-colors duration-300 hover:border-gold/60 hover:bg-paper/5"
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.name}
+                    title={s.name}
+                    className="grid size-[44px] place-items-center rounded-full border border-paper/25 text-paper transition-colors duration-300 hover:border-gold hover:text-gold"
                   >
-                    <span className="grid size-[40px] shrink-0 place-items-center rounded-full bg-paper/10 text-gold">
-                      <Icon size={21} />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block text-[13px] text-paper/65">{label}</span>
-                      <span className="block break-words text-paper">{value}</span>
-                    </span>
+                    <Icon size={20} />
                   </a>
                 </li>
-              ))}
-            </ul>
-          </div>
+              );
+            })}
+          </ul>
+        </div>
+
+        <nav aria-label="Footer">
+          <p className="eyebrow text-gold">Explore</p>
+          <ul className="mt-s13 grid gap-[6px]">
+            {NAV_LINKS.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="text-[15px] text-paper transition-colors duration-300 hover:text-gold">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="sm:col-span-2 lg:col-span-1">
+          <p className="eyebrow text-gold">Contact</p>
+          <ul className="mt-s13 grid gap-s8">
+            {CONTACTS.map(({ label, value, href, icon: Icon }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="flex items-start gap-s13 text-[15px] leading-[1.5] text-paper transition-colors duration-300 hover:text-gold"
+                >
+                  <Icon size={20} className="mt-[2px] shrink-0 text-gold" />
+                  <span className="min-w-0 break-words">
+                    <span className="sr-only">{label}: </span>
+                    {value}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
@@ -177,18 +135,20 @@ export function Footer() {
         data-wordmark=""
         aria-hidden="true"
         translate="no"
-        className="flex justify-center overflow-hidden px-s13 font-display text-[22.5vw] leading-[0.78] font-light tracking-[-0.045em] text-paper/95 select-none"
+        className="mt-s34 flex justify-center overflow-hidden px-s13 font-display text-[13vw] leading-[0.82] font-light tracking-[-0.04em] text-paper/90 select-none"
       >
         {"Abhishta".split("").map((c, i) => (
-          <span key={i} className="inline-block pb-[0.08em]">
+          <span key={i} className="inline-block pb-[0.06em]">
             {c}
           </span>
         ))}
       </p>
 
-      <div className={`${container} flex flex-col gap-s8 border-t border-paper/15 py-s21 text-[13px] text-paper/65 sm:flex-row sm:justify-between`}>
+      <div className={`${container} flex flex-wrap gap-x-s21 gap-y-[3px] border-t border-paper/15 py-s13 text-[13px] text-paper/70`}>
         <p>© 2026 Abhishta Agri Farm Stay. Jiddigere, Kunigal.</p>
-        <p>Ninety kilometres from Bangalore, a world away from it.</p>
+        <a href="#top" className="w-fit text-paper/80 hover:text-gold">
+          Back to top
+        </a>
       </div>
     </footer>
   );

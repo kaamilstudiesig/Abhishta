@@ -31,7 +31,7 @@ export function Preview360() {
   }, [videoOpen, lenis]);
 
   return (
-    <div data-nav="dark" className={`on-dark relative bg-forest text-paper ${sectionPad}`}>
+    <div data-nav="dark" data-snap="" className={`on-dark relative bg-forest text-paper ${sectionPad}`}>
       <div className={`${container} grid items-center gap-s55 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
         <SectionHeader
           tone="dark"
@@ -64,7 +64,7 @@ export function Preview360() {
               <button
                 type="button"
                 onClick={() => setTourActive(true)}
-                className="group absolute inset-0 grid place-items-center bg-forest/35 transition-colors duration-500 hover:bg-forest/15"
+                className="group absolute inset-0 grid place-items-center bg-black/25 transition-colors duration-500 hover:bg-black/10"
               >
                 <span className="inline-flex min-h-[48px] items-center gap-s8 rounded-full bg-paper px-s21 text-[15px] font-medium text-forest shadow-float transition-transform duration-500 group-hover:scale-[1.04]">
                   <Icon360 size={22} className="text-farm" />

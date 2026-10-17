@@ -24,8 +24,17 @@ type ScrollExpandProps = {
   distance?: number;
   /** viewport-heights held at full bleed for reading the overlay */
   hold?: number;
+  /** starting card insets, % of the stage, for ≥768px and for phones */
+  start?: Insets;
+  startNarrow?: Insets;
+  /** flat dark shade over the media that deepens with progress, for text contrast */
+  shade?: boolean;
   className?: string;
 };
+
+type Insets = { top: number; right: number; bottom: number; left: number };
+const CENTRED: Insets = { top: 34, right: 20, bottom: 8, left: 20 };
+const CENTRED_NARROW: Insets = { top: 40, right: 6, bottom: 10, left: 6 };
 
 const clamp = (v: number, a = 0, b = 1) => Math.min(Math.max(v, a), b);
 const smooth = (a: number, b: number, x: number) => {
@@ -33,7 +42,17 @@ const smooth = (a: number, b: number, x: number) => {
   return t * t * (3 - 2 * t);
 };
 
-export function ScrollExpand({ media, heading, overlay, distance = 1.1, hold = 0.9, className = "" }: ScrollExpandProps) {
+export function ScrollExpand({
+  media,
+  heading,
+  overlay,
+  distance = 1.1,
+  hold = 0.9,
+  start: startWide = CENTRED,
+  startNarrow = CENTRED_NARROW,
+  shade = false,
+  className = "",
+}: ScrollExpandProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
@@ -62,10 +81,7 @@ export function ScrollExpand({ media, heading, overlay, distance = 1.1, hold = 0
             frame.style.clipPath = "none";
             return;
           }
-          // Start as a card sitting right of the heading (desktop) or below it (mobile).
-          const start = narrow
-            ? { top: 46, right: 6, bottom: 8, left: 6 }
-            : { top: 18, right: 6, bottom: 12, left: 44 };
+          const start = narrow ? startNarrow : startWide;
           const apply = (p: number) => {
             const e = smooth(0, 1, p);
             const inset = (v: number) => (v * (1 - e)).toFixed(3);
@@ -87,7 +103,7 @@ export function ScrollExpand({ media, heading, overlay, distance = 1.1, hold = 0
       );
       return () => mm.revert();
     },
-    { dependencies: [distance] },
+    { dependencies: [distance, startWide, startNarrow] },
   );
 
   return (
@@ -101,6 +117,9 @@ export function ScrollExpand({ media, heading, overlay, distance = 1.1, hold = 0
           <div ref={mediaRef} className="absolute inset-0 origin-center will-change-transform">
             {media}
           </div>
+          {shade ? (
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-black opacity-[calc(var(--p)*0.5)]" />
+          ) : null}
         </div>
         {heading}
         {overlay}

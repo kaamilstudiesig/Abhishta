@@ -27,9 +27,6 @@ export const SOCIALS = [
   { name: "TripAdvisor", href: "https://www.tripadvisor.in/Search?q=Abhishta%20Agri%20Farm%20Stay" },
 ] as const;
 
-// Instagram reel URLs for the reviews strip. Empty until the client supplies them —
-// the strip then shows framed farm stills linking to Instagram.
-export const REEL_URLS: string[] = [];
 
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
