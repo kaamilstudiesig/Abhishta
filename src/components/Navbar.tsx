@@ -10,24 +10,36 @@ import { buttonClass } from "@/components/ui";
 
 /**
  * Fixed navbar. Its tone follows whatever band sits beneath it: each section
- * declares data-nav="dark" | "light", and a thin observer line at the top of
- * the viewport picks the current one. A GradualBlur haze sits behind it.
+ * declares data-nav="dark" | "light"; whichever sits under the bar (checked
+ * on scroll and on a "navtone" event) sets it. A GradualBlur haze sits behind it.
  */
 export function Navbar() {
   const [tone, setTone] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
-    const sections = document.querySelectorAll<HTMLElement>("[data-nav]");
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setTone((entry.target as HTMLElement).dataset.nav === "light" ? "light" : "dark");
-        }
-      },
-      { rootMargin: "-34px 0px -96% 0px" },
-    );
-    sections.forEach((s) => io.observe(s));
-    return () => io.disconnect();
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      // the band currently under the navbar decides its tone
+      const under = Array.from(document.querySelectorAll<HTMLElement>("[data-nav]")).find((el) => {
+        const r = el.getBoundingClientRect();
+        return r.top <= 40 && r.bottom > 40;
+      });
+      setTone(under?.dataset.nav === "light" ? "light" : "dark");
+    };
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    window.addEventListener("navtone", schedule);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.removeEventListener("navtone", schedule);
+    };
   }, []);
 
   const dark = tone === "dark";
@@ -47,7 +59,11 @@ export function Navbar() {
           aria-label="Abhishta Agri Farm Stay — home"
           className={`transition-colors duration-500 ${dark ? "on-dark text-paper" : "text-forest"}`}
         >
-          <Logo tone={dark ? "light" : "color"} />
+          <span
+            className={`block rounded-btn px-s8 py-[4px] transition-colors duration-500 ${dark ? "bg-paper/90 shadow-card" : "bg-transparent"}`}
+          >
+            <Logo className="!h-[40px] sm:!h-[46px]" />
+          </span>
         </Link>
         <div className="flex items-center gap-s8 sm:gap-s13">
           <a

@@ -67,7 +67,7 @@ export function Hero() {
             <span className="size-[3px] rounded-full bg-paper" />
           </span>
         </div>
-        <p className="font-display text-[clamp(17px,1.9vw,22px)] font-light tracking-[0.01em] text-paper/90">
+        <p className="font-display text-[clamp(15px,1.4vw,18px)] font-light tracking-[0.01em] text-paper/90">
           Abhishta Agri Farm Stay
         </p>
         <SplitText
@@ -76,7 +76,7 @@ export function Hero() {
           delay={0.2}
           stagger={0.05}
           text={HEADLINE}
-          className="mt-s21 max-w-[15ch] font-display text-[clamp(40px,5.6vw,72px)] leading-[1.1] font-light tracking-[-0.01em] text-balance"
+          className="mt-s13 max-w-[17ch] font-display text-[clamp(30px,3.6vw,50px)] leading-[1.15] font-light tracking-[-0.005em] text-balance"
         />
         <div className="mt-s34">
           <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("gold", "px-s34")}>

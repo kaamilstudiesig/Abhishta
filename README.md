@@ -11,15 +11,15 @@ npm run lint
 
 ## Where things live
 - `src/app/` — layout (Fraunces + DM Sans via `next/font`), page, 404, `globals.css` (brand tokens in `@theme`)
-- `src/components/sections/` — Hero, About (+ Preview360), Stays, DayOnFarm, Groups, Reviews, Footer
-- `src/components/bits/` — React Bits components rebuilt in the brand system: SplitText, ScrollReveal, StaggeredMenu, CircularText, GradualBlur, ScrollExpand, ScrollStack, CardSwap (CircularGallery was dropped for a steady review grid)
-- `src/components/SmoothScroll.tsx` — Lenis driven by GSAP's ticker, feeding ScrollTrigger, with Lenis Snap on every `[data-snap]` section; off under reduced motion
+- `src/components/sections/` — Hero, About, Preview360, Stays, DayOnFarm, Groups, Reviews, Footer — each one screen high
+- `src/components/bits/` — React Bits components rebuilt in the brand system: SplitText, ScrollReveal, StaggeredMenu, CircularText, GradualBlur, ScrollExpand (plays on arrival), ScrollStack (one card per scroll), CardSwap, CircularGallery
+- Scrolling is native (no smooth-scroll library): CSS scroll snapping on every `[data-snap]` page (`globals.css`), plus `src/components/PageSnap.tsx`, which makes one mouse-wheel/trackpad gesture move exactly one page
 - `src/lib/site.ts` — booking/WhatsApp URLs, contact details, socials, nav, reel URLs
 - `component-library/` — the original React Bits registry sources, kept for reference only (not imported)
 
 ## Open items for the client
 - Instagram, Facebook and TripAdvisor URLs in `src/lib/site.ts` are best guesses — not listed on the live site. Confirm them.
-- Logo uses `assets/logo-current.png` (margins trimmed to `assets/logo-trimmed.png`); on dark bands it renders as a white silhouette. Swap in a vector when the redraw arrives.
+- Logo uses `assets/logo-current.png` (margins trimmed to `assets/logo-trimmed.png`); in the navbar it keeps its colours, on a soft paper backing over dark bands; in the footer it is a white silhouette. Swap in a vector when the redraw arrives.
 - Corporate offsites and destination events use Unsplash stock photos (`assets/images/stock/`).
 - Inner pages (`/our-nests`, `/the-living-farm`, `/group-enquiries`, `/field-notes`) are not built yet; they show the branded 404.
 

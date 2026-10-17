@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useLenis } from "@/components/SmoothScroll";
 import { CONTACT, NAV_LINKS, SOCIALS } from "@/lib/site";
 
 gsap.registerPlugin(useGSAP);
@@ -16,7 +15,6 @@ gsap.registerPlugin(useGSAP);
  */
 export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
   const [open, setOpen] = useState(false);
-  const lenis = useLenis();
   const rootRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -54,15 +52,13 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
     if (!tl) return;
     if (open) {
       tl.timeScale(1).play();
-      lenis?.stop();
       document.body.style.overflow = "hidden";
       panelRef.current?.querySelector<HTMLElement>("a")?.focus({ preventScroll: true });
     } else {
       tl.timeScale(1.6).reverse();
-      lenis?.start();
       document.body.style.overflow = "";
     }
-  }, [open, lenis]);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;

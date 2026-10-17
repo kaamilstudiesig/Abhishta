@@ -68,8 +68,25 @@ html {
   background: var(--color-forest);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
-  /* keep anchored sections and focused elements clear of the fixed navbar */
-  scroll-padding-top: 89px;
+  /* Native scroll snapping, one screen per section: mandatory where every
+     section fits the screen, proximity on small/short screens where some
+     sections run taller than the viewport. */
+  scroll-snap-type: y proximity;
+}
+
+@media (min-width: 768px) and (min-height: 640px) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+}
+
+/* A snap point per page; scroll-snap-stop keeps a fast flick from skipping one. */
+[data-snap] {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+[data-snap-end] {
+  scroll-snap-align: end;
 }
 
 a,
@@ -106,17 +123,6 @@ body {
   outline-color: var(--color-gold);
 }
 
-/* Lenis */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-.lenis:not(.lenis-autoToggle).lenis-stopped {
-  overflow: clip;
-}
-.lenis [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
 
 @utility font-display-soft {
   font-family: var(--font-display);

@@ -8,74 +8,83 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /**
- * Brand ScrollStack — adapted from React Bits for window scroll + Lenis (the
- * original hijacks the wheel; here Lenis owns scrolling and ScrollTrigger only
- * reads it). Cards pin with CSS sticky, each 21px lower than the last, and as
- * later cards arrive the earlier ones settle back: scale down a touch and dim,
- * like pages of a field journal laid on top of one another. Renders an ordered list.
+ * Brand ScrollStack — adapted from React Bits for one-card-per-scroll paging.
+ * The section is N screens tall with a snap point at every screen, and a
+ * single sticky stage holds the header and the deck. Each scroll brings the
+ * next card up over the last; the card underneath settles back (a touch
+ * smaller, dimmer) like pages of a field journal. Because every card has its
+ * own mandatory snap point with scroll-snap-stop, one scroll moves exactly one
+ * card and the deck stays put until the next scroll. Each card receives a --dim
+ * custom property (0–0.42) to darken itself as it is covered.
  */
 type ScrollStackProps = {
   children: ReactNode;
-  /** px from viewport top where the first card pins (≥768px; phones get a plain list) */
-  top?: number;
-  /** px each following card pins below the previous */
-  offset?: number;
+  header?: ReactNode;
+  id?: string;
   className?: string;
 };
 
-export function ScrollStack({ children, top = 110, offset = 21, className = "" }: ScrollStackProps) {
-  const rootRef = useRef<HTMLOListElement>(null);
+const PEEK = 13;
+
+export function ScrollStack({ children, header, id, className = "" }: ScrollStackProps) {
+  const rootRef = useRef<HTMLElement>(null);
   const items = Children.toArray(children);
   const count = items.length;
 
   useGSAP(
     () => {
       const root = rootRef.current;
-      if (!root) return;
-      const mm = gsap.matchMedia();
-      mm.add("(prefers-reduced-motion: no-preference) and (min-width: 768px)", () => {
-        const slots = gsap.utils.toArray<HTMLElement>("[data-stack-slot]", root);
-        const last = slots[slots.length - 1];
-        slots.slice(0, -1).forEach((slot, i) => {
-          const card = slot.firstElementChild as HTMLElement;
-          const depth = count - 1 - i;
-          gsap.to(card, {
-            scale: 1 - depth * 0.035,
-            "--dim": Math.min(0.12 * depth, 0.36),
-            ease: "none",
-            scrollTrigger: {
-              trigger: slots[i + 1],
-              start: "top bottom",
-              endTrigger: last,
-              end: `top ${top + (count - 1) * offset}px`,
-              scrub: true,
-            },
-          });
-        });
+      if (!root || count < 2) return;
+      const cards = gsap.utils.toArray<HTMLElement>("[data-stack-card]", root);
+      gsap.set(cards.slice(1), { yPercent: 115 });
+
+      const tl = gsap.timeline({
+        defaults: { ease: "none", duration: 1 },
+        scrollTrigger: { trigger: root, start: "top top", end: "bottom bottom", scrub: 0.3 },
       });
-      return () => mm.revert();
+      for (let i = 1; i < count; i++) {
+        tl.to(cards[i], { yPercent: 0 }, i - 1);
+        for (let j = 0; j < i; j++) {
+          const depth = i - j;
+          tl.to(cards[j], { scale: 1 - depth * 0.04, "--dim": Math.min(depth * 0.14, 0.42) }, i - 1);
+        }
+      }
     },
-    { scope: rootRef, dependencies: [count, top, offset] },
+    { scope: rootRef, dependencies: [count] },
   );
 
   return (
-    <ol ref={rootRef} className={`relative ${className}`}>
-      {items.map((child, i) => (
-        <li
+    <section
+      id={id}
+      ref={rootRef}
+      data-nav="light"
+      className={`relative ${className}`}
+      style={{ height: `${count * 100}svh` }}
+    >
+      {items.map((_, i) => (
+        <div
           key={i}
-          data-stack-slot=""
-          className="mb-s21 last:mb-0 md:sticky md:mb-s55 md:last:mb-0 motion-reduce:static"
-          style={{ top: top + i * offset, zIndex: i + 1 }}
-        >
-          <div className="relative origin-top [--dim:0] will-change-transform">
-            {child}
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 rounded-card bg-forest opacity-[var(--dim)]"
-            />
-          </div>
-        </li>
+          data-snap=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 h-svh"
+          style={{ top: `${i * 100}svh` }}
+        />
       ))}
-    </ol>
+      <div className="sticky top-0 flex h-svh min-h-[560px] flex-col overflow-hidden pt-[96px] pb-s34">
+        {header}
+        <ol className="relative mt-s21 flex-1">
+          {items.map((child, i) => (
+            <li
+              key={i}
+              data-stack-card=""
+              className="absolute inset-x-0 bottom-0 origin-top [--dim:0] will-change-transform"
+              style={{ top: i * PEEK, zIndex: i + 1 }}
+            >
+              {child}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
   );
 }

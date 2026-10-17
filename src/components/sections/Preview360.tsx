@@ -3,8 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { CircularText } from "@/components/bits/CircularText";
 import { Icon360, IconClose, IconPlay } from "@/components/icons";
-import { useLenis } from "@/components/SmoothScroll";
-import { SectionHeader, buttonClass, container, sectionPad } from "@/components/ui";
+import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { STORY_VIDEO_URL, TOUR_360_URL } from "@/lib/site";
 
 /**
@@ -16,22 +15,19 @@ export function Preview360() {
   const [tourActive, setTourActive] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const lenis = useLenis();
 
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
     if (videoOpen) {
       dialog.showModal();
-      lenis?.stop();
     } else if (dialog.open) {
       dialog.close();
     }
-    if (!videoOpen) lenis?.start();
-  }, [videoOpen, lenis]);
+  }, [videoOpen]);
 
   return (
-    <div data-nav="dark" data-snap="" className={`on-dark relative bg-forest text-paper ${sectionPad}`}>
+    <section id="look-around" data-nav="dark" data-snap="" className={`on-dark bg-forest text-paper ${screen}`}>
       <div className={`${container} grid items-center gap-s55 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
         <SectionHeader
           tone="dark"
@@ -113,6 +109,6 @@ export function Preview360() {
           ) : null}
         </div>
       </dialog>
-    </div>
+    </section>
   );
 }

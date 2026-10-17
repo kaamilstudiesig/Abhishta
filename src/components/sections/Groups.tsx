@@ -7,7 +7,7 @@ import school from "../../../assets/images/youtube-video-thumb.jpg";
 import mangoes from "../../../assets/images/slider/slider-3.jpg";
 import events from "../../../assets/images/stock/destination-events.jpg";
 import { CardSwap } from "@/components/bits/CardSwap";
-import { SectionHeader, buttonClass, container, sectionPad } from "@/components/ui";
+import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 
 type Group = { name: string; body: string; href: string; image: StaticImageData; alt: string };
 
@@ -52,7 +52,7 @@ export function Groups() {
   const [picked, setPicked] = useState(false);
 
   return (
-    <section id="groups" data-nav="dark" data-snap="" className={`on-dark overflow-hidden bg-forest text-paper ${sectionPad}`}>
+    <section id="groups" data-nav="dark" data-snap="" className={`on-dark overflow-hidden bg-forest text-paper ${screen}`}>
       <div className={`${container} grid items-center gap-s55 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
         <div>
           <SectionHeader

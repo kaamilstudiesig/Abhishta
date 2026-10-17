@@ -4,7 +4,6 @@ import { ScrollExpand } from "@/components/bits/ScrollExpand";
 import { SplitText } from "@/components/bits/SplitText";
 import { IconCart, IconField, IconPool, IconSky } from "@/components/icons";
 import { container } from "@/components/ui";
-import { Preview360 } from "@/components/sections/Preview360";
 
 const MEANINGS = [
   { icon: IconSky, title: "Open skies" },
@@ -15,16 +14,15 @@ const MEANINGS = [
 
 /**
  * About — a single centred line, "Abhishta means", over a centred photo card.
- * As you scroll the dusk aerial opens to full bleed (ScrollExpand), a flat
+ * Once you arrive, the dusk aerial opens to full bleed (ScrollExpand), a flat
  * shade settles over it, and the meaning of the name appears beneath the
- * heading. Below, a forest band carries the story film and the 360° preview.
+ * heading. The page is one screen; the expansion plays once it has settled.
  */
 export function About() {
   return (
-    <section id="about" className="relative bg-paper">
-      <div data-snap="" data-nav="light" className="absolute inset-x-0 top-0 h-[85svh]" aria-hidden="true" />
-      <div data-nav="dark" className="absolute inset-x-0 top-[85svh] bottom-0" aria-hidden="true" />
       <ScrollExpand
+        id="about"
+        className="bg-paper"
         media={
           <Image
             src={aerialDusk}
@@ -73,7 +71,5 @@ export function About() {
           </div>
         }
       />
-      <Preview360 />
-    </section>
   );
 }

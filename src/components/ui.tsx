@@ -69,3 +69,6 @@ export function SectionHeader({
     </header>
   );
 }
+
+/** One screen-high page: clears the fixed navbar, centres its content, and is a scroll-snap point. */
+export const screen = "relative flex min-h-svh flex-col justify-center pt-[96px] pb-s34";

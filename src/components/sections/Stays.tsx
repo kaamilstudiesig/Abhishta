@@ -12,7 +12,7 @@ import {
   IconTrail,
   IconField,
 } from "@/components/icons";
-import { SectionHeader, buttonClass, container, sectionPad } from "@/components/ui";
+import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL } from "@/lib/site";
 
 type Stay = {
@@ -72,7 +72,7 @@ const SHARED = [
  */
 export function Stays() {
   return (
-    <section id="stays" data-nav="light" data-snap="" className={`bg-paper-deep ${sectionPad}`}>
+    <section id="stays" data-nav="light" data-snap="" className={`bg-paper-deep ${screen}`}>
       <div className={container}>
         <div className="flex flex-col gap-s21 md:flex-row md:items-end md:justify-between">
           <SectionHeader
@@ -85,38 +85,41 @@ export function Stays() {
           </a>
         </div>
 
-        <ul className="mt-s55 grid gap-s34 md:grid-cols-2">
+        <ul className="mt-s34 grid gap-s21 lg:grid-cols-2 lg:gap-s34">
           {STAYS.map((stay) => (
-            <li key={stay.name} className="group flex flex-col overflow-hidden rounded-card bg-card shadow-card">
-              <div className="relative aspect-[3/2] overflow-hidden">
+            <li
+              key={stay.name}
+              className="group grid overflow-hidden rounded-card bg-card shadow-card sm:grid-cols-[2fr_3fr]"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden sm:aspect-auto">
                 <Image
                   src={stay.image}
                   alt={stay.alt}
                   fill
-                  sizes="(min-width: 768px) 50vw, 100vw"
+                  sizes="(min-width: 1024px) 20vw, (min-width: 640px) 40vw, 100vw"
                   placeholder="blur"
                   className="object-cover transition-transform duration-700 ease-[var(--ease-earth)] group-hover:scale-[1.03]"
                 />
-                <span className="absolute top-s21 left-s21 inline-flex items-center gap-s8 rounded-full bg-paper py-[6px] pr-s13 pl-s8 text-[13px] font-bold text-forest shadow-card">
-                  <IconGuests size={18} className="text-farm" />
+                <span className="absolute top-s13 left-s13 inline-flex items-center gap-[6px] rounded-full bg-paper py-[5px] pr-s13 pl-s8 text-[13px] font-bold text-forest shadow-card">
+                  <IconGuests size={17} className="text-farm" />
                   {stay.capacity}
                 </span>
               </div>
-              <div className="flex flex-1 flex-col p-s21 sm:p-s34">
-                <h3 className="font-display text-[clamp(28px,3vw,34px)] leading-[1.1] font-light text-forest">
+              <div className="flex flex-col p-s21 lg:p-s34">
+                <h3 className="font-display text-[clamp(24px,2.4vw,30px)] leading-[1.1] font-light text-forest">
                   {stay.name}
                 </h3>
-                <p className="mt-s13 text-ink-muted">{stay.body}</p>
-                <ul className="mt-s21 grid border-t border-line">
+                <p className="mt-s8 text-[15px] leading-[1.55] text-ink-muted">{stay.body}</p>
+                <ul className="mt-s13 grid gap-[6px]">
                   {stay.features.map(({ icon: Icon, label }) => (
-                    <li key={label} className="flex items-center gap-s13 border-b border-line py-s13 text-[15px] text-ink">
-                      <Icon size={22} className="shrink-0 text-farm" />
+                    <li key={label} className="flex items-center gap-s8 text-[14px] text-ink">
+                      <Icon size={19} className="shrink-0 text-farm" />
                       {label}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-auto flex flex-wrap items-center gap-s21 pt-s34">
-                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("primary")}>
+                <div className="mt-auto flex flex-wrap items-center gap-x-s21 gap-y-s8 pt-s21">
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("primary", "min-h-[44px] px-s21")}>
                     Book this stay
                   </a>
                   <a href={stay.href} className="link-gold text-[15px] font-medium text-forest">
@@ -128,13 +131,13 @@ export function Stays() {
           ))}
         </ul>
 
-        <div className="mt-s34 rounded-card bg-card p-s21 ring-1 ring-line sm:p-s34">
-          <h3 className="font-display text-h3 text-forest">Shared by every guest</h3>
-          <ul className="mt-s21 grid grid-cols-2 gap-x-s21 gap-y-s21 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-s21 flex flex-col gap-s13 rounded-card bg-card px-s21 py-s13 ring-1 ring-line lg:mt-s34 lg:flex-row lg:items-center lg:gap-s34 lg:px-s34">
+          <h3 className="shrink-0 font-display text-[19px] text-forest">Shared by every guest</h3>
+          <ul className="grid flex-1 grid-cols-2 gap-x-s21 gap-y-s13 sm:grid-cols-3 lg:grid-cols-5">
             {SHARED.map(({ icon: Icon, label }) => (
-              <li key={label} className="flex items-center gap-s13 text-[15px] text-ink">
-                <span className="grid size-[44px] shrink-0 place-items-center rounded-full bg-gold-soft text-forest">
-                  <Icon size={22} />
+              <li key={label} className="flex items-center gap-s8 text-[14px] text-ink">
+                <span className="grid size-[36px] shrink-0 place-items-center rounded-full bg-gold-soft text-forest">
+                  <Icon size={19} />
                 </span>
                 {label}
               </li>
