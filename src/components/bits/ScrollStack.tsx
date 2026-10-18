@@ -65,6 +65,7 @@ export function ScrollStack({ children, header, id, className = "" }: ScrollStac
         <div
           key={i}
           data-snap=""
+          data-stack-page=""
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 h-svh"
           style={{ top: `${i * 100}svh` }}

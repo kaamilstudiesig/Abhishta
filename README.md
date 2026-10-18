@@ -18,7 +18,7 @@ Tokens live in `src/app/globals.css` `@theme`; names kept from DESIGN_GUIDELINES
 - `src/app/` — layout (Fraunces + DM Sans via `next/font`), page, 404, `globals.css` (brand tokens in `@theme`)
 - `src/components/sections/` — Hero, About, Preview360, Stays, DayOnFarm, Groups, Reviews, Footer — each one screen high
 - `src/components/bits/` — React Bits components rebuilt in the brand system: SplitText, ScrollReveal, StaggeredMenu, CircularText, GradualBlur, ScrollExpand (plays on arrival), ScrollStack (one card per scroll), CardSwap, CircularGallery
-- `src/components/SmoothScroll.tsx` — Lenis smooth scrolling; on desktop one wheel gesture (or PgDn/PgUp, arrows, Space) glides to the next `[data-snap]` page; the footer scrolls freely. Touch and reduced motion use CSS proximity snapping
+- `src/components/SmoothScroll.tsx` — Lenis smooth scrolling, free everywhere; once a scroll comes to rest it settles onto a section (short scroll → next section in that direction, long → nearest). Only the "day on the farm" stack pages strictly, one card per gesture. The footer is free. Touch and reduced motion use CSS proximity snapping
 - `src/lib/site.ts` — booking/WhatsApp URLs, contact details, socials, nav, reel URLs
 - `component-library/` — the original React Bits registry sources, kept for reference only (not imported)
 
