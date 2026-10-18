@@ -1,0 +1,228 @@
+/*
+ * UI experiments — same elements, different looks.
+ * Active only when <html data-ui="…"> is set (npm run ui:clay | ui:dusk | ui:meadow).
+ * The main design (no data-ui) is untouched by anything in this file.
+ *
+ * Each variant overrides the @theme tokens (colours, fonts, radii) and adds a
+ * few scoped layout rules. These rules are unlayered, so they win over Tailwind
+ * utilities without !important. Directions are described in docs/ui-experiments.md.
+ */
+
+/* ───────────────────────── CLAY — terracotta almanac ─────────────────────────
+   Kunigal's red earth: parchment pages, umber ink, terracotta actions.
+   Instrument Serif display, tight 4–6px corners, a centred ceremonial hero. */
+html[data-ui="clay"] {
+  --color-paper: #f6efe6;
+  --color-paper-deep: #ede1d1;
+  --color-card: #fbf6ef;
+  --color-ink: #2b1d16;
+  --color-ink-muted: #6e5546;
+  --color-sage: #a68b76;
+  --color-farm: #a4472b; /* terracotta — white text 5.6:1 */
+  --color-forest: #3a2419; /* umber */
+  --color-gold: #d9a55c; /* turmeric */
+  --color-gold-soft: #f1dfc4;
+  --color-clay: #a4472b;
+  --color-line: #e3d3bf;
+  --font-display: var(--font-instrument-serif), Georgia, serif;
+  --font-sans: var(--font-instrument-sans), system-ui, sans-serif;
+  --radius-card: 6px;
+  --radius-btn: 3px;
+  --nav-haze: rgba(246, 239, 230, 0.94);
+  --shadow-card: 0 1px 0 rgba(58, 36, 25, 0.08), 0 14px 34px rgba(58, 36, 25, 0.07);
+  background: var(--color-forest);
+}
+html[data-ui="clay"] .font-display,
+html[data-ui="clay"] .hero-display {
+  font-variation-settings: normal;
+}
+/* hero: centred, sentence case, the second line in italic */
+html[data-ui="clay"] .hero-display {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  text-align: center;
+  font-size: clamp(54px, 9.6vw, 156px);
+  line-height: 0.92;
+}
+html[data-ui="clay"] [data-hero-line] {
+  text-align: center;
+  padding-right: 0;
+}
+html[data-ui="clay"] [data-hero-line]:last-child {
+  font-style: italic;
+}
+html[data-ui="clay"] #top [data-hero-reveal] {
+  text-align: center;
+}
+html[data-ui="clay"] #top h1 + div {
+  margin-inline: auto;
+  align-self: center;
+}
+html[data-ui="clay"] #top [data-hero-reveal].flex {
+  justify-content: center;
+}
+html[data-ui="clay"] #top > div[aria-hidden="true"] {
+  background: rgba(43, 22, 12, 0.38);
+}
+/* section headings: larger, centred, rule above */
+html[data-ui="clay"] main header h2 {
+  font-size: clamp(34px, 5.4vw, 64px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+html[data-ui="clay"] #stays,
+html[data-ui="clay"] #reviews {
+  background: var(--color-paper-deep);
+}
+html[data-ui="clay"] #a-day-on-the-farm article {
+  box-shadow: none;
+  outline: 1px solid rgba(58, 36, 25, 0.12);
+}
+
+/* ───────────────────────── DUSK — lantern night ─────────────────────────
+   The farm after sunset: near-black olive pages, lamplit cream type, amber
+   glow. Light sections are re-scoped to dark; the day cards stay as lit windows. */
+html[data-ui="dusk"] {
+  --color-gold: #e2b66b;
+  --nav-haze: rgba(16, 19, 12, 0.9);
+  --logo-backing-light: rgba(243, 236, 221, 0.92);
+  --logo-backing-dark: rgba(243, 236, 221, 0.92);
+  background: #0c0f09;
+  color-scheme: dark;
+}
+/* sections that were light become night: swap the meaning of the light tokens inside them */
+html[data-ui="dusk"] :is(#stays, #a-day-on-the-farm, #reviews) {
+  --color-paper: #12150d;
+  --color-paper-deep: #181c12;
+  --color-card: #1c2116;
+  --color-forest: #efe7d5;
+  --color-ink: #e6dfcd;
+  --color-ink-muted: #aaa38f;
+  --color-line: #2c3224;
+  --color-farm: #d6a14e; /* lantern amber — dark text on it */
+  --shadow-card: 0 0 0 1px rgba(239, 231, 213, 0.06), 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+html[data-ui="dusk"] main {
+  background: #12150d;
+}
+html[data-ui="dusk"] :is(#stays, #a-day-on-the-farm, #reviews) {
+  background: #12150d;
+}
+html[data-ui="dusk"] :is(#look-around, #groups) {
+  background: #0c0f09;
+}
+html[data-ui="dusk"] footer {
+  background: #090b07;
+}
+/* About: night stage around the photo card; the heading stays lamplit cream from card to full bleed */
+html[data-ui="dusk"] #about {
+  background: #12150d;
+}
+html[data-ui="dusk"] #about h2 {
+  color: #efe7d5;
+}
+/* the day cards keep their time-of-day colours, like lit windows: restore light tokens inside */
+html[data-ui="dusk"] #a-day-on-the-farm article {
+  --color-paper: #faf7f0;
+  --color-forest: #2e3a17;
+  --color-ink: #26281d;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 220, 160, 0.06);
+}
+/* navbar: over the night sections its "light" tone must read cream; over the film it already does */
+html[data-ui="dusk"] body > header {
+  --color-forest: #efe7d5;
+  --color-farm: #d6a14e;
+}
+/* the open menu panel stays a night panel with cream links */
+html[data-ui="dusk"] #site-menu {
+  --color-forest: #12150d;
+  --color-paper: #efe7d5;
+}
+/* reviews: lantern-glow cards */
+html[data-ui="dusk"] #reviews figure {
+  background: #1c2116;
+  box-shadow: 0 0 0 1px rgba(214, 161, 78, 0.18), 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+html[data-ui="dusk"] .hero-display {
+  font-weight: 300;
+  color: #f3ecdd;
+  text-shadow: 0 0 40px rgba(214, 161, 78, 0.18);
+}
+html[data-ui="dusk"] #top > div[aria-hidden="true"] {
+  background: rgba(6, 8, 4, 0.5);
+}
+
+/* ───────────────────────── MEADOW — field notes ─────────────────────────
+   Fresh and light: leaf greens on cool white, Bricolage Grotesque throughout,
+   soft generous radii, a bold sentence-case hero set flush left. */
+html[data-ui="meadow"] {
+  --color-paper: #f6f8f2;
+  --color-paper-deep: #eaefe2;
+  --color-card: #ffffff;
+  --color-ink: #1d2a1b;
+  --color-ink-muted: #56634f;
+  --color-sage: #9aa891;
+  --color-farm: #2f6b3a; /* leaf — white text 6.4:1 */
+  --color-forest: #183520;
+  --color-gold: #c3d68a; /* new-shoot lime, for dark bands */
+  --color-gold-soft: #e4ecd0;
+  --color-line: #dbe3d1;
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
+  --font-sans: var(--font-bricolage), system-ui, sans-serif;
+  --radius-card: 28px;
+  --radius-btn: 999px;
+  --nav-haze: rgba(246, 248, 242, 0.94);
+  --shadow-card: 0 2px 6px rgba(24, 53, 32, 0.05), 0 18px 40px rgba(24, 53, 32, 0.07);
+  background: var(--color-forest);
+}
+html[data-ui="meadow"] .font-display {
+  font-variation-settings: normal;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+html[data-ui="meadow"] .hero-display {
+  font-variation-settings: normal;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  font-size: clamp(56px, 11vw, 176px);
+}
+html[data-ui="meadow"] [data-hero-line] {
+  text-align: left;
+  padding-right: 0;
+}
+html[data-ui="meadow"] [data-hero-line]:last-child {
+  color: #d9e8b0;
+}
+html[data-ui="meadow"] #top h1 + div {
+  align-self: flex-start;
+  margin: 34px 0 0;
+}
+html[data-ui="meadow"] #top > div[aria-hidden="true"] {
+  background: rgba(10, 26, 14, 0.34);
+}
+html[data-ui="meadow"] #top [data-hero-reveal] p,
+html[data-ui="meadow"] #top p[data-hero-reveal] {
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+/* pill-shaped CTA in the hero */
+html[data-ui="meadow"] #top [data-hero-reveal] a span {
+  border-radius: 999px;
+}
+html[data-ui="meadow"] main header h2 {
+  font-size: clamp(32px, 4.8vw, 58px);
+  line-height: 1;
+}
+html[data-ui="meadow"] #stays {
+  background: var(--color-paper-deep);
+}
+html[data-ui="meadow"] #a-day-on-the-farm article {
+  box-shadow: 0 2px 6px rgba(24, 53, 32, 0.05), 0 24px 50px rgba(24, 53, 32, 0.1);
+}
+html[data-ui="meadow"] blockquote {
+  font-style: normal;
+  font-weight: 500;
+}

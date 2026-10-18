@@ -48,7 +48,7 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-0 z-[70]">
       {/* haze only over light bands; over the film the bar is fully clear */}
       <div className={`transition-opacity duration-500 ${dark ? "opacity-0" : "opacity-100"}`}>
-        <GradualBlur position="top" height="104px" strength={1} tint="rgba(250,247,240,0.92)" />
+        <GradualBlur position="top" height="104px" strength={1} tint="var(--nav-haze)" />
       </div>
       <div className="relative mx-auto grid h-[80px] max-w-[1440px] grid-cols-[1fr_auto_1fr] items-center px-s13 sm:px-s34">
         <a
@@ -63,7 +63,7 @@ export function Navbar() {
         </a>
         <Link href="/" aria-label="Abhishta Agri Farm Stay — home" className="justify-self-center">
           <span
-            className={`block rounded-[6px] px-s8 py-[4px] transition-colors duration-500 ${dark ? "bg-paper/90" : "bg-transparent"}`}
+            className={`block rounded-[6px] px-s8 py-[4px] transition-colors duration-500 ${dark ? "bg-[var(--logo-backing-dark)]" : "bg-[var(--logo-backing-light)]"}`}
           >
             <Logo className="!h-[38px] sm:!h-[44px]" />
           </span>

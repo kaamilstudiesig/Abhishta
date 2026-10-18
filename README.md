@@ -11,6 +11,10 @@ npm run build   # production build
 npm run lint
 ```
 
+## UI experiments (this branch)
+Three alternative looks for the same page — `npm run ui:clay` (port 3001), `npm run ui:dusk` (3002),
+`npm run ui:meadow` (3003), or `npm run ui:all`. See `docs/ui-experiments.md`.
+
 ## Project layout
 ```
 src/

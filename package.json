@@ -6,7 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "ui:clay": "NEXT_PUBLIC_UI_VARIANT=clay NEXT_DIST_DIR=.next-clay next dev -p 3001",
+    "ui:clay:build": "NEXT_PUBLIC_UI_VARIANT=clay NEXT_DIST_DIR=.next-clay next build",
+    "ui:clay:start": "NEXT_PUBLIC_UI_VARIANT=clay NEXT_DIST_DIR=.next-clay next start -p 3001",
+    "ui:dusk": "NEXT_PUBLIC_UI_VARIANT=dusk NEXT_DIST_DIR=.next-dusk next dev -p 3002",
+    "ui:dusk:build": "NEXT_PUBLIC_UI_VARIANT=dusk NEXT_DIST_DIR=.next-dusk next build",
+    "ui:dusk:start": "NEXT_PUBLIC_UI_VARIANT=dusk NEXT_DIST_DIR=.next-dusk next start -p 3002",
+    "ui:meadow": "NEXT_PUBLIC_UI_VARIANT=meadow NEXT_DIST_DIR=.next-meadow next dev -p 3003",
+    "ui:meadow:build": "NEXT_PUBLIC_UI_VARIANT=meadow NEXT_DIST_DIR=.next-meadow next build",
+    "ui:meadow:start": "NEXT_PUBLIC_UI_VARIANT=meadow NEXT_DIST_DIR=.next-meadow next start -p 3003",
+    "ui:all": "sh -c 'npm run ui:clay & npm run ui:dusk & npm run ui:meadow & wait'"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
