@@ -57,7 +57,7 @@ export function SectionHeader({
       <span aria-hidden="true" className="mb-s21 block h-px w-s34 bg-gold" />
       <SplitText
         text={title}
-        className={`font-display text-[clamp(34px,4.6vw,45px)] leading-[1.1] font-normal tracking-[-0.015em] text-balance ${dark ? "text-paper" : "text-forest"} ${titleClassName}`}
+        className={`font-display text-[clamp(28px,4.6vw,45px)] leading-[1.1] font-normal tracking-[-0.015em] text-balance ${dark ? "text-paper" : "text-forest"} ${titleClassName}`}
       />
       {lead ? (
         <ScrollReveal className={`mt-s21 max-w-[30em] text-pretty ${dark ? "text-paper/85" : "text-ink-muted"}`}>
@@ -70,4 +70,4 @@ export function SectionHeader({
 }
 
 /** One screen-high page: equal air above and below (the top also clears the fixed navbar), content centred. */
-export const screen = "relative flex min-h-svh flex-col justify-center py-[104px] md:py-[112px]";
+export const screen = "relative flex min-h-svh flex-col justify-center pt-[92px] pb-[80px] md:py-[112px]";

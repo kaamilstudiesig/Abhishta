@@ -77,7 +77,20 @@ html {
   scroll-snap-type: none;
 }
 
-@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+/* Touch screens: the browser's own snapping, one page per swipe — native,
+   smooth and reliable on iOS and Android. The end-of-page marker after the
+   footer is the last stop, so the footer is reachable in one swipe. */
+@media (pointer: coarse) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+  [data-snap-end] {
+    scroll-snap-align: end;
+  }
+}
+
+/* Mouse/trackpad with reduced motion (no Lenis): gentle native snapping. */
+@media (pointer: fine) and (prefers-reduced-motion: reduce) {
   html {
     scroll-snap-type: y proximity;
   }

@@ -15,14 +15,14 @@ Tokens live in `src/app/globals.css` `@theme`; names kept from DESIGN_GUIDELINES
 
 ## Mobile
 - Phones get `public/videos/hero-mobile.mp4` (4.4 MB portrait cut of the first 45 s, `<source media>`), not the 48 MB landscape film.
-- Each page is laid out for ~360–430 px screens: swipeable Stays row and Groups pills, tighter CardSwap fan, compact review cards, content kept clear of the floating buttons, ≥44 px tap areas on text links (touch only).
+- Each page is exactly one screen tall on 360–430 px phones (checked at 360×740, 390×844, 430×932): swipeable Stays row and Groups pills, tighter CardSwap fan, compact review cards, content kept clear of the floating buttons, ≥44 px tap areas on text links (touch only).
 
 ## Where things live
 - `src/components/IntroVeil.tsx` + `src/lib/intro.ts` — page-load veil (field white, centred colour logo); hero animations wait for its hand-off
 - `src/app/` — layout (Fraunces + DM Sans via `next/font`), page, 404, `globals.css` (brand tokens in `@theme`)
 - `src/components/sections/` — Hero, About, Preview360, Stays, DayOnFarm, Groups, Reviews, Footer — each one screen high
 - `src/components/bits/` — React Bits components rebuilt in the brand system: SplitText, ScrollReveal, StaggeredMenu, CircularText, GradualBlur, ScrollExpand (plays on arrival), ScrollStack (one card per scroll), CardSwap, CircularGallery
-- `src/components/SmoothScroll.tsx` — Lenis smooth scrolling, free everywhere; once a scroll comes to rest it settles onto a section (short scroll → next section in that direction, long → nearest). Only the "day on the farm" stack pages strictly, one card per gesture. The footer is free. Touch and reduced motion use CSS proximity snapping
+- `src/components/SmoothScroll.tsx` — mouse/trackpad only: Lenis smooth scrolling, free everywhere; once a scroll comes to rest it settles onto a section (short scroll → next section, long → nearest). Only the "day on the farm" stack pages strictly, one card per gesture. The footer is free. Touch screens never start Lenis: they use native CSS mandatory snapping, one page per swipe (`globals.css`), and every section is sized to exactly one phone screen
 - `src/lib/site.ts` — booking/WhatsApp URLs, contact details, socials, nav, reel URLs
 - `component-library/` — the original React Bits registry sources, kept for reference only (not imported)
 

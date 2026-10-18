@@ -7,6 +7,7 @@ import school from "../../../assets/images/youtube-video-thumb.jpg";
 import mangoes from "../../../assets/images/slider/slider-3.jpg";
 import events from "../../../assets/images/stock/destination-events.jpg";
 import { CardSwap } from "@/components/bits/CardSwap";
+import { IconArrow } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 
 type Group = { name: string; body: string; href: string; image: StaticImageData; alt: string };
@@ -44,12 +45,11 @@ const GROUPS: Group[] = [
 
 /**
  * Bring your people — forest band. A list of the four group types on the left
- * drives a CardSwap deck on the right; the deck also turns on its own.
+ * drives a CardSwap deck on the right. The deck only moves when the visitor
+ * drags it (or picks a group), never on its own.
  */
 export function Groups() {
   const [active, setActive] = useState(0);
-  // Once the visitor picks a group, the deck stops turning on its own.
-  const [picked, setPicked] = useState(false);
 
   return (
     <section id="groups" data-nav="dark" data-snap="" className={`on-dark overflow-hidden bg-forest text-paper ${screen}`}>
@@ -66,10 +66,7 @@ export function Groups() {
                 <button
                   type="button"
                   aria-pressed={active === i}
-                  onClick={() => {
-                    setPicked(true);
-                    setActive(i);
-                  }}
+                  onClick={() => setActive(i)}
                   className={`flex min-h-[44px] w-full items-center gap-s13 rounded-full border px-s21 text-left text-[15px] whitespace-nowrap transition-colors duration-300 md:rounded-none md:border-0 md:px-0 md:py-s13 md:font-display md:text-h3 ${
                     active === i
                       ? "border-paper/60 bg-paper/10 text-paper md:bg-transparent"
@@ -90,8 +87,8 @@ export function Groups() {
         <CardSwap
           active={active}
           onActiveChange={setActive}
-          interval={picked ? null : 7000}
-          className="mx-auto h-[340px] w-full max-w-[560px] translate-y-[14px] sm:h-[440px] sm:translate-y-[26px] lg:-translate-x-s34"
+          label="Group visits"
+          className="mx-auto h-[min(340px,42svh)] w-full max-w-[560px] translate-y-[14px] sm:h-[440px] sm:translate-y-[26px] lg:-translate-x-s34"
         >
           {GROUPS.map((g) => (
             <article key={g.name} className="overflow-hidden rounded-card bg-card text-ink shadow-card">
@@ -108,6 +105,11 @@ export function Groups() {
             </article>
           ))}
         </CardSwap>
+        <p className="-mt-s13 flex items-center justify-center gap-s8 text-[13px] text-paper/60 lg:col-start-2 lg:mt-0">
+          <IconArrow size={14} className="rotate-180" aria-hidden="true" />
+          Drag the card to see more
+          <IconArrow size={14} aria-hidden="true" />
+        </p>
       </div>
     </section>
   );

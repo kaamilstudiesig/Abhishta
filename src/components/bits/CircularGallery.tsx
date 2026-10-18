@@ -156,7 +156,7 @@ export function CircularGallery({
         aria-roledescription="carousel"
         aria-label={label}
         tabIndex={0}
-        className="relative h-[330px] cursor-grab touch-pan-y overflow-hidden select-none active:cursor-grabbing sm:h-[400px]"
+        className="relative h-[min(330px,42svh)] cursor-grab touch-pan-y overflow-hidden select-none active:cursor-grabbing sm:h-[400px]"
       >
         <div className="absolute top-s21 left-1/2">
           {loop.map((item, i) => (

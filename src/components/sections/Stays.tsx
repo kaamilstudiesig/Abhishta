@@ -49,7 +49,7 @@ export function Stays() {
           {STAYS.map((stay) => (
             <li key={stay.name} className="group w-[84%] shrink-0 snap-start md:w-auto">
               <a href={stay.href} className="block">
-                <div className="relative h-[30svh] min-h-[180px] overflow-hidden rounded-card md:h-[32svh]">
+                <div className="relative h-[27svh] min-h-[160px] overflow-hidden rounded-card md:h-[32svh]">
                   <Image
                     src={stay.image}
                     alt={stay.alt}

@@ -38,11 +38,11 @@ export function Reviews() {
         <SectionHeader
           title="Families, teams and old friends, in their words"
         />
-        <div className="flex items-center gap-s21 md:justify-self-end">
+        <div className="flex items-center gap-s13 md:justify-self-end md:gap-s21">
           <span className="font-display text-[34px] leading-none text-forest md:text-h1">5.0</span>
-          <span className="grid gap-[5px]">
+          <span className="flex flex-wrap items-center gap-x-s13 gap-y-[5px] md:grid md:gap-[5px]">
             <Stars />
-            <span className="text-[15px] text-ink-muted">Google reviews</span>
+            <span className="hidden text-[15px] text-ink-muted md:inline">Google reviews</span>
             <a
               href={REVIEW_URL}
               target="_blank"

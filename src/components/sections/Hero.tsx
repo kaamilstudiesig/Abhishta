@@ -111,9 +111,9 @@ export function Hero() {
 
       <div
         ref={contentRef}
-        className={`${container} flex flex-1 flex-col justify-end pt-[120px] pb-[112px] md:justify-center md:pt-s89 md:pb-s55`}
+        className={`${container} flex flex-1 flex-col justify-center pt-[72px] pb-[96px] md:pt-s89 md:pb-s55`}
       >
-        <h1 className="hero-display text-[11.2vw] leading-[0.98] tracking-[0.005em] uppercase md:text-[clamp(64px,9.2vw,148px)] md:leading-[0.95]">
+        <h1 className="hero-display text-[11.6vw] leading-[1] tracking-[0.005em] uppercase md:text-[clamp(64px,9.2vw,148px)] md:leading-[0.95]">
           {/* the two lines drift toward each other as you scroll away from the hero */}
           <span data-hero-line="" className="block will-change-transform">
             <SplitText as="span" trigger="intro" by="lines" delay={0.1} text="Beloved" className="block" />
@@ -122,11 +122,12 @@ export function Hero() {
             <SplitText as="span" trigger="intro" by="lines" delay={0.25} text="Countryside" className="block" />
           </span>
         </h1>
-        <div className="mt-s34 md:mt-s55 md:mr-[calc(4vw+8%)] md:w-[min(26em,40%)] md:self-end">
-          <p data-hero-reveal="" className="font-display text-[clamp(17px,1.4vw,20px)] leading-[1.45] text-paper/90">
+        {/* phones: indented under the second line, close to the headline (after the reference) */}
+        <div className="mt-s34 ml-[24%] md:mt-s55 md:mr-[calc(4vw+8%)] md:ml-0 md:w-[min(26em,40%)] md:self-end">
+          <p data-hero-reveal="" className="font-display text-[clamp(17px,1.4vw,20px)] leading-[1.3] text-paper/90 md:leading-[1.45]">
             Escape the urban chaos and embrace serenity at Abhishta Agri Farm Stay, ninety kilometres from Bangalore.
           </p>
-          <div data-hero-reveal="" className="mt-s34 flex items-stretch gap-[6px]">
+          <div data-hero-reveal="" className="mt-s21 flex items-stretch gap-[6px] md:mt-s34">
             <a
               href={BOOKING_URL}
               target="_blank"

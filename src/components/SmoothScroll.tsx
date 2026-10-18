@@ -34,13 +34,16 @@ const ACCEL = 1.35; // …or once the deltas grow again (a new swipe), since mom
  *   fly through the stack — it lands on the first or last card on entry.
  * - Page Down / Page Up / Space step page by page (native elsewhere).
  *
- * Touch devices keep native scrolling with CSS proximity snapping, and with
- * prefers-reduced-motion none of this starts (globals.css handles both).
+ * Touch devices never start Lenis: they scroll natively with CSS mandatory
+ * snapping (one page per swipe). With prefers-reduced-motion none of this
+ * starts either (globals.css handles both).
  */
 export function SmoothScroll({ children }: { children: ReactNode }) {
   const [lenis, setLenis] = useState<Lenis | null>(null);
 
   useEffect(() => {
+    // Lenis is for mouse and trackpad only; touch screens scroll natively with CSS snapping.
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const top = (el: Element) => Math.round(el.getBoundingClientRect().top + window.scrollY);

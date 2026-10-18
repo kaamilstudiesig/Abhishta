@@ -37,6 +37,8 @@ export default function Home() {
         <Reviews />
       </main>
       <Footer />
+      {/* touch screens: in-flow end-of-page snap stop (desktop ignores it; the footer stays free there) */}
+      <div data-snap-end="" aria-hidden="true" className="-mt-px h-px" />
       <FloatingActions />
       <IntroVeil />
     </SmoothScroll>
