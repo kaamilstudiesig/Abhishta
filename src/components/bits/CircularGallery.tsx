@@ -44,7 +44,7 @@ export function CircularGallery({
     const cards = Array.from(root.querySelectorAll<HTMLElement>("[data-gallery-card]"));
 
     const measure = () => {
-      const w = Math.min(itemWidth, root.clientWidth * 0.78);
+      const w = Math.min(itemWidth, root.clientWidth * 0.8);
       s.width = w;
       cards.forEach((c) => (c.style.width = `${w}px`));
     };
@@ -156,7 +156,7 @@ export function CircularGallery({
         aria-roledescription="carousel"
         aria-label={label}
         tabIndex={0}
-        className="relative h-[380px] cursor-grab touch-pan-y overflow-hidden select-none active:cursor-grabbing sm:h-[400px]"
+        className="relative h-[330px] cursor-grab touch-pan-y overflow-hidden select-none active:cursor-grabbing sm:h-[400px]"
       >
         <div className="absolute top-s21 left-1/2">
           {loop.map((item, i) => (
@@ -173,7 +173,7 @@ export function CircularGallery({
           ))}
         </div>
       </div>
-      <div className="mt-s21 flex justify-center gap-s13">
+      <div className="mt-s13 flex justify-center gap-s13 sm:mt-s21">
         <button
           type="button"
           data-gallery-prev=""

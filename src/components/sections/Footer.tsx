@@ -98,10 +98,10 @@ export function Footer() {
 
         <nav aria-label="Footer">
           <p className="eyebrow text-gold">Explore</p>
-          <ul className="mt-s13 grid gap-[6px]">
+          <ul className="mt-s13 grid grid-cols-2 gap-x-s21 gap-y-s8 sm:grid-cols-1 sm:gap-y-[6px]">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="text-[15px] text-paper transition-colors duration-300 hover:text-gold">
+                <a href={l.href} className="tap text-[15px] text-paper transition-colors duration-300 hover:text-gold">
                   {l.label}
                 </a>
               </li>
@@ -117,7 +117,7 @@ export function Footer() {
                 <a
                   href={href}
                   {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="flex items-start gap-s13 text-[15px] leading-[1.5] text-paper transition-colors duration-300 hover:text-gold"
+                  className="tap flex items-start gap-s13 text-[15px] leading-[1.5] text-paper transition-colors duration-300 hover:text-gold"
                 >
                   <Icon size={20} className="mt-[2px] shrink-0 text-gold" />
                   <span className="min-w-0 break-words">
@@ -146,7 +146,7 @@ export function Footer() {
 
       <div className={`${container} flex flex-wrap gap-x-s21 gap-y-[3px] border-t border-paper/15 py-s13 text-[13px] text-paper/70`}>
         <p>© 2026 Abhishta Agri Farm Stay. Jiddigere, Kunigal.</p>
-        <a href="#top" className="w-fit text-paper/80 hover:text-gold">
+        <a href="#top" className="tap w-fit text-paper/80 hover:text-gold">
           Back to top
         </a>
       </div>

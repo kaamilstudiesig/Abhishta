@@ -230,3 +230,17 @@ html.js .intro-veil {
   font-weight: 300;
   font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
 }
+
+/* Touch: inline text links keep their quiet look but get a ≥44px hit area. */
+@media (pointer: coarse) {
+  .link-gold,
+  .tap {
+    position: relative;
+  }
+  .link-gold::after,
+  .tap::after {
+    content: "";
+    position: absolute;
+    inset: -12px -8px;
+  }
+}

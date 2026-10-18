@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 import { whenIntroDone } from "@/lib/intro";
 import { SplitText } from "@/components/bits/SplitText";
 import { container } from "@/components/ui";
@@ -52,6 +55,25 @@ export function Hero() {
     };
   }, []);
 
+  // As you scroll away from the hero, BELOVED drifts right and COUNTRYSIDE left,
+  // closing in on each other (scrubbed to the scroll, so it reverses on the way back).
+  const sectionRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const [first, second] = section.querySelectorAll<HTMLElement>("[data-hero-line]");
+    const ctx = gsap.context(() => {
+      const shift = () => (window.innerWidth < 768 ? 0.08 : 0.11) * window.innerWidth;
+      gsap
+        .timeline({
+          scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: 0.4, invalidateOnRefresh: true },
+        })
+        .to(first, { x: () => shift(), ease: "none" }, 0)
+        .to(second, { x: () => -shift(), ease: "none" }, 0);
+    }, section);
+    return () => ctx.revert();
+  }, []);
+
   const togglePlayback = () => {
     const video = videoRef.current;
     if (!video) return;
@@ -61,15 +83,15 @@ export function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       id="top"
       data-nav="dark"
       data-snap=""
-      className="relative isolate flex h-svh min-h-[560px] flex-col bg-ink text-paper"
+      className="relative isolate flex h-svh min-h-[560px] flex-col overflow-hidden bg-ink text-paper"
     >
       <video
         ref={videoRef}
         className="absolute inset-0 -z-10 size-full object-cover"
-        src="/videos/hero-background.mp4"
         poster="/images/hero-poster.jpg"
         autoPlay
         muted
@@ -79,23 +101,28 @@ export function Hero() {
         aria-hidden="true"
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
-      />
+      >
+        {/* phones get a 4 MB portrait cut instead of the 48 MB landscape film */}
+        <source src="/videos/hero-mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
+        <source src="/videos/hero-background.mp4" type="video/mp4" />
+      </video>
       {/* one flat, light shade for legibility — no gradient wash over the film */}
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black/30" />
 
-      <div ref={contentRef} className={`${container} flex flex-1 flex-col justify-center pt-s89 pb-s55`}>
-        <h1 className="hero-display text-[clamp(34px,9.2vw,148px)] leading-[0.95] tracking-[0.005em] uppercase">
-          <SplitText as="span" trigger="intro" by="lines" delay={0.1} text="Beloved" className="block" />
-          <SplitText
-            as="span"
-            trigger="intro"
-            by="lines"
-            delay={0.25}
-            text="Countryside"
-            className="block md:pr-[4vw] md:text-right"
-          />
+      <div
+        ref={contentRef}
+        className={`${container} flex flex-1 flex-col justify-end pt-[120px] pb-[112px] md:justify-center md:pt-s89 md:pb-s55`}
+      >
+        <h1 className="hero-display text-[11.2vw] leading-[0.98] tracking-[0.005em] uppercase md:text-[clamp(64px,9.2vw,148px)] md:leading-[0.95]">
+          {/* the two lines drift toward each other as you scroll away from the hero */}
+          <span data-hero-line="" className="block will-change-transform">
+            <SplitText as="span" trigger="intro" by="lines" delay={0.1} text="Beloved" className="block" />
+          </span>
+          <span data-hero-line="" className="block text-right will-change-transform md:pr-[4vw]">
+            <SplitText as="span" trigger="intro" by="lines" delay={0.25} text="Countryside" className="block" />
+          </span>
         </h1>
-        <div className="mt-s55 self-end md:mr-[calc(4vw+8%)] md:w-[min(26em,40%)]">
+        <div className="mt-s34 md:mt-s55 md:mr-[calc(4vw+8%)] md:w-[min(26em,40%)] md:self-end">
           <p data-hero-reveal="" className="font-display text-[clamp(17px,1.4vw,20px)] leading-[1.45] text-paper/90">
             Escape the urban chaos and embrace serenity at Abhishta Agri Farm Stay, ninety kilometres from Bangalore.
           </p>

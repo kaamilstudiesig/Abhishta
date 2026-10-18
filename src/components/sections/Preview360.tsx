@@ -28,20 +28,20 @@ export function Preview360() {
 
   return (
     <section id="look-around" data-nav="dark" data-snap="" className={`on-dark bg-forest text-paper ${screen}`}>
-      <div className={`${container} grid items-center gap-s55 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
+      <div className={`${container} grid items-center gap-s34 md:gap-s55 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
         <SectionHeader
           tone="dark"
           title="See the farm before you set out"
           lead="Turn slowly through the cottages, the dining hall and the pool, or watch the short film of how Abhishta began."
         >
-          <button type="button" onClick={() => setVideoOpen(true)} className={buttonClass("ghost-light", "mt-s34")}>
+          <button type="button" onClick={() => setVideoOpen(true)} className={buttonClass("ghost-light", "mt-s21 md:mt-s34")}>
             <IconPlay size={16} />
             Watch our story
           </button>
         </SectionHeader>
 
         <div className="relative">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-card bg-forest ring-1 ring-paper/10 sm:aspect-[16/10]">
+          <div className="relative aspect-[16/11] overflow-hidden rounded-card bg-forest ring-1 ring-paper/10 sm:aspect-[16/10]">
             <iframe
               src={TOUR_360_URL}
               title="360° tour of Abhishta Agri Farm Stay"
@@ -66,7 +66,7 @@ export function Preview360() {
           <CircularText
             text="drag to explore · 360° · drag to explore · 360° · "
             size={110}
-            className="absolute -top-s34 -left-s21 rounded-full bg-forest text-gold sm:-top-s55 sm:-left-s34"
+            className="absolute -top-s34 right-s13 origin-top-right scale-[0.78] rounded-full bg-forest text-gold sm:right-auto sm:-top-s55 sm:-left-s34 sm:scale-100"
           >
             <Icon360 size={34} className="text-paper" />
           </CircularText>

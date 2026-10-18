@@ -71,7 +71,7 @@ export function ScrollStack({ children, header, id, className = "" }: ScrollStac
           style={{ top: `${i * 100}svh` }}
         />
       ))}
-      <div className="sticky top-0 flex h-svh min-h-[560px] flex-col overflow-hidden pt-[96px] pb-s34">
+      <div className="sticky top-0 flex h-svh min-h-[560px] flex-col overflow-hidden pt-[92px] pb-[84px] md:pt-[96px] md:pb-s34">
         {header}
         <ol className="relative mt-s21 flex-1">
           {items.map((child, i) => (

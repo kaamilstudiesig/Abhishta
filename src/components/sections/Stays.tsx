@@ -44,11 +44,12 @@ export function Stays() {
       <div className={container}>
         <SectionHeader title="Rest your head where the fields begin" className="mx-auto text-center [&>span]:mx-auto" />
 
-        <ul className="mt-s34 grid gap-s55 md:mt-s55 md:grid-cols-2 md:gap-s34 lg:gap-s89">
+        {/* phones: a swipeable row with the next stay peeking in; md+: two columns */}
+        <ul className="-mx-s21 mt-s34 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] md:mx-0 md:mt-s55 md:grid md:grid-cols-2 md:gap-s34 md:overflow-visible md:px-0 md:pb-0 lg:gap-s89 [&::-webkit-scrollbar]:hidden">
           {STAYS.map((stay) => (
-            <li key={stay.name} className="group">
+            <li key={stay.name} className="group w-[84%] shrink-0 snap-start md:w-auto">
               <a href={stay.href} className="block">
-                <div className="relative h-[26svh] min-h-[180px] overflow-hidden rounded-card md:h-[32svh]">
+                <div className="relative h-[30svh] min-h-[180px] overflow-hidden rounded-card md:h-[32svh]">
                   <Image
                     src={stay.image}
                     alt={stay.alt}
@@ -58,11 +59,11 @@ export function Stays() {
                     className="object-cover transition-transform duration-1000 ease-[var(--ease-earth)] group-hover:scale-[1.02]"
                   />
                 </div>
-                <div className="mt-s21 flex items-baseline justify-between gap-s21">
+                <div className="mt-s21 flex flex-col gap-[2px] sm:flex-row sm:items-baseline sm:justify-between sm:gap-s21">
                   <h3 className="font-display text-[clamp(24px,2.4vw,28px)] leading-[1.15] text-forest">{stay.name}</h3>
                   <p className="shrink-0 text-[13px] text-ink-muted">{stay.capacity}</p>
                 </div>
-                <p className="mt-s8 max-w-[30em] text-ink-muted">{stay.body}</p>
+                <p className="mt-s8 max-w-[30em] text-[15px] leading-[1.6] text-ink-muted sm:text-body">{stay.body}</p>
                 <span className="link-gold mt-s13 inline-block text-[15px] font-medium text-forest">
                   {stay.linkLabel}
                 </span>

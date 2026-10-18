@@ -24,13 +24,13 @@ type CardSwapProps = {
   className?: string;
 };
 
-const DIST_X = 34;
-const DIST_Y = 34;
+// The fan step: tighter on phones so the deck never pokes past the screen edge.
+const fanStep = () => (typeof window !== "undefined" && window.innerWidth < 640 ? 13 : 34);
 
 const slot = (i: number, total: number) => ({
-  x: i * DIST_X,
-  y: -i * DIST_Y,
-  z: -i * DIST_X * 1.5,
+  x: i * fanStep(),
+  y: -i * fanStep(),
+  z: -i * fanStep() * 1.5,
   scale: 1 - i * 0.02,
   zIndex: total - i,
 });

@@ -13,6 +13,10 @@ npm run lint
 Tokens live in `src/app/globals.css` `@theme`; names kept from DESIGN_GUIDELINES.md, hues retuned:
 `farm` olive `#556B2F` (actions) · `forest` deep grove `#2E3A17` (dark bands, footer, intro veil) · `gold` brass `#C6A15B` (rules, stars; text only on dark bands) · `paper` field white `#FAF7F0` · `line` stone `#E8E2D4` · `sage` `#9A9A8A` (icons/decoration only) · `ink-muted` deep sage `#6B6B5A` (secondary text — sage itself is 2.7:1 and fails for body text).
 
+## Mobile
+- Phones get `public/videos/hero-mobile.mp4` (4.4 MB portrait cut of the first 45 s, `<source media>`), not the 48 MB landscape film.
+- Each page is laid out for ~360–430 px screens: swipeable Stays row and Groups pills, tighter CardSwap fan, compact review cards, content kept clear of the floating buttons, ≥44 px tap areas on text links (touch only).
+
 ## Where things live
 - `src/components/IntroVeil.tsx` + `src/lib/intro.ts` — page-load veil (field white, centred colour logo); hero animations wait for its hand-off
 - `src/app/` — layout (Fraunces + DM Sans via `next/font`), page, 404, `globals.css` (brand tokens in `@theme`)
