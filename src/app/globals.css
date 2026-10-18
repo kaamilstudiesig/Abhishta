@@ -1,21 +1,25 @@
 @import "tailwindcss";
 
 /*
- * Abhishta brand system — DESIGN_GUIDELINES.md is law.
- * Colour tokens, φ type scale (17 → 28 → 45 → 72), φ spacing ladder (8·13·21·34·55·89·144).
+ * Abhishta brand system. φ type scale (17 → 28 → 45 → 72) and φ spacing ladder
+ * (8·13·21·34·55·89·144) from DESIGN_GUIDELINES.md; hues retuned toward the
+ * tengilemalamala.com restraint: one earthy olive family on warm field whites,
+ * nothing saturated. Token names are kept so components didn't churn:
+ * farm = olive, forest = deep grove, gold = brass.
  */
 @theme {
-  --color-paper: #faf6ef;
-  --color-paper-deep: #f3ebdc;
-  --color-card: #fffdf8;
-  --color-ink: #1e1b14;
-  --color-ink-muted: #6e6455;
-  --color-farm: #096139;
-  --color-forest: #073b24;
-  --color-gold: #e9a321;
-  --color-gold-soft: #f7e7c3;
-  --color-clay: #b4562f;
-  --color-line: #e7dcc8;
+  --color-paper: #faf7f0; /* field white — page */
+  --color-paper-deep: #f3eee3; /* cream — alt bands */
+  --color-card: #fdfbf6;
+  --color-ink: #26281d; /* warm olive-black body text */
+  --color-ink-muted: #6b6b5a; /* deep sage — secondary text (5.1:1 on field white) */
+  --color-sage: #9a9a8a; /* sage — icons and decorative marks only (2.7:1, not for text) */
+  --color-farm: #556b2f; /* farm olive — actions */
+  --color-forest: #2e3a17; /* deep grove — dark bands, headings */
+  --color-gold: #c6a15b; /* muted brass — tiny highlights; text only on dark bands */
+  --color-gold-soft: #efe7d6;
+  --color-clay: #8c6a4f;
+  --color-line: #e8e2d4; /* stone */
 
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
@@ -50,8 +54,8 @@
   --radius-btn: 13px;
   --radius-card: 21px;
 
-  --shadow-card: 0 10px 30px rgba(30, 27, 20, 0.08);
-  --shadow-float: 0 20px 50px rgba(30, 27, 20, 0.12);
+  --shadow-card: 0 10px 34px rgba(46, 58, 23, 0.06);
+  --shadow-float: 0 21px 55px rgba(46, 58, 23, 0.1);
 
   --ease-earth: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -170,7 +174,47 @@ body {
     visibility: hidden;
   }
 }
-.split-text .split-word-mask {
+.split-text .split-word-mask,
+.split-text .split-line-mask {
   padding-bottom: 0.08em;
   margin-bottom: -0.08em;
+}
+
+/* Intro veil: only with JS (so it can always be dismissed), never with reduced
+   motion, and a CSS failsafe hides it after 6s even if scripts stall. */
+.intro-veil {
+  display: none;
+}
+html.js .intro-veil {
+  display: flex;
+  animation: intro-failsafe 0s linear 6s forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .intro-veil {
+    display: none;
+  }
+}
+@keyframes reveal-failsafe {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes intro-failsafe {
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+/* Hero pieces wait (hidden) for the intro hand-off, only when they will animate. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js:not([data-intro="done"]) [data-hero-reveal] {
+    opacity: 0;
+    animation: reveal-failsafe 0s linear 6s forwards;
+  }
+}
+
+/* Display type: Fraunces' soft, slightly wonky cut — the free cousin of PP Fragment. */
+.font-display {
+  font-variation-settings: "SOFT" 100, "WONK" 1;
 }

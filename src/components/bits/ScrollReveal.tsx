@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 /**
  * Brand ScrollReveal — adapted from React Bits. Body copy surfaces word by word
  * as it is scrolled into reading position, scrubbed to the scroll (so it reads
- * at the visitor's pace). Words start at 22% ink, never invisible, so copy stays
+ * at the visitor's pace). Words start at 40% ink, never invisible, so copy stays
  * legible mid-scroll and with motion reduced it is simply static.
  */
 type ScrollRevealProps = {
@@ -31,7 +31,7 @@ export function ScrollReveal({ children, as: Tag = "p", className = "" }: Scroll
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         gsap.fromTo(
           el.querySelectorAll("[data-word]"),
-          { opacity: 0.22 },
+          { opacity: 0.4 },
           {
             opacity: 1,
             ease: "none",

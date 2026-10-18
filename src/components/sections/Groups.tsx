@@ -7,7 +7,7 @@ import school from "../../../assets/images/youtube-video-thumb.jpg";
 import mangoes from "../../../assets/images/slider/slider-3.jpg";
 import events from "../../../assets/images/stock/destination-events.jpg";
 import { CardSwap } from "@/components/bits/CardSwap";
-import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
+import { SectionHeader, container, screen } from "@/components/ui";
 
 type Group = { name: string; body: string; href: string; image: StaticImageData; alt: string };
 
@@ -57,11 +57,9 @@ export function Groups() {
         <div>
           <SectionHeader
             tone="dark"
-            eyebrow="Gather"
             title="Bring your people to the open land"
-            lead="The farm holds space for work and play. Bring your team, your students or your whole family."
           />
-          <ul className="mt-s34 grid border-t border-paper/15">
+          <ul className="mt-s55 grid border-t border-paper/15">
             {GROUPS.map((g, i) => (
               <li key={g.name} className="border-b border-paper/15">
                 <button
@@ -84,19 +82,16 @@ export function Groups() {
               </li>
             ))}
           </ul>
-          <a href="/group-enquiries" className={buttonClass("gold", "mt-s34")}>
-            Plan a group visit
-          </a>
         </div>
 
         <CardSwap
           active={active}
           onActiveChange={setActive}
-          interval={picked ? null : 5500}
+          interval={picked ? null : 7000}
           className="mx-auto h-[460px] w-full max-w-[640px] translate-y-s34 sm:h-[520px] lg:-translate-x-s34"
         >
           {GROUPS.map((g) => (
-            <article key={g.name} className="overflow-hidden rounded-card bg-card text-ink shadow-float">
+            <article key={g.name} className="overflow-hidden rounded-card bg-card text-ink shadow-card">
               <div className="relative aspect-[16/10]">
                 <Image src={g.image} alt={g.alt} fill sizes="(min-width: 1024px) 560px, 90vw" placeholder="blur" className="object-cover" />
               </div>

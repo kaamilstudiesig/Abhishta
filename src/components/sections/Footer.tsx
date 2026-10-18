@@ -69,7 +69,7 @@ export function Footer() {
       data-nav="dark"
       className="on-dark bottom-0 z-0 overflow-hidden bg-forest text-paper [@media(min-width:768px)_and_(min-height:680px)]:sticky"
     >
-      <div className={`${container} grid gap-s34 pt-s55 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1.6fr] lg:gap-s55`}>
+      <div className={`${container} grid gap-s34 pt-s89 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1.6fr] lg:gap-s55`}>
         <div>
           <Logo tone="light" />
           <p className="mt-s13 max-w-[22em] text-[15px] text-paper/75">

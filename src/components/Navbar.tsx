@@ -5,8 +5,6 @@ import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { StaggeredMenu } from "@/components/bits/StaggeredMenu";
 import { GradualBlur } from "@/components/bits/GradualBlur";
-import { BOOKING_URL } from "@/lib/site";
-import { buttonClass } from "@/components/ui";
 
 /**
  * Fixed navbar. Its tone follows whatever band sits beneath it: each section
@@ -50,7 +48,7 @@ export function Navbar() {
         position="top"
         height="110px"
         strength={1.2}
-        tint={dark ? undefined : "rgba(250,246,239,0.92)"}
+        tint={dark ? undefined : "rgba(250,247,240,0.92)"}
         className="transition-opacity duration-500 [&>div:last-child]:transition-[background] [&>div:last-child]:duration-500"
       />
       <div className="relative mx-auto flex h-[80px] max-w-[1440px] items-center justify-between px-s21 sm:px-s34">
@@ -60,20 +58,12 @@ export function Navbar() {
           className={`transition-colors duration-500 ${dark ? "on-dark text-paper" : "text-forest"}`}
         >
           <span
-            className={`block rounded-btn px-s8 py-[4px] transition-colors duration-500 ${dark ? "bg-paper/90 shadow-card" : "bg-transparent"}`}
+            className={`block rounded-btn px-s8 py-[4px] transition-colors duration-500 ${dark ? "bg-paper/90" : "bg-transparent"}`}
           >
             <Logo className="!h-[40px] sm:!h-[46px]" />
           </span>
         </Link>
         <div className="flex items-center gap-s8 sm:gap-s13">
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={buttonClass(dark ? "gold" : "primary", "min-h-[44px] max-sm:hidden")}
-          >
-            Book your stay
-          </a>
           <StaggeredMenu tone={tone} />
         </div>
       </div>

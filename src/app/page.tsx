@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { FloatingActions } from "@/components/FloatingActions";
 import { PageSnap } from "@/components/PageSnap";
+import { IntroVeil } from "@/components/IntroVeil";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Preview360 } from "@/components/sections/Preview360";
@@ -40,6 +41,7 @@ export default function Home() {
       <div data-snap-end="" aria-hidden="true" className="-mt-px h-px" />
       <FloatingActions />
       <PageSnap />
+      <IntroVeil />
     </>
   );
 }

@@ -31,23 +31,17 @@ export function Preview360() {
       <div className={`${container} grid items-center gap-s55 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
         <SectionHeader
           tone="dark"
-          eyebrow="Look around first"
           title="See the farm before you set out"
-          lead="Turn slowly through the cottages, the dining hall and the pool in 360°, or sit back for the short film that tells how Abhishta began."
+          lead="Turn slowly through the cottages, the dining hall and the pool, or watch the short film of how Abhishta began."
         >
-          <div className="mt-s34 flex flex-wrap items-center gap-s21">
-            <button type="button" onClick={() => setVideoOpen(true)} className={buttonClass("gold")}>
-              <IconPlay size={18} />
-              Watch our story
-            </button>
-            <a href={TOUR_360_URL} target="_blank" rel="noopener noreferrer" className="link-gold text-[15px] text-paper">
-              Open the full 360° tour
-            </a>
-          </div>
+          <button type="button" onClick={() => setVideoOpen(true)} className={buttonClass("ghost-light", "mt-s34")}>
+            <IconPlay size={16} />
+            Watch our story
+          </button>
         </SectionHeader>
 
         <div className="relative">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-card bg-[#0b4a2e] shadow-float ring-1 ring-paper/15 sm:aspect-[16/10]">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-card bg-forest ring-1 ring-paper/10 sm:aspect-[16/10]">
             <iframe
               src={TOUR_360_URL}
               title="360° tour of Abhishta Agri Farm Stay"
@@ -71,8 +65,8 @@ export function Preview360() {
           </div>
           <CircularText
             text="drag to explore · 360° · drag to explore · 360° · "
-            size={130}
-            className="absolute -top-s34 -left-s21 rounded-full bg-forest text-gold ring-1 ring-gold/30 sm:-top-s55 sm:-left-s34"
+            size={110}
+            className="absolute -top-s34 -left-s21 rounded-full bg-forest text-gold sm:-top-s55 sm:-left-s34"
           >
             <Icon360 size={34} className="text-paper" />
           </CircularText>

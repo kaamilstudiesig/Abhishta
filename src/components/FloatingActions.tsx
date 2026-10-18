@@ -12,19 +12,17 @@ export function FloatingActions() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
-        className="on-dark pointer-events-auto grid size-[55px] place-items-center rounded-full bg-farm text-white shadow-float transition-[translate,background-color] duration-300 hover:-translate-y-[2px] hover:bg-forest"
+        className="pointer-events-auto grid size-[48px] place-items-center rounded-full bg-paper text-farm shadow-float ring-1 ring-line transition-[translate,background-color] duration-300 hover:-translate-y-[2px] hover:bg-card"
       >
-        <IconWhatsApp size={26} />
+        <IconWhatsApp size={22} />
       </a>
       <a
         href={BOOKING_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="pointer-events-auto inline-flex min-h-[55px] items-center gap-s8 rounded-full bg-gold pr-s21 pl-s13 text-[15px] font-bold text-forest shadow-float transition-[translate,background-color] duration-300 hover:-translate-y-[2px] hover:bg-gold-soft"
+        className="pointer-events-auto inline-flex min-h-[48px] items-center gap-s8 rounded-full bg-farm px-s21 text-[15px] font-medium text-paper shadow-float ring-1 ring-paper/15 transition-[translate,background-color] duration-300 hover:-translate-y-[2px] hover:bg-forest"
       >
-        <span className="grid size-[34px] place-items-center rounded-full bg-forest/10">
-          <IconBooking size={20} />
-        </span>
+        <IconBooking size={18} />
         Book a stay
       </a>
     </div>

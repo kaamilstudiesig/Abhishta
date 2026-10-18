@@ -9,7 +9,12 @@ npm run build   # production build
 npm run lint
 ```
 
+## Palette (minimalism pass, after tengilemalamala.com)
+Tokens live in `src/app/globals.css` `@theme`; names kept from DESIGN_GUIDELINES.md, hues retuned:
+`farm` olive `#556B2F` (actions) · `forest` deep grove `#2E3A17` (dark bands, footer, intro veil) · `gold` brass `#C6A15B` (rules, stars; text only on dark bands) · `paper` field white `#FAF7F0` · `line` stone `#E8E2D4` · `sage` `#9A9A8A` (icons/decoration only) · `ink-muted` deep sage `#6B6B5A` (secondary text — sage itself is 2.7:1 and fails for body text).
+
 ## Where things live
+- `src/components/IntroVeil.tsx` + `src/lib/intro.ts` — page-load veil; hero animations wait for its hand-off
 - `src/app/` — layout (Fraunces + DM Sans via `next/font`), page, 404, `globals.css` (brand tokens in `@theme`)
 - `src/components/sections/` — Hero, About, Preview360, Stays, DayOnFarm, Groups, Reviews, Footer — each one screen high
 - `src/components/bits/` — React Bits components rebuilt in the brand system: SplitText, ScrollReveal, StaggeredMenu, CircularText, GradualBlur, ScrollExpand (plays on arrival), ScrollStack (one card per scroll), CardSwap, CircularGallery

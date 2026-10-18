@@ -8,9 +8,10 @@ export const sectionPad = "py-s55 md:py-s89";
 type ButtonVariant = "primary" | "secondary" | "gold" | "ghost-light";
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "bg-farm text-white hover:bg-forest",
+  primary: "bg-farm text-paper hover:bg-forest",
   secondary: "border-[1.5px] border-forest text-forest hover:bg-forest hover:text-paper",
-  gold: "bg-gold text-forest hover:bg-gold-soft",
+  // light fill for dark bands and the hero (brass is reserved for small highlights)
+  gold: "bg-paper text-forest hover:bg-gold-soft",
   "ghost-light": "border-[1.5px] border-paper/50 text-paper hover:border-paper hover:bg-paper hover:text-forest",
 };
 
@@ -31,9 +32,11 @@ export function ButtonLink({
   );
 }
 
-/** Section header: eyebrow → Fraunces H2 (SplitText) → short lead (ScrollReveal). */
+/**
+ * Section header: a short brass rule → Fraunces H2 (SplitText) → optional short
+ * lead (ScrollReveal). No uppercase label: the heading carries the section.
+ */
 export function SectionHeader({
-  eyebrow,
   title,
   lead,
   tone = "light",
@@ -41,7 +44,6 @@ export function SectionHeader({
   titleClassName = "",
   children,
 }: {
-  eyebrow: string;
   title: string;
   lead?: string;
   tone?: "light" | "dark";
@@ -52,10 +54,7 @@ export function SectionHeader({
   const dark = tone === "dark";
   return (
     <header className={`max-w-[34em] ${className}`}>
-      <p className={`eyebrow mb-s13 flex items-center gap-s13 ${dark ? "text-gold" : "text-farm"}`}>
-        <span aria-hidden="true" className="h-[2px] w-s21 bg-gold" />
-        {eyebrow}
-      </p>
+      <span aria-hidden="true" className="mb-s21 block h-px w-s34 bg-gold" />
       <SplitText
         text={title}
         className={`font-display text-[clamp(34px,4.6vw,45px)] leading-[1.1] font-normal tracking-[-0.015em] text-balance ${dark ? "text-paper" : "text-forest"} ${titleClassName}`}
@@ -71,4 +70,4 @@ export function SectionHeader({
 }
 
 /** One screen-high page: clears the fixed navbar, centres its content, and is a scroll-snap point. */
-export const screen = "relative flex min-h-svh flex-col justify-center pt-[96px] pb-s34";
+export const screen = "relative flex min-h-svh flex-col justify-center pt-[112px] pb-s55 md:pt-s144 md:pb-s89";

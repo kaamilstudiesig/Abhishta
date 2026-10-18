@@ -24,7 +24,7 @@ export function CircularText({ text, size = 144, className = "", children }: Cir
           viewBox={`0 0 ${size} ${size}`}
           width={size}
           height={size}
-          className="absolute inset-0 animate-[spin_21s_linear_infinite] group-hover/ct:animate-[spin_8s_linear_infinite] motion-reduce:animate-none"
+          className="absolute inset-0 animate-[spin_34s_linear_infinite] group-hover/ct:animate-[spin_21s_linear_infinite] motion-reduce:animate-none"
         >
           <defs>
             <path

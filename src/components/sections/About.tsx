@@ -2,15 +2,8 @@ import Image from "next/image";
 import aerialDusk from "../../../assets/images/slider/slider-4.jpg";
 import { ScrollExpand } from "@/components/bits/ScrollExpand";
 import { SplitText } from "@/components/bits/SplitText";
-import { IconCart, IconField, IconPool, IconSky } from "@/components/icons";
 import { container } from "@/components/ui";
 
-const MEANINGS = [
-  { icon: IconSky, title: "Open skies" },
-  { icon: IconField, title: "Living fields" },
-  { icon: IconPool, title: "The pool" },
-  { icon: IconCart, title: "Bullock carts" },
-];
 
 /**
  * About — a single centred line, "Abhishta means", over a centred photo card.
@@ -43,7 +36,7 @@ export function About() {
               <SplitText
                 as="h2"
                 text="Abhishta means"
-                className="font-display text-[clamp(45px,7.4vw,96px)] leading-[1] font-light tracking-[-0.025em] text-[color-mix(in_oklab,var(--color-paper)_calc(var(--p)*100%),var(--color-forest))]"
+                className="font-display text-[clamp(45px,7.4vw,96px)] leading-[1] font-normal tracking-[-0.025em] text-[color-mix(in_oklab,var(--color-paper)_calc(var(--p)*100%),var(--color-forest))]"
               />
             </div>
           </>
@@ -53,21 +46,12 @@ export function About() {
             className={`${container} absolute inset-x-0 top-[17%] flex flex-col items-center pt-[calc(clamp(45px,7.4vw,96px)+8svh+34px)] text-center text-paper md:top-[15%]`}
             style={{ opacity: "var(--reveal)", transform: "translateY(calc((1 - var(--reveal)) * 21px))" }}
           >
-            <p className="font-display text-[clamp(28px,3.4vw,45px)] leading-[1.15] font-light italic">
+            <p className="font-display text-[clamp(28px,3.4vw,45px)] leading-[1.15] italic">
               desired, beloved.
             </p>
-            <p className="mt-s21 max-w-[34em] text-paper/90">
-              The thing you long for without knowing it. Here the sky is the ceiling and the fields are the floor,
-              ninety kilometres from Bangalore.
+            <p className="mt-s21 max-w-[28em] text-paper/85">
+              The thing you long for without knowing it. Here the sky is the ceiling and the fields are the floor.
             </p>
-            <ul className="mt-s34 grid grid-cols-2 gap-x-s34 gap-y-s21 sm:flex sm:gap-s55">
-              {MEANINGS.map(({ icon: Icon, title }) => (
-                <li key={title} className="flex flex-col items-center gap-s8">
-                  <Icon className="text-gold" size={30} />
-                  <span className="font-display text-[19px] leading-tight">{title}</span>
-                </li>
-              ))}
-            </ul>
           </div>
         }
       />

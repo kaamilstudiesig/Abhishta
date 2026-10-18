@@ -5,19 +5,23 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText as GSAPSplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
+import { whenIntroDone } from "@/lib/intro";
 
 gsap.registerPlugin(ScrollTrigger, GSAPSplitText, useGSAP);
 
 /**
- * Brand SplitText — adapted from React Bits. Headlines rise word by word out of
- * a soil-line mask, like shoots: slow expo ease, no bounce, no colour flash.
+ * Brand SplitText — adapted from React Bits. Headlines rise word by word (or line
+ * by line) out of a clip mask: a calm ease, no tilt, no bounce, no colour flash.
  * Text stays in the DOM as one string for screen readers (GSAP aria: "auto").
  */
 type SplitTextProps = {
   text: string;
   as?: ElementType;
   className?: string;
-  trigger?: "view" | "load";
+  /** view: on scroll into view · load: on mount · intro: when the page-load veil lifts */
+  trigger?: "view" | "load" | "intro";
+  /** split by words (default) or by lines — lines rise through a clip mask */
+  by?: "words" | "lines";
   delay?: number;
   stagger?: number;
 };
@@ -28,7 +32,8 @@ export function SplitText({
   className = "",
   trigger = "view",
   delay = 0,
-  stagger = 0.055,
+  stagger = 0.04,
+  by = "words",
 }: SplitTextProps) {
   const ref = useRef<HTMLElement>(null);
 
@@ -39,30 +44,42 @@ export function SplitText({
       const mm = gsap.matchMedia();
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         let split: GSAPSplitText | null = null;
+        let stopWaiting = () => {};
         document.fonts.ready.then(() => {
           if (!ref.current) return;
           split = GSAPSplitText.create(el, {
-            type: "words",
-            mask: "words",
+            type: by,
+            mask: by,
             wordsClass: "split-word",
+            linesClass: "split-line",
             aria: "auto",
             autoSplit: true,
             onSplit(self) {
-              return gsap.from(self.words, {
-                yPercent: 115,
-                rotate: 2,
-                duration: 1.15,
-                ease: "expo.out",
+              // quiet rise: no tilt, no overshoot, a calm ease
+              const tween = gsap.from(by === "lines" ? self.lines : self.words, {
+                yPercent: 100,
+                opacity: 0,
+                duration: by === "lines" ? 1 : 0.9,
+                ease: "power3.out",
                 stagger,
                 delay,
+                paused: trigger === "intro",
                 scrollTrigger:
                   trigger === "view" ? { trigger: el, start: "top 88%", once: true } : undefined,
               });
+              if (trigger === "intro") {
+                stopWaiting();
+                stopWaiting = whenIntroDone(() => tween.play());
+              }
+              return tween;
             },
           });
           el.dataset.ready = "";
         });
-        return () => split?.revert();
+        return () => {
+          stopWaiting();
+          split?.revert();
+        };
       });
       mm.add("(prefers-reduced-motion: reduce)", () => {
         el.dataset.ready = "";

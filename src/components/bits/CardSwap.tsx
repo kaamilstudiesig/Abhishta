@@ -61,9 +61,9 @@ export function CardSwap({ children, active, onActiveChange, interval = 5500, cl
         ...s,
         xPercent: -50,
         yPercent: -50,
-        skewY: pos === 0 ? 0 : 3,
+        skewY: 0,
         duration: instant ? 0 : 0.9,
-        ease: "expo.out",
+        ease: "power3.out",
         overwrite: true,
       });
     });
@@ -89,13 +89,13 @@ export function CardSwap({ children, active, onActiveChange, interval = 5500, cl
           const el = nodes[cardIndex];
           el.inert = pos !== 0;
           el.setAttribute("aria-hidden", pos === 0 ? "false" : "true");
-          gsap.to(el, { ...slot(pos, total), skewY: pos === 0 ? 0 : 3, duration: 0.9, ease: "expo.out", delay: pos * 0.06 });
+          gsap.to(el, { ...slot(pos, total), skewY: 0, duration: 0.9, ease: "power3.out", delay: pos * 0.06 });
         });
         const back = slot(total - 1, total);
         gsap.set(frontEl, { zIndex: back.zIndex });
         frontEl.inert = true;
         frontEl.setAttribute("aria-hidden", "true");
-        gsap.to(frontEl, { ...back, opacity: 1, skewY: 3, duration: 0.9, ease: "expo.out" });
+        gsap.to(frontEl, { ...back, opacity: 1, skewY: 0, duration: 0.9, ease: "power3.out" });
       }, 0.45);
     });
 

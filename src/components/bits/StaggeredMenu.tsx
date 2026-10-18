@@ -33,7 +33,8 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" } });
       if (reduce) {
-        tl.set([...layers, panel], { xPercent: 0 }).set([links, extras], { yPercent: 0, opacity: 1 });
+        // a near-instant (but non-zero) step: zero-length timelines don't reverse reliably
+        tl.to([...layers, panel], { xPercent: 0, duration: 0.01 });
       } else {
         tl.to(layers, { xPercent: 0, duration: 0.55, stagger: 0.08 })
           .to(panel, { xPercent: 0, duration: 0.7 }, 0.14)
@@ -47,9 +48,12 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
 
   const close = useCallback(() => setOpen(false), []);
 
+  const wasOpen = useRef(false);
   useEffect(() => {
     const tl = tlRef.current;
     if (!tl) return;
+    if (!open && !wasOpen.current) return; // nothing to close on first mount
+    wasOpen.current = open;
     if (open) {
       tl.timeScale(1).play();
       document.body.style.overflow = "hidden";

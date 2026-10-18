@@ -36,12 +36,10 @@ export function Reviews() {
     <section id="reviews" data-nav="light" data-snap="" className={`overflow-hidden bg-paper ${screen}`}>
       <div className={`${container} grid gap-s34 md:grid-cols-[1.618fr_1fr] md:items-end`}>
         <SectionHeader
-          eyebrow="Guest notes"
           title="Families, teams and old friends, in their words"
-          lead="Rated 5.0 on Google by the people who have stayed, played and eaten here."
         />
         <div className="flex items-center gap-s21 md:justify-self-end">
-          <span className="font-display text-[72px] leading-none font-light text-forest">5.0</span>
+          <span className="font-display text-h1 leading-none text-forest">5.0</span>
           <span className="grid gap-[5px]">
             <Stars />
             <span className="text-[15px] text-ink-muted">Google reviews</span>
