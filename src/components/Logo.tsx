@@ -1,6 +1,6 @@
 import Image from "next/image";
-// assets/logo-current.png with its transparent margin trimmed
-import logo from "../../assets/logo-trimmed.png";
+// the farm logo (src/assets/brand/logo-original.png) with its transparent margin trimmed
+import logo from "@/assets/brand/logo.png";
 
 /**
  * The farm's own logo (palm + cow mark, "Abhishta Agri Farm Stay").

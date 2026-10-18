@@ -1,5 +1,5 @@
 import Image from "next/image";
-import aerialDusk from "../../../assets/images/slider/slider-4.jpg";
+import aerialDusk from "@/assets/images/farm-aerial-dusk.jpg";
 import { ScrollExpand } from "@/components/bits/ScrollExpand";
 import { SplitText } from "@/components/bits/SplitText";
 import { container } from "@/components/ui";

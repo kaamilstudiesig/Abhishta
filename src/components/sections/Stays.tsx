@@ -1,6 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
-import farmhouse from "../../../assets/images/section-2/image-2.jpg";
-import orchardPath from "../../../assets/images/slider/slider-6.jpg";
+import farmhouse from "@/assets/images/farmhouse-aerial.jpg";
+import orchardPath from "@/assets/images/orchard-path-dormitory.jpg";
 import { SectionHeader, container, screen } from "@/components/ui";
 
 type Stay = {

@@ -1,9 +1,8 @@
-import type { AnchorHTMLAttributes, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { SplitText } from "@/components/bits/SplitText";
 import { ScrollReveal } from "@/components/bits/ScrollReveal";
 
 export const container = "mx-auto w-full max-w-[1280px] px-s21 sm:px-s34 lg:px-s55";
-export const sectionPad = "py-s55 md:py-s89";
 
 type ButtonVariant = "primary" | "secondary" | "gold" | "ghost-light";
 
@@ -19,18 +18,6 @@ export function buttonClass(variant: ButtonVariant = "primary", extra = "") {
   return `inline-flex min-h-[48px] items-center justify-center gap-s8 rounded-btn px-s21 text-[15px] font-medium tracking-[0.01em] transition-colors duration-300 ${variants[variant]} ${extra}`;
 }
 
-export function ButtonLink({
-  variant = "primary",
-  className = "",
-  children,
-  ...rest
-}: AnchorHTMLAttributes<HTMLAnchorElement> & { variant?: ButtonVariant }) {
-  return (
-    <a className={buttonClass(variant, className)} {...rest}>
-      {children}
-    </a>
-  );
-}
 
 /**
  * Section header: a short brass rule → Fraunces H2 (SplitText) → optional short

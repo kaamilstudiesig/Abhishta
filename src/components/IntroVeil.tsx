@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
-import logo from "../../assets/logo-trimmed.png";
+import logo from "@/assets/brand/logo.png";
 import { markIntroDone } from "@/lib/intro";
 
 const SAFETY_MS = 3800;

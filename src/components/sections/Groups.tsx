@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Image, { type StaticImageData } from "next/image";
-import corporate from "../../../assets/images/stock/corporate-offsite.jpg";
-import school from "../../../assets/images/youtube-video-thumb.jpg";
-import mangoes from "../../../assets/images/slider/slider-3.jpg";
-import events from "../../../assets/images/stock/destination-events.jpg";
+import corporate from "@/assets/images/stock-corporate-offsite.jpg";
+import school from "@/assets/images/calves-feeding.jpg";
+import mangoes from "@/assets/images/mango-orchard.jpg";
+import events from "@/assets/images/stock-destination-events.jpg";
 import { CardSwap } from "@/components/bits/CardSwap";
 import { IconArrow } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";

@@ -13,8 +13,7 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     // Reference material, not app code.
-    "component-library/**",
-    "wireframe-react/**",
+    "docs/**",
   ]),
 ]);
 

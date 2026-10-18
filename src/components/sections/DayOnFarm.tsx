@@ -1,8 +1,8 @@
 import Image, { type StaticImageData } from "next/image";
-import cowCuddling from "../../../assets/images/slider/slider-1.webp";
-import harvest from "../../../assets/images/unlock-section/1.webp";
-import vegBeds from "../../../assets/images/unlock-section/2.webp";
-import bonfire from "../../../assets/images/slider/slider-9.webp";
+import cowCuddling from "@/assets/images/gau-seva-cow-cuddle.webp";
+import harvest from "@/assets/images/pumpkin-harvest.webp";
+import vegBeds from "@/assets/images/vegetable-beds.webp";
+import bonfire from "@/assets/images/bonfire-evening.webp";
 import { ScrollStack } from "@/components/bits/ScrollStack";
 import { IconDawn, IconDusk, IconMidday, IconMorning } from "@/components/icons";
 import { SectionHeader, container } from "@/components/ui";
