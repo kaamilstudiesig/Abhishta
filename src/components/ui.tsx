@@ -69,5 +69,5 @@ export function SectionHeader({
   );
 }
 
-/** One screen-high page: clears the fixed navbar, centres its content, and is a scroll-snap point. */
-export const screen = "relative flex min-h-svh flex-col justify-center pt-[112px] pb-s55 md:pt-s144 md:pb-s89";
+/** One screen-high page: equal air above and below (the top also clears the fixed navbar), content centred. */
+export const screen = "relative flex min-h-svh flex-col justify-center py-[104px] md:py-[112px]";

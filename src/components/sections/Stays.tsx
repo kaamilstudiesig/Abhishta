@@ -42,13 +42,13 @@ export function Stays() {
   return (
     <section id="stays" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
       <div className={container}>
-        <SectionHeader title="Rest your head where the fields begin" />
+        <SectionHeader title="Rest your head where the fields begin" className="mx-auto text-center [&>span]:mx-auto" />
 
-        <ul className="mt-s55 grid gap-s55 md:grid-cols-2 md:gap-s34 lg:gap-s89">
+        <ul className="mt-s34 grid gap-s55 md:mt-s55 md:grid-cols-2 md:gap-s34 lg:gap-s89">
           {STAYS.map((stay) => (
             <li key={stay.name} className="group">
               <a href={stay.href} className="block">
-                <div className="relative h-[30svh] min-h-[200px] overflow-hidden rounded-card md:h-[36svh]">
+                <div className="relative h-[26svh] min-h-[180px] overflow-hidden rounded-card md:h-[32svh]">
                   <Image
                     src={stay.image}
                     alt={stay.alt}

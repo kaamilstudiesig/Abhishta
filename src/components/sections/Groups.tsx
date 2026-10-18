@@ -53,7 +53,7 @@ export function Groups() {
 
   return (
     <section id="groups" data-nav="dark" data-snap="" className={`on-dark overflow-hidden bg-forest text-paper ${screen}`}>
-      <div className={`${container} grid items-center gap-s55 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
+      <div className={`${container} grid items-center gap-s34 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
         <div>
           <SectionHeader
             tone="dark"
@@ -88,11 +88,11 @@ export function Groups() {
           active={active}
           onActiveChange={setActive}
           interval={picked ? null : 7000}
-          className="mx-auto h-[460px] w-full max-w-[640px] translate-y-s34 sm:h-[520px] lg:-translate-x-s34"
+          className="mx-auto h-[400px] w-full max-w-[560px] translate-y-[26px] sm:h-[440px] lg:-translate-x-s34"
         >
           {GROUPS.map((g) => (
             <article key={g.name} className="overflow-hidden rounded-card bg-card text-ink shadow-card">
-              <div className="relative aspect-[16/10]">
+              <div className="relative aspect-[16/9]">
                 <Image src={g.image} alt={g.alt} fill sizes="(min-width: 1024px) 560px, 90vw" placeholder="blur" className="object-cover" />
               </div>
               <div className="p-s21 sm:px-s34 sm:py-s21">

@@ -150,7 +150,7 @@ export function CardSwap({ children, active, onActiveChange, interval = 5500, cl
         <div
           key={i}
           data-swap-card=""
-          className="absolute w-[min(100%,560px)] [transform-style:preserve-3d] will-change-transform"
+          className="absolute w-[min(88%,480px)] [transform-style:preserve-3d] will-change-transform"
         >
           {card}
         </div>

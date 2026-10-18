@@ -72,25 +72,29 @@ html {
   background: var(--color-forest);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
-  /* Native scroll snapping, one screen per section: mandatory where every
-     section fits the screen, proximity on small/short screens where some
-     sections run taller than the viewport. */
-  scroll-snap-type: y proximity;
+  /* Desktop paging is done by SmoothScroll (Lenis); CSS snapping would fight it.
+     Touch screens and reduced motion get gentle native proximity snapping. */
+  scroll-snap-type: none;
 }
 
-@media (min-width: 768px) and (min-height: 640px) {
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
   html {
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
   }
 }
 
-/* A snap point per page; scroll-snap-stop keeps a fast flick from skipping one. */
+/* A page per section; scroll-snap-stop keeps a fast flick from skipping one. */
 [data-snap] {
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
-[data-snap-end] {
-  scroll-snap-align: end;
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
 }
 
 a,
@@ -217,4 +221,12 @@ html.js .intro-veil {
 /* Display type: Fraunces' soft, slightly wonky cut — the free cousin of PP Fragment. */
 .font-display {
   font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+/* Hero display: Fraunces at its largest optical size, thin and crisp
+   (no soft/wonk), set in capitals — the editorial voice of the opening screen. */
+.hero-display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
 }

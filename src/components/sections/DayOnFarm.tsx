@@ -19,8 +19,8 @@ type Moment = {
   dark?: boolean;
 };
 
-// The card surfaces follow the light through the day: soft gold dawn, clear
-// morning, warm midday, forest dusk.
+// The card surfaces follow the light through the day: blush dawn, clear
+// pale-sky morning, sunlit noon, twilight-plum dusk.
 const MOMENTS: Moment[] = [
   {
     time: "Dawn",
@@ -30,7 +30,7 @@ const MOMENTS: Moment[] = [
     icon: IconDawn,
     image: cowCuddling,
     alt: "A guest hugging a gentle brown cow at the Gau Seva shed",
-    surface: "bg-paper-deep",
+    surface: "bg-[#f2ddd2]",
   },
   {
     time: "Morning",
@@ -40,7 +40,7 @@ const MOMENTS: Moment[] = [
     icon: IconMorning,
     image: harvest,
     alt: "A hand holding a freshly picked green pumpkin against leafy vines",
-    surface: "bg-card",
+    surface: "bg-[#e3ebe8]",
   },
   {
     time: "Midday",
@@ -50,7 +50,7 @@ const MOMENTS: Moment[] = [
     icon: IconMidday,
     image: vegBeds,
     alt: "Raised vegetable beds edged with terracotta tiles, full of leafy greens",
-    surface: "bg-paper-deep",
+    surface: "bg-[#f3e4b9]",
   },
   {
     time: "Dusk",
@@ -60,7 +60,7 @@ const MOMENTS: Moment[] = [
     icon: IconDusk,
     image: bonfire,
     alt: "A family gathered around an evening bonfire on the farm patio",
-    surface: "bg-forest",
+    surface: "bg-[#3a2d39]",
     dark: true,
   },
 ];
@@ -89,15 +89,15 @@ export function DayOnFarm() {
               <Image src={m.image} alt={m.alt} fill sizes="(min-width: 768px) 60vw, 100vw" placeholder="blur" className="object-cover" />
             </div>
             <div className="flex flex-col justify-center p-s21 sm:p-s34 lg:p-s55">
-              <p className={`flex items-center gap-s8 text-[15px] ${m.dark ? "text-gold" : "text-ink-muted"}`}>
+              <p className={`flex items-center gap-s8 text-[15px] ${m.dark ? "text-gold" : "text-[#4f4f44]"}`}>
                 <m.icon size={20} />
                 {m.time}
               </p>
               <h3 className={`mt-s13 font-display text-[clamp(26px,3.2vw,45px)] leading-[1.08] tracking-[-0.015em] ${m.dark ? "text-paper" : "text-forest"}`}>
                 {m.title}
               </h3>
-              <p className={`mt-s13 text-[15px] sm:text-body ${m.dark ? "text-paper/85" : "text-ink-muted"}`}>{m.body}</p>
-              <p className={`mt-s21 border-t pt-s13 text-[14px] ${m.dark ? "border-paper/15 text-paper/75" : "border-line text-ink-muted"}`}>
+              <p className={`mt-s13 text-[15px] sm:text-body ${m.dark ? "text-paper/85" : "text-[#4f4f44]"}`}>{m.body}</p>
+              <p className={`mt-s21 border-t pt-s13 text-[14px] ${m.dark ? "border-paper/15 text-paper/75" : "border-ink/10 text-[#4f4f44]"}`}>
                 {m.activities.join(", ")}
               </p>
             </div>

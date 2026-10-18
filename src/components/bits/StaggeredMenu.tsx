@@ -100,8 +100,8 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
         aria-expanded={open}
         aria-controls="site-menu"
         onClick={() => setOpen((v) => !v)}
-        className={`relative z-[60] inline-flex h-[44px] items-center gap-s13 rounded-full pr-s8 pl-s21 text-[15px] font-medium transition-colors duration-300 ${
-          onDark ? "on-dark text-paper hover:bg-paper/10" : "text-forest hover:bg-forest/5"
+        className={`relative z-[60] inline-flex h-[44px] items-center px-s8 text-[14px] font-medium tracking-[0.08em] uppercase transition-colors duration-300 ${
+          onDark ? "on-dark text-paper hover:text-gold-soft" : "text-forest hover:text-farm"
         }`}
       >
         <span className="relative block h-[1.4em] overflow-hidden">
@@ -110,19 +110,6 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
           >
             <span className="block">Menu</span>
             <span className="block">Close</span>
-          </span>
-        </span>
-        <span
-          aria-hidden="true"
-          className={`grid size-[34px] place-items-center rounded-full border-[1.5px] ${onDark ? "border-paper/40" : "border-forest/25"}`}
-        >
-          <span className="relative block h-[10px] w-[14px]">
-            <span
-              className={`absolute left-0 h-[1.5px] w-full bg-current transition-transform duration-500 ease-[var(--ease-earth)] ${open ? "top-[4px] rotate-45" : "top-0"}`}
-            />
-            <span
-              className={`absolute left-0 h-[1.5px] w-full bg-current transition-transform duration-500 ease-[var(--ease-earth)] ${open ? "top-[4px] -rotate-45" : "top-[8.5px]"}`}
-            />
           </span>
         </span>
       </button>

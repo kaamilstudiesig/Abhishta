@@ -4,17 +4,16 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { whenIntroDone } from "@/lib/intro";
 import { SplitText } from "@/components/bits/SplitText";
-import { buttonClass, container } from "@/components/ui";
-import { IconPause, IconPlay } from "@/components/icons";
+import { container } from "@/components/ui";
+import { IconArrow, IconPause, IconPlay } from "@/components/icons";
 import { BOOKING_URL } from "@/lib/site";
 
-const HEADLINE = "Escape the urban chaos and embrace serenity at Abhishta Agri Farm Stay.";
-
 /**
- * Full-screen hero: the farm's countryside film under a flat shade for contrast,
- * then one kicker, one headline, one short subline and one booking CTA. They
- * enter in sequence as the intro veil lifts (kicker → headline lines through a
- * clip mask → subline → CTA, ~1.2s).
+ * Full-screen hero, editorial and quiet: the farm's own film under one flat
+ * shade, an oversized thin serif headline in two offset lines ("Beloved /
+ * Countryside" — what Abhishta means), one serif subline and one booking CTA.
+ * They enter in sequence as the intro veil lifts (headline lines through a clip
+ * mask → subline → CTA, ~1.2s).
  */
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -39,14 +38,13 @@ export function Hero() {
   useEffect(() => {
     const root = contentRef.current;
     if (!root || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const [kicker, subline, cta] = root.querySelectorAll<HTMLElement>("[data-hero-reveal]");
+    const [subline, cta] = root.querySelectorAll<HTMLElement>("[data-hero-reveal]");
     let tl: gsap.core.Timeline | null = null;
     const stop = whenIntroDone(() => {
       tl = gsap
         .timeline({ defaults: { ease: "power3.out", duration: 0.8 } })
-        .from(kicker, { opacity: 0, y: 13 }, 0)
-        .from(subline, { opacity: 0, y: 13 }, 0.6)
-        .from(cta, { opacity: 0, y: 13 }, 0.75);
+        .from(subline, { opacity: 0, y: 13 }, 0.7)
+        .from(cta, { opacity: 0, y: 13 }, 0.85);
     });
     return () => {
       stop();
@@ -82,36 +80,43 @@ export function Hero() {
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
       />
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-forest/55" />
+      {/* one flat, light shade for legibility — no gradient wash over the film */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black/30" />
 
-      <div ref={contentRef} className={`${container} flex flex-1 flex-col justify-end pt-s144 pb-s144`}>
-        <div data-hero-reveal="">
-          <div aria-hidden="true" className="mb-s13 flex w-[89px] items-center">
-            <span className="h-px flex-1 bg-gold" />
-            <span className="grid size-[9px] place-items-center rounded-full border border-gold">
-              <span className="size-[3px] rounded-full bg-gold" />
-            </span>
-          </div>
-          <p className="font-display text-[clamp(15px,1.3vw,17px)] tracking-[0.01em] text-paper/85">
-            Abhishta Agri Farm Stay
+      <div ref={contentRef} className={`${container} flex flex-1 flex-col justify-center pt-s89 pb-s55`}>
+        <h1 className="hero-display text-[clamp(34px,9.2vw,148px)] leading-[0.95] tracking-[0.005em] uppercase">
+          <SplitText as="span" trigger="intro" by="lines" delay={0.1} text="Beloved" className="block" />
+          <SplitText
+            as="span"
+            trigger="intro"
+            by="lines"
+            delay={0.25}
+            text="Countryside"
+            className="block md:pr-[4vw] md:text-right"
+          />
+        </h1>
+        <div className="mt-s55 self-end md:mr-[calc(4vw+8%)] md:w-[min(26em,40%)]">
+          <p data-hero-reveal="" className="font-display text-[clamp(17px,1.4vw,20px)] leading-[1.45] text-paper/90">
+            Escape the urban chaos and embrace serenity at Abhishta Agri Farm Stay, ninety kilometres from Bangalore.
           </p>
-        </div>
-        <SplitText
-          as="h1"
-          trigger="intro"
-          by="lines"
-          delay={0.12}
-          stagger={0.1}
-          text={HEADLINE}
-          className="mt-s21 max-w-[18ch] font-display text-[clamp(38px,5vw,72px)] leading-[1.06] font-semibold tracking-[-0.02em] text-balance"
-        />
-        <p data-hero-reveal="" className="mt-s21 max-w-[30em] text-paper/80">
-          Ninety kilometres from Bangalore, on the red earth of Kunigal.
-        </p>
-        <div data-hero-reveal="" className="mt-s34">
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("gold", "px-s34")}>
-            Check availability
-          </a>
+          <div data-hero-reveal="" className="mt-s34 flex items-stretch gap-[6px]">
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-stretch gap-[6px] text-[15px] font-medium text-forest"
+            >
+              <span className="grid min-h-[44px] place-items-center rounded-[4px] bg-paper px-s21 transition-colors duration-300 group-hover:bg-gold-soft">
+                Check availability
+              </span>
+              <span
+                aria-hidden="true"
+                className="grid w-[44px] place-items-center rounded-[4px] bg-paper transition-[background-color,translate] duration-300 group-hover:translate-x-[3px] group-hover:bg-gold-soft"
+              >
+                <IconArrow size={18} />
+              </span>
+            </a>
+          </div>
         </div>
       </div>
 
