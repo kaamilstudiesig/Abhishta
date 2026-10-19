@@ -23,7 +23,8 @@ Plus the client photography in `public/images/client-photos/` and `docs/SITEMAP.
 
 - Each has its own washroom (tour) with hot water (site), and a private sit-out with sunrise/sunset views (site).
 - Red-oxide floors, tiled timber roofs, garden-facing windows (tour).
-- **Capacity: to confirm** — see the questions at the end (the tour can't show it; the site and Stayflexi disagree).
+- **Sleeps up to 5** (Stayflexi): beds for 4, plus an extra bed or mattress for a fifth guest.
+- **Air-conditioned** (Stayflexi), with fans.
 
 ### Nandagokula — the group rooms
 
@@ -31,9 +32,9 @@ Plus the client photography in `public/images/client-photos/` and `docs/SITEMAP.
 | --- | --- | --- | --- | --- |
 | **Nandagokula Family Dormitory** | double beds (5 doubles per the site) | 10 | own washroom | `#Abhishta_06` |
 | **Nandagokula Bachelors Dormitory** | single beds (10 per the site) | 10 | own washroom | `#Abhishta_04` |
-| **Nandagokula Triple Occupancy** | 3 single beds | 3 | own washroom | `#Abhishta_08` |
+| **Nandagokula Triple Occupancy** | 4 single beds | 3–4 | own washroom | `#Abhishta_08` |
 
-23 guests across the three rooms. Suited to families travelling together, friends, school groups, camps and
+Up to 24 guests across the three rooms. All three are air-conditioned (Stayflexi). Suited to families travelling together, friends, school groups, camps and
 yoga retreats (site).
 
 ### Not a guest stay
@@ -53,8 +54,7 @@ Govardhana — the hill he lifted · Nandagokula — the village he grew up in. 
 - **Rate plans** for each room type: room only ("CP Plan") · breakfast + dinner · all meals. Prices are live in
   Stayflexi — link to it, don't hard-code rates on the page.
 - **Amenities Stayflexi lists:** cottage — private bathroom, toiletries, electric kettle, wardrobe, fan, AC;
-  dormitory — shower, toiletries, bottled water, fan, AC. The tour doesn't show AC units clearly, so confirm AC
-  before the page claims it.
+  dormitory — shower, toiletries, bottled water, fan, AC. Client confirmed: trust Stayflexi — every room has AC.
 - **Cancellation policy** (Stayflexi — replaces both conflicting pages on the current site):
   - No refunds once payment is made.
   - Cancelled **10 or more days** before check-in → a credit note, valid 3 months from the original arrival date.
@@ -108,7 +108,7 @@ Long page that scrolls freely (no `data-snap`, except the hero). Anchors the hom
 │    │ couples, │ │ dorm     │ │ dorm     │ │ room     │               │
 │    │ small    │ │ families │ │ friends, │ │ three    │               │
 │    │ families │ │ together │ │ schools  │ │ friends  │               │
-│    │ sleeps ? │ │ sleeps 10│ │ sleeps 10│ │ sleeps 3 │               │
+│    │ up to 5  │ │ sleeps 10│ │ sleeps 10│ │ sleeps 3–4│              │
 │    └──────────┘ └──────────┘ └──────────┘ └──────────┘               │
 │    each card jumps to its room below          (phone: swipe row)     │
 └─────────────────────────────────────────────────────────────────────┘
@@ -118,7 +118,7 @@ Long page that scrolls freely (no `data-snap`, except the hero). Anchors the hom
 │    ┌───────────────────────────────┐  Mayura · Mathura · Gopala ·    │
 │    │                               │  Govardhana    (name tabs)      │
 │    │  live 360° of the selected    │  "Mayura — the peacock"         │
-│    │  cottage (deep link, behind a │  sleeps ? (to confirm)          │
+│    │  cottage (deep link, behind a │  sleeps up to 5 · AC            │
 │    │  "Start the 360° view" cover) │  ✓ own washroom, hot water      │
 │    │  Gopala / Govardhana: photo   │  ✓ wardrobe · kettle · toiletries│
 │    │  instead (no room view)       │  ✓ private sit-out              │
@@ -131,13 +131,13 @@ Long page that scrolls freely (no `data-snap`, except the hero). Anchors the hom
 │    "Nandagokula — the village Krishna grew up in, made for groups    │
 │     who travel together."                                            │
 │    three rooms as tabs (phone: pills) driving one panel:             │
-│    [Family dormitory · 10] [Bachelors dormitory · 10] [Triple · 3]   │
+│    [Family dormitory · 10] [Bachelors dormitory · 10] [Triple · 3–4] │
 │    ┌───────────────────────────────┐  who it's for                   │
 │    │ live 360° of that room        │  beds · sleeps                  │
 │    │ (deep link, start cover)      │  ✓ own washroom                 │
 │    └───────────────────────────────┘                                 │
 │    photos: stay-dorm-1 · stay-dorm-2                                 │
-│    "All three sleep 23 — for a school trip, camp or yoga retreat"    │
+│    "Together up to 24 — for a school trip, camp or yoga retreat"     │
 │    [Plan a group stay → /group-enquiries]                            │
 └─────────────────────────────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -147,7 +147,7 @@ Long page that scrolls freely (no `data-snap`, except the hero). Anchors the hom
 │    daily housekeeping            │ bottled water                     │
 │    wardrobe · kettle · toiletries│ toiletries                        │
 │    private sit-out               │ shared lawns, nature walks        │
-│    fan (AC once confirmed)       │ fan (AC once confirmed)           │
+│    air-conditioned, fans         │ air-conditioned, fans             │
 └─────────────────────────────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────────────────────────────┐
 │ 6  BEYOND YOUR DOOR — shared spaces  (data-nav=light)                │
@@ -181,16 +181,22 @@ Nandagokula rooms instead of tabs if a more playful feel is wanted.
 **Phones:** pills replace tabs; each 360° view sits under its tabs at 16:11; photo strips become swipe rows; the
 four options in section 2 become a swipe row.
 
-## Still to confirm with the client
+## Photos
 
-1. **Cottage capacity — for each of Mayura, Mathura, Gopala and Govardhana:**
-   - How many guests does it sleep? The sources disagree: the current site says "up to four" and
-     "2 cottages sleep 4 & 3", Stayflexi says max 5.
-   - What beds are in it? The 360° of Mayura and Mathura shows a double bed plus a folding extra bed. Is there a
-     floor mattress too (the old wireframe mentioned one)?
-2. **Triple Occupancy** — sleeps 3, and is it bookable online? Stayflexi only lists "Cottage" and "Dormitory".
-3. **Air conditioning** — Stayflexi lists AC for both room types; the tour shows fans. Which rooms have AC?
-4. **Photos** — per-cottage photos for Gopala and Govardhana, and photos of the Family Dormitory and Triple room
-   (client sending).
-5. **Current site** — its Terms (12 pm / 11 am) and Cancellation pages don't match Stayflexi, and the homepage
-   shows an internal draft note and placeholder "Amenities 1 / 2 / 3" in its "Nature's Comforts" pop-up.
+| Slot | Photo |
+| --- | --- |
+| Hero | `stay-cottage-exterior.jpg` |
+| Cottages strip | `stay-cottage-1/-2/-3.jpg`, `stay-cottage-sitout.jpg` |
+| Mayura, Mathura | 360° room view (deep link) |
+| Gopala, Govardhana | **client sending** — use their cottage photos when they land in `public/images/client-photos/` |
+| Nandagokula strip | `stay-dorm-1.jpg`, `stay-dorm-2.jpg` |
+| Family dormitory, Triple occupancy | **client sending** (360° room views meanwhile) |
+| Shared spaces | `group-corporate.jpg` (dining hall), `about-firepit.jpg` (campfire circle); 360° for the rest |
+
+## Confirmed with the client (2026-10-19)
+
+- Room names, rooms and beds: follow the 360° tour. Policy, times, capacity and amenities: follow Stayflexi.
+- Cottages sleep up to 5 (beds for 4 + an extra bed or mattress); every room has AC.
+- Triple occupancy has 4 single beds and sleeps 3–4.
+- Remaining: the photos above (on their way). Separately, the current site's Terms/Cancellation pages don't match
+  Stayflexi, and its homepage shows a draft note and placeholder "Amenities 1 / 2 / 3" — worth fixing there.
