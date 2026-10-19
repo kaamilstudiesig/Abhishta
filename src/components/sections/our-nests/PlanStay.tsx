@@ -1,21 +1,18 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
-import { IconChevronDown, IconMail, IconMinus, IconPhone, IconPlus, IconWhatsApp } from "@/components/icons";
-import { SectionHeader, buttonClass, container } from "@/components/ui";
+import { IconChevronDown, IconClose, IconMail, IconMinus, IconPhone, IconPlus, IconWhatsApp } from "@/components/icons";
+import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL, CONTACT, WHATSAPP_NUMBER } from "@/lib/site";
 
 const ROOM_CHOICES = [
   "Not sure",
-  "Mayura",
-  "Mathura",
-  "Gopala",
-  "Govardhana",
+  "Cottage",
   "Family dormitory",
   "Bachelors dormitory",
   "Triple room",
 ];
-const MEAL_PLANS = ["Room only", "Breakfast + dinner", "All meals"];
+const MEAL_PLANS = ["Not decided", "Room only", "Breakfast + dinner", "All meals"];
 
 type Values = {
   name: string;
@@ -53,25 +50,25 @@ function enquiry(v: Values) {
     `Dates: ${describeDates(v)}`,
     `Guests: ${plural(v.adults, "adult", "adults")}${v.kids ? `, ${plural(v.kids, "kid", "kids")}` : ""}`,
     `Room: ${v.room}`,
-    v.meals ? `Meals: ${v.meals}` : null,
+    v.meals !== "Not decided" ? `Meals: ${v.meals}` : null,
   ]
     .filter(Boolean)
     .join("\n");
 }
 
 const field =
-  "min-h-[48px] w-full rounded-[14px] border border-paper/25 bg-paper/[0.07] px-s13 text-[16px] text-paper [color-scheme:dark] placeholder:text-paper/45 transition-colors duration-300 hover:border-paper/45 aria-[invalid=true]:border-alert";
-const labelClass = "mb-[6px] block text-[14px] font-medium text-paper/85";
+  "min-h-[44px] w-full min-w-0 rounded-[14px] border border-line bg-card px-s13 text-[16px] text-ink transition-colors duration-300 hover:border-sage aria-[invalid=true]:border-alert";
+const labelClass = "mb-[4px] block text-[13px] font-medium text-ink-muted sm:text-[14px]";
 
 function Field({ label, htmlFor, error, children }: { label: string; htmlFor: string; error?: string; children: ReactNode }) {
   return (
-    <div className="col-span-2 sm:col-span-1">
+    <div className="min-w-0">
       <label htmlFor={htmlFor} className={labelClass}>
         {label}
       </label>
       {children}
       {error ? (
-        <p id={`${htmlFor}-error`} className="mt-[6px] text-[14px] text-alert">
+        <p id={`${htmlFor}-error`} className="mt-[4px] text-[13px] leading-[1.35] text-alert">
           {error}
         </p>
       ) : null}
@@ -95,13 +92,14 @@ function Stepper({
   onChange: (n: number) => void;
 }) {
   const clamp = (n: number) => Math.min(max, Math.max(min, Number.isFinite(n) ? n : min));
-  const step = "grid size-[44px] shrink-0 place-items-center rounded-full text-paper transition-colors duration-300 hover:bg-paper/15 disabled:opacity-35 disabled:hover:bg-transparent";
+  const step =
+    "grid size-[40px] shrink-0 place-items-center rounded-full text-forest transition-colors duration-300 hover:bg-paper-deep disabled:opacity-35 disabled:hover:bg-transparent";
   return (
-    <div>
+    <div className="min-w-0">
       <label htmlFor={id} className={labelClass}>
         {label}
       </label>
-      <div className="flex min-h-[48px] items-center justify-between rounded-[14px] border border-paper/25 bg-paper/[0.07] px-[2px]">
+      <div className="flex min-h-[44px] items-center justify-between rounded-[14px] border border-line bg-card px-[1px]">
         <button type="button" onClick={() => onChange(clamp(value - 1))} disabled={value <= min} aria-label={`Fewer ${label.toLowerCase()}`} className={step}>
           <IconMinus size={18} />
         </button>
@@ -110,11 +108,12 @@ function Stepper({
           name={id}
           type="number"
           inputMode="numeric"
+          autoComplete="off"
           min={min}
           max={max}
           value={value}
           onChange={(e) => onChange(clamp(e.target.valueAsNumber))}
-          className="w-[4ch] bg-transparent text-center text-[16px] text-paper [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="w-[3ch] min-w-0 bg-transparent text-center text-[16px] text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
         <button type="button" onClick={() => onChange(clamp(value + 1))} disabled={value >= max} aria-label={`More ${label.toLowerCase()}`} className={step}>
           <IconPlus size={18} />
@@ -124,11 +123,32 @@ function Stepper({
   );
 }
 
+function Select({ id, label, value, options, onChange }: { id: string; label: string; value: string; options: string[]; onChange: (v: string) => void }) {
+  return (
+    <div className="min-w-0">
+      <label htmlFor={id} className={labelClass}>
+        {label}
+      </label>
+      <div className="relative">
+        <select id={id} name={id} value={value} onChange={(e) => onChange(e.target.value)} className={`${field} appearance-none truncate pr-s34`}>
+          {options.map((o) => (
+            <option key={o} value={o}>
+              {o}
+            </option>
+          ))}
+        </select>
+        <IconChevronDown size={18} className="pointer-events-none absolute top-1/2 right-s13 -translate-y-1/2 text-ink-muted" />
+      </div>
+    </div>
+  );
+}
+
 /**
- * Plan your stay — forest band. There's no booking backend: the form writes
+ * Plan your stay — one light screen, so the forest footer reads as its own
+ * band when it's revealed beneath. There's no booking backend: the form writes
  * the enquiry and opens WhatsApp with it, ready to send (email works the same
- * way). Live availability and rates stay on Stayflexi. The stay's small print
- * and a plain-words summary of Stayflexi's cancellation policy sit underneath.
+ * way); live availability and rates stay on Stayflexi. The stay's essentials
+ * sit beside it, and Stayflexi's cancellation policy opens in a popover.
  */
 export function PlanStay() {
   const uid = useId();
@@ -142,7 +162,7 @@ export function PlanStay() {
     adults: 2,
     kids: 0,
     room: "Not sure",
-    meals: "",
+    meals: "Not decided",
   });
   const [errors, setErrors] = useState<{ name?: string; dates?: string }>({});
   const [sent, setSent] = useState(false);
@@ -164,7 +184,7 @@ export function PlanStay() {
     const next: typeof errors = {};
     if (!values.name.trim()) next.name = "Add your name so we know who’s asking.";
     if (values.checkIn && values.checkOut && values.checkOut <= values.checkIn)
-      next.dates = "Check-out needs to be at least a day after check-in.";
+      next.dates = "Pick a check-out after check-in.";
     setErrors(next);
     if (next.name) {
       document.getElementById(id("name"))?.focus();
@@ -181,26 +201,24 @@ export function PlanStay() {
     setSent(true);
   };
 
-  const mailto = `${CONTACT.email.href}?subject=${encodeURIComponent("Stay enquiry")}&body=${encodeURIComponent(
-    enquiry(values),
-  )}`;
+  const mailto = `${CONTACT.email.href}?subject=${encodeURIComponent("Stay enquiry")}&body=${encodeURIComponent(enquiry(values))}`;
 
   return (
-    <section id="plan-your-stay" data-nav="dark" className="on-dark border-b border-paper/10 bg-forest pt-s89 pb-s89 text-paper lg:pt-s144">
-      {/* phones: intro → form → small print; desktop: intro and small print beside the form */}
+    <section id="plan-your-stay" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
+      {/* phones: heading → form → essentials; desktop: heading and essentials beside the form */}
       <div
-        className={`${container} grid gap-s34 lg:grid-cols-[1fr_1.618fr] lg:grid-rows-[auto_1fr] lg:gap-x-s89 lg:gap-y-s55 lg:[grid-template-areas:'intro_form'_'fine_form']`}
+        className={`${container} grid gap-y-s21 lg:grid-cols-[1fr_1.618fr] lg:grid-rows-[1fr_auto_auto_1fr] lg:gap-x-s89 lg:gap-y-0 lg:[grid-template-areas:'._form'_'intro_form'_'fine_form'_'._form']`}
       >
         <div className="lg:[grid-area:intro]">
           <SectionHeader
-            tone="dark"
             title="Plan your stay"
             lead="Tell us your dates and who’s coming. It reaches us on WhatsApp, and we’ll write back with what’s free."
+            leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5] short:hidden"
           />
-          <ul className="mt-s34 grid gap-s8 text-[15px]">
+          <ul className="mt-s34 hidden gap-s8 text-[15px] lg:grid">
             <li>
-              <a href={mailto} className="tap inline-flex items-center gap-s13 text-paper hover:text-gold">
-                <IconMail size={20} className="shrink-0 text-gold" />
+              <a href={mailto} className="tap inline-flex items-center gap-s13 text-forest hover:text-farm">
+                <IconMail size={20} className="shrink-0 text-farm" />
                 <span>
                   <span className="sr-only">Email instead: </span>
                   {CONTACT.email.label}
@@ -208,8 +226,8 @@ export function PlanStay() {
               </a>
             </li>
             <li>
-              <a href={CONTACT.reservation.href} className="tap inline-flex items-center gap-s13 text-paper hover:text-gold">
-                <IconPhone size={20} className="shrink-0 text-gold" />
+              <a href={CONTACT.reservation.href} className="tap inline-flex items-center gap-s13 text-forest hover:text-farm">
+                <IconPhone size={20} className="shrink-0 text-farm" />
                 <span>
                   <span className="sr-only">Call: </span>
                   {CONTACT.reservation.label}
@@ -223,7 +241,7 @@ export function PlanStay() {
           noValidate
           onSubmit={onSubmit}
           aria-label="Stay enquiry"
-          className="grid grid-cols-2 gap-x-s13 gap-y-s21 self-start rounded-card bg-paper/[0.05] p-s21 ring-1 ring-paper/12 sm:gap-x-s21 sm:p-s34 lg:[grid-area:form]"
+          className="grid grid-cols-2 gap-x-s13 gap-y-s13 self-center sm:gap-x-s21 sm:gap-y-s21 lg:rounded-card lg:bg-card lg:p-s34 lg:shadow-card lg:ring-1 lg:ring-line lg:[grid-area:form]"
         >
           <Field label="Name" htmlFor={id("name")} error={errors.name}>
             <input
@@ -242,7 +260,10 @@ export function PlanStay() {
           </Field>
           <Field label="Phone" htmlFor={id("phone")}>
             <div className="flex">
-              <span aria-hidden="true" className="grid min-h-[48px] place-items-center rounded-l-[14px] border border-r-0 border-paper/25 bg-paper/10 px-s13 text-[16px] text-paper/80">
+              <span
+                aria-hidden="true"
+                className="grid min-h-[44px] shrink-0 place-items-center rounded-l-[14px] border border-r-0 border-line bg-paper-deep px-[10px] text-[15px] text-ink-muted"
+              >
                 +91
               </span>
               <input
@@ -251,7 +272,6 @@ export function PlanStay() {
                 type="tel"
                 inputMode="tel"
                 autoComplete="tel-national"
-                placeholder="98765 43210"
                 aria-label="Phone number, India (+91)"
                 value={values.phone}
                 onChange={(e) => set("phone", e.target.value)}
@@ -290,60 +310,19 @@ export function PlanStay() {
           <Stepper id={id("adults")} label="Adults" value={values.adults} min={1} max={30} onChange={(n) => set("adults", n)} />
           <Stepper id={id("kids")} label="Kids" value={values.kids} min={0} max={30} onChange={(n) => set("kids", n)} />
 
-          <div className="col-span-2">
-            <label htmlFor={id("room")} className={labelClass}>
-              Room preference
-            </label>
-            <div className="relative">
-              <select
-                id={id("room")}
-                name="room"
-                value={values.room}
-                onChange={(e) => set("room", e.target.value)}
-                className={`${field} appearance-none pr-s55`}
-              >
-                {ROOM_CHOICES.map((r) => (
-                  <option key={r} value={r} className="bg-forest text-paper">
-                    {r}
-                  </option>
-                ))}
-              </select>
-              <IconChevronDown size={20} className="pointer-events-none absolute top-1/2 right-s13 -translate-y-1/2 text-paper/70" />
-            </div>
-          </div>
+          <Select id={id("room")} label="Room" value={values.room} options={ROOM_CHOICES} onChange={(v) => set("room", v)} />
+          <Select id={id("meals")} label="Meal plan" value={values.meals} options={MEAL_PLANS} onChange={(v) => set("meals", v)} />
 
-          <fieldset className="col-span-2">
-            <legend className={labelClass}>Meal plan</legend>
-            <div className="flex flex-wrap gap-s8">
-              {MEAL_PLANS.map((m) => (
-                <label
-                  key={m}
-                  className="relative inline-flex min-h-[44px] cursor-pointer items-center rounded-btn border border-paper/25 px-s21 text-[15px] text-paper/85 transition-colors duration-300 hover:border-paper/60 has-[:checked]:border-paper has-[:checked]:bg-paper has-[:checked]:text-forest has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-3 has-[:focus-visible]:outline-gold"
-                >
-                  <input
-                    type="radio"
-                    name="meals"
-                    value={m}
-                    checked={values.meals === m}
-                    onChange={() => set("meals", m)}
-                    className="sr-only"
-                  />
-                  {m}
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
-          <div className="col-span-2 flex flex-col gap-s13 pt-s8 sm:flex-row sm:flex-wrap sm:items-center">
-            <button type="submit" className={buttonClass("gold")}>
+          <div className="col-span-2 flex flex-col gap-s8 pt-[4px] sm:flex-row sm:flex-wrap sm:items-center sm:gap-s13">
+            <button type="submit" className={buttonClass("primary")}>
               <IconWhatsApp size={20} />
               Send on WhatsApp
             </button>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("ghost-light")}>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("secondary")}>
               Check availability
             </a>
           </div>
-          <p role="status" className="col-span-2 text-[14px] text-paper/80 empty:hidden">
+          <p role="status" className="col-span-2 text-[14px] text-ink-muted empty:hidden">
             {sent ? "WhatsApp has opened with your details. Press send there and it reaches us." : ""}
           </p>
         </form>
@@ -357,46 +336,66 @@ export function PlanStay() {
 const STAY_FACTS = [
   { term: "Check-in", detail: "2 pm" },
   { term: "Check-out", detail: "1 pm" },
-  { term: "Photo ID", detail: "Government ID for every guest" },
-  { term: "Deposit", detail: "₹5,000 at check-in, refunded at check-out" },
+  { term: "Photo ID", detail: "For every guest" },
+  { term: "Deposit", detail: "₹5,000, refundable" },
 ];
 
 /** The stay's essentials, and Stayflexi's cancellation policy in plain words (it replaces the old site's pages). */
 function SmallPrint() {
   return (
-    <div className="mt-s21 lg:mt-0 lg:[grid-area:fine]">
-      <div className="border-t border-paper/15 pt-s34">
-        <dl className="grid grid-cols-2 gap-x-s21 gap-y-s21">
-          {STAY_FACTS.map((f) => (
-            <div key={f.term}>
-              <dt className="text-[14px] text-paper/70">{f.term}</dt>
-              <dd className="mt-[2px] text-[16px] leading-[1.45] text-paper">{f.detail}</dd>
-            </div>
-          ))}
-        </dl>
+    <div className="lg:mt-s34 lg:[grid-area:fine]">
+      <dl className="grid grid-cols-4 gap-x-s13 border-t border-line pt-s13 lg:grid-cols-2 lg:gap-y-s13 lg:pt-s21">
+        {STAY_FACTS.map((f) => (
+          <div key={f.term} className="min-w-0">
+            <dt className="text-[12px] text-ink-muted sm:text-[13px]">{f.term}</dt>
+            <dd className="text-[13px] leading-[1.35] text-ink sm:text-[15px]">{f.detail}</dd>
+          </div>
+        ))}
+      </dl>
+      <button
+        type="button"
+        popoverTarget="cancellation-policy"
+        className="tap mt-s8 inline-flex min-h-[32px] items-center gap-[6px] text-[14px] font-medium text-forest underline decoration-gold decoration-2 underline-offset-4 hover:text-farm lg:mt-s21"
+      >
+        Cancellation policy
+      </button>
 
-        <details className="group mt-s34 rounded-card ring-1 ring-paper/15 open:bg-paper/[0.04]">
-          <summary className="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-s13 px-s21 font-medium text-paper [&::-webkit-details-marker]:hidden">
+      <div
+        id="cancellation-policy"
+        popover="auto"
+        aria-labelledby="cancellation-policy-title"
+        className="m-auto w-[min(34em,calc(100vw-42px))] rounded-card bg-card p-s21 text-ink shadow-float ring-1 ring-line backdrop:bg-ink/40 sm:p-s34"
+      >
+        <div className="flex items-start justify-between gap-s13">
+          <h3 id="cancellation-policy-title" className="font-display text-h2 text-forest">
             Cancellation policy
-            <IconChevronDown size={20} className="shrink-0 text-gold transition-transform duration-300 group-open:rotate-180" />
-          </summary>
-          <ul className="grid gap-s13 px-s21 pb-s21 text-[15px] leading-[1.55] text-paper/85">
-            <li>Payments aren’t refunded, but a cancelled stay can become a credit note.</li>
-            <li>
-              Cancel <strong className="font-medium text-paper">10 or more days</strong> before check-in and you get a credit
-              note, valid for 3 months from your original arrival date.
-            </li>
-            <li>
-              Cancel <strong className="font-medium text-paper">less than 10 days</strong> before and you get a credit note
-              (valid 1 month) only if someone else books those dates. Otherwise there’s no refund or credit.
-            </li>
-            <li>
-              The advance and balance are due <strong className="font-medium text-paper">24 hours before check-in</strong>;
-              unpaid bookings are cancelled without a refund.
-            </li>
-            <li>The ₹5,000 security deposit comes back at check-out if nothing is damaged.</li>
-          </ul>
-        </details>
+          </h3>
+          <button
+            type="button"
+            popoverTarget="cancellation-policy"
+            popoverTargetAction="hide"
+            aria-label="Close the cancellation policy"
+            className="-mt-[6px] -mr-[6px] grid size-[44px] shrink-0 place-items-center rounded-full text-forest hover:bg-paper-deep"
+          >
+            <IconClose size={20} />
+          </button>
+        </div>
+        <ul className="mt-s13 grid gap-s13 text-[15px] leading-[1.55] text-ink">
+          <li>Payments aren’t refunded, but a cancelled stay can become a credit note.</li>
+          <li>
+            Cancel <strong className="font-medium">10 or more days</strong> before check-in and you get a credit note, valid for 3
+            months from your original arrival date.
+          </li>
+          <li>
+            Cancel <strong className="font-medium">less than 10 days</strong> before and you get a credit note (valid 1 month)
+            only if someone else books those dates. Otherwise there’s no refund or credit.
+          </li>
+          <li>
+            The advance and balance are due <strong className="font-medium">24 hours before check-in</strong>; unpaid bookings
+            are cancelled without a refund.
+          </li>
+          <li>The ₹5,000 security deposit is collected at check-in and returned at check-out if nothing is damaged.</li>
+        </ul>
       </div>
     </div>
   );

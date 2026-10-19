@@ -44,7 +44,15 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     const top = (el: Element) => Math.round(el.getBoundingClientRect().top + window.scrollY);
     const pages = () => Array.from(document.querySelectorAll("[data-snap]"), top).sort((a, b) => a - b);
     const stackPages = () => Array.from(document.querySelectorAll("[data-stack-page]"), top).sort((a, b) => a - b);
-    const blocked = () => document.body.style.overflow === "hidden" || !!document.querySelector("dialog[open]");
+    const popoverOpen = () => {
+      try {
+        return !!document.querySelector(":popover-open");
+      } catch {
+        return false; // browsers without the Popover API
+      }
+    };
+    const blocked = () =>
+      document.body.style.overflow === "hidden" || !!document.querySelector("dialog[open]") || popoverOpen();
 
     let lastWheel = 0;
     let lastAbs = 0;
@@ -119,35 +127,40 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
         lastAbs = abs;
         if (paging || swallow || now < coolUntil) return veto();
 
-        const cards = stackPages();
-        if (cards.length < 2) return true;
-        const first = cards[0];
-        const last = cards[cards.length - 1];
         const y = window.scrollY;
         const dir = deltaY > 0 ? 1 : -1;
-        const inside = y >= first - 2 && y <= last + 2;
+        const cards = stackPages();
+        // Only pages with a card stack (the homepage's day on the farm) page strictly inside it;
+        // every page still settles onto its [data-snap] sections below.
+        if (cards.length >= 2) {
+          const first = cards[0];
+          const last = cards[cards.length - 1];
+          const inside = y >= first - 2 && y <= last + 2;
 
-        // Inside the stack: one card per gesture.
-        if (inside && ((dir > 0 && y < last - 2) || (dir < 0 && y > first + 2))) {
-          if (Math.abs(deltaY) < MIN_KICK) return veto(); // momentum tail, not a new intent
-          const next = dir > 0 ? cards.find((c) => c > y + 2) : [...cards].reverse().find((c) => c < y - 2);
-          swallow = true;
-          if (next !== undefined) go(next);
-          return veto();
+          // Inside the stack: one card per gesture.
+          if (inside && ((dir > 0 && y < last - 2) || (dir < 0 && y > first + 2))) {
+            if (Math.abs(deltaY) < MIN_KICK) return veto(); // momentum tail, not a new intent
+            const next = dir > 0 ? cards.find((c) => c > y + 2) : [...cards].reverse().find((c) => c < y - 2);
+            swallow = true;
+            if (next !== undefined) go(next);
+            return veto();
+          }
+
+          // Free scrolling elsewhere — but never fly through the stack: land on its edge card.
+          const projected = instance.targetScroll + deltaY;
+          if (dir > 0 && y < first - 2 && projected > first + 2) {
+            swallow = true;
+            go(first);
+            return veto();
+          }
+          if (dir < 0 && y > last + 2 && projected < last - 2) {
+            swallow = true;
+            go(last);
+            return veto();
+          }
         }
 
-        // Free scrolling elsewhere — but never fly through the stack: land on its edge card.
-        const projected = instance.targetScroll + deltaY;
-        if (dir > 0 && y < first - 2 && projected > first + 2) {
-          swallow = true;
-          go(first);
-          return veto();
-        }
-        if (dir < 0 && y > last + 2 && projected < last - 2) {
-          swallow = true;
-          go(last);
-          return veto();
-        }
+        // Free scrolling: settle onto a section once motion stops (see settle()).
         if (fresh || !pending) anchor = y;
         pending = true;
         pendingDir = dir;

@@ -43,9 +43,9 @@ Every page wraps its sections in `SiteShell` (`src/components/SiteShell.tsx`): s
 booking/WhatsApp buttons and scrolling behave identically everywhere.
 
 - `<SiteShell intro>` plays the page-load `IntroVeil` — homepage only.
-- `<SiteShell freeScroll>` is for long pages without one-screen sections (as `/our-nests`): it marks
-  `<main data-scroll="free">`, which turns snapping off on touch (otherwise mandatory snapping with only the hero as
-  a stop pulls the page back to the top) and keeps keyboard focus clear of the navbar and floating buttons.
+- Touch screens snap with CSS `mandatory` on every page, so a page whose only `data-snap` is the hero would pull
+  visitors back to the top. Either make every section a one-screen `data-snap` page (as `/our-nests` and the
+  homepage do), or add a free-scroll mode to `SiteShell` that turns snapping off for that page.
 - Keep `<main id="main" className="relative z-10 bg-paper">` — the footer is `position: sticky; bottom: 0`
   underneath it and is revealed as the page scrolls away.
 - **Navbar tone:** every full-width section declares `data-nav="light"` (light background) or `data-nav="dark"`
@@ -55,7 +55,8 @@ booking/WhatsApp buttons and scrolling behave identically everywhere.
 ## 4. Scrolling
 
 - `SmoothScroll` gives Lenis smooth scrolling on mouse/trackpad (never on touch). Elements marked `data-snap` are
-  "pages": when a scroll comes to rest, it settles onto one. Touch screens use native CSS mandatory snapping on
+  "pages": when a scroll comes to rest, it settles onto one (on every page — before the Our Nests build it only
+  armed on pages with a card stack). Touch screens use native CSS mandatory snapping on
   the same `data-snap` elements.
 - **Decide per page.** A short, image-led page can use one-screen sections with `data-snap` (as the homepage does).
   A long editorial or form page should usually have **no** `data-snap` sections and scroll freely.
@@ -92,6 +93,8 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
 - `ScrollReveal` (`children: string`, `as`) — body copy.
 - `ScrollExpand` (`media`, `heading`, `overlay`, `shade`) — photo opening from a card to full bleed on arrival.
 - `ScrollStack` (`header`, children) — one card per scroll, as on "A day on the farm".
+- `FlowingMenu` (`items: { label, detail, href, chip }`, `label`) — ruled list of big links; hover slides in a forest
+  band with a marquee of the detail (used for the shared spaces on `/our-nests`).
 - `CardSwap` (`active`, `onActiveChange`, `label`) — manual drag deck. `CircularGallery` (`label`) — bending
   drag/arrow gallery. `CircularText` — rotating badge. `GradualBlur` — edge blur. `StaggeredMenu` — the nav menu.
 - Icons: `src/components/icons.tsx` — 1.5px line icons only (`IconArrow`, `IconPhone`, `IconMail`, `IconPin`,
@@ -121,9 +124,14 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
 - **Booking:** every booking CTA goes to `BOOKING_URL`; enquiries to `WHATSAPP_URL` (prefilled) or `CONTACT.email`.
   Forms have no backend yet: build them to open WhatsApp/email with the details prefilled, and say so in the UI
   only where a guest needs to know.
-- **Room 360° views** (`our-nests/RoomParts.tsx`): a Photos | 360° switch; the iframe is created only when 360° is
-  chosen. Deep links are `TOUR_360_URL#<node>,<pan>,<tilt>,75,4` (Pano2VR); room nodes and opening angles live in
-  `our-nests/rooms.ts`. Rooms still waiting for photos set `photo: null` and render a styled placeholder.
+- **Room 360° views** (`our-nests/RoomParts.tsx` `TourFrame`): a live Turiya iframe, created as its section nears
+  the screen. Deep links are `TOUR_360_URL#<node>,<pan>,<tilt>,75,4` (Pano2VR); room nodes and opening angles live
+  in `our-nests/rooms.ts`. Switching rooms changes only the #fragment — the tour turns to the new room in place, so
+  its START card shows once per frame. That START card can't be removed from our side (no URL option; the tour's
+  tiles have no CORS headers, so a self-hosted viewer can't read them) — it needs a room-only export from Turiya or
+  the raw panoramas. Frames need ≥280px height on phones and ≥350px wider, or the START button is cut off.
+- **One-screen sections that must shed extras** use the custom variants in `globals.css`: `short:` (phones/small
+  tablets under 800px tall) and `squat:` (laptops/desktops under ~860px tall). Check 360×740 and 1280×720.
 - **Embeds:** 360° tours use `TOUR_360_URL` behind a "start" cover (see `Preview360.tsx`) so scrolling never gets
   trapped in the viewer; maps use the Google Maps embed for `CONTACT.mapUrl`.
 

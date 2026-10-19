@@ -8,19 +8,9 @@ import { Footer } from "@/components/sections/Footer";
 /**
  * The chrome every page shares: skip link, navbar, main, the sticky footer
  * revealed beneath it, the floating booking/WhatsApp buttons, all inside
- * SmoothScroll. `intro` plays the page-load veil (homepage only). `freeScroll`
- * is for long pages without one-screen sections: touch screens then scroll
- * freely instead of snapping (see globals.css).
+ * SmoothScroll. `intro` plays the page-load veil (homepage only).
  */
-export function SiteShell({
-  children,
-  intro = false,
-  freeScroll = false,
-}: {
-  children: ReactNode;
-  intro?: boolean;
-  freeScroll?: boolean;
-}) {
+export function SiteShell({ children, intro = false }: { children: ReactNode; intro?: boolean }) {
   return (
     <SmoothScroll>
       <a
@@ -31,12 +21,7 @@ export function SiteShell({
       </a>
       <Navbar />
       {/* Page content sits above the sticky footer with a solid background — the footer is revealed beneath it. */}
-      <main
-        id="main"
-        tabIndex={-1}
-        data-scroll={freeScroll ? "free" : undefined}
-        className="relative z-10 bg-paper outline-none"
-      >
+      <main id="main" tabIndex={-1} className="relative z-10 bg-paper outline-none">
         {children}
       </main>
       <Footer />

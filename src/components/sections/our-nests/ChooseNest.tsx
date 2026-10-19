@@ -1,7 +1,7 @@
 "use client";
 
 import { IconArrow } from "@/components/icons";
-import { SectionHeader, container } from "@/components/ui";
+import { SectionHeader, container, screen } from "@/components/ui";
 import { Pillows } from "./RoomParts";
 import { COTTAGE_PILLOWS, NANDAGOKULA, selectRoom, type Pillows as PillowCount } from "./rooms";
 
@@ -14,7 +14,7 @@ const OPTIONS: Option[] = [
     sleeps: "Sleeps up to 5",
     pillows: COTTAGE_PILLOWS,
     href: "#cottages",
-    room: "mayura",
+    room: "cottage",
   },
   ...NANDAGOKULA.map((r) => ({
     name: r.name,
@@ -33,9 +33,13 @@ const OPTIONS: Option[] = [
  */
 export function ChooseNest() {
   return (
-    <section id="choose-your-nest" data-nav="light" className="bg-paper py-s89 lg:py-s144">
+    <section id="choose-your-nest" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
       <div className={container}>
-        <SectionHeader title="Which nest is yours?" lead="A cottage of your own, or a room in Nandagokula for families and groups." />
+        <SectionHeader
+          title="Which nest is yours?"
+          lead="A cottage of your own, or a room in Nandagokula for families and groups."
+          leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
+        />
 
         <ul className="-mx-s21 mt-s34 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] sm:-mx-s34 sm:scroll-px-s34 sm:px-s34 md:mx-0 md:mt-s55 md:grid md:grid-cols-2 md:gap-s21 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden">
           {OPTIONS.map((o) => (

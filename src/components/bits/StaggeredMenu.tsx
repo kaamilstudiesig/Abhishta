@@ -29,6 +29,9 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
       const links = root.querySelectorAll("[data-menu-link]");
       const extras = root.querySelectorAll("[data-menu-extra]");
       gsap.set([...layers, panel], { xPercent: 101 });
+      // the overlay stays hidden until its layers are parked off-screen — otherwise, on pages
+      // without the intro veil, the open menu flashes over the page before scripts run
+      root.querySelector<HTMLElement>("[data-menu-overlay]")?.setAttribute("data-ready", "");
 
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const tl = gsap.timeline({ paused: true, defaults: { ease: "expo.out" } });
@@ -114,7 +117,11 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
         </span>
       </button>
 
-      <div className={`fixed inset-0 z-50 ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
+      <div
+        data-menu-overlay=""
+        className={`invisible fixed inset-0 z-50 data-[ready]:visible ${open ? "" : "pointer-events-none"}`}
+        aria-hidden={!open}
+      >
         <button
           type="button"
           tabIndex={-1}

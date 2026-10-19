@@ -1,51 +1,58 @@
-import { IconCheck } from "@/components/icons";
-import { SectionHeader, container } from "@/components/ui";
+import { SectionHeader, container, screen } from "@/components/ui";
 
-// Only what's confirmed (Stayflexi's amenity lists + the 360° tour), per docs/wireframes/our-nests.md.
-const LISTS = [
-  {
-    title: "Cottages",
-    items: [
-      "Own washroom with hot water",
-      "Daily housekeeping",
-      "Wardrobe, kettle and toiletries",
-      "A private sit-out",
-      "Air-conditioning and fans",
-    ],
-  },
-  {
-    title: "Nandagokula",
-    items: [
-      "Own washroom with a shower",
-      "Bottled water",
-      "Toiletries",
-      "Shared lawns and nature walks",
-      "Air-conditioning and fans",
-    ],
-  },
+/**
+ * Where a cottage and a Nandagokula room actually differ. Sources: Stayflexi's
+ * amenity lists (cottage: private bathroom, kettle, wardrobe; dormitory: shared
+ * bathroom, shower, bottled water), the 360° tour (each dorm's washroom is inside
+ * the room) and the official site (private sit-outs). What both have is in the lead.
+ */
+const ROWS = [
+  { label: "Sleeps", cottage: "Up to 5", group: "10 in a dormitory, 3–4 in the triple" },
+  { label: "Washroom", cottage: "Your own, with hot water", group: "Inside the room, shared by your group, with a shower" },
+  { label: "In the room", cottage: "Electric kettle and a wardrobe", group: "Bottled water" },
+  { label: "Outside", cottage: "A private sit-out", group: "A shared veranda" },
 ];
 
-/** Nature's comforts — a quiet two-column checklist: what's in a cottage, what's in a Nandagokula room. */
+/** Nature's comforts — one screen: a quiet comparison of the two kinds of room. */
 export function Comforts() {
   return (
-    <section id="comforts" data-nav="light" className="bg-paper py-s89 lg:py-s144">
-      <div className={`${container} grid gap-s34 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
-        <SectionHeader title="Nature’s comforts" lead="Every room is air-conditioned and has its own washroom." />
-        <div className="grid gap-s34 sm:grid-cols-2 sm:gap-s55">
-          {LISTS.map((list) => (
-            <div key={list.title}>
-              <h3 className="font-display text-h2 text-forest">{list.title}</h3>
-              <ul className="mt-s13 border-t border-line">
-                {list.items.map((item) => (
-                  <li key={item} className="flex items-start gap-s13 border-b border-line py-s13 leading-[1.5]">
-                    <IconCheck size={20} className="mt-[2px] shrink-0 text-farm" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+    <section id="comforts" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
+      <div className={`${container} grid gap-s34 lg:grid-cols-[1fr_1.618fr] lg:items-center lg:gap-s89`}>
+        <SectionHeader
+          title="Nature’s comforts"
+          lead="Every room has air-conditioning, fans and toiletries. This is where they differ."
+          leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
+        />
+        <table className="w-full table-fixed border-collapse text-left text-[15px] leading-[1.45] sm:text-body sm:leading-[1.5]">
+          <caption className="sr-only">What a cottage has compared with a Nandagokula room</caption>
+          <colgroup>
+            <col className="w-[26%] sm:w-[22%]" />
+            <col />
+            <col />
+          </colgroup>
+          <thead>
+            <tr className="border-b border-forest/30">
+              <td />
+              <th scope="col" className="pr-s13 pb-s13 font-display text-[clamp(20px,2vw,28px)] leading-[1.15] font-normal text-forest">
+                Cottage
+              </th>
+              <th scope="col" className="pb-s13 font-display text-[clamp(20px,2vw,28px)] leading-[1.15] font-normal text-forest">
+                Nandagokula
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {ROWS.map((r) => (
+              <tr key={r.label} className="border-b border-line align-top">
+                <th scope="row" className="py-s13 pr-s13 text-[14px] font-normal text-ink-muted sm:text-[15px]">
+                  {r.label}
+                </th>
+                <td className="py-s13 pr-s13 text-ink">{r.cottage}</td>
+                <td className="py-s13 text-ink">{r.group}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </section>
   );

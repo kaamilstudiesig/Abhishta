@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Phones and small tablets short enough that a one-screen section must shed its extras. */
+@custom-variant short (@media (max-width: 1023px) and (max-height: 799px));
+/* Laptops and desktops under ~860px tall: the same idea for the two-column layouts. */
+@custom-variant squat (@media (min-width: 1024px) and (max-height: 860px));
+
 /*
  * Abhishta brand system. φ type scale (17 → 28 → 45 → 72) and φ spacing ladder
  * (8·13·21·34·55·89·144) from DESIGN_GUIDELINES.md; hues retuned toward the
@@ -20,7 +25,7 @@
   --color-gold-soft: #efe7d6;
   --color-clay: #8c6a4f;
   --color-line: #e8e2d4; /* stone */
-  --color-alert: #f3c6b4; /* form errors on dark bands (soft clay, ~8:1 on forest) */
+  --color-alert: #a3402b; /* form errors (clay red, ~8:1 on field white) */
 
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
@@ -101,19 +106,8 @@ html {
   }
 }
 
-/* Long pages that scroll freely (SiteShell freeScroll): no snapping anywhere —
-   with mandatory snapping and only the hero as a stop, touch scrolling would be
-   pulled back to the top. Touch anchor jumps glide instead (Lenis is off there). */
-html:has(main[data-scroll="free"]) {
-  scroll-snap-type: none;
-}
-@media (pointer: coarse) and (prefers-reduced-motion: no-preference) {
-  html:has(main[data-scroll="free"]) {
-    scroll-behavior: smooth;
-  }
-}
 /* Tabbing never parks focus under the fixed navbar or the floating buttons. */
-main[data-scroll="free"] :is(a, button, input, select, summary) {
+main :is(a, button, input, select, summary) {
   scroll-margin-top: 96px;
   scroll-margin-bottom: 88px;
 }
@@ -269,14 +263,19 @@ html.js .intro-veil {
   font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
 }
 
-/* A room photo settling in when its tab is chosen. */
-@keyframes nest-fade {
-  from {
-    opacity: 0;
+/* FlowingMenu: the band's marquee drifts left, one copy's width per loop. */
+@keyframes flowing-marquee {
+  to {
+    transform: translateX(-50%);
   }
 }
-.nest-fade {
-  animation: nest-fade 0.6s var(--ease-earth) both;
+.flowing-marquee {
+  animation: flowing-marquee 22s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flowing-marquee {
+    animation: none;
+  }
 }
 
 /* Inner-page heroes: subline, CTA and pills rise in after the headline (CSS only,

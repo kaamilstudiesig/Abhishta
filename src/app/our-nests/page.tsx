@@ -25,13 +25,12 @@ export const metadata: Metadata = {
 };
 
 /**
- * Our nests — a long page that scrolls freely (only the hero is a snap page;
- * see docs/wireframes/our-nests.md). The homepage links to #cottages and
- * #dormitories here.
+ * Our nests — one screen per section, like the homepage: every section is a
+ * [data-snap] page. The homepage links to #cottages and #dormitories here.
  */
 export default function OurNests() {
   return (
-    <SiteShell freeScroll>
+    <SiteShell>
       <NestsHero />
       <ChooseNest />
       <Cottages />

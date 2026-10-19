@@ -29,6 +29,7 @@ export function SectionHeader({
   tone = "light",
   className = "",
   titleClassName = "",
+  leadClassName = "",
   children,
 }: {
   title: string;
@@ -36,6 +37,7 @@ export function SectionHeader({
   tone?: "light" | "dark";
   className?: string;
   titleClassName?: string;
+  leadClassName?: string;
   children?: ReactNode;
 }) {
   const dark = tone === "dark";
@@ -47,7 +49,7 @@ export function SectionHeader({
         className={`font-display text-[clamp(28px,4.6vw,45px)] leading-[1.1] font-normal tracking-[-0.015em] text-balance ${dark ? "text-paper" : "text-forest"} ${titleClassName}`}
       />
       {lead ? (
-        <ScrollReveal className={`mt-s21 max-w-[30em] text-pretty ${dark ? "text-paper/85" : "text-ink-muted"}`}>
+        <ScrollReveal className={`mt-s21 max-w-[30em] text-pretty ${dark ? "text-paper/85" : "text-ink-muted"} ${leadClassName}`}>
           {lead}
         </ScrollReveal>
       ) : null}
