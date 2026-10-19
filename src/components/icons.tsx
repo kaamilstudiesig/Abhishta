@@ -371,3 +371,22 @@ export const IconBasket = (p: IconProps) => (
     <path d="M9 13.5v4M12 13.5v4M15 13.5v4" />
   </Icon>
 );
+
+/* ——— Group enquiries ——— */
+
+/** A bed, side on — rooms for a group. */
+export const IconBed = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M3 18.5V6M3 14h18v4.5M21 14v-2.5a2.5 2.5 0 0 0-2.5-2.5H11v5" />
+    <circle cx="7" cy="11" r="1.8" />
+  </Icon>
+);
+
+/** A projector throwing light — a session or a talk. */
+export const IconProjector = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="2.5" y="11" width="15" height="7" rx="1.5" />
+    <circle cx="13" cy="14.5" r="1.8" />
+    <path d="M6 14.5h2.5M17.5 12.5l4-2.5M17.5 16.5l4 2.5M7 18v2M14 18v2" />
+  </Icon>
+);

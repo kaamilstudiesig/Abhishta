@@ -3,8 +3,8 @@
 Website for Abhishta Agri Farm Stay, a farm stay 90 km from Bangalore. Live preview: https://abhishta.vercel.app
 Next.js (App Router) · TypeScript · Tailwind CSS 4 · GSAP + ScrollTrigger · Lenis.
 
-Built so far: the homepage (`/`), Our nests (`/our-nests`) and The living farm (`/the-living-farm`). Group enquiries
-and Field notes are still to come.
+Built so far: the homepage (`/`), Our nests (`/our-nests`), The living farm (`/the-living-farm`) and Group enquiries
+(`/group-enquiries`). Field notes is still to come.
 
 ## Run it
 ```bash
@@ -27,6 +27,9 @@ The site renders the **Meadow** design (`src/app/meadow.css`). Only Meadow is ch
 - **The living farm** — The living / farm hero · Work the land (bento with the orchard in 360°) · Animals, carts and
   old games (expanding panels) · Gau seva (a 360° of the gaushaale to the screen edge, the six breeds) · From the soil
   to your plate (animated beams, five pillars) · Come for the day, or stay the night.
+- **Group enquiries** — Bring the / whole crew hero · Corporate outings (with a real Google review) · A day on the
+  land (nine stops on a rail turning a 360° view to each place) · The living classroom · Celebrations and retreats
+  (venues in 360°) · Get a group quote (a three-step form that opens WhatsApp).
 
 ## 360° views
 Views come from the farm's Turiya (Pano2VR) tour. They're drawn on our pages by Turiya's own player, without
@@ -49,11 +52,14 @@ src/
                        plus rooms.ts (room facts and 360° views) and RoomParts
     sections/living-farm/  FarmHero · WorkTheLand · Animals · GauSeva · SoilToTable · PlanVisit, plus farm.ts
                        (breeds, 360° views, the day-outing schedule, WhatsApp enquiries)
-    sections/PageHero  the inner-page hero both pages use
+    sections/group-enquiries/  GroupsHero · Corporate · DayOutings · Schools · Events · GroupQuote, plus groups.ts
+                       (the day's stops and their 360° views, occasions, venues, group types)
+    sections/PageHero  the inner-page hero the inner pages use
+    forms              form fields shared by the enquiry forms
     bits/              React Bits components rebuilt in the brand system:
                        SplitText · ScrollReveal · StaggeredMenu · CircularText · GradualBlur · ScrollExpand ·
                        ScrollStack · CardSwap · CircularGallery · FlowingMenu · GlassSurface · TiltedCard ·
-                       MagicBento · AnimatedBeam (Magic UI) · ExpandingPanels
+                       MagicBento · AnimatedBeam (Magic UI) · ExpandingPanels · Stepper
     TourViewer         the 360° viewer (see above)
     SiteShell, Navbar, FloatingActions, IntroVeil, SmoothScroll, Logo, icons, ui (shared header/button/screen helpers)
   lib/
@@ -71,7 +77,7 @@ public/
 docs/
   BUILDING_PAGES.md    guide for building pages (auto-loaded via CLAUDE.md / AGENTS.md)
   DESIGN_GUIDELINES.md · SITEMAP.md · design-looks.md
-  wireframes/          page wireframes with verified facts (our-nests.md, the-living-farm.md)
+  wireframes/          page wireframes with verified facts (our-nests.md, the-living-farm.md, group-enquiries.md)
   reference/           Relume wireframe export (all pages) and the original React Bits sources
 components.json        shadcn config with the @react-bits registry (pulls land in docs/reference/…/incoming)
 .mcp.json              shadcn MCP server
@@ -112,6 +118,9 @@ Tokens in `src/app/meadow.css`: `farm` leaf `#2F6B3A` (actions) · `forest` deep
 - The living farm needs photos of the animals, the vegetable rows, the bullock cart, the old games and food on the
   table; the orchard's fruits and seasons; and whether meat and eggs belong in "soil to table" (see
   `docs/wireframes/the-living-farm.md`).
-- Pages still to build: `/group-enquiries`, `/field-notes`. They show the branded 404 for now.
+- Group enquiries: the official site gives two capacities (100 or 100–150 for a gathering, 40 or 50 overnight), so
+  the page says "up to 100" and gives room counts instead; confirm, along with where high tea is served, where the
+  stage and projector are, group rates, and photos of a school group, a team and an event set-up.
+- Page still to build: `/field-notes`. It shows the branded 404 for now.
   `docs/BUILDING_PAGES.md` is the guide.
 - The full-length 1080p hero film is kept outside the repo (`../video-originals/`). The site uses a 75 s web loop.

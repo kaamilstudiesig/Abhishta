@@ -1,4 +1,4 @@
-import { WHATSAPP_NUMBER } from "@/lib/site";
+import { whatsappUrl as whatsapp } from "@/lib/site";
 import type { Tour } from "@/lib/tour";
 
 /**
@@ -7,12 +7,6 @@ import type { Tour } from "@/lib/tour";
  * here are listed in scripts/tour-scenes.mjs.
  */
 
-/** A WhatsApp chat with the farm, opened with a message already written. */
-export const whatsapp = (message: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-
-export const DAY_OUTING_ENQUIRY = whatsapp(
-  "Hi Abhishta, I'd like to plan a day outing at the farm.\nDate:\nAdults:\nChildren:",
-);
 export const GAU_SEVA_ENQUIRY = whatsapp(
   "Hi Abhishta, I'd like to know about gau seva at the farm (feeding the cows, a Gau Pooja or a Gau Aarti).\nDate:\nHow many of us:",
 );

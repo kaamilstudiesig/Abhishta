@@ -34,6 +34,8 @@ const SCENES = [
   "Abhishta_23", // path by the chicken coop and duck canopy
   "Abhishta_14", // path by the rabbit hutch
   "Pathway", // path by the chicken coop, near the entrance
+  // Group Enquiries (src/components/sections/group-enquiries/); the day outing also uses scenes above
+  "AerialView_01", // the entrance
 ];
 
 const xml = await (await fetch(`${TOUR}pano.xml`)).text();

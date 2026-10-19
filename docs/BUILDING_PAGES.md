@@ -7,13 +7,13 @@ with what you see in the code, the code is the truth — then update this guide.
 ## 1. What to build, and from what
 
 Built: `/our-nests` (from **`docs/wireframes/our-nests.md`**; sections in `src/components/sections/our-nests/`) and
-`/the-living-farm` (from **`docs/wireframes/the-living-farm.md`**; sections in `src/components/sections/living-farm/`).
+`/the-living-farm` (from **`docs/wireframes/the-living-farm.md`**; sections in `src/components/sections/living-farm/`)
+and `/group-enquiries` (from **`docs/wireframes/group-enquiries.md`**; sections in `src/components/sections/group-enquiries/`).
 
 Pages still to build (all currently fall through to the branded 404, `src/app/not-found.tsx`):
 
 | Route | Sitemap section | Wireframe |
 | --- | --- | --- |
-| `/group-enquiries` | GROUP ENQUIRIES | `docs/reference/wireframe-react/group-enquiries/` |
 | `/field-notes` | FIELD NOTES & 360° ATLAS | `docs/reference/wireframe-react/field-notes-&-360°-atlas/` |
 
 - **A page with an updated wireframe in `docs/wireframes/` uses that instead of the Relume export.**
@@ -106,6 +106,10 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
   MagicBento, glow only; "Work the land" on `/the-living-farm`).
 - `AnimatedBeam` (`containerRef`, `fromRef`, `toRef`, `duration`, `delay`) — a faint S-curve between two elements with
   a pulse of light travelling along it (Magic UI, MIT; SVG dash, no Motion). "From the soil to your plate".
+- `Stepper` (`steps: { title, content }[]`, `step`, `onStepChange`, `canLeave`, `finish`) — a form in short steps
+  with a bars indicator (React Bits Stepper): steps slide in, focus moves to the first field ("Get a group quote").
+- Form fields (`src/components/forms.tsx`): `Field`, `CountField` (− n +), `Select`, and the `field`/`labelClass`
+  styles, shared by every enquiry form. Forms open WhatsApp prefilled (`whatsappUrl` in `src/lib/site.ts`).
 - `ExpandingPanels` (`panels: { id, title, icon, media, body }`, `label`) — side-by-side panels on large screens, the
   open one wide; pills plus one panel below `lg`. Only the open panel's media mounts ("Animals, carts and old games").
 - `CardSwap` (`active`, `onActiveChange`, `label`) — manual drag deck. `CircularGallery` (`label`) — bending

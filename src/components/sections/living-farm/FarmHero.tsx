@@ -1,6 +1,6 @@
 import landscape from "@public/images/client-photos/about-landscape.jpg";
 import { PageHero } from "@/components/sections/PageHero";
-import { DAY_OUTING_ENQUIRY } from "./farm";
+import { DAY_OUTING_ENQUIRY } from "@/lib/site";
 
 /** The living farm hero — the stone path between the trees, "The living / farm" drifting as you scroll away. */
 export function FarmHero() {

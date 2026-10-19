@@ -1,6 +1,6 @@
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
-import { BOOKING_URL, CONTACT } from "@/lib/site";
-import { DAY_OUTING, DAY_OUTING_ENQUIRY } from "./farm";
+import { BOOKING_URL, CONTACT, DAY_OUTING_ENQUIRY } from "@/lib/site";
+import { DAY_OUTING } from "./farm";
 
 /**
  * #plan-your-visit — the two ways in, side by side: a day outing (its schedule,
