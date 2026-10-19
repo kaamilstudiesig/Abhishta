@@ -1,10 +1,17 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { useEffect, useRef, type CSSProperties } from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import veranda from "@public/images/client-photos/stay-cottage-exterior.jpg";
+import { GlassSurface } from "@/components/bits/GlassSurface";
 import { SplitText } from "@/components/bits/SplitText";
 import { IconArrow } from "@/components/icons";
 import { container } from "@/components/ui";
 import { BOOKING_URL } from "@/lib/site";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const JUMPS = [
   { label: "Cottages", href: "#cottages" },
@@ -15,13 +22,33 @@ const JUMPS = [
 
 /**
  * Our nests hero — the terracotta veranda full screen under the site's flat
- * shade, the title set as large as the homepage's, one line, one booking CTA,
- * and pills that jump down the page. Content sits low and flush left so the
- * roof and the painted doorway stay in view.
+ * shade, "Explore / Our nests" in two offset lines that drift toward each
+ * other as you scroll away (as the homepage's do), one line, one booking CTA,
+ * and glass pills that jump down the page. Content sits low so the roof and
+ * the painted doorway stay in view.
  */
 export function NestsHero() {
+  // As you scroll away, EXPLORE drifts right and OUR NESTS left (scrubbed, so it reverses on the way back).
+  const sectionRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const [first, second] = section.querySelectorAll<HTMLElement>("[data-hero-line]");
+    const ctx = gsap.context(() => {
+      const shift = () => (window.innerWidth < 768 ? 0.08 : 0.11) * window.innerWidth;
+      gsap
+        .timeline({
+          scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: 0.4, invalidateOnRefresh: true },
+        })
+        .to(first, { x: () => shift(), ease: "none" }, 0)
+        .to(second, { x: () => -shift(), ease: "none" }, 0);
+    }, section);
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="top"
       data-nav="dark"
       data-snap=""
@@ -45,8 +72,13 @@ export function NestsHero() {
       />
 
       <div className={`${container} flex flex-1 flex-col justify-end pt-[104px] pb-[96px] md:pb-s55`}>
-        <h1 className="hero-display text-[clamp(56px,11vw,160px)] leading-[0.95]">
-          <SplitText as="span" trigger="load" by="lines" text="Our nests" className="block" />
+        <h1 className="hero-display text-[clamp(56px,9.2vw,148px)] leading-[0.95]">
+          <span data-hero-line="" className="block will-change-transform">
+            <SplitText as="span" trigger="load" by="lines" text="Explore" className="block" />
+          </span>
+          <span data-hero-line="" className="block text-right will-change-transform md:pr-[4vw]">
+            <SplitText as="span" trigger="load" by="lines" delay={0.15} text="Our nests" className="block" />
+          </span>
         </h1>
         <p
           data-load-rise=""
@@ -83,11 +115,10 @@ export function NestsHero() {
           <ul className="-mx-s21 flex gap-s8 overflow-x-auto px-s21 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
             {JUMPS.map((j) => (
               <li key={j.href} className="shrink-0">
-                <a
-                  href={j.href}
-                  className="inline-flex min-h-[44px] items-center rounded-btn border border-paper/35 px-s21 text-[15px] text-paper backdrop-blur-[2px] transition-colors duration-300 hover:border-paper hover:bg-paper hover:text-forest"
-                >
-                  {j.label}
+                <a href={j.href} className="group block rounded-full">
+                  <GlassSurface className="min-h-[44px] px-s21 text-[15px] font-medium text-paper [text-shadow:0_1px_3px_rgb(0_0_0/0.45)] transition-[background-color] duration-300 group-hover:bg-paper/15">
+                    {j.label}
+                  </GlassSurface>
                 </a>
               </li>
             ))}

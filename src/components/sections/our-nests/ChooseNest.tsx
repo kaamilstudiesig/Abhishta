@@ -27,7 +27,7 @@ const OPTIONS: Option[] = [
 ];
 
 /**
- * "Which nest is yours?" — the four ways to stay, one line each, with how many
+ * "Choose your nest" — the four ways to stay, one line each, with how many
  * each sleeps drawn as pillows. Each option jumps to its room below and opens
  * its tab there. Phones: a swipe row with the next option peeking in.
  */
@@ -36,12 +36,12 @@ export function ChooseNest() {
     <section id="choose-your-nest" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
       <div className={container}>
         <SectionHeader
-          title="Which nest is yours?"
+          title="Choose your nest"
           lead="A cottage of your own, or a room in Nandagokula for families and groups."
           leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
         />
 
-        <ul className="-mx-s21 mt-s34 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] sm:-mx-s34 sm:scroll-px-s34 sm:px-s34 md:mx-0 md:mt-s55 md:grid md:grid-cols-2 md:gap-s21 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden">
+        <ul className="-mx-s21 mt-s34 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] sm:-mx-s34 sm:scroll-px-s34 sm:px-s34 md:mx-0 md:mt-s55 squat:mt-s34 md:grid md:grid-cols-2 md:gap-s21 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden">
           {OPTIONS.map((o) => (
             <li key={o.room} className="w-[78%] max-w-[320px] shrink-0 snap-start sm:w-[44%] md:w-auto md:max-w-none">
               <a

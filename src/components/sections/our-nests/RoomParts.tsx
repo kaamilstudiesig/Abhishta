@@ -41,7 +41,7 @@ export function onTabKeyDown(e: KeyboardEvent<HTMLElement>, count: number, curre
   (e.currentTarget.parentElement?.children[next] as HTMLElement | undefined)?.focus();
 }
 
-/** Lets the "Which nest is yours?" options pick a room in this section. */
+/** Lets the "Choose your nest" options pick a room in this section. */
 export function useSelectRoom(rooms: { id: string }[], select: (i: number) => void) {
   useEffect(() => {
     const onSelect = (e: Event) => {

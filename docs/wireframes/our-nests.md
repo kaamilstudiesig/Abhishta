@@ -102,7 +102,7 @@ Long page that scrolls freely (no `data-snap`, except the hero). Anchors the hom
 └─────────────────────────────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────────────────────────────┐
 │ 2  CHOOSE YOUR NEST  (data-nav=light)                                │
-│    "Which nest is yours?" — four options, one line each:             │
+│    "Choose your nest" — four options, one line each:                 │
 │    ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐               │
 │    │ Cottage  │ │ Family   │ │ Bachelors│ │ Triple   │               │
 │    │ couples, │ │ dorm     │ │ dorm     │ │ room     │               │

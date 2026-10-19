@@ -11,6 +11,8 @@ const TOUR = "https://www.turiya.co/360/Abhishta/";
 const SCENES = [
   // Our Nests — rooms (src/components/sections/our-nests/rooms.ts)
   "Abhishta_27", // Mayura cottage
+  "Abhishta_25", // Mathura cottage
+  "Abhishta_28", // Mayura cottage's washroom
   "Abhishta_06", // Nandagokula family dormitory
   "Abhishta_04", // Nandagokula bachelors dormitory
   "Abhishta_08", // Nandagokula triple room
@@ -20,6 +22,10 @@ const SCENES = [
   "Abhishta_03", // dining hall
   "Amphitheatre",
   "AerialView_03", // cow cuddling area
+  // Our Nests — "Beyond your door" (src/components/sections/our-nests/SharedSpaces.tsx); pool, dining and amphitheatre above
+  "Abhishta_15", // traditional bath
+  "Abhishta_10", // games and sports
+  "Abhishta_11", // koi pond
 ];
 
 const xml = await (await fetch(`${TOUR}pano.xml`)).text();

@@ -1,7 +1,8 @@
 import Image, { type StaticImageData } from "next/image";
 import cottage from "@public/images/client-photos/stay-cottage-1.jpg";
 import dorm from "@public/images/client-photos/stay-dorm-1.jpg";
-import { SectionHeader, container, screen } from "@/components/ui";
+import { IconArrow } from "@/components/icons";
+import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 
 type Stay = {
   name: string;
@@ -39,20 +40,21 @@ const STAYS: Stay[] = [
 /**
  * Stays — "Rest your head where the fields begin". One heading, then two
  * quiet editorial columns — the cottages and the Nandagokula group rooms: a
- * photograph, the name, who it sleeps, one line, one link to Our Nests.
+ * photograph, the name, who it sleeps, one line, one link to Our Nests —
+ * then one "Explore" button to the whole page. On lg+ the heading takes one line.
  */
 export function Stays() {
   return (
     <section id="stays" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
       <div className={container}>
-        <SectionHeader title="Rest your head where the fields begin" className="mx-auto text-center [&>span]:mx-auto" />
+        <SectionHeader title="Rest your head where the fields begin" className="mx-auto text-center lg:max-w-none [&>span]:mx-auto" />
 
         {/* phones: a swipeable row with the next stay peeking in; md+: two columns */}
         <ul className="-mx-s21 mt-s34 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] md:mx-0 md:mt-s55 squat:mt-s34 md:grid md:grid-cols-2 md:gap-s34 md:overflow-visible md:px-0 md:pb-0 lg:gap-s89 [&::-webkit-scrollbar]:hidden">
           {STAYS.map((stay) => (
             <li key={stay.name} className="group w-[84%] shrink-0 snap-start md:w-auto">
               <a href={stay.href} className="block">
-                <div className="relative h-[27svh] min-h-[160px] overflow-hidden rounded-card md:h-[32svh] squat:h-[max(22svh,calc(100svh-600px))]">
+                <div className="relative h-[27svh] min-h-[160px] overflow-hidden rounded-card short:h-[22svh] md:h-[32svh] squat:h-[max(18svh,calc(100svh-620px))] squat:min-h-[120px]">
                   <Image
                     src={stay.image}
                     alt={stay.alt}
@@ -74,6 +76,13 @@ export function Stays() {
             </li>
           ))}
         </ul>
+
+        <div className="mt-s21 flex justify-center md:mt-s34 squat:mt-s21">
+          <a href="/our-nests" className={buttonClass("primary")}>
+            Explore
+            <IconArrow size={18} aria-hidden="true" />
+          </a>
+        </div>
       </div>
     </section>
   );

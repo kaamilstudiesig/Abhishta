@@ -94,7 +94,11 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
 - `ScrollExpand` (`media`, `heading`, `overlay`, `shade`) — photo opening from a card to full bleed on arrival.
 - `ScrollStack` (`header`, children) — one card per scroll, as on "A day on the farm".
 - `FlowingMenu` (`items: { label, detail, href, chip }`, `label`) — ruled list of big links; hover slides in a forest
-  band with a marquee of the detail (used for the shared spaces on `/our-nests`).
+  band with a marquee of the detail (not used on a page right now).
+- `TiltedCard` (`amplitude`, `scaleOnHover`) — a card that leans toward the pointer, no glare; flattens while a
+  button is held, so a 360° view inside it can be dragged (the shared-spaces carousel on `/our-nests`).
+- `GlassSurface` (`radius`) — a clear glass pane over a photo (no frost or tint, a bright rim): the edge bends the
+  backdrop in Chromium, plain clear glass elsewhere (the jump pills in the `/our-nests` hero).
 - `CardSwap` (`active`, `onActiveChange`, `label`) — manual drag deck. `CircularGallery` (`label`) — bending
   drag/arrow gallery. `CircularText` — rotating badge. `GradualBlur` — edge blur. `StaggeredMenu` — the nav menu.
 - Icons: `src/components/icons.tsx` — 1.5px line icons only (`IconArrow`, `IconPhone`, `IconMail`, `IconPin`,

@@ -9,9 +9,13 @@ import type { Tour } from "@/lib/tour";
  * residence and is deliberately not listed.
  */
 
-/** The four cottages share one layout; the tour has Mayura's room, so the page shows that one. */
+/** The four cottages share one layout. The tour has two of them, Mayura and Mathura, and Mayura's washroom. */
 export const COTTAGE_NAMES = ["Mayura", "Mathura", "Gopala", "Govardhana"];
-export const COTTAGE_TOUR: Tour = { node: "Abhishta_27", pan: -12, tilt: -16 };
+export const COTTAGE_VIEWS: { name: string; title: string; tour: Tour }[] = [
+  { name: "Mayura", title: "360° view inside Mayura cottage", tour: { node: "Abhishta_27", pan: -12, tilt: -16 } },
+  { name: "Mathura", title: "360° view inside Mathura cottage", tour: { node: "Abhishta_25", pan: 68, tilt: -12 } },
+  { name: "Mayura’s washroom", title: "360° view of Mayura cottage’s washroom", tour: { node: "Abhishta_28", pan: 118, tilt: -10 } },
+];
 
 /** How a room sleeps, drawn as pillows: `pairs` share a double bed; `extra` are dashed (an extra bed, or the room's upper range). */
 export type Pillows = { solo: number; pairs: number; extra: number };
@@ -68,7 +72,7 @@ export const NANDAGOKULA: GroupRoom[] = [
   },
 ];
 
-/** Select a room from elsewhere on the page (the "Which nest is yours?" options). */
+/** Select a room from elsewhere on the page (the "Choose your nest" options). */
 export const SELECT_ROOM = "nests:select-room";
 
 export function selectRoom(id: string) {

@@ -16,7 +16,7 @@ const ROWS = [
 /** Nature's comforts — one screen: a quiet comparison of the two kinds of room. */
 export function Comforts() {
   return (
-    <section id="comforts" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
+    <section id="comforts" data-nav="light" data-snap="" className={`bg-paper-deep ${screen}`}>
       <div className={`${container} grid gap-s34 lg:grid-cols-[1fr_1.618fr] lg:items-center lg:gap-s89`}>
         <SectionHeader
           title="Nature’s comforts"
