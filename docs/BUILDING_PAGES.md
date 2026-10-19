@@ -6,11 +6,12 @@ with what you see in the code, the code is the truth — then update this guide.
 
 ## 1. What to build, and from what
 
+Built: `/our-nests` (from **`docs/wireframes/our-nests.md`**; sections in `src/components/sections/our-nests/`).
+
 Pages still to build (all currently fall through to the branded 404, `src/app/not-found.tsx`):
 
 | Route | Sitemap section | Wireframe |
 | --- | --- | --- |
-| `/our-nests` | OUR NESTS | **`docs/wireframes/our-nests.md`** (supersedes the Relume export) |
 | `/the-living-farm` | THE LIVING FARM | `docs/reference/wireframe-react/the-living-farm/` |
 | `/group-enquiries` | GROUP ENQUIRIES | `docs/reference/wireframe-react/group-enquiries/` |
 | `/field-notes` | FIELD NOTES & 360° ATLAS | `docs/reference/wireframe-react/field-notes-&-360°-atlas/` |
@@ -37,12 +38,14 @@ Pages still to build (all currently fall through to the branded 404, `src/app/no
 
 ## 3. Page chrome
 
-The homepage composes its chrome inline in `src/app/page.tsx`: skip link, `Navbar`, `<main id="main">`, `Footer`,
-the touch end-of-page snap marker, `FloatingActions`, wrapped in `SmoothScroll`; plus `IntroVeil` (homepage only).
+Every page wraps its sections in `SiteShell` (`src/components/SiteShell.tsx`): skip link, `Navbar`, `<main id="main">`,
+`Footer`, the touch end-of-page snap marker and `FloatingActions`, inside `SmoothScroll`, so nav, footer, floating
+booking/WhatsApp buttons and scrolling behave identically everywhere.
 
-- **When you build the first inner page**, extract that chrome (everything except `IntroVeil`) into one shared
-  component, e.g. `src/components/SiteShell.tsx`, and use it from the homepage and every inner page, so nav,
-  footer, floating booking/WhatsApp buttons and scrolling behave identically everywhere.
+- `<SiteShell intro>` plays the page-load `IntroVeil` — homepage only.
+- `<SiteShell freeScroll>` is for long pages without one-screen sections (as `/our-nests`): it marks
+  `<main data-scroll="free">`, which turns snapping off on touch (otherwise mandatory snapping with only the hero as
+  a stop pulls the page back to the top) and keeps keyboard focus clear of the navbar and floating buttons.
 - Keep `<main id="main" className="relative z-10 bg-paper">` — the footer is `position: sticky; bottom: 0`
   underneath it and is revealed as the page scrolls away.
 - **Navbar tone:** every full-width section declares `data-nav="light"` (light background) or `data-nav="dark"`
@@ -118,6 +121,9 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
 - **Booking:** every booking CTA goes to `BOOKING_URL`; enquiries to `WHATSAPP_URL` (prefilled) or `CONTACT.email`.
   Forms have no backend yet: build them to open WhatsApp/email with the details prefilled, and say so in the UI
   only where a guest needs to know.
+- **Room 360° views** (`our-nests/RoomParts.tsx`): a Photos | 360° switch; the iframe is created only when 360° is
+  chosen. Deep links are `TOUR_360_URL#<node>,<pan>,<tilt>,75,4` (Pano2VR); room nodes and opening angles live in
+  `our-nests/rooms.ts`. Rooms still waiting for photos set `photo: null` and render a styled placeholder.
 - **Embeds:** 360° tours use `TOUR_360_URL` behind a "start" cover (see `Preview360.tsx`) so scrolling never gets
   trapped in the viewer; maps use the Google Maps embed for `CONTACT.mapUrl`.
 

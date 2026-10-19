@@ -163,3 +163,92 @@ export const IconBooking = (p: IconProps) => (
     <path d="M3.5 9.5h17M8 3v4M16 3v4M9 14.5l2 2 4-4" />
   </Icon>
 );
+
+export const IconChevronLeft = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="m14.5 6-6 6 6 6" />
+  </Icon>
+);
+
+export const IconChevronRight = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="m9.5 6 6 6-6 6" />
+  </Icon>
+);
+
+export const IconChevronDown = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="m6 9.5 6 6 6-6" />
+  </Icon>
+);
+
+export const IconCheck = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="m5 12.5 4.5 4.5L19 7.5" />
+  </Icon>
+);
+
+export const IconMinus = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M6 12h12" />
+  </Icon>
+);
+
+export const IconPlus = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12 6v12M6 12h12" />
+  </Icon>
+);
+
+/** Opens elsewhere (a new tab). */
+export const IconExternal = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M14 4.5h5.5V10M19.5 4.5 11 13" />
+    <path d="M17 13.5v4.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 5 18V9a1.5 1.5 0 0 1 1.5-1.5H11" />
+  </Icon>
+);
+
+/* Shared spaces */
+
+export const IconPool = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M8 15V5.5a2 2 0 0 1 4 0M14 15V5.5a2 2 0 0 1 4 0M8 9h6M8 12.5h6" />
+    <path d="M3 18c1.5 0 1.5-1 3-1s1.5 1 3 1 1.5-1 3-1 1.5 1 3 1 1.5-1 3-1 1.5 1 3 1" />
+  </Icon>
+);
+
+export const IconDining = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12.5" r="5" />
+    <path d="M4 4v5a1.5 1.5 0 0 0 1.5 1.5v9.5M5.5 4v4M20 4c-1.4.8-2 2.6-2 5v2h2v9" />
+  </Icon>
+);
+
+/** Hande ole snana — a copper pot bath over a wood fire. */
+export const IconBath = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5.5 8.5h13M7 8.5c-.8 1.4-1 2.8-1 4a6 6 0 0 0 12 0c0-1.2-.2-2.6-1-4" />
+    <path d="M9.5 5.5c0-1 1-1 1-2M13.5 5.5c0-1 1-1 1-2M8 21.5l2-2.5M16 21.5l-2-2.5" />
+  </Icon>
+);
+
+export const IconGames = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M6.2 5.8c2.6 3.4 2.6 9 0 12.4M17.8 5.8c-2.6 3.4-2.6 9 0 12.4" />
+  </Icon>
+);
+
+export const IconCampfire = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12 3.5c2.8 2.6 4.5 4.9 4.5 7.4a4.5 4.5 0 0 1-9 0c0-1.4.6-2.6 1.6-3.7.3 1.2 1 2 1.9 2.3C10.9 7.3 11.2 5.4 12 3.5z" />
+    <path d="M4.5 20.5 19.5 17M4.5 17l15 3.5" />
+  </Icon>
+);
+
+export const IconKoi = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M3.5 12c2.6-3.4 6.2-5 9.5-5 2.6 0 4.7 1.3 6 3l1.5-1.5v7L19 14c-1.3 1.7-3.4 3-6 3-3.3 0-6.9-1.6-9.5-5z" />
+    <path d="M7.5 10.6h.01M12 9.5c-1 1.6-1 3.4 0 5" />
+  </Icon>
+);

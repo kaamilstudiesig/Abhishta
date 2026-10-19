@@ -20,6 +20,7 @@
   --color-gold-soft: #efe7d6;
   --color-clay: #8c6a4f;
   --color-line: #e8e2d4; /* stone */
+  --color-alert: #f3c6b4; /* form errors on dark bands (soft clay, ~8:1 on forest) */
 
   --font-display: var(--font-fraunces), Georgia, serif;
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
@@ -100,6 +101,23 @@ html {
   }
 }
 
+/* Long pages that scroll freely (SiteShell freeScroll): no snapping anywhere —
+   with mandatory snapping and only the hero as a stop, touch scrolling would be
+   pulled back to the top. Touch anchor jumps glide instead (Lenis is off there). */
+html:has(main[data-scroll="free"]) {
+  scroll-snap-type: none;
+}
+@media (pointer: coarse) and (prefers-reduced-motion: no-preference) {
+  html:has(main[data-scroll="free"]) {
+    scroll-behavior: smooth;
+  }
+}
+/* Tabbing never parks focus under the fixed navbar or the floating buttons. */
+main[data-scroll="free"] :is(a, button, input, select, summary) {
+  scroll-margin-top: 96px;
+  scroll-margin-bottom: 88px;
+}
+
 /* A page per section; scroll-snap-stop keeps a fast flick from skipping one. */
 [data-snap] {
   scroll-snap-align: start;
@@ -140,6 +158,9 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-farm);
   outline-offset: 3px;
+}
+/* soften the ring on plain text links — but never flatten a pill or card's own radius */
+:focus-visible:not([class*="rounded"]) {
   border-radius: 4px;
 }
 
@@ -246,6 +267,31 @@ html.js .intro-veil {
   font-family: var(--font-display);
   font-weight: 300;
   font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+}
+
+/* A room photo settling in when its tab is chosen. */
+@keyframes nest-fade {
+  from {
+    opacity: 0;
+  }
+}
+.nest-fade {
+  animation: nest-fade 0.6s var(--ease-earth) both;
+}
+
+/* Inner-page heroes: subline, CTA and pills rise in after the headline (CSS only,
+   so nothing waits on scripts; reduced motion shows them at once). */
+@keyframes load-rise {
+  from {
+    opacity: 0;
+    transform: translateY(13px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-load-rise] {
+    animation: load-rise 0.8s var(--ease-earth) both;
+    animation-delay: var(--rise-delay, 0.4s);
+  }
 }
 
 /* Touch: inline text links keep their quiet look but get a ≥44px hit area. */
