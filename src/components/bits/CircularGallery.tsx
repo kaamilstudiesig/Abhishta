@@ -20,6 +20,8 @@ type CircularGalleryProps = {
   /** arc radius in px — smaller bends harder */
   radius?: number;
   className?: string;
+  /** extra classes for the stage, e.g. a shorter height on short screens */
+  stageClassName?: string;
 };
 
 export function CircularGallery({
@@ -29,6 +31,7 @@ export function CircularGallery({
   gap = 34,
   radius = 2200,
   className = "",
+  stageClassName = "",
 }: CircularGalleryProps) {
   const items = Children.toArray(children);
   const n = items.length;
@@ -156,7 +159,7 @@ export function CircularGallery({
         aria-roledescription="carousel"
         aria-label={label}
         tabIndex={0}
-        className="relative h-[min(330px,42svh)] cursor-grab touch-pan-y overflow-hidden select-none active:cursor-grabbing sm:h-[400px]"
+        className={`relative h-[min(330px,42svh)] cursor-grab touch-pan-y overflow-hidden select-none active:cursor-grabbing sm:h-[400px] ${stageClassName}`}
       >
         <div className="absolute top-s21 left-1/2">
           {loop.map((item, i) => (
@@ -173,7 +176,7 @@ export function CircularGallery({
           ))}
         </div>
       </div>
-      <div className="mt-s13 flex justify-center gap-s13 sm:mt-s21">
+      <div className="mt-s13 flex justify-center gap-s13 sm:mt-s21 squat:mt-s13">
         <button
           type="button"
           data-gallery-prev=""

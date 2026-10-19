@@ -48,11 +48,11 @@ export function Stays() {
         <SectionHeader title="Rest your head where the fields begin" className="mx-auto text-center [&>span]:mx-auto" />
 
         {/* phones: a swipeable row with the next stay peeking in; md+: two columns */}
-        <ul className="-mx-s21 mt-s34 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] md:mx-0 md:mt-s55 md:grid md:grid-cols-2 md:gap-s34 md:overflow-visible md:px-0 md:pb-0 lg:gap-s89 [&::-webkit-scrollbar]:hidden">
+        <ul className="-mx-s21 mt-s34 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] md:mx-0 md:mt-s55 squat:mt-s34 md:grid md:grid-cols-2 md:gap-s34 md:overflow-visible md:px-0 md:pb-0 lg:gap-s89 [&::-webkit-scrollbar]:hidden">
           {STAYS.map((stay) => (
             <li key={stay.name} className="group w-[84%] shrink-0 snap-start md:w-auto">
               <a href={stay.href} className="block">
-                <div className="relative h-[27svh] min-h-[160px] overflow-hidden rounded-card md:h-[32svh]">
+                <div className="relative h-[27svh] min-h-[160px] overflow-hidden rounded-card md:h-[32svh] squat:h-[max(22svh,calc(100svh-600px))]">
                   <Image
                     src={stay.image}
                     alt={stay.alt}

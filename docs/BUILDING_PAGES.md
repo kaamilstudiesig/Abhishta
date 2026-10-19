@@ -149,10 +149,10 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
 ## 9. Before you say it's done
 
 1. `npx tsc --noEmit` and `npm run lint` — clean.
-2. `npm run build` (Meadow) and `npm run ui:classic:build` — both succeed.
-3. Run it and look: screenshot every section at 1440×900 and on phones (390×844 and 360×740). Check both looks,
-   no broken images or failed requests, no console errors, navbar tone correct over every section, homepage
-   anchor links land on the right sections.
+2. `npm run build` — succeeds.
+3. Run it and look: screenshot every section at 1440×900 and on phones (390×844 and 360×740). Check Meadow (the
+   classic look no longer needs checking), no broken images or failed requests, no console errors, navbar tone
+   correct over every section, homepage anchor links land on the right sections.
 4. Scroll it with a mouse wheel and on touch; if the page uses `data-snap`, every stop lands exactly on a section.
 5. Report what you built, what's placeholder or TODO, and any photo/copy the client still needs to supply.
 
