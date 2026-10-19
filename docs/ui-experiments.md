@@ -4,9 +4,12 @@ Same page, same elements, same copy and behaviour — three different looks, mad
 Each variant is a set of token overrides plus a few scoped rules in `src/app/variants.css`, switched by
 `NEXT_PUBLIC_UI_VARIANT`. With no variant set, the main design renders unchanged.
 
+**Meadow was chosen** and is now the default: `npm run dev` / `build` / `start` render it.
+
 | Command | Port | Variant |
 | --- | --- | --- |
-| `npm run dev` | 3000 | main design |
+| `npm run dev` | 3000 | Meadow (default) |
+| `npm run ui:classic` | 3004 | the original pre-Meadow look |
 | `npm run ui:clay` | 3001 | Clay — terracotta almanac |
 | `npm run ui:dusk` | 3002 | Dusk — lantern night |
 | `npm run ui:meadow` | 3003 | Meadow — field notes |

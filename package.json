@@ -16,7 +16,10 @@
     "ui:meadow": "NEXT_PUBLIC_UI_VARIANT=meadow NEXT_DIST_DIR=.next-meadow next dev -p 3003",
     "ui:meadow:build": "NEXT_PUBLIC_UI_VARIANT=meadow NEXT_DIST_DIR=.next-meadow next build",
     "ui:meadow:start": "NEXT_PUBLIC_UI_VARIANT=meadow NEXT_DIST_DIR=.next-meadow next start -p 3003",
-    "ui:all": "sh -c 'npm run ui:clay & npm run ui:dusk & npm run ui:meadow & wait'"
+    "ui:all": "sh -c 'npm run ui:clay & npm run ui:dusk & npm run ui:meadow & wait'",
+    "ui:classic": "NEXT_PUBLIC_UI_VARIANT=classic NEXT_DIST_DIR=.next-classic next dev -p 3004",
+    "ui:classic:build": "NEXT_PUBLIC_UI_VARIANT=classic NEXT_DIST_DIR=.next-classic next build",
+    "ui:classic:start": "NEXT_PUBLIC_UI_VARIANT=classic NEXT_DIST_DIR=.next-classic next start -p 3004"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

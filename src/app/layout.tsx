@@ -31,8 +31,12 @@ const instrumentSerif = Instrument_Serif({
 const instrumentSans = Instrument_Sans({ variable: "--font-instrument-sans", subsets: ["latin"], display: "swap" });
 const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"], display: "swap" });
 
-/** Which UI experiment to render (unset = the main design). Set by the ui:* npm scripts. */
-const UI_VARIANT = process.env.NEXT_PUBLIC_UI_VARIANT || undefined;
+/**
+ * Which look to render. Meadow is the chosen design and the default; the ui:* npm scripts
+ * can still show the other experiments, and "classic" renders the original (pre-Meadow) look.
+ */
+const REQUESTED_UI = process.env.NEXT_PUBLIC_UI_VARIANT || "meadow";
+const UI_VARIANT = REQUESTED_UI === "classic" ? undefined : REQUESTED_UI;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.abhishtaagrifarmstay.com"),

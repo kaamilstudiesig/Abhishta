@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Image, { type StaticImageData } from "next/image";
-import corporate from "@/assets/images/stock-corporate-offsite.jpg";
-import school from "@/assets/images/calves-feeding.jpg";
-import mangoes from "@/assets/images/mango-orchard.jpg";
-import events from "@/assets/images/stock-destination-events.jpg";
+import corporate from "@public/images/client-photos/group-corporate.jpg";
+import school from "@public/images/client-photos/group-school.jpg";
+import outing from "@public/images/client-photos/group-outing.jpg";
+import events from "@public/images/client-photos/about-firepit.jpg";
 import { CardSwap } from "@/components/bits/CardSwap";
 import { IconArrow } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
@@ -18,28 +18,28 @@ const GROUPS: Group[] = [
     body: "Trade the boardroom for the bullock cart and let the fields do the talking.",
     href: "/group-enquiries#corporate",
     image: corporate,
-    alt: "A team sharing a long, laughing meal at one table",
+    alt: "The open-sided dining hall: long wooden tables on patterned tiles under a timber-and-tile roof",
   },
   {
     name: "School agri-tours",
     body: "Children learn where food comes from by pulling it from the earth themselves.",
     href: "/group-enquiries#schools",
     image: school,
-    alt: "A father and child feeding young calves through a bamboo fence",
+    alt: "A painted elephant statue carrying a golden howdah, standing among palms in the farm garden",
   },
   {
     name: "Day outings",
     body: "A quick escape from Bangalore. Swim, eat and breathe before heading back.",
     href: "/group-enquiries#day-outings",
-    image: mangoes,
-    alt: "Mango trees heavy with green fruit in the orchard",
+    image: outing,
+    alt: "A shaded veranda with patterned tiles and garden chairs beside a stone path through the lawns",
   },
   {
     name: "Destination events",
     body: "Weddings, birthdays and reunions under a sky that never feels crowded.",
     href: "/group-enquiries#events",
     image: events,
-    alt: "A long celebration table laid with flowers and glassware",
+    alt: "The bonfire circle: a patterned tile floor ringed by tiered seating under the trees",
   },
 ];
 
