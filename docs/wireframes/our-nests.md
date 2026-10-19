@@ -1,75 +1,85 @@
 # Our Nests — updated wireframe
 
 Supersedes `docs/reference/wireframe-react/our-nests/` (generic "cottage / dorm one" blocks with placeholder copy).
-Sources, all read 2026-10-19:
-- the farm's 360° tour — https://www.turiya.co/360/Abhishta/ (34 scenes)
-- the official site — https://www.abhishtaagrifarmstay.com/ (Our Nests, Day Outing, Schools & Corporate, Terms,
-  Cancellation pages)
-- the client photography in `public/images/client-photos/`, and `docs/SITEMAP.md`
+Sources, all read 2026-10-19, and the order to trust them in (client's call):
 
-**Use the official site's room names on the page.** The tour labels some rooms differently (see the mapping below).
+1. **The 360° tour** — https://www.turiya.co/360/Abhishta/ (34 scenes): room names, which rooms exist, beds, bathrooms.
+2. **The Stayflexi booking engine** — https://bookingengine.stayflexi.com/?hotel_id=32336: cancellation policy,
+   check-in/out times, rate plans.
+3. **The current official site** — https://www.abhishtaagrifarmstay.com/: anything the two above don't cover.
 
-## The stays (confirmed)
+Plus the client photography in `public/images/client-photos/` and `docs/SITEMAP.md`.
 
-### Couple cottages — 4 cottages, "up to four guests" each
+## The stays
 
-**Mayur · Mathura · Gopala · Govinda**
+### Cottages — Mayura · Mathura · Gopala · Govardhana
 
-- The site's occupancy line reads "4 Cottages: 2 Cottages 4 & 3 Occupancy" — most likely two cottages sleep 4 and
-  two sleep 3 (to confirm).
-- Official amenities: attached bathroom with hot water · daily housekeeping · outdoor seating — each cottage has a
-  private sit-out with sunrise/sunset views.
-- Seen in the 360°: double bed + a folding extra bed, wardrobe, bedside table, red-oxide floor, tiled timber roof.
-
-### Family cottages — 3 rooms, 25 guests in all
-
-The site calls them "Family Cottages" on Our Nests and "dormitories" on its homepage. Suited to school groups,
-summer camps, yoga retreats and groups of friends.
-
-| Room | Sleeps | Beds | Bathrooms |
-| --- | --- | --- | --- |
-| **Gopika** | 10 | 5 double cots | 2 |
-| **Nanda Gokula** | 10 | 10 single cots | 2 |
-| **Kavsthuba** | 5 | 5 single cots | 1 |
-
-Official amenities: spacious rooms with group sleeping · nature-walk access · outdoor seating.
-
-### Matching the 360° tour to the rooms
-
-| Official name | Tour scene | Deep link (`https://www.turiya.co/360/Abhishta/#…`) |
+| Cottage | Seen in the 360° | Deep link (`https://www.turiya.co/360/Abhishta/#…`) |
 | --- | --- | --- |
-| Mayur | "Mayura" | `#Abhishta_27` |
-| Mathura | "Mathura" | `#Abhishta_25` |
-| Gopala | named on a path, no interior scene | — (use a photo) |
-| Govinda | "Govrdhana", named on a path, no interior scene | — (use a photo) |
-| Gopika | "Nandagokula Family Dormitory" (double beds) | `#Abhishta_06` |
-| Nanda Gokula | "Nandagokula Bachelors Dormitory" (single beds) | `#Abhishta_04` |
-| Kavsthuba | probably "Nandagokula Triple Occupancy" (single beds) | `#Abhishta_08` (confirm) |
+| **Mayura** | double bed + folding extra bed, wardrobe, bedside table, own washroom | `#Abhishta_27` |
+| **Mathura** | same layout as Mayura, own washroom | `#Abhishta_25` |
+| **Gopala** | named on the tour's path, no room view | — (use a photo) |
+| **Govardhana** | named on the tour's path (spelt "Govrdhana" there), no room view | — (use a photo) |
 
-- Deep links work: the tour opens straight inside that room, so the page can show each room's own 360° view.
-- **Courtyard House** is tagged *Owners' Residence* in the tour — not a guest stay. Leave it out.
-- The names follow Krishna's story (Mayur — the peacock; Mathura — his birthplace; Gopala — the cowherd;
-  Govinda — protector of cows; Gopika — the cowherd girls; Nanda Gokula — the village he grew up in;
-  Kaustubha — his jewel), which suits a farm with a gaushaale.
+- Each has its own washroom (tour) with hot water (site), and a private sit-out with sunrise/sunset views (site).
+- Red-oxide floors, tiled timber roofs, garden-facing windows (tour).
+- **Capacity: to confirm** — see the questions at the end (the tour can't show it; the site and Stayflexi disagree).
 
-### Stay rules (Terms page)
+### Nandagokula — the group rooms
 
-Check-in 12:00 pm, check-out 11:00 am (early/late on request, extra charge) · government photo ID for every guest ·
-primary guest 21+, under-18s with a parent or guardian · visitors 10 am–6 pm · quiet hours 10:30 pm–8 am ·
-no outside food or alcohol · smoking only in designated outdoor areas. Meals are vegetarian (Day Outing page).
-**Not mentioned anywhere: AC, Wi-Fi, TV, toiletries — don't list them.**
+| Room | Beds | Sleeps | Washroom | Deep link |
+| --- | --- | --- | --- | --- |
+| **Nandagokula Family Dormitory** | double beds (5 doubles per the site) | 10 | own washroom | `#Abhishta_06` |
+| **Nandagokula Bachelors Dormitory** | single beds (10 per the site) | 10 | own washroom | `#Abhishta_04` |
+| **Nandagokula Triple Occupancy** | 3 single beds | 3 | own washroom | `#Abhishta_08` |
 
-### Shared spaces (tour + site)
+23 guests across the three rooms. Suited to families travelling together, friends, school groups, camps and
+yoga retreats (site).
 
-Each opens in the 360° tour: Bliss swimming pool `#SwimmingPoolBliss` (6:30 am–6 pm; day-outing guests use it too —
-3 pm on the Day Outing schedule) · Dining zone `#Abhishta_03` · Traditional bath / Hande Ole Snana `#Abhishta_15`
-(wood-fired copper-pot bath) · Office / Game & sports centre `#Abhishta_10` (cricket, basketball, volleyball,
-throwball, chess, carrom, UNO, Ludo; desi games lagori and aluguli mane) · Amphitheatre / campfire `#Amphitheatre`
-(bonfire & barbecue evenings) · Koi pond `#Abhishta_11`.
+### Not a guest stay
 
-Farm side (for The Living Farm page): cow cuddling `#AerialView_03`, gaushaale `#Abhishta_20` (Punganur Gidda,
-Jersey, Hallikar, Gir, Kankrej, Holstein Friesian), goat & sheep shelter `#Abhishta_24` (Jamnapari, Boer,
-Thalassery, Bannur sheep), chicken coop, duck canopy, rabbit hutch.
+**Courtyard House** is tagged *Owners' Residence* in the tour. Leave it out.
+
+### Name meanings (for small captions)
+
+The names follow Krishna's story: Mayura — the peacock · Mathura — his birthplace · Gopala — the cowherd ·
+Govardhana — the hill he lifted · Nandagokula — the village he grew up in. Fitting for a farm with a gaushaale.
+
+## Booking facts (Stayflexi)
+
+- **Bookable room types:** "Cottage" (listed as max 5 guests) and "Dormitory" (max 10 guests; "only 2 rooms left",
+  so the two 10-guest dorms are bookable online). The Triple Occupancy room isn't listed separately.
+- **Check-in 2:00 pm · check-out 1:00 pm.** (The current site's Terms page says 12 pm / 11 am — Stayflexi wins.)
+- **Rate plans** for each room type: room only ("CP Plan") · breakfast + dinner · all meals. Prices are live in
+  Stayflexi — link to it, don't hard-code rates on the page.
+- **Amenities Stayflexi lists:** cottage — private bathroom, toiletries, electric kettle, wardrobe, fan, AC;
+  dormitory — shower, toiletries, bottled water, fan, AC. The tour doesn't show AC units clearly, so confirm AC
+  before the page claims it.
+- **Cancellation policy** (Stayflexi — replaces both conflicting pages on the current site):
+  - No refunds once payment is made.
+  - Cancelled **10 or more days** before check-in → a credit note, valid 3 months from the original arrival date.
+  - Cancelled **less than 10 days** before → a credit note only if the dates are rebooked by someone else
+    (valid 1 month); otherwise no refund or credit.
+  - Advance and balance must be paid **24 hours before check-in**, or the booking is cancelled with no refund.
+  - A refundable **₹5,000 security deposit** is collected at check-in and returned at check-out if there's no damage.
+
+## Stay rules (current site, Terms page)
+
+Government photo ID for every guest · primary guest 21+, under-18s with a parent or guardian · visitors
+10 am–6 pm · quiet hours 10:30 pm–8 am · no outside food or alcohol · smoking only in designated outdoor areas.
+Meals are vegetarian (Day Outing page).
+
+## Shared spaces (tour + site)
+
+Each opens in the 360° tour: Bliss swimming pool `#SwimmingPoolBliss` (6:30 am–6 pm; day-outing guests use it too)
+· Dining zone `#Abhishta_03` · Traditional bath / Hande Ole Snana `#Abhishta_15` (wood-fired copper-pot bath)
+· Office / Game & sports centre `#Abhishta_10` (cricket, basketball, volleyball, throwball, chess, carrom, UNO,
+Ludo; lagori and aluguli mane) · Amphitheatre / campfire `#Amphitheatre` (bonfire & barbecue evenings)
+· Koi pond `#Abhishta_11`.
+
+For The Living Farm page: cow cuddling `#AerialView_03`, gaushaale `#Abhishta_20` (Punganur Gidda, Jersey,
+Hallikar, Gir, Kankrej, Holstein Friesian), goat & sheep shelter `#Abhishta_24` (Jamnapari, Boer, Thalassery,
+Bannur sheep), chicken coop, duck canopy, rabbit hutch.
 
 For the Field Notes & 360° Atlas page: drive times on the tour to Rangaswamy Betta 27 min, Sidlingeshwara Yoga Vana
 Betta 29 min, Markonahalli Dam 31 min, Kalur weaving 31 min, Yediyur temple 32 min, Hadinkal Anjaneya 36 min,
@@ -85,59 +95,59 @@ Long page that scrolls freely (no `data-snap`, except the hero). Anchors the hom
 │ 1  HERO  (data-nav=dark, full screen)                                │
 │    photo: stay-cottage-exterior.jpg (terracotta veranda, carved door)│
 │    Our nests                                                         │
-│    Four cottages and three family cottages under tiled roofs,        │
+│    Four cottages and the Nandagokula rooms under tiled roofs,        │
 │    a step from the orchard.                                          │
 │    [Check availability →]                                            │
-│    jump pills: Cottages · Family cottages · Shared spaces · Plan     │
+│    jump pills: Cottages · Nandagokula · Shared spaces · Plan a stay  │
 └─────────────────────────────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────────────────────────────┐
 │ 2  CHOOSE YOUR NEST  (data-nav=light)                                │
 │    "Which nest is yours?" — four options, one line each:             │
 │    ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐               │
-│    │ Cottage  │ │ Gopika   │ │ Nanda    │ │ Kavsthuba│               │
-│    │ couples, │ │ families │ │ Gokula   │ │ small    │               │
-│    │ small    │ │ together │ │ friends, │ │ groups   │               │
-│    │ families │ │ 5 doubles│ │ schools  │ │ 5 singles│               │
-│    │ 3–4 ppl  │ │ sleeps 10│ │ sleeps 10│ │ sleeps 5 │               │
+│    │ Cottage  │ │ Family   │ │ Bachelors│ │ Triple   │               │
+│    │ couples, │ │ dorm     │ │ dorm     │ │ room     │               │
+│    │ small    │ │ families │ │ friends, │ │ three    │               │
+│    │ families │ │ together │ │ schools  │ │ friends  │               │
+│    │ sleeps ? │ │ sleeps 10│ │ sleeps 10│ │ sleeps 3 │               │
 │    └──────────┘ └──────────┘ └──────────┘ └──────────┘               │
 │    each card jumps to its room below          (phone: swipe row)     │
 └─────────────────────────────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────────────────────────────┐
 │ 3  #cottages — THE COTTAGES  (data-nav=light)                        │
-│    "Escape to cozy & nesty cottages, surrounded by nature's beauty"  │
 │    61.8 / 38.2 split                                                 │
-│    ┌───────────────────────────────┐  Mayur · Mathura · Gopala ·     │
-│    │                               │  Govinda        (name tabs)     │
-│    │  live 360° of the selected    │  "Mayur — the peacock"          │
-│    │  cottage (deep link, behind a │  sleeps 3–4                     │
-│    │  "Start the 360° view" cover) │  ✓ attached bathroom, hot water │
-│    │  Gopala / Govinda: photo      │  ✓ daily housekeeping           │
-│    │  instead (no 360° scene)      │  ✓ private sit-out              │
+│    ┌───────────────────────────────┐  Mayura · Mathura · Gopala ·    │
+│    │                               │  Govardhana    (name tabs)      │
+│    │  live 360° of the selected    │  "Mayura — the peacock"         │
+│    │  cottage (deep link, behind a │  sleeps ? (to confirm)          │
+│    │  "Start the 360° view" cover) │  ✓ own washroom, hot water      │
+│    │  Gopala / Govardhana: photo   │  ✓ wardrobe · kettle · toiletries│
+│    │  instead (no room view)       │  ✓ private sit-out              │
 │    └───────────────────────────────┘                                 │
 │    photo strip: stay-cottage-1 · -2 · -3 · -sitout                   │
 │    [Book a cottage]   See it in 360°                                 │
 └─────────────────────────────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────────────────────────────┐
-│ 4  #dormitories — FAMILY COTTAGES  (data-nav=dark band)              │
-│    "Stay together. Laugh louder. Live closer to nature."             │
+│ 4  #dormitories — NANDAGOKULA  (data-nav=dark band)                  │
+│    "Nandagokula — the village Krishna grew up in, made for groups    │
+│     who travel together."                                            │
 │    three rooms as tabs (phone: pills) driving one panel:             │
-│    [Gopika · 10]  [Nanda Gokula · 10]  [Kavsthuba · 5]               │
+│    [Family dormitory · 10] [Bachelors dormitory · 10] [Triple · 3]   │
 │    ┌───────────────────────────────┐  who it's for                   │
-│    │ live 360° of that room        │  beds (e.g. 5 double cots)      │
-│    │ (deep link, start cover)      │  bathrooms (e.g. 2 dedicated)   │
-│    └───────────────────────────────┘  ✓ nature-walk access           │
+│    │ live 360° of that room        │  beds · sleeps                  │
+│    │ (deep link, start cover)      │  ✓ own washroom                 │
+│    └───────────────────────────────┘                                 │
 │    photos: stay-dorm-1 · stay-dorm-2                                 │
-│    "All three sleep 25 — for a school trip, camp or yoga retreat"    │
+│    "All three sleep 23 — for a school trip, camp or yoga retreat"    │
 │    [Plan a group stay → /group-enquiries]                            │
 └─────────────────────────────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────────────────────────────┐
 │ 5  NATURE'S COMFORTS  (data-nav=light) — two-column checklist        │
-│    Cottages                      │ Family cottages                   │
-│    attached bathroom, hot water  │ dedicated bathrooms (1–2 a room)  │
-│    daily housekeeping            │ spacious group sleeping           │
-│    private sit-out               │ outdoor seating                   │
-│                                  │ nature-walk access                │
-│    official list only — no AC / Wi-Fi / TV claims                    │
+│    Cottages                      │ Nandagokula                       │
+│    own washroom, hot water       │ own washroom, shower              │
+│    daily housekeeping            │ bottled water                     │
+│    wardrobe · kettle · toiletries│ toiletries                        │
+│    private sit-out               │ shared lawns, nature walks        │
+│    fan (AC once confirmed)       │ fan (AC once confirmed)           │
 └─────────────────────────────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────────────────────────────┐
 │ 6  BEYOND YOUR DOOR — shared spaces  (data-nav=light)                │
@@ -152,36 +162,35 @@ Long page that scrolls freely (no `data-snap`, except the hero). Anchors the hom
 ┌─────────────────────────────────────────────────────────────────────┐
 │ 7  PLAN YOUR STAY — enquiry form  (data-nav=dark band)               │
 │    Name · Phone (+91) · Check-in · Check-out · Adults · Kids ·       │
-│    Room preference [Mayur · Mathura · Gopala · Govinda · Gopika ·    │
-│    Nanda Gokula · Kavsthuba · Not sure]                              │
+│    Room preference [Mayura · Mathura · Gopala · Govardhana ·         │
+│    Family dormitory · Bachelors dormitory · Triple · Not sure]       │
+│    Meal plan [Room only · Breakfast + dinner · All meals]            │
 │    [Send on WhatsApp] (prefilled)   [Check availability] (Stayflexi) │
 │    or email hello@… · call +91 9945 7949 25                          │
-│    small print: check-in 12 pm · check-out 11 am · photo ID needed · │
-│    cancellation policy link                                          │
+│    small print: check-in 2 pm · check-out 1 pm · photo ID needed ·   │
+│    ₹5,000 refundable deposit · cancellation policy (expandable)      │
 └─────────────────────────────────────────────────────────────────────┘
   FOOTER (shared)
 ```
 
 **Components:** hero = shared hero pattern (`SplitText` headline); room tabs = pills + the `Preview360` start-cover
-pattern with the deep-linked URL; photo strips = swipe rows on phones; family cottages = dark band like Groups;
-shared spaces = tile row; form = labelled inputs that open WhatsApp prefilled. `CardSwap` could present the three
-family cottages instead of tabs if a more playful feel is wanted.
+pattern with the deep-linked URL; photo strips = swipe rows on phones; Nandagokula = dark band like Groups; shared
+spaces = tile row; form = labelled inputs that open WhatsApp prefilled. `CardSwap` could present the three
+Nandagokula rooms instead of tabs if a more playful feel is wanted.
 
 **Phones:** pills replace tabs; each 360° view sits under its tabs at 16:11; photo strips become swipe rows; the
 four options in section 2 become a swipe row.
 
 ## Still to confirm with the client
 
-Answered from the official site: which stays exist, family-cottage capacities, beds and bathrooms, the official
-amenity lists, stay rules, and pool access for day guests. Remaining:
-
-1. **Names** — the tour and the site disagree (Mayura vs *Mayur*, Govardhana vs *Govinda*); "Kavsthuba" is probably
-   *Kaustubha*. Which spellings are final? The page uses the site's for now.
-2. **Cottage occupancy** — "2 Cottages 4 & 3 Occupancy": which cottages sleep 4 and which 3, and what the extra guest
-   sleeps on (the 360° shows a double + a folding bed).
-3. **Room ↔ 360° mapping** — is the tour's "Triple Occupancy" scene Kavsthuba (5 single cots, 3 visible)?
-4. **Cancellation policy** — the Cancellation page says non-refundable within 48 hours of check-in; the Terms page
-   says full charge within 5 days. Which applies?
-5. **Photos** — per-cottage photos for Gopala and Govinda, and photos of Gopika and Kavsthuba.
-6. **Current site** — the live homepage shows an internal draft note and placeholder "Amenities 1 / 2 / 3" in its
-   "Nature's Comforts" pop-up. Worth fixing there.
+1. **Cottage capacity — for each of Mayura, Mathura, Gopala and Govardhana:**
+   - How many guests does it sleep? The sources disagree: the current site says "up to four" and
+     "2 cottages sleep 4 & 3", Stayflexi says max 5.
+   - What beds are in it? The 360° of Mayura and Mathura shows a double bed plus a folding extra bed. Is there a
+     floor mattress too (the old wireframe mentioned one)?
+2. **Triple Occupancy** — sleeps 3, and is it bookable online? Stayflexi only lists "Cottage" and "Dormitory".
+3. **Air conditioning** — Stayflexi lists AC for both room types; the tour shows fans. Which rooms have AC?
+4. **Photos** — per-cottage photos for Gopala and Govardhana, and photos of the Family Dormitory and Triple room
+   (client sending).
+5. **Current site** — its Terms (12 pm / 11 am) and Cancellation pages don't match Stayflexi, and the homepage
+   shows an internal draft note and placeholder "Amenities 1 / 2 / 3" in its "Nature's Comforts" pop-up.

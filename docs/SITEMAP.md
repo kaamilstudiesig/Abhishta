@@ -13,15 +13,16 @@ React wireframe export: attached by Kaamil, extracted to /tmp/wireframe-react (5
 - Footer
 
 ## OUR NESTS
-Updated 2026-10-19 from the 360° tour and the official site — full wireframe in `docs/wireframes/our-nests.md` (supersedes the Relume export).
+Updated 2026-10-19 from the 360° tour (names, rooms) and the Stayflexi booking engine (policy, times) — full
+wireframe in `docs/wireframes/our-nests.md` (supersedes the Relume export).
 - Navbar
-- Hero: full-screen cottage veranda photo, "Our nests", jump pills (Cottages · Family cottages · Shared spaces · Plan a stay), Check availability
-- Choose your nest: four quick options — Cottage (3–4), Gopika (10), Nanda Gokula (10), Kavsthuba (5) — who each suits, beds, jump links
-- #cottages — The cottages: Mayur, Mathura, Gopala, Govinda (name tabs), each room's own 360° view (deep link), attached bathroom with hot water, daily housekeeping, private sit-out, photo strip
-- #dormitories — Family cottages: Gopika (5 double cots, 2 baths), Nanda Gokula (10 single cots, 2 baths), Kavsthuba (5 single cots, 1 bath) as tabs, 360° per room, 25 guests in all, group-booking link to Group Enquiries
-- Nature's comforts: two-column checklist (cottage vs family cottage), official amenities only
+- Hero: full-screen cottage veranda photo, "Our nests", jump pills (Cottages · Nandagokula · Shared spaces · Plan a stay), Check availability
+- Choose your nest: four quick options — Cottage, Family dormitory (10), Bachelors dormitory (10), Triple room (3) — who each suits, beds, jump links
+- #cottages — The cottages: Mayura, Mathura, Gopala, Govardhana (name tabs), each room's own 360° view (deep link), own washroom with hot water, private sit-out, photo strip
+- #dormitories — Nandagokula: Family dormitory (doubles, 10), Bachelors dormitory (singles, 10), Triple occupancy (3) as tabs, 360° per room, 23 guests in all, group-booking link to Group Enquiries
+- Nature's comforts: two-column checklist (cottage vs Nandagokula), confirmed amenities only
 - Beyond your door: pool (6:30 am–6 pm), dining hall, traditional bath (Hande Ole Snana), games & sports centre, amphitheatre & campfire, koi pond — each opens in 360°
-- Plan your stay form: Name, Phone +91, Check-in, Check-out, Adults, Kids, Room preference → WhatsApp + Stayflexi + email; check-in 12 pm / check-out 11 am
+- Plan your stay form: Name, Phone +91, Check-in, Check-out, Adults, Kids, Room preference, Meal plan → WhatsApp + Stayflexi + email; check-in 2 pm / check-out 1 pm, ₹5,000 deposit, Stayflexi cancellation policy
 - Footer
 
 ## THE LIVING FARM
