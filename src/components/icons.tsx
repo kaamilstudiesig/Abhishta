@@ -259,3 +259,115 @@ export const IconExpand = (p: IconProps) => (
     <path d="M4.5 9V4.5H9M15 4.5h4.5V9M19.5 15v4.5H15M9 19.5H4.5V15" />
   </Icon>
 );
+
+/* ——— The living farm ——— */
+
+/** A fruit tree. */
+export const IconOrchard = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12 21v-7M8.5 21h7" />
+    <path d="M12 14c-3.9 0-6.5-2.3-6.5-5.4S8.3 3 12 3s6.5 2.5 6.5 5.6S15.9 14 12 14z" />
+    <circle cx="9.5" cy="8.5" r="1" />
+    <circle cx="14.5" cy="10" r="1" />
+  </Icon>
+);
+
+/** A seedling in the soil — growing and harvesting vegetables. */
+export const IconSprout = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M4.5 20.5h15M12 20.5V12" />
+    <path d="M12 13.5C12 10 9.8 7.5 5.5 7.5c0 3.5 2.2 6 6.5 6zM12 11.5c0-3.5 2.2-6 6.5-6 0 3.5-2.2 6-6.5 6z" />
+  </Icon>
+);
+
+/** Crop rows running away to a sprout — the fields on an agri-tour. */
+export const IconFields = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M2.5 20c3-1.3 16-1.3 19 0M4.5 15.8c2.8-1 12.2-1 15 0M7 12.2c2.3-.7 7.7-.7 10 0" />
+    <path d="M12 9.5V5M12 7c0-1.4-1-2.5-2.5-2.5M12 6.2c0-1.4 1-2.4 2.5-2.4" />
+  </Icon>
+);
+
+/** A path between the trees — nature walks. */
+export const IconPath = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M7 21c1.6-4.6 2.8-9.6 3.6-14.5M17 21c-1.6-4.6-2.8-9.6-3.6-14.5" />
+    <path d="M12 19.5v-1.2M12 15.2v-1M12 11.3v-.8" />
+    <path d="M4.5 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zM4.5 9.5v3M19.5 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zM19.5 8v2.5" />
+  </Icon>
+);
+
+/** A bullock cart: the bed, its rails, the shaft and one big wheel. */
+export const IconCart = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M2.5 11.5h12.5M2.5 11.5V8M15 11.5V8M15 11.5l6.5 3" />
+    <circle cx="8.5" cy="15.5" r="4.5" />
+    <path d="M8.5 11v9M4 15.5h9" />
+  </Icon>
+);
+
+/** A cow's face, front on: horns, ears, muzzle. */
+export const IconCow = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M7 7.5c-2 0-3.4-1.2-3.8-3M17 7.5c2 0 3.4-1.2 3.8-3M7.2 9 4 10.6M16.8 9l3.2 1.6" />
+    <path d="M7.5 7.5h9l-.6 6.5a3.9 3.9 0 0 1-7.8 0z" />
+    <path d="M10.3 16.2h.01M13.7 16.2h.01" />
+  </Icon>
+);
+
+/** A goat's face: swept-back horns and a beard. */
+export const IconGoat = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M9 8c-.8-2.6-2.6-4-5-4M15 8c.8-2.6 2.6-4 5-4M8.6 9.4 5 11.2M15.4 9.4l3.6 1.8" />
+    <path d="M8.5 8h7l-1 7.2a2.5 2.5 0 0 1-5 0z" />
+    <path d="M12 17.8v3.2M10.6 13h.01M13.4 13h.01" />
+  </Icon>
+);
+
+/** A hen. */
+export const IconHen = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M14 6.5a2.8 2.8 0 0 1 5.5.5v1.2l2 1-2 .8V12a6.5 6.5 0 0 1-13 .5C6.5 10 5 8.5 3 8.5c1.5 0 6.5.8 8 2.5" />
+    <path d="M15.5 4c.4-.9 1.6-1 2.2-.2M11 19v2.5M14.5 19v2.5" />
+  </Icon>
+);
+
+/** A milk can — farm-fresh dairy. */
+export const IconMilk = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M9 7V4.5h6V7M8 7h8l1 3v9.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 7 19.5V10z" />
+    <path d="M7 13.5h10" />
+  </Icon>
+);
+
+/** A cooking pot with steam — the farm's kitchen. */
+export const IconPot = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5 11h14v2.5a7 7 0 0 1-14 0zM3 12h2M19 12h2" />
+    <path d="M9.5 8c0-1.1 1-1.1 1-2.2M13.5 8c0-1.1 1-1.1 1-2.2" />
+  </Icon>
+);
+
+/** A leaf — naturally grown. */
+export const IconLeaf = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5 19c0-8 5-14 14-14 0 9-6 14-14 14z" />
+    <path d="M5 19l8.5-8.5" />
+  </Icon>
+);
+
+/** A leaf inside a turning arrow — compost and organic practice. */
+export const IconCompost = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M20 12a8 8 0 1 1-2.4-5.7M20 4v4h-4" />
+    <path d="M8.5 15.5c0-3.6 2.2-6 6-6 0 3.6-2.2 6-6 6zM8.5 15.5l3-3" />
+  </Icon>
+);
+
+/** A woven basket — harvest to plate. */
+export const IconBasket = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M8 10a4 4 0 0 1 8 0M3.5 10h17l-1.6 9a1.6 1.6 0 0 1-1.6 1.3H6.7A1.6 1.6 0 0 1 5.1 19z" />
+    <path d="M9 13.5v4M12 13.5v4M15 13.5v4" />
+  </Icon>
+);

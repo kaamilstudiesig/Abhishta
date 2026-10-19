@@ -6,13 +6,13 @@ with what you see in the code, the code is the truth — then update this guide.
 
 ## 1. What to build, and from what
 
-Built: `/our-nests` (from **`docs/wireframes/our-nests.md`**; sections in `src/components/sections/our-nests/`).
+Built: `/our-nests` (from **`docs/wireframes/our-nests.md`**; sections in `src/components/sections/our-nests/`) and
+`/the-living-farm` (from **`docs/wireframes/the-living-farm.md`**; sections in `src/components/sections/living-farm/`).
 
 Pages still to build (all currently fall through to the branded 404, `src/app/not-found.tsx`):
 
 | Route | Sitemap section | Wireframe |
 | --- | --- | --- |
-| `/the-living-farm` | THE LIVING FARM | `docs/reference/wireframe-react/the-living-farm/` |
 | `/group-enquiries` | GROUP ENQUIRIES | `docs/reference/wireframe-react/group-enquiries/` |
 | `/field-notes` | FIELD NOTES & 360° ATLAS | `docs/reference/wireframe-react/field-notes-&-360°-atlas/` |
 
@@ -82,6 +82,9 @@ booking/WhatsApp buttons and scrolling behave identically everywhere.
 
 ## 6. Components to reuse
 
+`PageHero` (`src/components/sections/PageHero.tsx`) — the inner-page hero: photo, two-line title that drifts as you
+scroll away, one line, one CTA, glass jump pills (`image`, `alt`, `imagePosition`, `lines`, `lead`, `cta`, `jumps`).
+
 From `src/components/ui.tsx`:
 - `container` — page-width wrapper class. `screen` — one-screen centred section (`data-snap` pages).
 - `SectionHeader({ title, lead?, tone?: "light" | "dark", className?, titleClassName?, children? })` —
@@ -98,7 +101,13 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
 - `TiltedCard` (`amplitude`, `scaleOnHover`) — a card that leans toward the pointer, no glare; flattens while a
   button is held, so a 360° view inside it can be dragged (the shared-spaces carousel on `/our-nests`).
 - `GlassSurface` (`radius`) — a clear glass pane over a photo (no frost or tint, a bright rim): the edge bends the
-  backdrop in Chromium, plain clear glass elsewhere (the jump pills in the `/our-nests` hero).
+  backdrop in Chromium, plain clear glass elsewhere (the jump pills in the inner-page heroes).
+- `MagicBento` + `BentoTile` — a bento grid whose tile rims and insides catch the pointer's light (React Bits
+  MagicBento, glow only; "Work the land" on `/the-living-farm`).
+- `AnimatedBeam` (`containerRef`, `fromRef`, `toRef`, `duration`, `delay`) — a faint S-curve between two elements with
+  a pulse of light travelling along it (Magic UI, MIT; SVG dash, no Motion). "From the soil to your plate".
+- `ExpandingPanels` (`panels: { id, title, icon, media, body }`, `label`) — side-by-side panels on large screens, the
+  open one wide; pills plus one panel below `lg`. Only the open panel's media mounts ("Animals, carts and old games").
 - `CardSwap` (`active`, `onActiveChange`, `label`) — manual drag deck. `CircularGallery` (`label`) — bending
   drag/arrow gallery. `CircularText` — rotating badge. `GradualBlur` — edge blur. `StaggeredMenu` — the nav menu.
 - Icons: `src/components/icons.tsx` — 1.5px line icons only (`IconArrow`, `IconPhone`, `IconMail`, `IconPin`,
@@ -134,7 +143,8 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
   its own (stops while dragged, resumes ~4 s later; never with reduced motion or offscreen), the wheel scrolls the
   page, and it takes optional `onPrev`/`onNext` arrows and a `caption`. To show a scene: add its Turiya id
   (customnodeid — list them from the tour's `pano.xml`) to `scripts/tour-scenes.mjs`, run `npm run tour:scenes`,
-  then pass `{ node, pan, tilt }` (`Tour` from `src/lib/tour.ts`). The generated XML must not start with a comment
+  then pass `{ node, pan, tilt }` (`Tour` from `src/lib/tour.ts`). `bleed` drops the rounded frame for a view that runs to
+  the screen edge (Gau seva on `/the-living-farm`); the viewer resizes with its box. The generated XML must not start with a comment
   (the player reads the first node as the `<tour>`). Links into the full tour (new tab) use `tourUrl()`. Tiles are
   still served by Turiya, so if they change the tour, re-run the script.
 - **One-screen sections that must shed extras** use the custom variants in `globals.css`: `short:` (phones/small

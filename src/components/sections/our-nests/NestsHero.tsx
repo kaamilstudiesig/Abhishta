@@ -1,130 +1,27 @@
-"use client";
-
-import { useEffect, useRef, type CSSProperties } from "react";
-import Image from "next/image";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import veranda from "@public/images/client-photos/stay-cottage-exterior.jpg";
-import { GlassSurface } from "@/components/bits/GlassSurface";
-import { SplitText } from "@/components/bits/SplitText";
-import { IconArrow } from "@/components/icons";
-import { container } from "@/components/ui";
+import { PageHero } from "@/components/sections/PageHero";
 import { BOOKING_URL } from "@/lib/site";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const JUMPS = [
-  { label: "Cottages", href: "#cottages" },
-  { label: "Nandagokula", href: "#dormitories" },
-  { label: "Shared spaces", href: "#shared-spaces" },
-  { label: "Plan a stay", href: "#plan-your-stay" },
-];
-
 /**
- * Our nests hero — the terracotta veranda full screen under the site's flat
- * shade, "Explore / Our nests" in two offset lines that drift toward each
- * other as you scroll away (as the homepage's do), one line, one booking CTA,
- * and glass pills that jump down the page. Content sits low so the roof and
- * the painted doorway stay in view.
+ * Our nests hero — the terracotta veranda full screen, "Explore / Our nests"
+ * drifting as you scroll away, one booking CTA and glass jump pills (PageHero).
+ * The photo sits a little low so the roof and the painted doorway stay in view.
  */
 export function NestsHero() {
-  // As you scroll away, EXPLORE drifts right and OUR NESTS left (scrubbed, so it reverses on the way back).
-  const sectionRef = useRef<HTMLElement>(null);
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const [first, second] = section.querySelectorAll<HTMLElement>("[data-hero-line]");
-    const ctx = gsap.context(() => {
-      const shift = () => (window.innerWidth < 768 ? 0.08 : 0.11) * window.innerWidth;
-      gsap
-        .timeline({
-          scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: 0.4, invalidateOnRefresh: true },
-        })
-        .to(first, { x: () => shift(), ease: "none" }, 0)
-        .to(second, { x: () => -shift(), ease: "none" }, 0);
-    }, section);
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      id="top"
-      data-nav="dark"
-      data-snap=""
-      className="on-dark relative isolate flex h-svh min-h-[600px] flex-col overflow-hidden bg-forest text-paper"
-    >
-      <Image
-        src={veranda}
-        alt="The Nandagokula veranda: terracotta walls, a doorway framed in hand-painted folk motifs, a red-oxide floor and a tiled timber roof above the lawn"
-        fill
-        preload
-        sizes="100vw"
-        placeholder="blur"
-        className="-z-10 object-cover object-[50%_58%]"
-      />
-      {/* one flat shade for legibility, as on the homepage hero (Meadow tunes its strength) */}
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black/30" />
-      {/* a span, so Meadow's #top > div shade rule leaves this low wash alone */}
-      <span
-        aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 -z-10 block h-[55%] bg-[linear-gradient(to_top,rgb(0_0_0/0.35),transparent)]"
-      />
-
-      <div className={`${container} flex flex-1 flex-col justify-end pt-[104px] pb-[96px] md:pb-s55`}>
-        <h1 className="hero-display text-[clamp(56px,9.2vw,148px)] leading-[0.95]">
-          <span data-hero-line="" className="block will-change-transform">
-            <SplitText as="span" trigger="load" by="lines" text="Explore" className="block" />
-          </span>
-          <span data-hero-line="" className="block text-right will-change-transform md:pr-[4vw]">
-            <SplitText as="span" trigger="load" by="lines" delay={0.15} text="Our nests" className="block" />
-          </span>
-        </h1>
-        <p
-          data-load-rise=""
-          className="mt-s21 max-w-[25em] text-[clamp(17px,1.5vw,21px)] leading-[1.4] font-medium text-paper/90 md:mt-s34"
-        >
-          Four cottages and the Nandagokula rooms under tiled roofs, a step from the orchard.
-        </p>
-        <div data-load-rise="" style={{ "--rise-delay": "0.55s" } as CSSProperties} className="mt-s21 flex md:mt-s34">
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-stretch gap-[6px] text-[15px] font-medium text-forest"
-          >
-            <span className="grid min-h-[48px] place-items-center rounded-btn bg-paper px-s21 transition-colors duration-300 group-hover:bg-gold-soft">
-              Check availability
-            </span>
-            <span
-              aria-hidden="true"
-              className="grid w-[48px] place-items-center rounded-btn bg-paper transition-[background-color,translate] duration-300 group-hover:translate-x-[3px] group-hover:bg-gold-soft"
-            >
-              <IconArrow size={18} />
-            </span>
-          </a>
-        </div>
-
-        <nav
-          aria-label="On this page"
-          data-load-rise=""
-          style={{ "--rise-delay": "0.7s" } as CSSProperties}
-          className="mt-s34 border-t border-paper/20 pt-s21 md:mt-s55"
-        >
-          {/* phones: one swipeable line, clear of the floating buttons */}
-          <ul className="-mx-s21 flex gap-s8 overflow-x-auto px-s21 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
-            {JUMPS.map((j) => (
-              <li key={j.href} className="shrink-0">
-                <a href={j.href} className="group block rounded-full">
-                  <GlassSurface className="min-h-[44px] px-s21 text-[15px] font-medium text-paper [text-shadow:0_1px_3px_rgb(0_0_0/0.45)] transition-[background-color] duration-300 group-hover:bg-paper/15">
-                    {j.label}
-                  </GlassSurface>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    </section>
+    <PageHero
+      image={veranda}
+      alt="The Nandagokula veranda: terracotta walls, a doorway framed in hand-painted folk motifs, a red-oxide floor and a tiled timber roof above the lawn"
+      imagePosition="object-[50%_58%]"
+      lines={["Explore", "Our nests"]}
+      lead="Four cottages and the Nandagokula rooms under tiled roofs, a step from the orchard."
+      cta={{ label: "Check availability", href: BOOKING_URL, external: true }}
+      jumps={[
+        { label: "Cottages", href: "#cottages" },
+        { label: "Nandagokula", href: "#dormitories" },
+        { label: "Shared spaces", href: "#shared-spaces" },
+        { label: "Plan a stay", href: "#plan-your-stay" },
+      ]}
+    />
   );
 }

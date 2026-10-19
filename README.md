@@ -3,7 +3,8 @@
 Website for Abhishta Agri Farm Stay, a farm stay 90 km from Bangalore. Live preview: https://abhishta.vercel.app
 Next.js (App Router) · TypeScript · Tailwind CSS 4 · GSAP + ScrollTrigger · Lenis.
 
-Built so far: the homepage (`/`) and Our nests (`/our-nests`). The other pages in the menu are still to come.
+Built so far: the homepage (`/`), Our nests (`/our-nests`) and The living farm (`/the-living-farm`). Group enquiries
+and Field notes are still to come.
 
 ## Run it
 ```bash
@@ -23,6 +24,9 @@ The site renders the **Meadow** design (`src/app/meadow.css`). Only Meadow is ch
   Explore button to Our nests) · A day on the farm · Bring your people (groups) · Reviews.
 - **Our nests** — Explore / Our nests hero · Choose your nest · The cottages · Nandagokula (the group rooms) ·
   Nature's comforts · Beyond your door · Plan your stay.
+- **The living farm** — The living / farm hero · Work the land (bento with the orchard in 360°) · Animals, carts and
+  old games (expanding panels) · Gau seva (a 360° of the gaushaale to the screen edge, the six breeds) · From the soil
+  to your plate (animated beams, five pillars) · Come for the day, or stay the night.
 
 ## 360° views
 Views come from the farm's Turiya (Pano2VR) tour. They're drawn on our pages by Turiya's own player, without
@@ -43,9 +47,13 @@ src/
                        Hero · About · Preview360 · Stays · DayOnFarm · Groups · Reviews · Footer
     sections/our-nests/  NestsHero · ChooseNest · Cottages · Nandagokula · Comforts · SharedSpaces · PlanStay,
                        plus rooms.ts (room facts and 360° views) and RoomParts
+    sections/living-farm/  FarmHero · WorkTheLand · Animals · GauSeva · SoilToTable · PlanVisit, plus farm.ts
+                       (breeds, 360° views, the day-outing schedule, WhatsApp enquiries)
+    sections/PageHero  the inner-page hero both pages use
     bits/              React Bits components rebuilt in the brand system:
                        SplitText · ScrollReveal · StaggeredMenu · CircularText · GradualBlur · ScrollExpand ·
-                       ScrollStack · CardSwap · CircularGallery · FlowingMenu · GlassSurface · TiltedCard
+                       ScrollStack · CardSwap · CircularGallery · FlowingMenu · GlassSurface · TiltedCard ·
+                       MagicBento · AnimatedBeam (Magic UI) · ExpandingPanels
     TourViewer         the 360° viewer (see above)
     SiteShell, Navbar, FloatingActions, IntroVeil, SmoothScroll, Logo, icons, ui (shared header/button/screen helpers)
   lib/
@@ -63,7 +71,7 @@ public/
 docs/
   BUILDING_PAGES.md    guide for building pages (auto-loaded via CLAUDE.md / AGENTS.md)
   DESIGN_GUIDELINES.md · SITEMAP.md · design-looks.md
-  wireframes/          page wireframes with verified facts (our-nests.md)
+  wireframes/          page wireframes with verified facts (our-nests.md, the-living-farm.md)
   reference/           Relume wireframe export (all pages) and the original React Bits sources
 components.json        shadcn config with the @react-bits registry (pulls land in docs/reference/…/incoming)
 .mcp.json              shadcn MCP server
@@ -101,6 +109,9 @@ Tokens in `src/app/meadow.css`: `farm` leaf `#2F6B3A` (actions) · `forest` deep
 - Which cottage photos show Mayura and which show Mathura is a best guess (from the paintings in them). Confirm with the client.
 - Two homepage photo slots may want a different shot: School agri-tours shows the elephant statue (not a school
   group), and the Dusk card (`day-dusk.jpg`) is a daylight view of the same gazebo as Morning.
-- Pages still to build: `/the-living-farm`, `/group-enquiries`, `/field-notes`. They show the branded 404 for now.
+- The living farm needs photos of the animals, the vegetable rows, the bullock cart, the old games and food on the
+  table; the orchard's fruits and seasons; and whether meat and eggs belong in "soil to table" (see
+  `docs/wireframes/the-living-farm.md`).
+- Pages still to build: `/group-enquiries`, `/field-notes`. They show the branded 404 for now.
   `docs/BUILDING_PAGES.md` is the guide.
 - The full-length 1080p hero film is kept outside the repo (`../video-originals/`). The site uses a 75 s web loop.

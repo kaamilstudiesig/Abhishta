@@ -26,6 +26,14 @@ const SCENES = [
   "Abhishta_15", // traditional bath
   "Abhishta_10", // games and sports
   "Abhishta_11", // koi pond
+  // The Living Farm (src/components/sections/living-farm/); the cow cuddling area is above
+  "Abhishta_20", // gaushaale
+  "Abhishta_21", // gaushaale
+  "Abhishta_22", // gaushaale
+  "Abhishta_24", // goat and sheep shelter
+  "Abhishta_23", // path by the chicken coop and duck canopy
+  "Abhishta_14", // path by the rabbit hutch
+  "Pathway", // path by the chicken coop, near the entrance
 ];
 
 const xml = await (await fetch(`${TOUR}pano.xml`)).text();

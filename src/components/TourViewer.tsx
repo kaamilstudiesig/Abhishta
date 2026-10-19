@@ -14,6 +14,7 @@ type Player = {
   startAutorotate(speed?: number, resumeAfterSeconds?: number): void;
   stopAutorotate(): void;
   addListener(event: string, callback: () => void): void;
+  setViewerSize(width: number, height: number): void;
 };
 type PlayerConstructor = new (containerId: string, options?: object) => Player;
 
@@ -100,6 +101,7 @@ export function TourViewer({
   onNext,
   prevLabel = "Previous view",
   nextLabel = "Next view",
+  bleed = false,
   className = "",
 }: {
   tour: Tour;
@@ -112,6 +114,8 @@ export function TourViewer({
   onNext?: () => void;
   prevLabel?: string;
   nextLabel?: string;
+  /** edge to edge: no rounded frame or ring (for a view that runs to the screen edge) */
+  bleed?: boolean;
   className?: string;
 }) {
   const containerId = `tour-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
@@ -167,12 +171,19 @@ export function TourViewer({
     });
     near.observe(wrap);
     visible.observe(wrap);
+    // the player only follows window resizes; follow the box too (a panel widening, a column changing)
+    const fit = new ResizeObserver(() => {
+      const player = playerRef.current;
+      if (player && wrap.clientWidth > 10 && wrap.clientHeight > 10) player.setViewerSize(wrap.clientWidth, wrap.clientHeight);
+    });
+    fit.observe(wrap);
 
     const host = document.getElementById(containerId);
     return () => {
       alive = false;
       near.disconnect();
       visible.disconnect();
+      fit.disconnect();
       playerRef.current?.stopAutorotate();
       playerRef.current = null;
       host?.replaceChildren(); // drop the player's canvas so it stops drawing
@@ -193,7 +204,9 @@ export function TourViewer({
       ref={wrapRef}
       role="group"
       aria-label={title}
-      className={`relative isolate overflow-hidden rounded-card ${dark ? "bg-paper/[0.06] ring-1 ring-paper/10" : "bg-card ring-1 ring-line"} ${className}`}
+      className={`relative isolate overflow-hidden ${bleed ? "" : "rounded-card ring-1"} ${
+        dark ? `bg-paper/[0.06] ${bleed ? "" : "ring-paper/10"}` : `bg-card ${bleed ? "" : "ring-line"}`
+      } ${className}`}
     >
       <p
         role="status"
