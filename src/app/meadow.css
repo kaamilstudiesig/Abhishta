@@ -1,0 +1,83 @@
+/*
+ * Meadow — the site's look (chosen from the UI experiments).
+ * Active when <html data-ui="meadow">, which is the default. The original
+ * ("classic") look is the base design in globals.css and renders when
+ * NEXT_PUBLIC_UI_VARIANT=classic (npm run ui:classic).
+ *
+ * Meadow overrides the @theme tokens (colours, fonts, radii) and adds a few scoped
+ * rules. These rules are unlayered, so they win over Tailwind utilities without !important.
+ */
+
+/* ───────────────────────── MEADOW — field notes ─────────────────────────
+   Fresh and light: leaf greens on cool white, Bricolage Grotesque throughout,
+   soft generous radii, a bold sentence-case hero set flush left. */
+html[data-ui="meadow"] {
+  --color-paper: #f6f8f2;
+  --color-paper-deep: #eaefe2;
+  --color-card: #ffffff;
+  --color-ink: #1d2a1b;
+  --color-ink-muted: #56634f;
+  --color-sage: #9aa891;
+  --color-farm: #2f6b3a; /* leaf — white text 6.4:1 */
+  --color-forest: #183520;
+  --color-gold: #c3d68a; /* new-shoot lime, for dark bands */
+  --color-gold-soft: #e4ecd0;
+  --color-line: #dbe3d1;
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
+  --font-sans: var(--font-bricolage), system-ui, sans-serif;
+  --radius-card: 28px;
+  --radius-btn: 999px;
+  --nav-haze: rgba(246, 248, 242, 0.94);
+  --shadow-card: 0 2px 6px rgba(24, 53, 32, 0.05), 0 18px 40px rgba(24, 53, 32, 0.07);
+  background: var(--color-forest);
+}
+html[data-ui="meadow"] .font-display {
+  font-variation-settings: normal;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+html[data-ui="meadow"] .hero-display {
+  font-variation-settings: normal;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  font-size: clamp(56px, 11vw, 176px);
+}
+html[data-ui="meadow"] [data-hero-line] {
+  text-align: left;
+  padding-right: 0;
+}
+html[data-ui="meadow"] [data-hero-line]:last-child {
+  color: #d9e8b0;
+}
+html[data-ui="meadow"] #top h1 + div {
+  align-self: flex-start;
+  margin: 34px 0 0;
+}
+html[data-ui="meadow"] #top > div[aria-hidden="true"] {
+  background: rgba(10, 26, 14, 0.34);
+}
+html[data-ui="meadow"] #top [data-hero-reveal] p,
+html[data-ui="meadow"] #top p[data-hero-reveal] {
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+/* pill-shaped CTA in the hero */
+html[data-ui="meadow"] #top [data-hero-reveal] a span {
+  border-radius: 999px;
+}
+html[data-ui="meadow"] main header h2 {
+  font-size: clamp(32px, 4.8vw, 58px);
+  line-height: 1;
+}
+html[data-ui="meadow"] #stays {
+  background: var(--color-paper-deep);
+}
+html[data-ui="meadow"] #a-day-on-the-farm article {
+  box-shadow: 0 2px 6px rgba(24, 53, 32, 0.05), 0 24px 50px rgba(24, 53, 32, 0.1);
+}
+html[data-ui="meadow"] blockquote {
+  font-style: normal;
+  font-weight: 500;
+}

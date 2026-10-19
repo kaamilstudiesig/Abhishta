@@ -1,5 +1,5 @@
 import Image from "next/image";
-// the farm logo (src/assets/brand/logo-original.png) with its transparent margin trimmed
+// the farm logo, with its transparent margin trimmed
 import logo from "@/assets/brand/logo.png";
 
 /**

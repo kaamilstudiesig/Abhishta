@@ -1,14 +1,11 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const LenisContext = createContext<Lenis | null>(null);
-export const useLenis = () => useContext(LenisContext);
 
 const ease = (t: number) => 1 - Math.pow(1 - t, 4);
 const GESTURE_GAP_MS = 260; // a new free gesture starts after this long without events
@@ -39,8 +36,6 @@ const ACCEL = 1.35; // …or once the deltas grow again (a new swipe), since mom
  * starts either (globals.css handles both).
  */
 export function SmoothScroll({ children }: { children: ReactNode }) {
-  const [lenis, setLenis] = useState<Lenis | null>(null);
-
   useEffect(() => {
     // Lenis is for mouse and trackpad only; touch screens scroll natively with CSS snapping.
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -193,17 +188,12 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     gsap.ticker.lagSmoothing(0);
     window.addEventListener("keydown", onKey);
 
-    // Lenis is an external system created on mount; exposing the instance is the point of this effect.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setLenis(instance);
-
     return () => {
       window.removeEventListener("keydown", onKey);
       gsap.ticker.remove(raf);
       instance.destroy();
-      setLenis(null);
     };
   }, []);
 
-  return <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>;
+  return <>{children}</>;
 }

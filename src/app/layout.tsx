@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { preconnect } from "react-dom";
-import { Bricolage_Grotesque, DM_Sans, Fraunces, Instrument_Sans, Instrument_Serif } from "next/font/google";
+import { Bricolage_Grotesque, DM_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
-import "./variants.css";
+import "./meadow.css";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -19,24 +19,11 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-// Fonts for the UI experiments (ui:* scripts). Declared here so they're available;
-// browsers only download a face when a variant actually uses it.
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  display: "swap",
-});
-const instrumentSans = Instrument_Sans({ variable: "--font-instrument-sans", subsets: ["latin"], display: "swap" });
+// Meadow's typeface. Fraunces + DM Sans above are the classic look's.
 const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"], display: "swap" });
 
-/**
- * Which look to render. Meadow is the chosen design and the default; the ui:* npm scripts
- * can still show the other experiments, and "classic" renders the original (pre-Meadow) look.
- */
-const REQUESTED_UI = process.env.NEXT_PUBLIC_UI_VARIANT || "meadow";
-const UI_VARIANT = REQUESTED_UI === "classic" ? undefined : REQUESTED_UI;
+/** Meadow is the site's look; NEXT_PUBLIC_UI_VARIANT=classic (npm run ui:classic) renders the original design. */
+const UI_VARIANT = process.env.NEXT_PUBLIC_UI_VARIANT === "classic" ? undefined : "meadow";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.abhishtaagrifarmstay.com"),
@@ -64,7 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en-IN"
       data-ui={UI_VARIANT}
-      className={`${fraunces.variable} ${dmSans.variable} ${instrumentSerif.variable} ${instrumentSans.variable} ${bricolage.variable}`}
+      className={`${fraunces.variable} ${dmSans.variable} ${bricolage.variable}`}
       suppressHydrationWarning
     >
       <head>

@@ -43,7 +43,9 @@
     ".next-dusk/types/**/*.ts",
     ".next-dusk/dev/types/**/*.ts",
     ".next-meadow/types/**/*.ts",
-    ".next-meadow/dev/types/**/*.ts"
+    ".next-meadow/dev/types/**/*.ts",
+    ".next-classic/types/**/*.ts",
+    ".next-classic/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
