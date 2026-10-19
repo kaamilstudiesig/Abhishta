@@ -10,7 +10,8 @@ gsap.registerPlugin(useGSAP);
 /**
  * Brand StaggeredMenu — adapted from React Bits. Two pre-layers (gold, then
  * farm green) sweep in from the right like turned soil, the forest panel lands
- * on top, and the links rise one after another in Fraunces. Escape closes it,
+ * on top, and the links rise one after another in Fraunces, each with its
+ * number (01, 02…) fading in at its top right once it lands. Escape closes it,
  * focus moves into the panel and returns to the toggle, page scroll is held.
  */
 export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
@@ -27,6 +28,7 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
       const layers = root.querySelectorAll("[data-prelayer]");
       const panel = panelRef.current;
       const links = root.querySelectorAll("[data-menu-link]");
+      const numbers = root.querySelectorAll("[data-menu-num]");
       const extras = root.querySelectorAll("[data-menu-extra]");
       gsap.set([...layers, panel], { xPercent: 101 });
       // the overlay stays hidden until its layers are parked off-screen — otherwise, on pages
@@ -42,6 +44,7 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
         tl.to(layers, { xPercent: 0, duration: 0.55, stagger: 0.08 })
           .to(panel, { xPercent: 0, duration: 0.7 }, 0.14)
           .fromTo(links, { yPercent: 120 }, { yPercent: 0, duration: 0.9, stagger: 0.07 }, 0.32)
+          .fromTo(numbers, { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: 0.07, ease: "power2.out" }, 0.6)
           .fromTo(extras, { opacity: 0, y: 13 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.05 }, 0.5);
       }
       tlRef.current = tl;
@@ -139,7 +142,7 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
           className="on-dark absolute inset-y-0 right-0 flex w-full flex-col overflow-y-auto overscroll-contain bg-forest px-s34 pt-s144 pb-s34 text-paper sm:w-[min(560px,61.8vw)] sm:px-s55"
         >
           <ul className="flex flex-col gap-s8">
-            {NAV_LINKS.map((link) => (
+            {NAV_LINKS.map((link, i) => (
               <li key={link.href} className="overflow-hidden">
                 <a
                   data-menu-link=""
@@ -148,6 +151,14 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
                   className="block w-fit py-[3px] font-display text-[clamp(34px,6vw,45px)] leading-[1.1] tracking-[-0.015em] transition-colors duration-300 hover:text-gold-soft"
                 >
                   {link.label}
+                  {/* the item's number, as in React Bits' StaggeredMenu; decorative, so screen readers skip it */}
+                  <span
+                    data-menu-num=""
+                    aria-hidden="true"
+                    className="ml-s13 inline-block align-top font-sans text-[15px] leading-[2] font-medium tracking-[0.04em] whitespace-nowrap text-gold tabular-nums"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                 </a>
               </li>
             ))}
