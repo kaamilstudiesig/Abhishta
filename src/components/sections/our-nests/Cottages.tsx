@@ -5,7 +5,7 @@ import { Pillows, TourFrame, TourHint } from "./RoomParts";
 import { COTTAGE_NAMES, COTTAGE_PILLOWS, COTTAGE_TOUR } from "./rooms";
 
 // Stayflexi's cottage amenities, plus the sit-out from the official site.
-const FACTS = ["Private washroom", "Hot water", "Air-conditioning", "Kettle and wardrobe", "Toiletries", "Private sit-out"];
+const FACTS = ["Own washroom", "Hot water", "Air-conditioned", "Kettle, wardrobe", "Toiletries", "Private sit-out"];
 
 const names = `${COTTAGE_NAMES.slice(0, -1).join(", ")} and ${COTTAGE_NAMES.at(-1)}`;
 
@@ -32,13 +32,13 @@ export function Cottages() {
             tour={COTTAGE_TOUR}
             title="360° view inside Mayura cottage"
             tone="light"
-            className="h-[max(284px,36svh)] sm:h-[clamp(350px,36svh,460px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]"
+            className="h-[max(280px,calc(100svh-438px))] sm:h-[clamp(350px,36svh,460px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]"
           />
           <TourHint
             tour={COTTAGE_TOUR}
             tone="light"
             lead="This is Mayura. Press start, then drag to look around."
-            className="mt-s13 short:hidden"
+            className="mt-s13 max-sm:hidden short:hidden"
           />
         </div>
 
@@ -47,10 +47,10 @@ export function Cottages() {
             <Pillows {...COTTAGE_PILLOWS} className="text-farm" />
             <span>
               <span className="font-medium">Sleeps up to 5</span>
-              <span className="text-ink-muted">, beds for 4 and an extra bed</span>
+              <span className="text-ink-muted max-sm:hidden">, beds for 4 and an extra bed</span>
             </span>
           </p>
-          <ul className="mt-s13 grid grid-cols-2 gap-x-s21 gap-y-[6px] text-[15px] leading-[1.4] sm:max-w-[30em]">
+          <ul className="mt-s13 grid grid-cols-2 gap-x-s21 gap-y-[6px] text-[14px] leading-[1.4] sm:max-w-[30em] sm:text-[15px]">
             {FACTS.map((f) => (
               <li key={f} className="flex items-start gap-s8">
                 <IconCheck size={18} className="mt-[1px] shrink-0 text-farm" />
@@ -58,8 +58,8 @@ export function Cottages() {
               </li>
             ))}
           </ul>
-          {/* short phones lean on the floating "Book a stay" button instead */}
-          <div className="mt-s21 flex flex-wrap items-center gap-x-s21 gap-y-s8 lg:mt-s34 short:hidden">
+          {/* phones lean on the floating "Book a stay" button instead, so the 360° view can be taller */}
+          <div className="mt-s21 flex flex-wrap items-center gap-x-s21 gap-y-s8 max-sm:hidden lg:mt-s34 short:hidden">
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("primary")}>
               Book a cottage
             </a>

@@ -207,7 +207,7 @@ export function PlanStay() {
     <section id="plan-your-stay" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
       {/* phones: heading → form → essentials; desktop: heading and essentials beside the form */}
       <div
-        className={`${container} grid gap-y-s21 lg:grid-cols-[1fr_1.618fr] lg:grid-rows-[1fr_auto_auto_1fr] lg:gap-x-s89 lg:gap-y-0 lg:[grid-template-areas:'._form'_'intro_form'_'fine_form'_'._form']`}
+        className={`${container} grid gap-y-s13 sm:gap-y-s21 lg:grid-cols-[1fr_1.618fr] lg:grid-rows-[1fr_auto_auto_1fr] lg:gap-x-s89 lg:gap-y-0 lg:[grid-template-areas:'._form'_'intro_form'_'fine_form'_'._form']`}
       >
         <div className="lg:[grid-area:intro]">
           <SectionHeader
@@ -318,7 +318,8 @@ export function PlanStay() {
               <IconWhatsApp size={20} />
               Send on WhatsApp
             </button>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("secondary")}>
+            {/* phones: this becomes a text link beside the cancellation policy, to keep the form on one screen */}
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("secondary", "max-sm:hidden")}>
               Check availability
             </a>
           </div>
@@ -344,7 +345,7 @@ const STAY_FACTS = [
 function SmallPrint() {
   return (
     <div className="lg:mt-s34 lg:[grid-area:fine]">
-      <dl className="grid grid-cols-4 gap-x-s13 border-t border-line pt-s13 lg:grid-cols-2 lg:gap-y-s13 lg:pt-s21">
+      <dl className="grid grid-cols-4 gap-x-s13 border-t border-line pt-s8 sm:pt-s13 lg:grid-cols-2 lg:gap-y-s13 lg:pt-s21">
         {STAY_FACTS.map((f) => (
           <div key={f.term} className="min-w-0">
             <dt className="text-[12px] text-ink-muted sm:text-[13px]">{f.term}</dt>
@@ -352,13 +353,23 @@ function SmallPrint() {
           </div>
         ))}
       </dl>
-      <button
-        type="button"
-        popoverTarget="cancellation-policy"
-        className="tap mt-s8 inline-flex min-h-[32px] items-center gap-[6px] text-[14px] font-medium text-forest underline decoration-gold decoration-2 underline-offset-4 hover:text-farm lg:mt-s21"
-      >
-        Cancellation policy
-      </button>
+      <div className="mt-s8 flex flex-wrap items-center justify-between gap-x-s21 lg:mt-s21">
+        <button
+          type="button"
+          popoverTarget="cancellation-policy"
+          className="tap inline-flex min-h-[32px] items-center gap-[6px] text-[14px] font-medium text-forest underline decoration-gold decoration-2 underline-offset-4 hover:text-farm"
+        >
+          Cancellation policy
+        </button>
+        <a
+          href={BOOKING_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="tap inline-flex min-h-[32px] items-center text-[14px] font-medium text-forest underline decoration-gold decoration-2 underline-offset-4 hover:text-farm sm:hidden"
+        >
+          Check availability
+        </a>
+      </div>
 
       <div
         id="cancellation-policy"

@@ -79,10 +79,10 @@ function Row({ item }: { item: FlowingMenuItem }) {
         onPointerLeave={(e) => e.pointerType !== "touch" && slide(edgeOf(e), false)}
         onFocus={(e) => e.currentTarget.matches(":focus-visible") && slide("top", true)}
         onBlur={() => slide("bottom", false)}
-        className="relative flex min-h-[56px] flex-col justify-center gap-[2px] py-[10px] focus-visible:outline-offset-[-2px] sm:flex-row sm:items-center sm:justify-between sm:gap-s21 lg:min-h-[76px]"
+        className="relative flex min-h-[52px] flex-col justify-center gap-[2px] py-[8px] focus-visible:outline-offset-[-2px] sm:flex-row sm:items-center sm:justify-between sm:gap-s21 lg:min-h-[76px]"
       >
-        <span className="font-display text-[clamp(20px,2.6vw,34px)] leading-[1.1] text-forest">{item.label}</span>
-        <span className="flex items-center gap-s8 text-[14px] text-ink-muted sm:text-[15px]">
+        <span className="font-display text-[clamp(19px,2.6vw,34px)] leading-[1.1] text-forest">{item.label}</span>
+        <span className="flex items-center gap-s8 text-[13px] leading-[1.35] text-ink-muted sm:text-[15px]">
           {item.detail}
           <Icon360 size={18} className="hidden shrink-0 text-farm sm:block" />
         </span>

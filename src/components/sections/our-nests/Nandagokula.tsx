@@ -47,7 +47,7 @@ export function Nandagokula() {
           ref={listRef}
           role="tablist"
           aria-label="Nandagokula rooms"
-          className="-mx-s21 flex gap-s8 overflow-x-auto px-s21 py-[2px] [scrollbar-width:none] sm:-mx-s34 sm:px-s34 lg:mx-0 lg:mt-s34 lg:grid lg:gap-0 squat:mt-s21 lg:overflow-visible lg:border-t lg:border-paper/15 lg:px-0 lg:py-0 lg:[grid-area:tabs] [&::-webkit-scrollbar]:hidden"
+          className="relative -mx-s21 flex gap-s8 overflow-x-auto px-s21 py-[2px] [scrollbar-width:none] sm:-mx-s34 sm:px-s34 lg:mx-0 lg:mt-s34 lg:grid lg:gap-0 squat:mt-s21 lg:overflow-visible lg:border-t lg:border-paper/15 lg:px-0 lg:py-0 lg:[grid-area:tabs] [&::-webkit-scrollbar]:hidden"
         >
           {NANDAGOKULA.map((r, i) => {
             const on = i === active;
@@ -62,7 +62,7 @@ export function Nandagokula() {
                 tabIndex={on ? 0 : -1}
                 onClick={() => setActive(i)}
                 onKeyDown={(e) => onTabKeyDown(e, count, active, setActive)}
-                className={`flex min-h-[44px] shrink-0 items-center gap-s8 rounded-btn border px-s21 text-[15px] whitespace-nowrap transition-colors duration-300 lg:justify-between lg:rounded-none lg:border-0 lg:border-b lg:border-paper/15 lg:px-0 lg:py-[10px] lg:text-left squat:py-[8px] lg:font-display lg:text-[clamp(20px,1.7vw,24px)] ${
+                className={`relative flex min-h-[44px] shrink-0 items-center gap-s8 rounded-btn border px-s21 text-[15px] whitespace-nowrap transition-colors duration-300 lg:justify-between lg:rounded-none lg:border-0 lg:border-b lg:border-paper/15 lg:px-0 lg:py-[10px] lg:text-left squat:py-[8px] lg:font-display lg:text-[clamp(20px,1.7vw,24px)] ${
                   on
                     ? "border-paper/60 bg-paper/10 text-paper lg:bg-transparent"
                     : "border-paper/20 text-paper/70 hover:text-paper lg:border-paper/15"
@@ -96,9 +96,9 @@ export function Nandagokula() {
             tour={room.tour}
             title={`360° view of the Nandagokula ${room.name.toLowerCase()}`}
             tone="dark"
-            className="h-[max(284px,34svh)] sm:h-[clamp(350px,36svh,460px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]"
+            className="h-[max(280px,calc(100svh-444px))] sm:h-[clamp(350px,36svh,460px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]"
           />
-          <TourHint tour={room.tour} tone="dark" className="mt-s13 short:hidden md:max-lg:hidden" />
+          <TourHint tour={room.tour} tone="dark" className="mt-s13 max-lg:hidden" />
         </div>
 
         <div className="lg:mt-s34 lg:[grid-area:details] squat:mt-s21">
@@ -109,9 +109,9 @@ export function Nandagokula() {
               <span className="text-paper/75">, {room.beds}</span>
             </span>
           </p>
-          <p className="mt-[4px] text-[15px] text-paper/75 squat:hidden">{room.suits}</p>
-          {/* short screens and tablets get the one-line version below */}
-          <ul className="mt-s13 grid gap-[6px] text-[15px] leading-[1.4] text-paper/90 short:hidden md:max-lg:hidden squat:hidden">
+          <p className="mt-[4px] text-[15px] text-paper/75 max-sm:hidden squat:hidden">{room.suits}</p>
+          {/* phones, tablets and short laptops get the one-line version below */}
+          <ul className="mt-s13 grid gap-[6px] text-[15px] leading-[1.4] text-paper/90 max-lg:hidden squat:hidden">
             {FACTS.map((f) => (
               <li key={f} className="flex items-start gap-s8">
                 <IconCheck size={18} className="mt-[1px] shrink-0 text-gold" />
@@ -119,14 +119,12 @@ export function Nandagokula() {
               </li>
             ))}
           </ul>
-          <p className="mt-s8 hidden text-[15px] text-paper/90 short:block md:max-lg:block squat:block">
-            Shared washroom inside the room, AC and fans
-          </p>
+          <p className="mt-s8 hidden text-[15px] text-paper/90 max-lg:block squat:block">Shared washroom, AC and fans</p>
           <a
             href={room.bookable ? BOOKING_URL : TRIPLE_ENQUIRY}
             target="_blank"
             rel="noopener noreferrer"
-            className={buttonClass("gold", "mt-s21 short:hidden lg:mt-s34 squat:mt-s21")}
+            className={buttonClass("gold", "mt-s21 max-sm:hidden short:hidden lg:mt-s34 squat:mt-s21")}
           >
             {room.bookable ? "Book a dormitory" : "Ask about the triple room"}
           </a>

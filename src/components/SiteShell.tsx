@@ -20,8 +20,9 @@ export function SiteShell({ children, intro = false }: { children: ReactNode; in
         Skip to content
       </a>
       <Navbar />
-      {/* Page content sits above the sticky footer with a solid background — the footer is revealed beneath it. */}
-      <main id="main" tabIndex={-1} className="relative z-10 bg-paper outline-none">
+      {/* Page content sits above the sticky footer with a solid background — the footer is revealed beneath it.
+          overflow-x: clip keeps anything stray from widening the page on phones (it isn't a scroll box, so nothing else changes). */}
+      <main id="main" tabIndex={-1} className="relative z-10 overflow-x-clip bg-paper outline-none">
         {children}
       </main>
       <Footer />

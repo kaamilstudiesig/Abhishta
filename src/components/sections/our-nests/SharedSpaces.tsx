@@ -27,10 +27,11 @@ const SPACES: FlowingMenuItem[] = [
   { label: "Koi pond", detail: "A slow minute by the water", href: tourUrl("Abhishta_11"), chip: iconChip(IconKoi) },
 ];
 
-function FarmLink({ className = "" }: { className?: string }) {
+function FarmLink({ className = "", brief = false }: { className?: string; brief?: boolean }) {
   return (
     <p className={`text-ink-muted ${className}`}>
-      <span className="font-medium text-forest">And the farm itself:</span> cows at the gaushaale, goats and sheep, ducks and rabbits.{" "}
+      <span className="font-medium text-forest">And the farm itself:</span>{" "}
+      {brief ? "cows, goats, ducks and rabbits." : "cows at the gaushaale, goats and sheep, ducks and rabbits."}{" "}
       <a href="/the-living-farm" className="link-gold inline-flex items-center gap-[6px] font-medium text-forest">
         Meet the living farm
         <IconArrow size={16} />
@@ -47,7 +48,7 @@ function FarmLink({ className = "" }: { className?: string }) {
 export function SharedSpaces() {
   return (
     <section id="shared-spaces" data-nav="light" data-snap="" className={`bg-paper-deep ${screen}`}>
-      <div className={`${container} grid gap-s21 lg:grid-cols-[1fr_1.618fr] lg:items-center lg:gap-s89`}>
+      <div className={`${container} grid gap-s13 sm:gap-s21 lg:grid-cols-[1fr_1.618fr] lg:items-center lg:gap-s89`}>
         <div>
           <SectionHeader
             title="Beyond your door"
@@ -57,7 +58,7 @@ export function SharedSpaces() {
           <FarmLink className="mt-s34 hidden max-w-[26em] lg:block" />
         </div>
         <FlowingMenu items={SPACES} label="Shared spaces in the 360° tour" />
-        <FarmLink className="text-[15px] lg:hidden" />
+        <FarmLink brief className="text-[15px] leading-[1.5] lg:hidden" />
       </div>
     </section>
   );
