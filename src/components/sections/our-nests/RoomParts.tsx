@@ -1,10 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent, type RefObject } from "react";
-import { IconExternal } from "@/components/icons";
-import { SELECT_ROOM, tourUrl, type Pillows as PillowCount, type Tour } from "./rooms";
-
-type Tone = "light" | "dark";
+import { useEffect, type KeyboardEvent, type RefObject } from "react";
+import { SELECT_ROOM, type Pillows as PillowCount } from "./rooms";
 
 /**
  * How many a room sleeps, drawn as pillows: pairs share a double bed, dashed
@@ -28,96 +25,6 @@ export function Pillows({ solo, pairs, extra, className = "" }: PillowCount & { 
         <span key={`e${i}`} className={`${pillow} border-[1.5px] border-dashed border-current`} />
       ))}
     </span>
-  );
-}
-
-/**
- * A room's live 360° view from the Turiya tour. The iframe is created only as
- * the section comes near the screen, so the page stays light. Changing `tour`
- * changes only the URL's #fragment: the tour listens for that and turns to
- * the new room in place, so its START card shows once per frame, not on every
- * switch. Size the frame with `className` — Turiya's START button needs at
- * least 280px of height on phones and 350px on wider screens.
- */
-export function TourFrame({
-  tour,
-  title,
-  tone,
-  className = "",
-}: {
-  tour: Tour;
-  title: string;
-  tone: Tone;
-  className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [near, setNear] = useState(false);
-  const dark = tone === "dark";
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setNear(true);
-          io.disconnect();
-        }
-      },
-      { rootMargin: "100% 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={`relative overflow-hidden rounded-card ${dark ? "bg-paper/[0.06] ring-1 ring-paper/10" : "bg-card ring-1 ring-line"} ${className}`}
-    >
-      {/* shows through until the tour paints over it */}
-      <p className={`absolute inset-0 grid place-items-center text-[15px] ${dark ? "text-paper/70" : "text-ink-muted"}`}>
-        Opening the 360° view…
-      </p>
-      {near ? (
-        <iframe
-          src={tourUrl(tour.node, tour)}
-          title={title}
-          allow="fullscreen; gyroscope; accelerometer; xr-spatial-tracking"
-          className="absolute inset-0 size-full"
-        />
-      ) : null}
-    </div>
-  );
-}
-
-/** "Press start, then drag" hint with a link to the same view full screen in the tour. */
-export function TourHint({
-  tour,
-  tone,
-  lead = "Press start, then drag to look around.",
-  className = "",
-}: {
-  tour: Tour;
-  tone: Tone;
-  lead?: string;
-  className?: string;
-}) {
-  const dark = tone === "dark";
-  return (
-    <p className={`flex flex-wrap items-center gap-x-s21 gap-y-[2px] text-[14px] ${dark ? "text-paper/75" : "text-ink-muted"} ${className}`}>
-      <span>{lead}</span>
-      <a
-        href={tourUrl(tour.node, tour)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`tap inline-flex items-center gap-[6px] font-medium ${dark ? "text-paper hover:text-gold" : "text-forest hover:text-farm"}`}
-      >
-        Open full screen
-        <IconExternal size={16} />
-        <span className="sr-only">(opens the tour in a new tab)</span>
-      </a>
-    </p>
   );
 }
 

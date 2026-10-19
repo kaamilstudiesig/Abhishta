@@ -1,7 +1,8 @@
 import { IconCheck } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL } from "@/lib/site";
-import { Pillows, TourFrame, TourHint } from "./RoomParts";
+import { Pillows } from "./RoomParts";
+import { TourLink, TourViewer } from "@/components/TourViewer";
 import { COTTAGE_NAMES, COTTAGE_PILLOWS, COTTAGE_TOUR } from "./rooms";
 
 // Stayflexi's cottage amenities, plus the sit-out from the official site.
@@ -28,18 +29,13 @@ export function Cottages() {
         />
 
         <div className="min-w-0 lg:[grid-area:frame]">
-          <TourFrame
+          <TourViewer
             tour={COTTAGE_TOUR}
             title="360° view inside Mayura cottage"
             tone="light"
             className="h-[max(280px,calc(100svh-438px))] sm:h-[clamp(350px,36svh,460px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]"
           />
-          <TourHint
-            tour={COTTAGE_TOUR}
-            tone="light"
-            lead="This is Mayura. Press start, then drag to look around."
-            className="mt-s13 max-sm:hidden short:hidden"
-          />
+          <TourLink tour={COTTAGE_TOUR} tone="light" lead="This is Mayura." className="mt-s13 max-sm:hidden short:hidden" />
         </div>
 
         <div className="lg:mt-s34 lg:[grid-area:details]">

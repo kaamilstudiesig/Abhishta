@@ -9,7 +9,8 @@
     "lint": "eslint",
     "ui:classic": "NEXT_PUBLIC_UI_VARIANT=classic NEXT_DIST_DIR=.next-classic next dev -p 3004",
     "ui:classic:build": "NEXT_PUBLIC_UI_VARIANT=classic NEXT_DIST_DIR=.next-classic next build",
-    "ui:classic:start": "NEXT_PUBLIC_UI_VARIANT=classic NEXT_DIST_DIR=.next-classic next start -p 3004"
+    "ui:classic:start": "NEXT_PUBLIC_UI_VARIANT=classic NEXT_DIST_DIR=.next-classic next start -p 3004",
+    "tour:scenes": "node scripts/tour-scenes.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

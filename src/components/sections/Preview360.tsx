@@ -3,17 +3,29 @@
 import { useEffect, useRef, useState } from "react";
 import { CircularText } from "@/components/bits/CircularText";
 import { Icon360, IconClose, IconPlay } from "@/components/icons";
+import { TourViewer } from "@/components/TourViewer";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
-import { STORY_VIDEO_URL, TOUR_360_URL } from "@/lib/site";
+import { STORY_VIDEO_URL } from "@/lib/site";
+import type { Tour } from "@/lib/tour";
+
+// A short walk through the farm's 360° tour (scenes listed in scripts/tour-scenes.mjs).
+const HIGHLIGHTS: { name: string; tour: Tour }[] = [
+  { name: "The farm from above", tour: { node: "BirdsEyeView01", pan: -85, tilt: -40 } },
+  { name: "Swimming pool", tour: { node: "SwimmingPoolBliss", pan: -90, tilt: -5 } },
+  { name: "Dining hall", tour: { node: "Abhishta_03", pan: 22, tilt: -5 } },
+  { name: "Amphitheatre and campfire", tour: { node: "Amphitheatre", pan: 12, tilt: -5 } },
+  { name: "Cow cuddling area", tour: { node: "AerialView_03", pan: 0, tilt: -5 } },
+];
 
 /**
- * Forest band under About: the story film (lightbox) and a framed, live 360°
- * view of the property. The 360° frame stays behind a "start" cover until the
- * visitor asks for it, so scrolling past never gets caught in the viewer.
+ * Forest band under About: the story film (lightbox) and a live 360° view that
+ * steps through a few spots on the farm (arrows), turning slowly on its own.
+ * The wheel scrolls past it, so it never traps the page.
  */
 export function Preview360() {
-  const [tourActive, setTourActive] = useState(false);
+  const [scene, setScene] = useState(0);
   const [videoOpen, setVideoOpen] = useState(false);
+  const count = HIGHLIGHTS.length;
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -32,7 +44,7 @@ export function Preview360() {
         <SectionHeader
           tone="dark"
           title="See the farm before you set out"
-          lead="Turn slowly through the cottages, the dining hall and the pool, or watch the short film of how Abhishta began."
+          lead="Look around the farm from above, the pool and the dining hall, or watch the short film of how Abhishta began."
         >
           <button type="button" onClick={() => setVideoOpen(true)} className={buttonClass("ghost-light", "mt-s21 md:mt-s34")}>
             <IconPlay size={16} />
@@ -41,28 +53,15 @@ export function Preview360() {
         </SectionHeader>
 
         <div className="relative">
-          <div className="relative aspect-[16/11] overflow-hidden rounded-card bg-forest ring-1 ring-paper/10 sm:aspect-[16/10]">
-            <iframe
-              src={TOUR_360_URL}
-              title="360° tour of Abhishta Agri Farm Stay"
-              loading="lazy"
-              allow="fullscreen; gyroscope; accelerometer"
-              className="absolute inset-0 size-full"
-              tabIndex={tourActive ? 0 : -1}
-            />
-            {tourActive ? null : (
-              <button
-                type="button"
-                onClick={() => setTourActive(true)}
-                className="group absolute inset-0 grid place-items-center bg-black/25 transition-colors duration-500 hover:bg-black/10"
-              >
-                <span className="inline-flex min-h-[48px] items-center gap-s8 rounded-full bg-paper px-s21 text-[15px] font-medium text-forest shadow-float transition-transform duration-500 group-hover:scale-[1.04]">
-                  <Icon360 size={22} className="text-farm" />
-                  Start the 360° view
-                </span>
-              </button>
-            )}
-          </div>
+          <TourViewer
+            tour={HIGHLIGHTS[scene].tour}
+            title={`360° view: ${HIGHLIGHTS[scene].name.toLowerCase()}`}
+            caption={HIGHLIGHTS[scene].name}
+            tone="dark"
+            onPrev={() => setScene((scene - 1 + count) % count)}
+            onNext={() => setScene((scene + 1) % count)}
+            className="aspect-[16/11] sm:aspect-[16/10]"
+          />
           <CircularText
             text="drag to explore · 360° · drag to explore · 360° · "
             size={110}

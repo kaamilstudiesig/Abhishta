@@ -13,30 +13,33 @@ type Stay = {
   alt: string;
 };
 
+// Confirmed with the client and Stayflexi (docs/wireframes/our-nests.md): cottages sleep up to 5; Nandagokula's
+// family and bachelors dormitories sleep 10 each and the triple 3–4, each room booked whole by one group.
 const STAYS: Stay[] = [
   {
-    name: "Cozy cottages",
-    capacity: "Up to 4 guests",
-    body: "Snug, nesty cottages for couples and small families, each opening onto the open land.",
+    name: "Cottages",
+    capacity: "Up to 5 guests",
+    body: "Four cottages for couples and small families, each with its own washroom and a private sit-out.",
     href: "/our-nests#cottages",
     linkLabel: "See the cottages",
     image: cottage,
     alt: "Inside a cottage: a made-up double bed with green cushions under a tiled roof, a carved wooden door and glass doors opening onto the garden",
   },
   {
-    name: "Group dormitories",
-    capacity: "5 to 10 guests",
-    body: "Simple, clean dorms for friends, families and school groups who travel together.",
+    name: "Nandagokula rooms",
+    capacity: "3 to 10 guests a room",
+    body: "A family dormitory, a bachelors dormitory and a triple room, each booked whole by one group.",
     href: "/our-nests#dormitories",
-    linkLabel: "See the dormitories",
+    linkLabel: "See the group rooms",
     image: dorm,
-    alt: "A dormitory with rows of made-up beds under a high tiled roof, its door open onto the lawn",
+    alt: "A Nandagokula dormitory with rows of made-up beds under a high tiled roof, its door open onto the lawn",
   },
 ];
 
 /**
  * Stays — "Rest your head where the fields begin". One heading, then two
- * quiet editorial columns: a photograph, the name, who it sleeps, one line, one link.
+ * quiet editorial columns — the cottages and the Nandagokula group rooms: a
+ * photograph, the name, who it sleeps, one line, one link to Our Nests.
  */
 export function Stays() {
   return (

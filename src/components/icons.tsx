@@ -252,3 +252,10 @@ export const IconKoi = (p: IconProps) => (
     <path d="M7.5 10.6h.01M12 9.5c-1 1.6-1 3.4 0 5" />
   </Icon>
 );
+
+/** Full screen. */
+export const IconExpand = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M4.5 9V4.5H9M15 4.5h4.5V9M19.5 15v4.5H15M9 19.5H4.5V15" />
+  </Icon>
+);

@@ -124,16 +124,18 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
 - **Booking:** every booking CTA goes to `BOOKING_URL`; enquiries to `WHATSAPP_URL` (prefilled) or `CONTACT.email`.
   Forms have no backend yet: build them to open WhatsApp/email with the details prefilled, and say so in the UI
   only where a guest needs to know.
-- **Room 360° views** (`our-nests/RoomParts.tsx` `TourFrame`): a live Turiya iframe, created as its section nears
-  the screen. Deep links are `TOUR_360_URL#<node>,<pan>,<tilt>,75,4` (Pano2VR); room nodes and opening angles live
-  in `our-nests/rooms.ts`. Switching rooms changes only the #fragment — the tour turns to the new room in place, so
-  its START card shows once per frame. That START card can't be removed from our side (no URL option; the tour's
-  tiles have no CORS headers, so a self-hosted viewer can't read them) — it needs a room-only export from Turiya or
-  the raw panoramas. Frames need ≥280px height on phones and ≥350px wider, or the START button is cut off.
+- **360° views — the rule.** Never embed the Turiya tour as an `<iframe>` (that brings back Turiya's START card,
+  logo and menu, and traps the mouse wheel). Always use `TourViewer` (`src/components/TourViewer.tsx`): Turiya's own
+  Pano2VR player drawing on our page **without Turiya's skin**, reading `public/tour/scenes.xml`. It turns slowly on
+  its own (stops while dragged, resumes ~4 s later; never with reduced motion or offscreen), the wheel scrolls the
+  page, and it takes optional `onPrev`/`onNext` arrows and a `caption`. To show a scene: add its Turiya id
+  (customnodeid — list them from the tour's `pano.xml`) to `scripts/tour-scenes.mjs`, run `npm run tour:scenes`,
+  then pass `{ node, pan, tilt }` (`Tour` from `src/lib/tour.ts`). The generated XML must not start with a comment
+  (the player reads the first node as the `<tour>`). Links into the full tour (new tab) use `tourUrl()`. Tiles are
+  still served by Turiya, so if they change the tour, re-run the script.
 - **One-screen sections that must shed extras** use the custom variants in `globals.css`: `short:` (phones/small
   tablets under 800px tall) and `squat:` (laptops/desktops under ~860px tall). Check 360×740 and 1280×720.
-- **Embeds:** 360° tours use `TOUR_360_URL` behind a "start" cover (see `Preview360.tsx`) so scrolling never gets
-  trapped in the viewer; maps use the Google Maps embed for `CONTACT.mapUrl`.
+- **Embeds:** 360° views use `TourViewer` (rule above); maps use the Google Maps embed for `CONTACT.mapUrl`.
 
 ## 8. Mobile and accessibility
 

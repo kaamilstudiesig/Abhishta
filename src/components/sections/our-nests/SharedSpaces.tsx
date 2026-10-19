@@ -5,7 +5,7 @@ import campfire from "@public/images/client-photos/about-firepit.jpg";
 import { FlowingMenu, type FlowingMenuItem } from "@/components/bits/FlowingMenu";
 import { IconArrow, IconBath, IconGames, IconKoi, IconPool } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
-import { tourUrl } from "./rooms";
+import { tourUrl } from "@/lib/tour";
 
 const photoChip = (src: StaticImageData) => (
   <span className="relative block h-[clamp(40px,4.4vw,54px)] aspect-[2.2/1] overflow-hidden rounded-full">

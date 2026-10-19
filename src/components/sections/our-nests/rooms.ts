@@ -1,4 +1,4 @@
-import { TOUR_360_URL } from "@/lib/site";
+import type { Tour } from "@/lib/tour";
 
 /**
  * Rooms on the Our Nests page. Names, beds and washrooms from the 360° tour;
@@ -8,14 +8,6 @@ import { TOUR_360_URL } from "@/lib/site";
  * one — the tour shows it inside each dorm. Courtyard House is the owners'
  * residence and is deliberately not listed.
  */
-
-/** A room's own scene in the Turiya tour, opening on the beds. */
-export type Tour = { node: string; pan: number; tilt: number };
-
-/** Turiya (Pano2VR) deep link: #node,pan,tilt,fov,projection. Shared spaces open at the tour's own default view. */
-export function tourUrl(node: string, view?: { pan: number; tilt: number }) {
-  return view ? `${TOUR_360_URL}#${node},${view.pan},${view.tilt},75,4` : `${TOUR_360_URL}#${node}`;
-}
 
 /** The four cottages share one layout; the tour has Mayura's room, so the page shows that one. */
 export const COTTAGE_NAMES = ["Mayura", "Mathura", "Gopala", "Govardhana"];

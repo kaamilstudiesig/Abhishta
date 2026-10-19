@@ -4,7 +4,8 @@ import { useCallback, useRef, useState } from "react";
 import { IconCheck } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL, WHATSAPP_NUMBER } from "@/lib/site";
-import { Pillows, TourFrame, TourHint, onTabKeyDown, useActivePillInView, useSelectRoom } from "./RoomParts";
+import { Pillows, onTabKeyDown, useActivePillInView, useSelectRoom } from "./RoomParts";
+import { TourLink, TourViewer } from "@/components/TourViewer";
 import { NANDAGOKULA } from "./rooms";
 
 // The triple room isn't on Stayflexi; it's booked by asking.
@@ -92,13 +93,17 @@ export function Nandagokula() {
           aria-labelledby={`nandagokula-tab-${room.id}`}
           className="min-w-0 lg:[grid-area:frame]"
         >
-          <TourFrame
+          <TourViewer
             tour={room.tour}
             title={`360° view of the Nandagokula ${room.name.toLowerCase()}`}
             tone="dark"
+            onPrev={() => setActive((active - 1 + count) % count)}
+            onNext={() => setActive((active + 1) % count)}
+            prevLabel="Previous room"
+            nextLabel="Next room"
             className="h-[max(280px,calc(100svh-444px))] sm:h-[clamp(350px,36svh,460px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]"
           />
-          <TourHint tour={room.tour} tone="dark" className="mt-s13 max-lg:hidden" />
+          <TourLink tour={room.tour} tone="dark" className="mt-s13 max-lg:hidden" />
         </div>
 
         <div className="lg:mt-s34 lg:[grid-area:details] squat:mt-s21">

@@ -6,7 +6,7 @@ React wireframe export: attached by Kaamil, extracted to /tmp/wireframe-react (5
 - Navbar
 - Hero Header: full-screen slow-motion countryside video, animated text "Escape the urban chaos and embrace serenity at Abhishta Agri Farm Stay, 90 km from Bangalore", docked availability bar (Stay/Outing Type, Name, Phone +91, Check-In, Check-Out, Check Availability button)
 - About: asymmetric split on the meaning of "Abhishta" (desired, beloved) — open skies, fields, pool, bullock carts; "Watch Our Story" video lightbox; framed 360° property preview
-- Feature: two accommodation cards — Cozy Cottages (up to 4 guests, private sit-outs) and Group Dormitories (5–10 guests), capacity badges, link to Our Nests
+- Feature: two accommodation cards — Cottages (up to 5 guests, own washroom, private sit-outs) and Nandagokula rooms (family dormitory 10, bachelors dormitory 10, triple 3–4; each booked whole by one group), capacity badges, link to Our Nests
 - Timeline: dawn-to-dusk scroll, 4 moments — Dawn (nature walks, Gau Seva cow cuddling), Morning (agri-tours, fruit picking, harvesting), Midday (farm-to-table dining, pool), Dusk (lagori, gilli-danda, hopscotch, bonfire)
 - Features List: four panels — Corporate Offsites, School Agri-Tours, Day Outings, Destination Events, each linking to Group Enquiries
 - Testimonial: 5.0-star Google Reviews slider (Kalappa Kuppanda, Madhurya S, Nithya A, Prashanth K), "Leave a Review" link, 4-frame vertical Instagram Reels strip
