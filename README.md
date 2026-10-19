@@ -11,6 +11,15 @@ npm run build   # production build
 npm run lint
 ```
 
+## Look: Meadow (chosen from the UI experiments)
+The site renders the Meadow design by default. The other experiments are still runnable:
+`npm run ui:clay` (port 3001), `npm run ui:dusk` (3002), `npm run ui:classic` (3004, the original look).
+See `docs/ui-experiments.md`.
+
+## Photography
+The client's final photos (web-ready, 1600 px) live in `public/images/client-photos/` and are imported
+via the `@public/*` alias so next/image can size them and blur-load. Unused shots there are kept for later pages.
+
 ## Project layout
 ```
 src/

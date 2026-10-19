@@ -1,6 +1,6 @@
 import Image, { type StaticImageData } from "next/image";
-import farmhouse from "@/assets/images/farmhouse-aerial.jpg";
-import orchardPath from "@/assets/images/orchard-path-dormitory.jpg";
+import cottage from "@public/images/client-photos/stay-cottage-1.jpg";
+import dorm from "@public/images/client-photos/stay-dorm-1.jpg";
 import { SectionHeader, container, screen } from "@/components/ui";
 
 type Stay = {
@@ -20,8 +20,8 @@ const STAYS: Stay[] = [
     body: "Snug, nesty cottages for couples and small families, each opening onto the open land.",
     href: "/our-nests#cottages",
     linkLabel: "See the cottages",
-    image: farmhouse,
-    alt: "The Abhishta farmhouse with its tiled roof and veranda, seen from above among palms",
+    image: cottage,
+    alt: "Inside a cottage: a made-up double bed with green cushions under a tiled roof, a carved wooden door and glass doors opening onto the garden",
   },
   {
     name: "Group dormitories",
@@ -29,8 +29,8 @@ const STAYS: Stay[] = [
     body: "Simple, clean dorms for friends, families and school groups who travel together.",
     href: "/our-nests#dormitories",
     linkLabel: "See the dormitories",
-    image: orchardPath,
-    alt: "A red-earth path through mango trees leading to the dormitory building",
+    image: dorm,
+    alt: "A dormitory with rows of made-up beds under a high tiled roof, its door open onto the lawn",
   },
 ];
 

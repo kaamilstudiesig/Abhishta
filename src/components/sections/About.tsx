@@ -1,5 +1,5 @@
 import Image from "next/image";
-import aerialDusk from "@/assets/images/farm-aerial-dusk.jpg";
+import landscape from "@public/images/client-photos/about-landscape.jpg";
 import { ScrollExpand } from "@/components/bits/ScrollExpand";
 import { SplitText } from "@/components/bits/SplitText";
 import { container } from "@/components/ui";
@@ -7,7 +7,7 @@ import { container } from "@/components/ui";
 
 /**
  * About — a single centred line, "Abhishta means", over a centred photo card.
- * Once you arrive, the dusk aerial opens to full bleed (ScrollExpand), a flat
+ * Once you arrive, the farm landscape opens to full bleed (ScrollExpand), a flat
  * shade settles over it, and the meaning of the name appears beneath the
  * heading. The page is one screen; the expansion plays once it has settled.
  */
@@ -18,8 +18,8 @@ export function About() {
         className="bg-paper"
         media={
           <Image
-            src={aerialDusk}
-            alt="Aerial view of Abhishta at dusk: cottages and the pool lit up among palms and red-earth fields"
+            src={landscape}
+            alt="A stone-paved path running through the farm between palms, cypress trees and flowering shrubs"
             fill
             sizes="100vw"
             placeholder="blur"

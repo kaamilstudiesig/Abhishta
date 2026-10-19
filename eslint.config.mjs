@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Reference material, not app code.
     "docs/**",
+    ".agents/**",
+    ".next-*/**",
   ]),
 ]);
 

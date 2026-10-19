@@ -62,6 +62,10 @@
 
 :root {
   color-scheme: light;
+  /* navbar haze and logo backing — overridable per UI experiment */
+  --nav-haze: rgba(250, 247, 240, 0.92);
+  --logo-backing-dark: color-mix(in oklab, var(--color-paper) 90%, transparent);
+  --logo-backing-light: transparent;
   /* browser surfaces carry the palette too */
   accent-color: var(--color-farm);
   caret-color: var(--color-farm);

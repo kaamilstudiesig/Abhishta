@@ -42,3 +42,8 @@ next-env.d.ts
 
 # local tooling
 /.claude/
+
+# agent skills installed locally (not site code)
+/.agents/
+/skills-lock.json
+/.next-*/

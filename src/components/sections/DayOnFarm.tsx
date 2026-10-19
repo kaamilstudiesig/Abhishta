@@ -1,8 +1,8 @@
 import Image, { type StaticImageData } from "next/image";
-import cowCuddling from "@/assets/images/gau-seva-cow-cuddle.webp";
-import harvest from "@/assets/images/pumpkin-harvest.webp";
-import vegBeds from "@/assets/images/vegetable-beds.webp";
-import bonfire from "@/assets/images/bonfire-evening.webp";
+import dawn from "@public/images/client-photos/day-dawn.jpg";
+import morning from "@public/images/client-photos/day-morning.jpg";
+import midday from "@public/images/client-photos/day-midday.jpg";
+import dusk from "@public/images/client-photos/day-dusk.jpg";
 import { ScrollStack } from "@/components/bits/ScrollStack";
 import { IconDawn, IconDusk, IconMidday, IconMorning } from "@/components/icons";
 import { SectionHeader, container } from "@/components/ui";
@@ -28,8 +28,8 @@ const MOMENTS: Moment[] = [
     body: "Take a nature walk on the red earth. Spend time with the cows at Gau Seva and feel the day begin.",
     activities: ["Nature walks", "Gau Seva cow cuddling"],
     icon: IconDawn,
-    image: cowCuddling,
-    alt: "A guest hugging a gentle brown cow at the Gau Seva shed",
+    image: dawn,
+    alt: "A stone bench in a quiet orchard clearing, framed by low mango branches",
     surface: "bg-[#f2ddd2]",
   },
   {
@@ -38,8 +38,8 @@ const MOMENTS: Moment[] = [
     body: "Join the agri-tours through the orchards. Pick fruit and pull vegetables straight from the living field.",
     activities: ["Agri-tours", "Fruit picking", "Harvesting"],
     icon: IconMorning,
-    image: harvest,
-    alt: "A hand holding a freshly picked green pumpkin against leafy vines",
+    image: morning,
+    alt: "A garden gazebo with a scalloped canopy on the lawn, beside a painted clay pot",
     surface: "bg-[#e3ebe8]",
   },
   {
@@ -48,8 +48,8 @@ const MOMENTS: Moment[] = [
     body: "Sit down to a farm-to-table meal made from what the land gave that morning. Then cool off in the pool.",
     activities: ["Farm-to-table dining", "Pool"],
     icon: IconMidday,
-    image: vegBeds,
-    alt: "Raised vegetable beds edged with terracotta tiles, full of leafy greens",
+    image: midday,
+    alt: "Tables and chairs in the dining hall, behind a low wall painted with white folk figures",
     surface: "bg-[#f3e4b9]",
   },
   {
@@ -58,8 +58,8 @@ const MOMENTS: Moment[] = [
     body: "Play lagori and gilli-danda or hopscotch in the fading light. End the day around a bonfire.",
     activities: ["Lagori", "Gilli-danda", "Hopscotch", "Bonfire"],
     icon: IconDusk,
-    image: bonfire,
-    alt: "A family gathered around an evening bonfire on the farm patio",
+    image: dusk,
+    alt: "The garden gazebo on the lawn, lined with potted plants and small solar lamps",
     surface: "bg-[#3a2d39]",
     dark: true,
   },
