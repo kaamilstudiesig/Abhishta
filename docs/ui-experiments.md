@@ -2,7 +2,7 @@
 
 Same page, same elements, same copy and behaviour — three different looks, made with the oil-ui design method.
 Each variant is a set of token overrides plus a few scoped rules in `src/app/variants.css`, switched by
-`NEXT_PUBLIC_UI_VARIANT`. With no variant set, the main design renders unchanged.
+`NEXT_PUBLIC_UI_VARIANT`. With no variant set, Meadow renders; `classic` renders the original look.
 
 **Meadow was chosen** and is now the default: `npm run dev` / `build` / `start` render it.
 
