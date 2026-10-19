@@ -10,11 +10,12 @@ Pages still to build (all currently fall through to the branded 404, `src/app/no
 
 | Route | Sitemap section | Wireframe |
 | --- | --- | --- |
-| `/our-nests` | OUR NESTS | `docs/reference/wireframe-react/our-nests/` |
+| `/our-nests` | OUR NESTS | **`docs/wireframes/our-nests.md`** (supersedes the Relume export) |
 | `/the-living-farm` | THE LIVING FARM | `docs/reference/wireframe-react/the-living-farm/` |
 | `/group-enquiries` | GROUP ENQUIRIES | `docs/reference/wireframe-react/group-enquiries/` |
 | `/field-notes` | FIELD NOTES & 360° ATLAS | `docs/reference/wireframe-react/field-notes-&-360°-atlas/` |
 
+- **A page with an updated wireframe in `docs/wireframes/` uses that instead of the Relume export.**
 - **`docs/SITEMAP.md` is the source of truth** for each page's sections, order and copy direction. Where the
   wireframe and the sitemap disagree, the sitemap wins.
 - **The wireframe** (an unstyled Relume export) gives section structure and content inventory only. Read the page's

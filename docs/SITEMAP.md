@@ -13,12 +13,15 @@ React wireframe export: attached by Kaamil, extracted to /tmp/wireframe-react (5
 - Footer
 
 ## OUR NESTS
+Updated 2026-10-19 from the 360° tour — full wireframe in `docs/wireframes/our-nests.md` (supersedes the Relume export).
 - Navbar
-- Header: intro to sustainable countryside living
-- Feature: Cozy Cottages 60/40 split — "Escape to cozy & nesty cottages, surrounded by nature's beauty." 4 guests, eco-friendly materials, sit-outs with field views, embedded 360° cottage canvas (Prev/Next angles, sit-out hotspots)
-- Feature: Group Dormitories 40/60 split — "Stay together. Laugh louder. Live closer to nature." 3 dorms (1×5 guests, 2×10), school visits, camps, yoga retreats, friend groups, embedded 360° dorm canvas
-- Features List: Nature's Comforts — two-column amenities checklist (cottage vs dorm) + shared perks (pool, organic dining, bonfires, parking, trails)
-- CTA Form: Name, Phone +91, Check-in, Adults, Kids, Room Preference → WhatsApp + Email (hello@abhishtaagrifarmstay.com, +91 9945 7949 25)
+- Hero: full-screen cottage veranda photo, "Our nests", jump pills (Cottages · Nandagokula · Shared spaces · Plan a stay), Check availability
+- Choose your nest: four quick options — Cottage, Nandagokula Family dorm, Bachelors dorm, Triple room — who each suits, sleeps, jump links
+- #cottages — The cottages: Mayura, Mathura, Gopala, Govardhana (name tabs), each room's own 360° view (deep link), beds, en-suite, sit-out, photo strip
+- #dormitories — Nandagokula: Family dormitory, Bachelors dormitory, Triple occupancy (tabs), 360° per room, group-booking link to Group Enquiries
+- In every room: two-column checklist (cottage vs Nandagokula), confirmed amenities only
+- Beyond your door: pool (6:30 am–6 pm), dining hall, traditional bath (Hande Ole Snana), games & sports centre, amphitheatre & campfire, koi pond — each opens in 360°
+- Plan your stay form: Name, Phone +91, Check-in, Check-out, Adults, Kids, Room preference → WhatsApp + Stayflexi + email
 - Footer
 
 ## THE LIVING FARM
