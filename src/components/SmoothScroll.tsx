@@ -71,6 +71,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
     const settle = () => {
       const list = pages();
+      if (!list.length) return; // a page without [data-snap] sections just scrolls freely
       const y = window.scrollY;
       const last = list[list.length - 1];
       if (y > last + 4) {
@@ -161,6 +162,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       const up = e.key === "PageUp" || (e.key === " " && e.shiftKey);
       if (!down && !up) return;
       const list = pages();
+      if (!list.length) return; // no pages to step through: native keyboard scrolling
       const y = window.scrollY;
       if (y > list[list.length - 1] + 4 && down) return; // footer: native
       const next = down ? list.find((p) => p > y + 2) : [...list].reverse().find((p) => p < y - 2);

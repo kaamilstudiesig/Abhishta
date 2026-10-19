@@ -28,6 +28,9 @@
       ],
       "@public/*": [
         "./public/*"
+      ],
+      "@reference/*": [
+        "./docs/reference/*"
       ]
     }
   },

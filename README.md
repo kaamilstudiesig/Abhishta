@@ -39,7 +39,11 @@ public/
   images/              hero poster, Open Graph image
   images/client-photos/  the client's final photography (1600 px), imported via @public/*
 docs/
+  BUILDING_PAGES.md    guide for building the remaining pages (auto-loaded via CLAUDE.md / AGENTS.md)
   DESIGN_GUIDELINES.md · SITEMAP.md · design-looks.md
+  reference/           Relume wireframe export (all pages) and the original React Bits sources
+components.json        shadcn config with the @react-bits registry (pulls land in docs/reference/…/incoming)
+.mcp.json              shadcn MCP server
 ```
 
 ## How it behaves
@@ -61,5 +65,5 @@ The classic palette (olive, brass, field white; Fraunces + DM Sans) is in `src/a
 - Instagram, Facebook and TripAdvisor URLs in `src/lib/site.ts` are best guesses — not on the live site. Confirm them.
 - The logo is a small raster (`src/assets/brand/`); swap in a vector when the redraw arrives.
 - Two photo slots may want a different shot: School agri-tours shows the elephant statue (not a school group), and the Dusk card (`day-dusk.jpg`) is a daylight view of the same gazebo as Morning. Unused client photos in `public/images/client-photos/` are candidates.
-- Inner pages (`/our-nests`, `/the-living-farm`, `/group-enquiries`, `/field-notes`) aren't built yet; they show the branded 404.
+- Inner pages (`/our-nests`, `/the-living-farm`, `/group-enquiries`, `/field-notes`) aren't built yet; they show the branded 404. `docs/BUILDING_PAGES.md` is the guide for building them.
 - The full-length 1080p hero film is kept outside the repo (`../video-originals/`); the site uses a 75 s web loop.
