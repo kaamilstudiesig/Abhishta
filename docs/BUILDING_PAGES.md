@@ -8,13 +8,14 @@ with what you see in the code, the code is the truth — then update this guide.
 
 Built: `/our-nests` (from **`docs/wireframes/our-nests.md`**; sections in `src/components/sections/our-nests/`) and
 `/the-living-farm` (from **`docs/wireframes/the-living-farm.md`**; sections in `src/components/sections/living-farm/`)
-and `/group-enquiries` (from **`docs/wireframes/group-enquiries.md`**; sections in `src/components/sections/group-enquiries/`).
+`/group-enquiries` (from **`docs/wireframes/group-enquiries.md`**; sections in `src/components/sections/group-enquiries/`)
+and `/field-notes` (from **`docs/wireframes/field-notes.md`**; sections in `src/components/sections/field-notes/`).
+All pages in the menu are built.
 
 Pages still to build (all currently fall through to the branded 404, `src/app/not-found.tsx`):
 
 | Route | Sitemap section | Wireframe |
 | --- | --- | --- |
-| `/field-notes` | FIELD NOTES & 360° ATLAS | `docs/reference/wireframe-react/field-notes-&-360°-atlas/` |
 
 - **A page with an updated wireframe in `docs/wireframes/` uses that instead of the Relume export.**
 - **`docs/SITEMAP.md` is the source of truth** for each page's sections, order and copy direction. Where the

@@ -3,8 +3,8 @@
 Website for Abhishta Agri Farm Stay, a farm stay 90 km from Bangalore. Live preview: https://abhishta.vercel.app
 Next.js (App Router) · TypeScript · Tailwind CSS 4 · GSAP + ScrollTrigger · Lenis.
 
-Built so far: the homepage (`/`), Our nests (`/our-nests`), The living farm (`/the-living-farm`) and Group enquiries
-(`/group-enquiries`). Field notes is still to come.
+All five pages are built: the homepage (`/`), Our nests (`/our-nests`), The living farm (`/the-living-farm`), Group
+enquiries (`/group-enquiries`) and Field notes & 360° atlas (`/field-notes`).
 
 ## Run it
 ```bash
@@ -30,6 +30,8 @@ The site renders the **Meadow** design (`src/app/meadow.css`). Only Meadow is ch
 - **Group enquiries** — Bring your / whole group hero · Corporate outings (with a real Google review) · A day on the
   land (nine stops on a rail turning a 360° view to each place) · The living classroom · Celebrations and retreats
   (venues in 360°) · Get a group quote (a three-step form that opens WhatsApp).
+- **Field notes & 360° atlas** — a full-screen 360° atlas with place pills · Around the farm (nearby places; the
+  bird's-eye view turns to face each) · Photos from the farm · How to reach us (map, contact) · Ask us anything.
 
 ## 360° views
 Views come from the farm's Turiya (Pano2VR) tour. They're drawn on our pages by Turiya's own player, without
@@ -54,6 +56,7 @@ src/
                        (breeds, 360° views, the day-outing schedule, WhatsApp enquiries)
     sections/group-enquiries/  GroupsHero · Corporate · DayOutings · Schools · Events · GroupQuote, plus groups.ts
                        (the day's stops and their 360° views, occasions, venues, group types)
+    sections/field-notes/  AtlasHero · Around · Gallery · FindUs · AskUs, plus atlas.ts (places, nearby, inclusions)
     sections/PageHero  the inner-page hero the inner pages use
     forms              form fields shared by the enquiry forms
     bits/              React Bits components rebuilt in the brand system:
@@ -123,6 +126,6 @@ Tokens in `src/app/meadow.css`: `farm` leaf `#2F6B3A` (actions) · `forest` deep
 - Group enquiries: the official site gives two capacities (100 or 100–150 for a gathering, 40 or 50 overnight), so
   the page says "up to 100" and gives room counts instead; confirm, along with where high tea is served, where the
   stage and projector are, group rates, and photos of a school group, a team and an event set-up.
-- Page still to build: `/field-notes`. It shows the branded 404 for now.
+- Field notes: confirm office hours, send short reels for the gallery (see `docs/wireframes/field-notes.md`).
   `docs/BUILDING_PAGES.md` is the guide.
 - The full-length 1080p hero film is kept outside the repo (`../video-originals/`). The site uses a 75 s web loop.

@@ -399,3 +399,11 @@ export const IconTractor = (p: IconProps) => (
     <path d="M3.5 12V6.5h6l1.5 5.5h7.5a2 2 0 0 1 2 2v1.5M11 12H3.5M6 6.5V4M10.5 16h5" />
   </Icon>
 );
+
+/** A clock — opening hours. */
+export const IconClock = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="M12 7.5V12l3 2" />
+  </Icon>
+);

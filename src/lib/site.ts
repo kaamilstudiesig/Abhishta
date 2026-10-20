@@ -13,6 +13,11 @@ export const CONTACT = {
   email: { label: "hello@abhishtaagrifarmstay.com", href: "mailto:hello@abhishtaagrifarmstay.com" },
   address: "Jiddigere Village, Yediyuru Hobli, Kunigal Taluk, Tumkur, Karnataka 572134",
   mapUrl: "https://www.google.com/maps?cid=10453955536286770963",
+  /** who answers calls and WhatsApp (client, 2026-10-20) */
+  person: "Deva Bhanu",
+  /** office hours (old site) — TODO(client): confirm */
+  hours: "Monday to Friday, 9 am to 6 pm",
+  mapEmbed: "https://maps.google.com/maps?q=Abhishta%20Agri%20Farm%20Stay%2C%20Jiddigere%2C%20Kunigal&z=12&output=embed",
 } as const;
 
 export const TOUR_360_URL = "https://www.turiya.co/360/Abhishta/";
