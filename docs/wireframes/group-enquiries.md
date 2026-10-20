@@ -102,9 +102,9 @@ Every section is a one-screen `[data-snap]` page, checked at 360×740 through 14
 
 ## Open-source pieces used
 
-- **React Bits — FlowingMenu**: the occasions, each with an Unsplash stock photo (free under the Unsplash License;
-  photos by Aneta Pawlik, Jose Marroquin, Sujeeth Potla, Pradnyal Gandhi, Olek Buzunov, Thilina Alagiyawanna),
-  served from images.unsplash.com. They illustrate the occasion, not the farm; replace with the farm's own event photos.
+- **React Bits — FlowingMenu**: the occasions, each with a photo of the farm's own lawns or pavilions with a sample
+  event setup added by AI (`event-*.jpg`; sources and prompts in `../AI edit/`), labelled "sample setups" under the
+  list. Replace with photos of real events when the farm has them.
 - **React Bits — Stepper** (MIT + Commons Clause): a multi-step form with a progress indicator and sliding steps,
   rebuilt in `src/components/bits/Stepper.tsx` (bars indicator, fieldsets, focus moves to each new step).
 - The form fields are shared with Our Nests' "Plan your stay" (`src/components/forms.tsx`).
@@ -118,7 +118,7 @@ Every section is a one-screen `[data-snap]` page, checked at 360×740 through 14
 | Corporate | `group-corporate.jpg` (the dining hall) |
 | Day outing | 360°: `#AerialView_01` gate · `#Abhishta_03` dining hall (pan 22) and buffet (pan −150) · `#Abhishta_20` gaushaale · `#Abhishta_10` games corner (pan 95) · `#SwimmingPoolBliss` · `#AerialView_03` cow pen · `#BirdsEyeView01` |
 | Schools | `stay-dorm-2.jpg` (Nandagokula, the tour's "bachelors dormitory") |
-| Events | Unsplash stock photos for the six occasions (see above) |
+| Events | `event-birthday/-baby-shower/-mehendi/-anniversary/-kitty-party/-shastipoorthi.jpg` (AI sample setups); homepage card `event-lawn-party.jpg` |
 
 ## To confirm with the client
 

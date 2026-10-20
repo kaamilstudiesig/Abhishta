@@ -1,3 +1,10 @@
+import type { StaticImageData } from "next/image";
+import birthday from "@public/images/client-photos/event-birthday.jpg";
+import babyShower from "@public/images/client-photos/event-baby-shower.jpg";
+import mehendi from "@public/images/client-photos/event-mehendi.jpg";
+import anniversary from "@public/images/client-photos/event-anniversary.jpg";
+import kittyParty from "@public/images/client-photos/event-kitty-party.jpg";
+import shastipoorthi from "@public/images/client-photos/event-shastipoorthi.jpg";
 import type { Tour } from "@/lib/tour";
 
 /**
@@ -21,40 +28,17 @@ export const DAY_STOPS: { time: string; what: string; place: string; tour: Tour 
 ];
 
 /**
- * The occasions on the official site's Destination Events page, each with a stock photo from Unsplash (free under the
- * Unsplash License) until the farm has photos of its own events. They aren't of the farm, so they never stand in for it.
+ * The occasions on the official site's Destination Events page. Their photos are the farm's own lawns and pavilions
+ * with sample event setups added by AI (client-approved; originals and prompts in ../AI edit/), so the page labels them
+ * as sample setups. Swap in photos of real events when there are some.
  */
-export const OCCASIONS: { name: string; detail: string; photo: { src: string; alt: string; credit: string } }[] = [
-  {
-    name: "Birthdays",
-    detail: "Kids’ parties to family and friends",
-    photo: { src: "https://images.unsplash.com/photo-1545696563-af8f6ec2295a", alt: "Candles being lit on a frosted birthday cake", credit: "Aneta Pawlik" },
-  },
-  {
-    name: "Baby showers",
-    detail: "Traditional or modern",
-    photo: { src: "https://images.unsplash.com/photo-1767070805821-60c701885151", alt: "A long party table set with pink napkins and flowers", credit: "Jose Marroquin" },
-  },
-  {
-    name: "Pre-wedding and mehendi",
-    detail: "In the open air or indoors",
-    photo: { src: "https://images.unsplash.com/photo-1762162089047-97e09435984d", alt: "Hands decorated with henna and gold bangles", credit: "Sujeeth Potla" },
-  },
-  {
-    name: "Anniversaries",
-    detail: "Quiet dinners to family get-togethers",
-    photo: { src: "https://images.unsplash.com/photo-1595142062395-98e89b1ad216", alt: "An older couple smiling side by side on a terrace", credit: "Pradnyal Gandhi" },
-  },
-  {
-    name: "Kitty parties",
-    detail: "Games and an afternoon together",
-    photo: { src: "https://images.unsplash.com/photo-1769618096517-22cba6779c7b", alt: "Three friends smiling together at a party", credit: "Olek Buzunov" },
-  },
-  {
-    name: "Shastipoorthi",
-    detail: "The 60th-birthday ritual",
-    photo: { src: "https://images.unsplash.com/photo-1783255571174-d329a3895407", alt: "Hands holding a brass oil lamp with several flames", credit: "Thilina Alagiyawanna" },
-  },
+export const OCCASIONS: { name: string; detail: string; photo: StaticImageData }[] = [
+  { name: "Birthdays", detail: "Kids’ parties to family and friends", photo: birthday },
+  { name: "Baby showers", detail: "Traditional or modern", photo: babyShower },
+  { name: "Pre-wedding and mehendi", detail: "In the open air or indoors", photo: mehendi },
+  { name: "Anniversaries", detail: "Quiet dinners to family get-togethers", photo: anniversary },
+  { name: "Kitty parties", detail: "Games and an afternoon together", photo: kittyParty },
+  { name: "Shastipoorthi", detail: "The 60th-birthday ritual", photo: shastipoorthi },
 ];
 
 /** Pick an occasion from the events list: the quote form fills itself in. */

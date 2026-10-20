@@ -2,7 +2,7 @@
 
 import { useRef, type ComponentType, type RefObject } from "react";
 import { AnimatedBeam } from "@/components/bits/AnimatedBeam";
-import { IconBasket, IconCompost, IconCow, IconDining, IconLeaf, IconMilk, IconOrchard, IconPot, IconSprout } from "@/components/icons";
+import { IconBasket, IconCompost, IconDining, IconLeaf, IconMilk, IconOrchard, IconPot, IconSprout } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 
 type IconType = ComponentType<{ size?: number; className?: string }>;
@@ -63,7 +63,7 @@ export function SoilToTable() {
           <div className="flex h-full flex-col justify-between">
             <Node nodeRef={rows} icon={IconSprout} label="Vegetable rows" />
             <Node nodeRef={orchard} icon={IconOrchard} label="Orchard" />
-            <Node nodeRef={cows} icon={IconCow} label="Gaushaale" />
+            <Node nodeRef={cows} icon={IconMilk} label="Gaushaale" />
           </div>
           <div className="flex justify-center">
             <Node nodeRef={kitchen} icon={IconPot} label="The kitchen" large />

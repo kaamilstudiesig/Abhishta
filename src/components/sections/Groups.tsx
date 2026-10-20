@@ -5,7 +5,7 @@ import Image, { type StaticImageData } from "next/image";
 import corporate from "@public/images/client-photos/group-corporate.jpg";
 import school from "@public/images/client-photos/group-students-amphitheatre.jpg";
 import outing from "@public/images/client-photos/group-outing.jpg";
-import events from "@public/images/client-photos/event-performance.jpg";
+import events from "@public/images/client-photos/event-lawn-party.jpg";
 import { CardSwap } from "@/components/bits/CardSwap";
 import { IconArrow } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
@@ -39,7 +39,7 @@ const GROUPS: Group[] = [
     body: "Birthdays, anniversaries and family get-togethers in the open air.",
     href: "/group-enquiries#events",
     image: events,
-    alt: "Two dancers in Kathakali costume and two drummers performing on the lawn",
+    alt: "A sample celebration on the lawn: guests gathered by the amphitheatre under the trees, with a balloon arch and tables",
   },
 ];
 

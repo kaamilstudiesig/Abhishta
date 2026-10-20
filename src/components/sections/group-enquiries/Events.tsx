@@ -19,7 +19,7 @@ const ITEMS: FlowingMenuItem[] = OCCASIONS.map((o) => ({
   onSelect: () => window.dispatchEvent(new CustomEvent<string>(SELECT_OCCASION, { detail: o.name })),
   chip: (
     <span className="relative block h-[clamp(40px,4.4vw,56px)] aspect-[2.2/1] overflow-hidden rounded-full">
-      <Image src={o.photo.src} alt="" fill sizes="130px" className="object-cover" />
+      <Image src={o.photo} alt="" fill sizes="130px" className="object-cover" />
     </span>
   ),
 }));
@@ -27,8 +27,8 @@ const ITEMS: FlowingMenuItem[] = OCCASIONS.map((o) => ({
 /**
  * #events — celebrations and retreats, on the forest band: the six occasions
  * the farm hosts as a FlowingMenu (React Bits) — hover one and a paper band
- * flows past with its line and a photo (Unsplash stock, credited in the
- * wireframe, until the farm has its own). Picking one fills in the quote form
+ * flows past with its line and a photo of a sample setup on the farm's own
+ * lawns (AI-added decor, labelled as such). Picking one fills in the quote form
  * below and goes there. Beside it, what comes with an event.
  */
 export function Events() {
@@ -52,11 +52,14 @@ export function Events() {
           </ul>
         </div>
 
-        <FlowingMenu items={ITEMS} tone="dark" label="Occasions the farm hosts" />
+        <div className="min-w-0">
+          <FlowingMenu items={ITEMS} tone="dark" label="Occasions the farm hosts" />
+          <p className="mt-s8 text-[13px] text-paper/55 short:hidden">Photos show sample setups on our lawns.</p>
+        </div>
 
         {/* phones and tablets: the essentials in one line under the list */}
         <p className="text-[14px] leading-[1.5] text-paper/75 lg:hidden">
-          Up to 100 guests, a stage with music and lighting, and separate veg and non-veg kitchens.
+          Up to 100 guests, a stage with music and lighting, and separate veg and non-veg kitchens.<span className="hidden short:inline"> Photos show sample setups.</span>
         </p>
       </div>
     </section>
