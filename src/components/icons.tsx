@@ -407,3 +407,38 @@ export const IconClock = (p: IconProps) => (
     <path d="M12 7.5V12l3 2" />
   </Icon>
 );
+
+/* ——— Map ——— */
+
+/** A South Indian temple tower (gopura) — temples on the map. */
+export const IconTemple = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12 2.5v2M10.5 4.5h3M10 4.5l-.8 3h5.6l-.8-3M8.8 7.5l-1 4h8.4l-1-4M7.6 11.5l-1.1 5h11l-1.1-5" />
+    <path d="M5 21.5h14M6.5 16.5v5M17.5 16.5v5M10.5 21.5v-3a1.5 1.5 0 0 1 3 0v3" />
+  </Icon>
+);
+
+/** Two hills with a path — hill walks. */
+export const IconHill = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M2.5 19.5 9 8l3.6 6.2M10.5 19.5l6-9.5 5 9.5H2.5" />
+    <path d="M7.6 10.4 9 11.5l1.3-1.2" />
+  </Icon>
+);
+
+/** A dam wall holding back water — the dam and reservoir. */
+export const IconDam = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M3 8.5c1.5-1 3-1 4.5 0M3 12c1.5-1 3-1 4.5 0" />
+    <path d="M9 5.5h12v4l-2.5 10H9z" />
+    <path d="M9 11h11.1M9 15.5h10" />
+  </Icon>
+);
+
+/** A spool of thread on a shuttle — handloom weaving. */
+export const IconLoom = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M8 4.5h8M8 19.5h8M9.5 4.5v15M14.5 4.5v15" />
+    <path d="M9.5 8.5l5 2M9.5 12l5 2M9.5 15.5l5 2" />
+  </Icon>
+);

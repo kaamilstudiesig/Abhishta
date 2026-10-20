@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import cottages from "@public/images/client-photos/gallery-cottages-path.jpg";
 import pavilion from "@public/images/client-photos/gallery-dining-pavilion.jpg";
 import amphitheatre from "@public/images/client-photos/gallery-amphitheatre.jpg";
@@ -8,44 +9,78 @@ import dining from "@public/images/client-photos/gallery-dining-hall.jpg";
 import koi from "@public/images/client-photos/gallery-koi-bridge.jpg";
 import howdah from "@public/images/client-photos/gallery-howdah.jpg";
 import swing from "@public/images/client-photos/gallery-garden-swing.jpg";
-import gopala from "@public/images/client-photos/cottage-gopala-room.jpg";
-import govinda from "@public/images/client-photos/cottage-govinda-sitout.jpg";
 import students from "@public/images/client-photos/group-students-amphitheatre.jpg";
 import performance from "@public/images/client-photos/event-performance.jpg";
 import landscape from "@public/images/client-photos/about-landscape.jpg";
-import dawn from "@public/images/client-photos/day-dawn.jpg";
 import { DriftWall, type DriftWallItem } from "@/components/bits/DriftWall";
-import { SectionHeader, container, screen } from "@/components/ui";
+import { MORE_PHOTOS } from "./more-photos";
 
 const PHOTOS: DriftWallItem[] = [
   { src: cottages, caption: "The cottages", alt: "The cottages along a stone path, with tiled roofs, painted walls and palms" },
   { src: koi, caption: "The koi pond bridge", alt: "A small wooden bridge painted yellow over the koi pond, among palms" },
-  { src: gopala, caption: "Inside Gopala cottage", alt: "A double bed with green cushions under a tiled timber roof in Gopala cottage" },
   { src: dining, caption: "The dining hall", alt: "The dining hall: wooden tables on patterned tiles under a tall timber-and-tile roof" },
   { src: howdah, caption: "In the garden", alt: "A painted elephant statue carrying a golden howdah in the garden" },
   { src: students, caption: "A school visit", alt: "Students with sketchbooks sitting on the tiled tiers of the amphitheatre" },
   { src: amphitheatre, caption: "The amphitheatre", alt: "The round tiled stage and the patterned steps of the amphitheatre on the lawn" },
   { src: swing, caption: "The garden swing", alt: "A wooden swing hanging in a garden gazebo, trees behind" },
-  { src: govinda, caption: "Govinda cottage’s sit-out", alt: "Chairs on a tiled veranda by carved wooden pillars at Govinda cottage" },
   { src: pavilion, caption: "The dining pavilion", alt: "The open dining pavilion on the lawn, with a painted village mural on its back wall" },
   { src: performance, caption: "A cultural evening", alt: "Two dancers in Kathakali costume and two drummers performing on the lawn" },
   { src: bench, caption: "Under the mango trees", alt: "A stone bench in the shade of mango trees in the orchard" },
   { src: landscape, caption: "A path through the farm", alt: "A stone-paved path running through the farm between palms and cypress trees" },
-  { src: dawn, caption: "The orchard bench", alt: "A stone bench in a quiet orchard clearing, framed by low mango branches" },
 ];
+// interleave the featured photos with the rest so rooms and garden mix on the wall
+const ALL: DriftWallItem[] = MORE_PHOTOS.flatMap((p, n) => (n % 3 === 0 && PHOTOS[n / 3] ? [PHOTOS[n / 3], p] : [p]));
+
+/** how long the title holds before it fades and leaves the wall (ms) */
+const HOLD = 1800;
 
 /**
- * #gallery — photos from the farm as a drifting wall (React Bits DriftWall,
- * flat): columns float slowly; hover a photo to stop it and read its caption,
- * click to see it large. Phones: two columns. TODO(client): short reels.
+ * #gallery — the whole screen is a drifting wall of the farm's photos (React
+ * Bits DriftWall, flat). Each time the section comes into view, its title pops
+ * up in the middle and fades away after a moment, leaving the wall. Hover a
+ * photo to stop its column and read its caption; click to see it large.
  */
 export function Gallery() {
+  const ref = useRef<HTMLElement>(null);
+  const [title, setTitle] = useState<"hidden" | "shown" | "gone">("hidden");
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let t: ReturnType<typeof setTimeout> | undefined;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        clearTimeout(t);
+        if (e.isIntersecting) {
+          setTitle("shown");
+          t = setTimeout(() => setTitle("gone"), HOLD);
+        } else setTitle("hidden");
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      clearTimeout(t);
+    };
+  }, []);
+
   return (
-    <section id="gallery" data-nav="light" data-snap="" className={`overflow-hidden bg-paper ${screen}`}>
-      <div className={container}>
-        <SectionHeader title="Photos from the farm" lead="Tap any photo to see it larger." leadClassName="max-sm:mt-s13 max-sm:text-[15px] squat:hidden" />
-        <DriftWall items={PHOTOS} label="Photos from the farm" columns={4} className="mt-s21 hidden h-[clamp(260px,calc(100svh-390px),620px)] lg:block squat:mt-s13" />
-        <DriftWall items={PHOTOS} label="Photos from the farm" columns={2} speed={14} className="mt-s21 h-[clamp(380px,calc(100svh-330px),620px)] lg:hidden" />
+    <section ref={ref} id="gallery" data-nav="dark" data-nav-haze="off" data-snap="" className="relative isolate h-svh min-h-[560px] overflow-hidden bg-paper">
+      <DriftWall items={ALL} label="Photos from the farm" columns={6} speed={16} className="absolute inset-0 hidden px-s13 lg:block" />
+      <DriftWall items={ALL} label="Photos from the farm" columns={4} speed={14} className="absolute inset-0 hidden px-s8 sm:block lg:hidden" />
+      <DriftWall items={ALL} label="Photos from the farm" columns={3} speed={12} className="absolute inset-0 px-s8 sm:hidden" />
+
+      {/* the title: pops up as the section arrives, then gets out of the way */}
+      <div className="pointer-events-none absolute inset-0 z-20 grid place-items-center px-s21">
+        <div
+          className={`rounded-card bg-paper/90 px-s34 py-s21 text-center shadow-float ring-1 ring-line backdrop-blur-[6px] transition-[opacity,scale] ease-[var(--ease-earth)] motion-reduce:transition-none sm:px-s55 sm:py-s34 ${
+            title === "shown" ? "scale-100 opacity-100 duration-500" : title === "gone" ? "scale-[0.98] opacity-0 duration-700" : "scale-[0.9] opacity-0 duration-0"
+          }`}
+        >
+          <h2 className="font-display text-[clamp(30px,4.6vw,58px)] leading-[1] text-forest">Photos from the farm</h2>
+          <p className="mt-s8 text-[15px] text-ink-muted">Tap any photo to see it larger.</p>
+        </div>
       </div>
     </section>
   );

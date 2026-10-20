@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image, { type StaticImageData } from "next/image";
 import { IconClose } from "@/components/icons";
 
@@ -8,8 +8,8 @@ export type DriftWallItem = { src: StaticImageData; alt: string; caption: string
 
 /**
  * Brand DriftWall — adapted from React Bits (flat: no tilt). Columns of photos
- * drift slowly up and down at slightly different speeds, under a soft edge
- * fade; the wall leans a little toward the pointer. Hovering (or focusing) a
+ * drift slowly up and down at slightly different speeds, edge to edge (no
+ * fade); the wall leans a little toward the pointer. Hovering (or focusing) a
  * photo stops its column, lifts the photo and shows its caption; clicking opens
  * it large in a dialog. It only moves while on screen, and with reduced motion
  * it holds still.
@@ -37,7 +37,7 @@ export function DriftWall({
 
   // deal the photos into columns (each column long enough to fill the wall, starting at a different photo)
   const cols = useMemo(() => {
-    const per = Math.max(5, Math.ceil(items.length / columns) * 2);
+    const per = Math.max(5, Math.ceil(items.length / columns) + 1);
     return Array.from({ length: columns }, (_, c) => Array.from({ length: per }, (_, k) => items[(c * 2 + k * columns + k) % items.length]));
   }, [items, columns]);
 
@@ -105,12 +105,6 @@ export function DriftWall({
           hovered.current = -1;
         }}
         className={`relative overflow-hidden [perspective:1400px] ${className}`}
-        style={
-          {
-            maskImage: "linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)",
-            WebkitMaskImage: "linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent)",
-          } as CSSProperties
-        }
       >
         <div className="grid h-full gap-s13 [transform:rotateX(var(--dw-rx,0deg))_rotateY(var(--dw-ry,0deg))] [transform-style:preserve-3d]" style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
           {cols.map((col, c) => (

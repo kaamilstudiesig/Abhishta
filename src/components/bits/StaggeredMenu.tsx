@@ -107,7 +107,7 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
         aria-controls="site-menu"
         onClick={() => setOpen((v) => !v)}
         className={`relative z-[60] inline-flex h-[44px] items-center px-s8 text-[14px] font-medium tracking-[0.08em] uppercase transition-colors duration-300 ${
-          onDark ? "on-dark text-paper hover:text-gold-soft" : "text-forest hover:text-farm"
+          onDark ? `on-dark text-paper hover:text-gold-soft ${open ? "" : "[text-shadow:0_1px_6px_rgb(0_0_0/0.55)]"}` : "text-forest hover:text-farm"
         }`}
       >
         <span className="relative block h-[1.4em] overflow-hidden">

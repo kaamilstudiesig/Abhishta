@@ -11,10 +11,12 @@ import { WHATSAPP_URL } from "@/lib/site";
  * Fixed navbar. Its tone follows whatever band sits beneath it: each section
  * declares data-nav="dark" | "light"; whichever sits under the bar (checked
  * on scroll and on a "navtone" event) sets it. Enquire · logo · Menu, after the
- * reference; a GradualBlur haze sits behind it only over light bands.
+ * reference; a GradualBlur haze sits behind it only over light bands, unless
+ * the band opts out with data-nav-haze="off" (full-bleed photo walls).
  */
 export function Navbar() {
   const [tone, setTone] = useState<"dark" | "light">("dark");
+  const [haze, setHaze] = useState(true);
 
   useEffect(() => {
     let raf = 0;
@@ -26,6 +28,7 @@ export function Navbar() {
         return r.top <= 40 && r.bottom > 40;
       });
       setTone(under?.dataset.nav === "light" ? "light" : "dark");
+      setHaze(under?.dataset.navHaze !== "off");
     };
     const schedule = () => {
       if (!raf) raf = requestAnimationFrame(update);
@@ -47,7 +50,7 @@ export function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-[70]">
       {/* haze only over light bands; over the film the bar is fully clear */}
-      <div className={`transition-opacity duration-500 ${dark ? "opacity-0" : "opacity-100"}`}>
+      <div className={`transition-opacity duration-500 ${dark || !haze ? "opacity-0" : "opacity-100"}`}>
         <GradualBlur position="top" height="104px" strength={1} tint="var(--nav-haze)" />
       </div>
       <div className="relative mx-auto grid h-[80px] max-w-[1440px] grid-cols-[1fr_auto_1fr] items-center px-s13 sm:px-s34">
@@ -56,7 +59,7 @@ export function Navbar() {
           target="_blank"
           rel="noopener noreferrer"
           className={`justify-self-start px-s8 py-s13 text-[14px] font-medium tracking-[0.08em] uppercase transition-colors duration-300 ${
-            dark ? "on-dark text-paper hover:text-gold-soft" : "text-forest hover:text-farm"
+            dark ? "on-dark text-paper [text-shadow:0_1px_6px_rgb(0_0_0/0.55)] hover:text-gold-soft" : "text-forest hover:text-farm"
           }`}
         >
           Enquire

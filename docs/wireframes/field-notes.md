@@ -33,13 +33,16 @@ Every section is a one-screen `[data-snap]` page, checked at 360×740 through 14
    The title fades once someone uses the view (after showing ~4 s) and returns after ~6 s idle.
    Touch screens: a clear layer lets swipes scroll the page; "Tap to look around" lifts it, "Done" restores.
 
-2  #around — AROUND THE FARM (paper-deep) — an illustrated map (after tengilemalamala.com/accommodation):
-   the farm in the middle of a drawn landscape (fields, a stream, the reservoir, the road via Kunigal to
-   Bangalore); the ten places as clickable markers, placed by the tour's directions (north = 0, bearing = −pan)
-   and drive times, not to scale; side panel with a legend and the chosen place + "Directions from the farm"
+2  #around — AROUND THE FARM — a full-screen illustrated map (after tengilemalamala.com/accommodation):
+   the farm on its hatched land; the Shimsha river with the Markonahalli reservoir; the NH75 (Hassan west,
+   Bangalore east via Kunigal); fields, groves, hill contours, compass, paper grain. Places are icon markers
+   (temple, hill, dam, loom) placed by the tour's directions (north = 0, bearing = −pan) and drive times, not
+   to scale. Right panel: legend, then a card for the chosen place (farm: photo; places: icon) with directions.
+   Phones: the map scrolls sideways (starting on the farm) above the card.
 
-3  #gallery — PHOTOS FROM THE FARM (paper) — a drifting wall of photos (React Bits DriftWall, flat):
-   hover stops a column and shows the caption; click opens the photo large (4 columns, 2 on phones)
+3  #gallery — PHOTOS FROM THE FARM — the whole screen is a drifting wall of ~45 client photos (React Bits
+   DriftWall, flat; 6/4/3 columns). On arrival the title pops up in the middle and fades after ~1.8 s.
+   Hover stops a column and shows the caption; click opens the photo large.
 
 4  #find-us — HOW TO REACH US (sage) — Google map, address, "Get directions", contact cards
    (call/WhatsApp Deva Bhanu, landline, email, office hours)
