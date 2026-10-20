@@ -50,7 +50,7 @@ export function About() {
               desired, beloved.
             </p>
             <p className="mt-s21 max-w-[28em] text-paper/85">
-              The thing you long for without knowing it. Here the sky is the ceiling and the fields are the floor.
+              A place to slow down, breathe fresh air and enjoy simple farm life with the people you love.
             </p>
           </div>
         }

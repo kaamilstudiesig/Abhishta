@@ -38,8 +38,8 @@ export function Events() {
         <div className="min-w-0">
           <SectionHeader
             tone="dark"
-            title="Celebrations and retreats"
-            lead="Family occasions and yoga retreats on open lawns, with the kitchen cooking what the land gives. Pick one to plan it."
+            title="Parties and celebrations"
+            lead="Celebrate with family and friends on open lawns, with food from our kitchen. Pick an occasion to plan it."
             leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5] short:hidden"
           />
           <ul className="mt-s21 grid gap-[6px] text-[14px] leading-[1.45] text-paper/80 max-lg:hidden sm:text-[15px] lg:mt-s34 squat:mt-s21">

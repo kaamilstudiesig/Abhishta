@@ -27,7 +27,7 @@ The site renders the **Meadow** design (`src/app/meadow.css`). Only Meadow is ch
 - **The living farm** — The living / farm hero · Work the land (bento with the orchard in 360°) · Animals, carts and
   old games (expanding panels) · Gau seva (a 360° of the gaushaale to the screen edge, the six breeds) · From the soil
   to your plate (animated beams, five pillars) · Come for the day, or stay the night.
-- **Group enquiries** — Bring the / whole crew hero · Corporate outings (with a real Google review) · A day on the
+- **Group enquiries** — Bring your / whole group hero · Corporate outings (with a real Google review) · A day on the
   land (nine stops on a rail turning a 360° view to each place) · The living classroom · Celebrations and retreats
   (venues in 360°) · Get a group quote (a three-step form that opens WhatsApp).
 
@@ -92,7 +92,7 @@ components.json        shadcn config with the @react-bits registry (pulls land i
   (short scroll → next section, long → nearest). The "day on the farm" stack moves exactly one card per gesture, and
   the footer scrolls freely. Page Down / Page Up / Space step page by page.
 - **Scrolling, touch:** no Lenis. Native CSS mandatory snapping moves one page per swipe.
-- **Heroes:** "Beloved / Countryside" (homepage) and "Explore / Our nests" drift toward each other as you scroll away.
+- **Heroes:** "Experience / Countryside" (homepage) and "Explore / Our nests" drift toward each other as you scroll away.
   The Our nests hero's jump links are clear glass pills.
 - **Menu:** gold and green layers sweep in, then the links rise one after another, each numbered 01–05.
 - **Groups deck:** manual only. Drag or swipe the front card (left = next, right = previous), or use the pills / arrow keys.
@@ -109,7 +109,7 @@ Tokens in `src/app/meadow.css`: `farm` leaf `#2F6B3A` (actions) · `forest` deep
 
 ## Open items for the client
 - Client rate sheet (2026-10-20) is in `docs/wireframes/our-nests.md`: rooms, capacities, AC, rates and what every stay
-  includes. Still to confirm there: which tour scene is which family room, what "shared occupancy" means, kids under 5.
+  includes, and the client's answers on room matching, under-5s and shared occupancy.
 - Instagram, Facebook and TripAdvisor URLs in `src/lib/site.ts` are best guesses, not taken from the live site. Confirm them.
 - The logo is a small raster (`src/assets/brand/`); swap in a vector when the redraw arrives.
 - The 360° tour has only two of the four cottages (Mayura and Mathura). Gopala and Govinda could be added if

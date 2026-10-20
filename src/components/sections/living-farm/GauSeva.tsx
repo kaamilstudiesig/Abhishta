@@ -41,8 +41,8 @@ export function GauSeva() {
       <div className={`${container} mt-s21 short:mt-s13 lg:mt-0 lg:grid lg:grid-cols-2 lg:gap-s55`}>
         <div className="lg:col-start-2">
           <SectionHeader
-            title="The cows know a calm hand"
-            lead="Six breeds live in the gaushaale. At 4 pm on a day outing, sit with them in the cow cuddling pen and feel the slow breath of an animal at peace."
+            title="Spend time with our cows"
+            lead="Six breeds of cow live in our gaushaale. On a day outing you can sit with them at 4 pm. It is calm and relaxing."
             leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
           />
 

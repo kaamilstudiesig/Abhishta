@@ -29,10 +29,12 @@ The client's own rate sheet replaces what the tour names, Stayflexi and the old 
   meal plans to choose.
 - **Tractor ride** round the village at extra cost (the client no longer mentions bullock carts).
 - Enquiries: call or WhatsApp 99457 94925 (Deva Bhanu).
-- The page matches the family rooms to the tour's scenes by their beds: Gopika = "Family Dormitory" (`#Abhishta_06`),
-  Nandagokula = "Bachelors Dormitory" (`#Abhishta_04`), Kaustubha = "Triple Occupancy" (`#Abhishta_08`, which the tour
-  shows with 4 beds). **Confirm with the client**, and whether "shared occupancy" means the room is shared with other
-  guests or only within your group, and whether kids under 5 stay free.
+- Confirmed by the client (2026-10-20): the family rooms match the tour's scenes by their beds — Gopika = "Family
+  Dormitory" (`#Abhishta_06`), Nandagokula = "Bachelors Dormitory" (`#Abhishta_04`), Kaustubha = "Triple Occupancy"
+  (`#Abhishta_08`; an extra bed is added for the fifth guest). Children under 5 stay free. "Shared occupancy" means
+  other guests who book the same room may share it (not shown on the site yet, by the client's choice).
+- Copy: the client wants simple, everyday words ("Experience countryside living, fresh air, and wonderful times at
+  Abhishta Agri Farm Stay, just 90 kilometres from Bangalore.") rather than poetic lines.
 
 
 ## The stays

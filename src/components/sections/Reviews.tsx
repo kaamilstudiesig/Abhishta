@@ -36,7 +36,7 @@ export function Reviews() {
     <section id="reviews" data-nav="light" data-snap="" className={`overflow-hidden bg-paper ${screen}`}>
       <div className={`${container} grid gap-s21 md:grid-cols-[1.618fr_1fr] md:items-end md:gap-s34`}>
         <SectionHeader
-          title="Families, teams and old friends, in their words"
+          title="What our guests say"
           className="md:max-w-[38em]"
         />
         <div className="flex items-center gap-s13 md:justify-self-end md:gap-s21">

@@ -47,7 +47,7 @@ export function Stays() {
   return (
     <section id="stays" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
       <div className={container}>
-        <SectionHeader title="Rest your head where the fields begin" className="mx-auto text-center lg:max-w-none [&>span]:mx-auto" />
+        <SectionHeader title="Stay with us on the farm" className="mx-auto text-center lg:max-w-none [&>span]:mx-auto" />
 
         {/* phones: a swipeable row with the next stay peeking in; md+: two columns */}
         <ul className="-mx-s21 mt-s34 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] md:mx-0 md:mt-s55 squat:mt-s34 md:grid md:grid-cols-2 md:gap-s34 md:overflow-visible md:px-0 md:pb-0 lg:gap-s89 [&::-webkit-scrollbar]:hidden">

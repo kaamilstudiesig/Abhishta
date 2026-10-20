@@ -43,8 +43,8 @@ export function Preview360() {
       <div className={`${container} grid items-center gap-s34 md:gap-s55 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
         <SectionHeader
           tone="dark"
-          title="See the farm before you set out"
-          lead="Look around the farm from above, the pool and the dining hall, or watch the short film of how Abhishta began."
+          title="See the farm before you visit"
+          lead="Look around the farm, the pool and the dining hall in 360°, or watch a short film about how Abhishta began."
         >
           <button type="button" onClick={() => setVideoOpen(true)} className={buttonClass("ghost-light", "mt-s21 md:mt-s34")}>
             <IconPlay size={16} />

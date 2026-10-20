@@ -30,8 +30,8 @@ export function WorkTheLand() {
     <section id="work-the-land" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
       <div className={container}>
         <SectionHeader
-          title="Work the land"
-          lead="Fruit from the trees, vegetables from the soil, and the fields explained by someone who works them."
+          title="Farm activities"
+          lead="Pick fruit, harvest vegetables and learn about farming from the people who work here."
           leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
         />
 

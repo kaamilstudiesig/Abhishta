@@ -11,7 +11,7 @@ const ROWS = [
   { label: "Sleeps", cottage: "3 or 4", group: "10, or 5 in Kaustubha" },
   { label: "Bathroom", cottage: "Your own, with hot water", group: "Two in the room (one in Kaustubha)" },
   { label: "Cooling", cottage: "Air-conditioned", group: "Fans, no AC" },
-  { label: "A night", cottage: `${RATES.cottageAdult} an adult, ${RATES.cottageChild} a child over 5`, group: `${RATES.familyRoom} a person, taxes included` },
+  { label: "A night", cottage: `${RATES.cottageAdult} an adult, ${RATES.cottageChild} a child over 5, under 5 free`, group: `${RATES.familyRoom} a person, taxes included` },
 ];
 
 /** Nature's comforts — one screen: a quiet comparison of the two kinds of room. */
@@ -20,7 +20,7 @@ export function Comforts() {
     <section id="comforts" data-nav="light" data-snap="" className={`bg-paper-deep ${screen}`}>
       <div className={`${container} grid gap-s34 lg:grid-cols-[1fr_1.618fr] lg:items-center lg:gap-s89`}>
         <SectionHeader
-          title="Nature’s comforts"
+          title="Compare the rooms"
           lead="Every stay includes all four meals, the pool, the farm activities, Wi-Fi and parking. This is where the rooms differ."
           leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
         />

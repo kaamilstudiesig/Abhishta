@@ -8,10 +8,10 @@ import { SectionHeader, container, screen } from "@/components/ui";
 type IconType = ComponentType<{ size?: number; className?: string }>;
 
 const PILLARS: { icon: IconType; title: string; line: string }[] = [
-  { icon: IconLeaf, title: "Naturally grown", line: "Sun, water, time and good soil. No shortcuts." },
+  { icon: IconLeaf, title: "Naturally grown", line: "Grown with sun, water and good soil." },
   { icon: IconCompost, title: "Organic practices", line: "Organic fertiliser and compost feed the land." },
   { icon: IconMilk, title: "Farm-fresh dairy", line: "Milk from the farm’s own cows." },
-  { icon: IconDining, title: "Wholesome meals", line: "Simple food, cooked slowly, home style." },
+  { icon: IconDining, title: "Wholesome meals", line: "Simple, home-style food." },
   { icon: IconBasket, title: "Harvest to plate", line: "Learn how it’s grown, then taste it at the table." },
 ];
 
@@ -48,8 +48,8 @@ export function SoilToTable() {
       <div className={`${container} grid gap-s21 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:gap-x-s89 lg:gap-y-s55 squat:gap-y-s34`}>
         <SectionHeader
           tone="dark"
-          title="From the soil to your plate"
-          lead="The vegetables come from the rows, the fruit from the orchard and the milk from the gaushaale. Honest food with a short journey."
+          title="Farm to table"
+          lead="Our vegetables, fruit and milk come from the farm, so the food on your plate is fresh and simple."
           leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
         />
 

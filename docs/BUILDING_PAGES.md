@@ -129,7 +129,7 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
 
 ## 7. Content, images and copy
 
-- **Copy:** from `docs/SITEMAP.md` and the wireframe's direction; voice is poetic, honest, simple. Sentence case.
+- **Copy:** from `docs/SITEMAP.md` and the wireframe's direction; voice is simple, everyday words people relate to (the client asked for this over poetic lines), and honest. Sentence case.
   Never lorem ipsum. Never invent reviews, prices, ratings, awards or facts — ask, or leave a clearly named TODO.
 - **Photos:** the client's final photography is `public/images/client-photos/` (1600 px). Import it
   (`import x from "@public/images/client-photos/…jpg"`) and render with `next/image` (`fill` + `sizes` +

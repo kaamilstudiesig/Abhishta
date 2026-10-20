@@ -55,7 +55,7 @@ const PANELS: Panel[] = [
     title: "Play the old games",
     icon: IconGames,
     media: <Drawn icon={IconGames} />,
-    body: <p>Lagori, gilli-danda, hopscotch and aluguli mane: easy to learn, hard to stop.</p>,
+    body: <p>Lagori, gilli-danda, hopscotch and aluguli mane: easy to learn and fun for all ages.</p>,
   },
   {
     id: "bonfire",
@@ -73,7 +73,7 @@ const PANELS: Panel[] = [
         />
       </div>
     ),
-    body: <p>Evenings end around the fire in the amphitheatre, with stories and the stars overhead.</p>,
+    body: <p>End the evening around the bonfire, with stories under the stars.</p>,
   },
 ];
 

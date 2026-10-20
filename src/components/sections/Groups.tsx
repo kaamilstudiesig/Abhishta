@@ -15,28 +15,28 @@ type Group = { name: string; body: string; href: string; image: StaticImageData;
 const GROUPS: Group[] = [
   {
     name: "Corporate offsites",
-    body: "Trade the boardroom for a tractor ride and let the fields do the talking.",
+    body: "Take your team out of the office for games, fresh air and good food.",
     href: "/group-enquiries#corporate",
     image: corporate,
     alt: "The open-sided dining hall: long wooden tables on patterned tiles under a timber-and-tile roof",
   },
   {
     name: "School agri-tours",
-    body: "Children learn where food comes from by pulling it from the earth themselves.",
+    body: "Children learn where food comes from by harvesting it themselves.",
     href: "/group-enquiries#schools",
     image: school,
     alt: "A painted elephant statue carrying a golden howdah, standing among palms in the farm garden",
   },
   {
     name: "Day outings",
-    body: "A quick escape from Bangalore. Swim, eat and breathe before heading back.",
+    body: "A short trip from Bangalore. Swim, eat and relax, then head home.",
     href: "/group-enquiries#day-outings",
     image: outing,
     alt: "A shaded veranda with patterned tiles and garden chairs beside a stone path through the lawns",
   },
   {
     name: "Destination events",
-    body: "Weddings, birthdays and reunions under a sky that never feels crowded.",
+    body: "Birthdays, anniversaries and family get-togethers in the open air.",
     href: "/group-enquiries#events",
     image: events,
     alt: "The bonfire circle: a patterned tile floor ringed by tiered seating under the trees",
@@ -57,7 +57,7 @@ export function Groups() {
         <div className="min-w-0">
           <SectionHeader
             tone="dark"
-            title="Bring your people to the open land"
+            title="Bring your group to the farm"
           />
           {/* phones: a swipeable row of pills; md+: a ruled list */}
           <ul className="-mx-s21 mt-s21 flex gap-s8 overflow-x-auto px-s21 pb-[2px] [scrollbar-width:none] md:mx-0 md:mt-s21 lg:mt-s55 squat:mt-s34 md:grid md:gap-0 md:overflow-visible md:border-t md:border-paper/15 md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">

@@ -13,8 +13,8 @@ import { BOOKING_URL } from "@/lib/site";
 
 /**
  * Full-screen hero, editorial and quiet: the farm's own film under one flat
- * shade, an oversized thin serif headline in two offset lines ("Beloved /
- * Countryside" — what Abhishta means), one serif subline and one booking CTA.
+ * shade, an oversized thin serif headline in two offset lines ("Experience /
+ * Countryside"), one serif subline and one booking CTA.
  * They enter in sequence as the intro veil lifts (headline lines through a clip
  * mask → subline → CTA, ~1.2s).
  */
@@ -116,7 +116,7 @@ export function Hero() {
         <h1 className="hero-display text-[11.6vw] leading-[1] tracking-[0.005em] uppercase md:text-[clamp(64px,9.2vw,148px)] md:leading-[0.95]">
           {/* the two lines drift toward each other as you scroll away from the hero */}
           <span data-hero-line="" className="block will-change-transform">
-            <SplitText as="span" trigger="intro" by="lines" delay={0.1} text="Beloved" className="block" />
+            <SplitText as="span" trigger="intro" by="lines" delay={0.1} text="Experience" className="block" />
           </span>
           <span data-hero-line="" className="block text-right will-change-transform md:pr-[4vw]">
             <SplitText as="span" trigger="intro" by="lines" delay={0.25} text="Countryside" className="block" />
@@ -125,7 +125,7 @@ export function Hero() {
         {/* phones: indented under the second line, close to the headline (after the reference) */}
         <div className="mt-s34 ml-[24%] md:mt-s55 md:mr-[calc(4vw+8%)] md:ml-0 md:w-[min(26em,40%)] md:self-end">
           <p data-hero-reveal="" className="font-display text-[clamp(17px,1.4vw,20px)] leading-[1.3] text-paper/90 md:leading-[1.45]">
-            Escape the urban chaos and embrace serenity at Abhishta Agri Farm Stay, ninety kilometres from Bangalore.
+            Fresh air and wonderful times at Abhishta Agri Farm Stay, just 90 kilometres from Bangalore.
           </p>
           <div data-hero-reveal="" className="mt-s21 flex items-stretch gap-[6px] md:mt-s34">
             <a

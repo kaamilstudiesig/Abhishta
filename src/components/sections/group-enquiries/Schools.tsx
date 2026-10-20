@@ -25,8 +25,8 @@ export function Schools() {
       <div className={`${container} grid grid-cols-[minmax(0,1fr)] gap-s21 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-s89`}>
         <div className="min-w-0">
           <SectionHeader
-            title="The living classroom"
-            lead="School and college groups learn where food comes from with their own hands, on a day outing or a night in the family rooms."
+            title="School and college visits"
+            lead="Students learn where food comes from by doing it themselves, on a day trip or an overnight stay."
             leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
           />
           <ul className="mt-s21 grid grid-cols-2 gap-x-s13 gap-y-s13 sm:mt-s34 sm:gap-x-s34 sm:gap-y-s21 squat:mt-s21 squat:gap-y-s13">

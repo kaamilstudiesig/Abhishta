@@ -55,7 +55,7 @@ Every section is a one-screen `[data-snap]` page, checked at 360×740 through 14
 ┌─────────────────────────────────────────────────────────────────────┐
 │ 1  #top — HERO  (data-nav=dark) photo: group-event.jpg (the          │
 │    amphitheatre's tiled tiers on the lawn)                           │
-│    "Bring the / whole crew" — drifts as you scroll away              │
+│    "Bring your / whole group" — drifts as you scroll                 │
 │    Corporate teams, school groups, day outings and family            │
 │    celebrations, on a working farm 90 km from Bangalore.             │
 │    [Get a group quote →]  (to #group-quote)                          │

@@ -25,7 +25,7 @@ const MOMENTS: Moment[] = [
   {
     time: "Dawn",
     title: "Walk and cuddle",
-    body: "Take a nature walk on the red earth. Spend time with the cows at Gau Seva and feel the day begin.",
+    body: "Start the day with a nature walk. Then spend some time with the cows at the gaushaale.",
     activities: ["Nature walks", "Gau Seva cow cuddling"],
     icon: IconDawn,
     image: dawn,
@@ -35,7 +35,7 @@ const MOMENTS: Moment[] = [
   {
     time: "Morning",
     title: "Pick and harvest",
-    body: "Join the agri-tours through the orchards. Pick fruit and pull vegetables straight from the living field.",
+    body: "Join a guided farm tour. Pick fresh fruit and pull vegetables straight from the field.",
     activities: ["Agri-tours", "Fruit picking", "Harvesting"],
     icon: IconMorning,
     image: morning,
@@ -45,7 +45,7 @@ const MOMENTS: Moment[] = [
   {
     time: "Midday",
     title: "Eat and swim",
-    body: "Sit down to a farm-to-table meal made from what the land gave that morning. Then cool off in the pool.",
+    body: "Sit down to a fresh meal made with food from the farm. Then cool off in the pool.",
     activities: ["Farm-to-table dining", "Pool"],
     icon: IconMidday,
     image: midday,
@@ -54,8 +54,8 @@ const MOMENTS: Moment[] = [
   },
   {
     time: "Dusk",
-    title: "Play and burn",
-    body: "Play lagori and gilli-danda or hopscotch in the fading light. End the day around a bonfire.",
+    title: "Play and relax",
+    body: "Play lagori, gilli-danda or hopscotch in the evening. End the day around a bonfire.",
     activities: ["Lagori", "Gilli-danda", "Hopscotch", "Bonfire"],
     icon: IconDusk,
     image: dusk,
@@ -77,7 +77,7 @@ export function DayOnFarm() {
       header={
         <div className={container}>
           <SectionHeader
-            title="A day on the farm runs long"
+            title="A full day on the farm"
             className="[&>span]:mb-s13 md:[&>span]:mb-s21"
             titleClassName="!text-[clamp(24px,3.4vw,45px)]"
           />

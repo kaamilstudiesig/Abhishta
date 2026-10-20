@@ -14,7 +14,7 @@ const SPACES: { name: string; detail: string; tour: Tour }[] = [
   { name: "Traditional bath", detail: "Hande ole snana, a wood-fired copper pot", tour: { node: "Abhishta_15", pan: -6, tilt: -8 } },
   { name: "Games and sports", detail: "Cricket, volleyball, carrom, lagori", tour: { node: "Abhishta_10", pan: -174, tilt: -5 } },
   { name: "Amphitheatre and campfire", detail: "Bonfire and barbecue evenings", tour: { node: "Amphitheatre", pan: 12, tilt: -5 } },
-  { name: "Koi pond", detail: "A slow minute by the water", tour: { node: "Abhishta_11", pan: -33, tilt: -10 } },
+  { name: "Koi pond", detail: "A quiet spot by the water", tour: { node: "Abhishta_11", pan: -33, tilt: -10 } },
 ];
 
 function FarmLink({ className = "", brief = false }: { className?: string; brief?: boolean }) {
@@ -84,7 +84,7 @@ export function SharedSpaces() {
         <div className="min-w-0">
           <SectionHeader
             tone="dark"
-            title="Beyond your door"
+            title="Shared spaces"
             lead="The spaces every guest shares. Drag a view to look around."
             leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
           />

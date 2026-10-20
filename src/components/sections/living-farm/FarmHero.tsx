@@ -10,13 +10,13 @@ export function FarmHero() {
       alt="A stone-paved path running through the farm between palms, cypress trees and flowering shrubs"
       imagePosition="object-[50%_60%]"
       lines={["The living", "farm"]}
-      lead="Rediscover joy in the simplicity of rural life: pick, feed, walk, and sit with the cows on a working farm."
+      lead="Enjoy simple farm life: pick fruit, feed the animals, go for a walk and spend time with the cows."
       cta={{ label: "Plan a farm day", href: DAY_OUTING_ENQUIRY, external: true }}
       jumps={[
-        { label: "Work the land", href: "#work-the-land" },
+        { label: "Farm activities", href: "#work-the-land" },
         { label: "The animals", href: "#animals" },
         { label: "Gau seva", href: "#gau-seva" },
-        { label: "Soil to table", href: "#soil-to-table" },
+        { label: "Farm to table", href: "#soil-to-table" },
         { label: "Plan your visit", href: "#plan-your-visit" },
       ]}
     />

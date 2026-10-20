@@ -34,7 +34,7 @@ export function DayOutings() {
         <div className="min-w-0">
           <SectionHeader
             tone="dark"
-            title="A day on the land, well spent"
+            title="A day outing, hour by hour"
             lead="8 am to 6 pm, with breakfast, lunch and high tea. Pick a time to see where it happens."
             leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
           />

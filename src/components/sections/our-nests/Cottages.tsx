@@ -72,7 +72,7 @@ export function Cottages() {
               Book a cottage
             </a>
             <span className="text-[14px] text-ink-muted">
-              {RATES.cottageAdult} an adult, {RATES.cottageChild} a child over 5, a night with all meals.
+              {RATES.cottageAdult} an adult, {RATES.cottageChild} a child over 5, all meals included. Children under 5 stay free.
             </span>
           </div>
         </div>
