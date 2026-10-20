@@ -23,6 +23,7 @@ html[data-ui="meadow"] {
   --color-gold: #c3d68a; /* new-shoot lime, for dark bands */
   --color-gold-soft: #e4ecd0;
   --color-line: #dbe3d1;
+  --color-water: #5d9ca3;
   --font-display: var(--font-bricolage), system-ui, sans-serif;
   --font-sans: var(--font-bricolage), system-ui, sans-serif;
   --radius-card: 28px;

@@ -25,6 +25,7 @@
   --color-gold-soft: #efe7d6;
   --color-clay: #8c6a4f;
   --color-line: #e8e2d4; /* stone */
+  --color-water: #6a9fa3; /* rivers and reservoirs on maps */
   --color-alert: #a3402b; /* form errors (clay red, ~8:1 on field white) */
 
   --font-display: var(--font-fraunces), Georgia, serif;

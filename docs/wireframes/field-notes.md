@@ -30,11 +30,16 @@ Every section is a one-screen `[data-snap]` page, checked at 360×740 through 14
    a live 360° view fills the screen; title "See the whole farm in 360°" and a line sit over it;
    place pills: From above · Entrance · Cottage · Family room · Orchard · Pool · Dining hall ·
    Gaushaale · Campfire area — each turns the same view to that place. Drag to look around.
+   The title fades once someone uses the view (after showing ~4 s) and returns after ~6 s idle.
+   Touch screens: a clear layer lets swipes scroll the page; "Tap to look around" lifts it, "Done" restores.
 
-2  #around — AROUND THE FARM (forest)
-   ten nearby places with drive times; picking one turns the bird's-eye 360° view to face it
+2  #around — AROUND THE FARM (paper-deep) — an illustrated map (after tengilemalamala.com/accommodation):
+   the farm in the middle of a drawn landscape (fields, a stream, the reservoir, the road via Kunigal to
+   Bangalore); the ten places as clickable markers, placed by the tour's directions (north = 0, bearing = −pan)
+   and drive times, not to scale; side panel with a legend and the chosen place + "Directions from the farm"
 
-3  #gallery — PHOTOS FROM THE FARM (paper) — a bento of eight client photos (swipe row on phones)
+3  #gallery — PHOTOS FROM THE FARM (paper) — a drifting wall of photos (React Bits DriftWall, flat):
+   hover stops a column and shows the caption; click opens the photo large (4 columns, 2 on phones)
 
 4  #find-us — HOW TO REACH US (sage) — Google map, address, "Get directions", contact cards
    (call/WhatsApp Deva Bhanu, landline, email, office hours)

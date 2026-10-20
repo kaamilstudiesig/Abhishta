@@ -18,19 +18,33 @@ export const ATLAS: { name: string; tour: Tour }[] = [
   { name: "Campfire area", tour: { node: "Amphitheatre", pan: 12, tilt: -5 } },
 ];
 
-/** Nearby places from the tour's bird's-eye scene: drive time and the direction (pan) each lies in. */
-export const NEARBY: { name: string; kind: string; minutes: number; pan: number }[] = [
-  { name: "Rangaswamy Betta", kind: "Hill walk", minutes: 27, pan: -123.6 },
-  { name: "Sidlingeshwara Yoga Vana Betta", kind: "Hill walk", minutes: 29, pan: -150.5 },
-  { name: "Markonahalli Dam", kind: "Dam", minutes: 31, pan: -181.3 },
-  { name: "Kalur weaving and sarees", kind: "Handloom", minutes: 31, pan: -25.2 },
-  { name: "Yediyur Siddalingeshwara Temple", kind: "Temple", minutes: 32, pan: -212.6 },
-  { name: "Hadinkal Anjaneya Temple", kind: "Temple", minutes: 36, pan: -332.7 },
-  { name: "Panchamukhi Anjaneya Temple", kind: "Temple", minutes: 39, pan: -91.9 },
-  { name: "Adichunchanagiri Mutt", kind: "Temple", minutes: 45, pan: -287.1 },
-  { name: "Shanimahatma Temple", kind: "Temple", minutes: 50, pan: -60.2 },
-  { name: "Shravanabelagola", kind: "Temple town", minutes: 55, pan: -245.9 },
+/** The farm's position, from the tour (BirdsEyeView01 latitude/longitude). */
+export const FARM = { lat: 13.084506, lng: 76.924179 };
+
+export type PlaceKind = "hill" | "temple" | "water" | "craft";
+
+/**
+ * Nearby places from the tour's bird's-eye scene: drive time, and the direction each lies in. The scene's north is 0,
+ * so the compass bearing is the hotspot's pan turned clockwise (−pan). The map is drawn from these, not to scale.
+ */
+export const NEARBY: { name: string; kind: PlaceKind; label: string; minutes: number; bearing: number }[] = [
+  { name: "Rangaswamy Betta", kind: "hill", label: "Hill walk", minutes: 27, bearing: 123.6 },
+  { name: "Sidlingeshwara Yoga Vana Betta", kind: "hill", label: "Hill walk", minutes: 29, bearing: 150.5 },
+  { name: "Markonahalli Dam", kind: "water", label: "Dam and reservoir", minutes: 31, bearing: 181.3 },
+  { name: "Kalur weaving", kind: "craft", label: "Handloom sarees", minutes: 31, bearing: 25.2 },
+  { name: "Yediyur Siddalingeshwara Temple", kind: "temple", label: "Temple", minutes: 32, bearing: 212.6 },
+  { name: "Hadinkal Anjaneya Temple", kind: "temple", label: "Temple", minutes: 36, bearing: 332.7 },
+  { name: "Panchamukhi Anjaneya Temple", kind: "temple", label: "Temple", minutes: 39, bearing: 91.9 },
+  { name: "Adichunchanagiri Mutt", kind: "temple", label: "Temple and mutt", minutes: 45, bearing: 287.1 },
+  { name: "Shanimahatma Temple", kind: "temple", label: "Temple", minutes: 50, bearing: 60.2 },
+  { name: "Shravanabelagola", kind: "temple", label: "Temple town", minutes: 55, bearing: 245.9 },
 ];
+
+/** Plain-words compass direction for a bearing. */
+export function compass(bearing: number) {
+  const names = ["north", "north-east", "east", "south-east", "south", "south-west", "west", "north-west"];
+  return names[Math.round((((bearing % 360) + 360) % 360) / 45) % 8];
+}
 
 /** What every stay includes (client's rate sheet, 2026-10-20). */
 export const INCLUDES = [
