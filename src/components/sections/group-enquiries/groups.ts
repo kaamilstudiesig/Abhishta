@@ -32,12 +32,12 @@ export const DAY_STOPS: { time: string; what: string; place: string; tour: Tour 
  * with sample event setups added by AI (client-approved; originals and prompts in ../AI edit/), so the page labels them
  * as sample setups. Swap in photos of real events when there are some.
  */
-export const OCCASIONS: { name: string; detail: string; photo: StaticImageData }[] = [
+export const OCCASIONS: { name: string; detail: string; photo: StaticImageData; focus?: string }[] = [
   { name: "Birthdays", detail: "Kids’ parties to family and friends", photo: birthday },
-  { name: "Baby showers", detail: "Traditional or modern", photo: babyShower },
+  { name: "Baby showers", detail: "Traditional or modern", photo: babyShower, focus: "50% 58%" },
   { name: "Pre-wedding and mehendi", detail: "In the open air or indoors", photo: mehendi },
-  { name: "Anniversaries", detail: "Quiet dinners to family get-togethers", photo: anniversary },
-  { name: "Kitty parties", detail: "Games and an afternoon together", photo: kittyParty },
+  { name: "Anniversaries", detail: "Quiet dinners to family get-togethers", photo: anniversary, focus: "50% 76%" },
+  { name: "Kitty parties", detail: "Games and an afternoon together", photo: kittyParty, focus: "50% 66%" },
   { name: "Shastipoorthi", detail: "The 60th-birthday ritual", photo: shastipoorthi },
 ];
 

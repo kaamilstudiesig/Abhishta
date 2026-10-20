@@ -16,7 +16,7 @@ export type FlowingMenuItem = {
   /** runs on click, before the link is followed (e.g. to fill in a form the link leads to) */
   onSelect?: () => void;
   /** a larger photo: floats beside the pointer on hover, and pops up for a few seconds on a tap */
-  preview?: { src: StaticImageData; alt: string };
+  preview?: { src: StaticImageData; alt: string; /** CSS object-position, to keep the subject in a cropped frame */ focus?: string };
   /** the label of the popup's button on touch screens (it follows the row's link) */
   action?: string;
 };
@@ -95,7 +95,7 @@ export function FlowingMenu({ items, label, tone = "light", className = "" }: { 
               className={`overflow-hidden rounded-card shadow-float ring-4 ring-paper transition-opacity duration-200 ${n === hovered ? "relative opacity-100" : "absolute inset-0 opacity-0"}`}
             >
               <div className="relative aspect-[4/3]">
-                <Image src={it.preview.src} alt="" fill sizes="320px" className="object-cover" />
+                <Image src={it.preview.src} alt="" fill sizes="320px" className="object-cover" style={{ objectPosition: it.preview.focus }} />
               </div>
             </div>
           ) : null,
@@ -107,7 +107,7 @@ export function FlowingMenu({ items, label, tone = "light", className = "" }: { 
         <div className="absolute inset-x-0 top-1/2 z-30 -translate-y-1/2 px-s8" role="dialog" aria-label={poppedItem.label}>
           <div className="animate-[pop-in_380ms_var(--ease-earth)] overflow-hidden rounded-card bg-paper text-forest shadow-float ring-4 ring-paper motion-reduce:animate-none">
             <div className="relative aspect-[16/10]">
-              <Image src={poppedItem.preview.src} alt={poppedItem.preview.alt} fill sizes="92vw" className="object-cover" />
+              <Image src={poppedItem.preview.src} alt={poppedItem.preview.alt} fill sizes="92vw" className="object-cover" style={{ objectPosition: poppedItem.preview.focus }} />
               <button
                 type="button"
                 onClick={() => setPopped(null)}
