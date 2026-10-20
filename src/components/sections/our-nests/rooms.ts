@@ -1,3 +1,8 @@
+import type { StaticImageData } from "next/image";
+import gopalaRoom from "@public/images/client-photos/cottage-gopala-room.jpg";
+import gopalaSitout from "@public/images/client-photos/cottage-gopala-sitout.jpg";
+import govindaRoom from "@public/images/client-photos/cottage-govinda-room.jpg";
+import govindaSitout from "@public/images/client-photos/cottage-govinda-sitout.jpg";
 import type { Tour } from "@/lib/tour";
 
 /**
@@ -8,12 +13,20 @@ import type { Tour } from "@/lib/tour";
  * family dormitory, bachelors dormitory and triple occupancy). Courtyard House is the owners' residence and isn't listed.
  */
 
-/** The four cottages share one layout. The tour has two of them, Mayura and Mathura, and Mayura's washroom. */
+/**
+ * The cottage slideshow: the 360° views first (the tour has Mayura, Mathura and Mayura's washroom), then the client's
+ * photos of Gopala and Govinda, which have no 360° view. 360° views always win over photos.
+ */
 export const COTTAGE_NAMES = ["Mayura", "Mathura", "Gopala", "Govinda"];
-export const COTTAGE_VIEWS: { name: string; title: string; tour: Tour }[] = [
+export type CottageSlide = { name: string; title: string } & ({ tour: Tour; photo?: never } | { photo: StaticImageData; tour?: never });
+export const COTTAGE_VIEWS: CottageSlide[] = [
   { name: "Mayura", title: "360° view inside Mayura cottage", tour: { node: "Abhishta_27", pan: -12, tilt: -16 } },
   { name: "Mathura", title: "360° view inside Mathura cottage", tour: { node: "Abhishta_25", pan: 68, tilt: -12 } },
   { name: "Mayura’s washroom", title: "360° view of Mayura cottage’s washroom", tour: { node: "Abhishta_28", pan: 118, tilt: -10 } },
+  { name: "Gopala", title: "Inside Gopala cottage: a double bed with green cushions, a wardrobe and a tiled timber roof", photo: gopalaRoom },
+  { name: "Gopala’s sit-out", title: "Gopala cottage’s sit-out: two chairs and a table on a patterned tile floor, with a garden in front", photo: gopalaSitout },
+  { name: "Govinda", title: "Inside Govinda cottage: a double bed under a painting of Krishna, a wardrobe and a tiled timber roof", photo: govindaRoom },
+  { name: "Govinda’s sit-out", title: "Govinda cottage’s sit-out: chairs on a tiled veranda by carved wooden pillars", photo: govindaSitout },
 ];
 
 /** Rates per person for a night, all meals included (client's rate sheet). */

@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Image, { type StaticImageData } from "next/image";
 import corporate from "@public/images/client-photos/group-corporate.jpg";
-import school from "@public/images/client-photos/group-school.jpg";
+import school from "@public/images/client-photos/group-students-amphitheatre.jpg";
 import outing from "@public/images/client-photos/group-outing.jpg";
-import events from "@public/images/client-photos/about-firepit.jpg";
+import events from "@public/images/client-photos/event-performance.jpg";
 import { CardSwap } from "@/components/bits/CardSwap";
 import { IconArrow } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
@@ -25,7 +25,7 @@ const GROUPS: Group[] = [
     body: "Children learn where food comes from by harvesting it themselves.",
     href: "/group-enquiries#schools",
     image: school,
-    alt: "A painted elephant statue carrying a golden howdah, standing among palms in the farm garden",
+    alt: "Students with sketchbooks sitting on the tiled tiers of the amphitheatre, a brass lamp on the stage in front",
   },
   {
     name: "Day outings",
@@ -39,7 +39,7 @@ const GROUPS: Group[] = [
     body: "Birthdays, anniversaries and family get-togethers in the open air.",
     href: "/group-enquiries#events",
     image: events,
-    alt: "The bonfire circle: a patterned tile floor ringed by tiered seating under the trees",
+    alt: "Two dancers in Kathakali costume and two drummers performing on the lawn",
   },
 ];
 

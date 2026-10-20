@@ -1,8 +1,6 @@
 "use client";
 
 import type { ComponentType } from "react";
-import Image from "next/image";
-import firepit from "@public/images/client-photos/about-firepit.jpg";
 import { ExpandingPanels, type Panel } from "@/components/bits/ExpandingPanels";
 import { TourViewer } from "@/components/TourViewer";
 import { IconCampfire, IconGames, IconGoat, IconHen, IconTractor } from "@/components/icons";
@@ -61,18 +59,7 @@ const PANELS: Panel[] = [
     id: "bonfire",
     title: "Gather by the bonfire",
     icon: IconCampfire,
-    media: (
-      <div className="relative h-full overflow-hidden rounded-[calc(var(--radius-card)-8px)]">
-        <Image
-          src={firepit}
-          alt="The bonfire circle: a patterned tile floor ringed by tiered seating under the trees"
-          fill
-          sizes="(min-width: 1024px) 60vw, 100vw"
-          placeholder="blur"
-          className="object-cover"
-        />
-      </div>
-    ),
+    media: <TourViewer tour={{ node: "Amphitheatre", pan: 12, tilt: -5 }} title="360° view of the amphitheatre and campfire area" caption="The campfire area" tone="dark" className="h-full" />,
     body: <p>End the evening around the bonfire, with stories under the stars.</p>,
   },
 ];

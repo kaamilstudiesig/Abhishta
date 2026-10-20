@@ -33,6 +33,9 @@ The client's own rate sheet replaces what the tour names, Stayflexi and the old 
   Dormitory" (`#Abhishta_06`), Nandagokula = "Bachelors Dormitory" (`#Abhishta_04`), Kaustubha = "Triple Occupancy"
   (`#Abhishta_08`; an extra bed is added for the fifth guest). Children under 5 stay free. "Shared occupancy" means
   other guests who book the same room may share it (not shown on the site yet, by the client's choice).
+- Photos (client's "separated images" folder, 2026-10-20): 360° views always win; photos only where there's no
+  view. So Gopala and Govinda (no 360°) appear as photo slides in the cottage slideshow
+  (`cottage-gopala-room/-sitout.jpg`, `cottage-govinda-room/-sitout.jpg`); the family rooms keep their 360° views.
 - Copy: the client wants simple, everyday words ("Experience countryside living, fresh air, and wonderful times at
   Abhishta Agri Farm Stay, just 90 kilometres from Bangalore.") rather than poetic lines.
 

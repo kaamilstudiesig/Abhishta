@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { IconCheck } from "@/components/icons";
+import Image from "next/image";
+import { IconCheck, IconChevronLeft, IconChevronRight } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL } from "@/lib/site";
 import { Pillows } from "./RoomParts";
@@ -14,14 +15,21 @@ const FACTS = ["Own washroom", "Hot water", "Air-conditioned", "Kettle, wardrobe
 const names = `${COTTAGE_NAMES.slice(0, -1).join(", ")} and ${COTTAGE_NAMES.at(-1)}`;
 
 /**
- * #cottages — one screen: a 360° slideshow (Mayura, Mathura and Mayura's
- * washroom — the cottages the tour has) beside what every cottage has. The
+ * #cottages — one screen: a slideshow of the cottages — 360° views of Mayura,
+ * Mathura and Mayura's washroom, then photos of Gopala and Govinda (no 360°
+ * view there) — beside what every cottage has. The
  * four names are said once, in the lead. Phones: heading, view, facts.
  */
 export function Cottages() {
   const [view, setView] = useState(0);
   const count = COTTAGE_VIEWS.length;
   const current = COTTAGE_VIEWS[view];
+  // the 360° player stays mounted on the nearest 360° slide before this one while a photo shows over it
+  const tour = COTTAGE_VIEWS.slice(0, view + 1).findLast((s) => s.tour)?.tour ?? COTTAGE_VIEWS[0].tour!;
+  const prev = () => setView((view - 1 + count) % count);
+  const next = () => setView((view + 1) % count);
+  const control =
+    "z-10 grid size-[40px] place-items-center rounded-full bg-ink/45 text-paper backdrop-blur-[2px] transition-colors duration-300 hover:bg-ink/70";
 
   return (
     <section id="cottages" data-nav="light" data-snap="" className={`bg-paper-deep ${screen}`}>
@@ -35,19 +43,33 @@ export function Cottages() {
           leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
         />
 
-        <div className="min-w-0 lg:[grid-area:frame]">
+        <div className="relative min-w-0 lg:[grid-area:frame]">
+          {current.photo ? (
+            <div role="group" aria-label={current.title} className="absolute inset-x-0 top-0 z-20 h-[max(280px,calc(100svh-438px))] overflow-hidden rounded-card bg-card ring-1 ring-line sm:h-[clamp(350px,36svh,460px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]">
+              <Image src={current.photo} alt={current.title} fill sizes="(min-width: 1024px) 55vw, 100vw" placeholder="blur" className="object-cover" />
+              <span className="absolute bottom-s13 left-s13 rounded-btn bg-ink/45 px-s13 py-[6px] text-[13px] font-medium text-paper backdrop-blur-[2px]">
+                {`${current.name} · ${view + 1} of ${count}`}
+              </span>
+              <button type="button" onClick={prev} aria-label="Previous cottage view" className={`absolute top-1/2 left-s13 -translate-y-1/2 ${control}`}>
+                <IconChevronLeft size={20} />
+              </button>
+              <button type="button" onClick={next} aria-label="Next cottage view" className={`absolute top-1/2 right-s13 -translate-y-1/2 ${control}`}>
+                <IconChevronRight size={20} />
+              </button>
+            </div>
+          ) : null}
           <TourViewer
-            tour={current.tour}
-            title={current.title}
+            tour={tour}
+            title={current.tour ? current.title : "360° view of the cottages"}
             caption={`${current.name} · ${view + 1} of ${count}`}
             tone="light"
-            onPrev={() => setView((view - 1 + count) % count)}
-            onNext={() => setView((view + 1) % count)}
+            onPrev={prev}
+            onNext={next}
             prevLabel="Previous cottage view"
             nextLabel="Next cottage view"
             className="h-[max(280px,calc(100svh-438px))] sm:h-[clamp(350px,36svh,460px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]"
           />
-          <TourLink tour={current.tour} tone="light" className="mt-s13 max-sm:hidden short:hidden" />
+          <TourLink tour={tour} tone="light" className="mt-s13 max-sm:hidden short:hidden" />
         </div>
 
         <div className="lg:mt-s34 lg:[grid-area:details]">

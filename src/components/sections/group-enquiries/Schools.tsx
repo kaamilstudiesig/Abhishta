@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 import Image from "next/image";
-import dorm from "@public/images/client-photos/stay-dorm-2.jpg";
+import students from "@public/images/client-photos/group-students-amphitheatre.jpg";
 import { IconCompost, IconFields, IconGames, IconGoat, IconPool, IconSprout } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 
@@ -15,8 +15,8 @@ const LESSONS: { icon: ComponentType<{ size?: number; className?: string }>; tit
 
 /**
  * #schools — "The living classroom", on the sage band: what students do, who it
- * suits, and (large screens) Nandagokula, the family room where a class can
- * sleep — single beds for ten and two bathrooms. Phones: the lessons as a two-column
+ * suits, and (large screens) a student group at the amphitheatre, with where
+ * a class can sleep in the caption. Phones: the lessons as a two-column
  * list and the suits line; the dorm photo gives way to keep one screen.
  */
 export function Schools() {
@@ -46,8 +46,8 @@ export function Schools() {
         <figure className="max-lg:hidden">
           <div className="relative h-[clamp(300px,calc(100svh-330px),540px)] overflow-hidden rounded-card">
             <Image
-              src={dorm}
-              alt="Nandagokula, a family room: rows of single beds with pink bases under a tiled timber roof, two doors and a mirror at the far end"
+              src={students}
+              alt="Students with sketchbooks sitting on the tiled tiers of the amphitheatre, a brass lamp on the stage in front"
               fill
               sizes="(min-width: 1024px) 40vw, 100vw"
               placeholder="blur"

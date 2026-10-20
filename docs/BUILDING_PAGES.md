@@ -136,6 +136,9 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
   `placeholder="blur"`, or width/height). Every image gets real alt text describing what's actually in it — look
   at the photo first. Not yet used on the homepage (good candidates for inner pages): `about-gate`, `group-event`,
   `stay-cottage-2`, `stay-cottage-3`, `stay-cottage-exterior`, `stay-cottage-sitout`, `stay-dorm-2`.
+- **360° views beat photos.** Where the tour has a view of a thing, show the view; use a photo only where there's
+  none (the client's rule). Originals of the client's newer photos are in `../separated images/` (by room, plus
+  "Others"); resize to 1600 px before adding them to `public/images/client-photos/`.
 - If a page needs a photo that doesn't exist, use an existing client photo or a neutral placeholder block and say
   which shot is missing — don't use stock imagery of other places presented as Abhishta.
 - **Booking:** every booking CTA goes to `BOOKING_URL`; enquiries to `WHATSAPP_URL` (prefilled) or `CONTACT.email`.
