@@ -3,13 +3,13 @@ import { SiteShell } from "@/components/SiteShell";
 import { NestsHero } from "@/components/sections/our-nests/NestsHero";
 import { ChooseNest } from "@/components/sections/our-nests/ChooseNest";
 import { Cottages } from "@/components/sections/our-nests/Cottages";
-import { Nandagokula } from "@/components/sections/our-nests/Nandagokula";
+import { FamilyRooms } from "@/components/sections/our-nests/FamilyRooms";
 import { Comforts } from "@/components/sections/our-nests/Comforts";
 import { SharedSpaces } from "@/components/sections/our-nests/SharedSpaces";
 import { PlanStay } from "@/components/sections/our-nests/PlanStay";
 
 const description =
-  "Four air-conditioned cottages that sleep up to 5, and the Nandagokula family, bachelors and triple rooms for groups of up to 24, on a working farm 90 km from Bangalore. See each room in 360°.";
+  "Four air-conditioned cottages for up to 4, and the Gopika, Nandagokula and Kaustubha family rooms for groups of up to 10, all meals included, on a working farm 90 km from Bangalore. See each room in 360°.";
 
 export const metadata: Metadata = {
   title: "Our nests — cottages and group rooms | Abhishta Agri Farm Stay",
@@ -34,7 +34,7 @@ export default function OurNests() {
       <NestsHero />
       <ChooseNest />
       <Cottages />
-      <Nandagokula />
+      <FamilyRooms />
       <Comforts />
       <SharedSpaces />
       <PlanStay />

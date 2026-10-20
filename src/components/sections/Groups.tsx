@@ -15,7 +15,7 @@ type Group = { name: string; body: string; href: string; image: StaticImageData;
 const GROUPS: Group[] = [
   {
     name: "Corporate offsites",
-    body: "Trade the boardroom for the bullock cart and let the fields do the talking.",
+    body: "Trade the boardroom for a tractor ride and let the fields do the talking.",
     href: "/group-enquiries#corporate",
     image: corporate,
     alt: "The open-sided dining hall: long wooden tables on patterned tiles under a timber-and-tile roof",

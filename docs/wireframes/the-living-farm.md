@@ -25,7 +25,7 @@ copy direction follow `docs/SITEMAP.md` (THE LIVING FARM). Sources, all read 202
 | Nature walks | Guided or self-guided paths through tree-lined, grassy areas |
 | Bonfire evenings | Stories and time together around a fire under the stars |
 | Traditional games | Lagori, gilli-danda and hopscotch (Day Outing page adds aluguli mane) |
-| Bullock cart rides | A ride on a traditional bullock cart (Our Roots) |
+| Tractor rides | "Explore village life with a tractor ride", at extra cost (client, 2026-10-20; replaces the old site's bullock cart) |
 
 School groups also get "Plant a sapling" and live sessions with the farm animals (School & Corporate page).
 
@@ -97,7 +97,7 @@ the jump pills use the ids below.
 │ 3  #animals — THE ANIMALS AND FARM PLAY  (forest band)               │
 │    five expanding panels; the open one shows its view and its line:  │
 │    Feed the goats and sheep (360° shelter, breeds) · Chickens, ducks │
-│    and rabbits (360° yard) · Bullock cart rides · The old games      │
+│    and rabbits (360° yard) · Tractor rides · The old games      │
 │    (lagori, gilli-danda, hopscotch, aluguli mane) · Bonfire evenings │
 │    (about-firepit.jpg)                                               │
 │    phones: pills, one panel under them                               │
@@ -151,13 +151,13 @@ the jump pills use the ids below.
 | Chickens and ducks | 360° `#Abhishta_23` (pan −44 chickens, −139 ducks) |
 | Bonfire | `about-firepit.jpg` |
 | Gau seva | 360° `#Abhishta_20` (Gir), `#Abhishta_21` (Hallikar), `#Abhishta_22`, `#AerialView_03` (pen) |
-| Bullock cart, games, vegetables, food | **no photo yet** — line icons for now |
+| Tractor, games, vegetables, food | **no photo yet** — line icons for now |
 
 ## To confirm with the client
 
-- Photos of the animals, the vegetable rows, the bullock cart, children playing lagori, and food on the table.
+- Photos of the animals, the vegetable rows, the tractor ride, children playing lagori, and food on the table.
 - Which fruits grow in the orchard (the 360° shows what look like mango trees) and in which months.
-- Whether bullock cart rides, fruit picking and vegetable harvesting run every day or by season or on request.
+- Whether tractor rides, fruit picking and vegetable harvesting run every day or by season or on request.
 - Meat and eggs: the official site's "From Farm to Table" mentions both, but day-outing meals are vegetarian. The
   page names vegetables, greens, fruit and milk only, until the client says otherwise.
 - Day-outing prices (not on the official site): the page routes to WhatsApp instead of quoting.

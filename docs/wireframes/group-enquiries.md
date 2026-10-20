@@ -7,8 +7,8 @@ ENQUIRIES). Sources, read 2026-10-20, in the order to trust them:
 1. **The 360° tour** — https://www.turiya.co/360/Abhishta/: the spaces groups use (entrance, dining hall and its
    buffet counter, games corner in the office, pool, gaushaale, cow cuddling pen, amphitheatre, the fields from above).
 2. **Stayflexi** — https://bookingengine.stayflexi.com/?hotel_id=32336: rooms and capacity (see
-   `docs/wireframes/our-nests.md`): four cottages for up to 5 each; Nandagokula family and bachelors dormitories for 10
-   each and a triple for 3–4, each booked whole.
+   `docs/wireframes/our-nests.md`): superseded by the client's rate sheet (2026-10-20): AC cottages for 3 or 4,
+   ₹5,000 an adult; non-AC family rooms Gopika and Nandagokula for 10 and Kaustubha for 5, ₹3,500 a person; all meals included.
 3. **The current official site** — https://www.abhishtaagrifarmstay.com/: School & Corporate, Day Outing and
    Destination Events pages.
 
@@ -19,7 +19,7 @@ The homepage links here with `#corporate`, `#schools`, `#day-outings` and `#even
 ### Corporate outings (School & Corporate page)
 
 Corporate outings, team-building retreats and employee engagement programmes: open green spaces, group activities,
-indoor games, poolside time. Why groups choose it: a scenic venue · cottages and dormitories for teams of different
+indoor games, poolside time. Why groups choose it: a scenic venue · cottages and family rooms for teams of different
 sizes · team-building activities · **vegetarian and non-vegetarian** farm-fresh meals · day-outing or overnight
 packages, customised. The enquiry asks for company name, date, day outing or overnight stay, and number of people.
 **Projector and conference facilities** are listed on the Destination Events page.
@@ -37,8 +37,8 @@ Games: cricket, basketball, volleyball, throwball; chess, UNO, Ludo, carrom; lag
 Trips that add to the curriculum: sustainable farming, guided tours of how farms work, live sessions with the animals
 (cows, goats, sheep, birds), agricultural exploration, outdoor, indoor and traditional games, the pool, cow cuddling and
 **planting a sapling**. Suits school picnics, college field trips and veterinary students. The enquiry asks for the
-school or college name, date, day outing or overnight stay, and number of students. Overnight, the Nandagokula
-bachelors dormitory has 10 single beds and its own washroom (tour, Stayflexi).
+school or college name, date, day outing or overnight stay, and number of students. Overnight, Nandagokula (a
+family room) has single beds for 10 and two bathrooms (client, 2026-10-20).
 
 ### Destination events (Destination Events page)
 
@@ -79,7 +79,7 @@ Every section is a one-screen `[data-snap]` page, checked at 360×740 through 14
 ┌─────────────────────────────────────────────────────────────────────┐
 │ 4  #schools — THE LIVING CLASSROOM  (sage)                           │
 │    what students do (eight items, icons) │ stay-dorm-2.jpg: the      │
-│    who it suits: school picnics, college │ bachelors dorm, ten single│
+│    who it suits: school picnics, college │ Nandagokula, single beds │
 │    field trips, veterinary students      │ beds, booked whole        │
 └─────────────────────────────────────────────────────────────────────┘
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -117,7 +117,7 @@ Every section is a one-screen `[data-snap]` page, checked at 360×740 through 14
 | Hero | `group-event.jpg` |
 | Corporate | `group-corporate.jpg` (the dining hall) |
 | Day outing | 360°: `#AerialView_01` gate · `#Abhishta_03` dining hall (pan 22) and buffet (pan −150) · `#Abhishta_20` gaushaale · `#Abhishta_10` games corner (pan 95) · `#SwimmingPoolBliss` · `#AerialView_03` cow pen · `#BirdsEyeView01` |
-| Schools | `stay-dorm-2.jpg` (the bachelors dormitory) |
+| Schools | `stay-dorm-2.jpg` (Nandagokula, the tour's "bachelors dormitory") |
 | Events | Unsplash stock photos for the six occasions (see above) |
 
 ## To confirm with the client

@@ -5,8 +5,8 @@ React wireframe export: attached by Kaamil, extracted to /tmp/wireframe-react (5
 ## HOME
 - Navbar
 - Hero Header: full-screen slow-motion countryside video, animated text "Escape the urban chaos and embrace serenity at Abhishta Agri Farm Stay, 90 km from Bangalore", docked availability bar (Stay/Outing Type, Name, Phone +91, Check-In, Check-Out, Check Availability button)
-- About: asymmetric split on the meaning of "Abhishta" (desired, beloved) — open skies, fields, pool, bullock carts; "Watch Our Story" video lightbox; framed 360° property preview
-- Feature: two accommodation cards — Cottages (up to 5 guests, own washroom, private sit-outs) and Nandagokula rooms (family dormitory 10, bachelors dormitory 10, triple 3–4; each booked whole by one group), capacity badges, link to Our Nests
+- About: asymmetric split on the meaning of "Abhishta" (desired, beloved) — open skies, fields, pool, tractor rides; "Watch Our Story" video lightbox; framed 360° property preview
+- Feature: two accommodation cards — Cottages (AC, up to 4 guests, own washroom, sit-outs) and Family rooms (Gopika 10, Nandagokula 10, Kaustubha 5; non-AC, shared occupancy, all meals included), capacity badges, link to Our Nests
 - Timeline: dawn-to-dusk scroll, 4 moments — Dawn (nature walks, Gau Seva cow cuddling), Morning (agri-tours, fruit picking, harvesting), Midday (farm-to-table dining, pool), Dusk (lagori, gilli-danda, hopscotch, bonfire)
 - Features List: four panels — Corporate Offsites, School Agri-Tours, Day Outings, Destination Events, each linking to Group Enquiries
 - Testimonial: 5.0-star Google Reviews slider (Kalappa Kuppanda, Madhurya S, Nithya A, Prashanth K), "Leave a Review" link, 4-frame vertical Instagram Reels strip
@@ -16,20 +16,20 @@ React wireframe export: attached by Kaamil, extracted to /tmp/wireframe-react (5
 Updated 2026-10-19 from the 360° tour (names, rooms) and the Stayflexi booking engine (policy, times) — full
 wireframe in `docs/wireframes/our-nests.md` (supersedes the Relume export).
 - Navbar
-- Hero: full-screen cottage veranda photo, "Our nests", jump pills (Cottages · Nandagokula · Shared spaces · Plan a stay), Check availability
-- Choose your nest: four quick options — Cottage (up to 5), Family dormitory (10), Bachelors dormitory (10), Triple room (3–4) — who each suits, beds, jump links
-- #cottages — The cottages: Mayura, Mathura, Gopala, Govardhana (name tabs), each room's own 360° view (deep link), sleeps up to 5, AC, own washroom with hot water, private sit-out, photo strip
-- #dormitories — Nandagokula: Family dormitory (doubles, 10), Bachelors dormitory (singles, 10), Triple occupancy (4 singles, 3–4) as tabs, 360° per room, AC throughout, up to 24 guests in all, group-booking link to Group Enquiries
-- Nature's comforts: two-column checklist (cottage vs Nandagokula) from Stayflexi's amenity lists, AC in every room
+- Hero: full-screen cottage veranda photo, "Our nests", jump pills (Cottages · Family rooms · Shared spaces · Plan a stay), Check availability
+- Choose your nest: four quick options — Cottage (3 or 4), Gopika (10), Nandagokula (10), Kaustubha (5) — who each suits, beds, jump links
+- #cottages — The cottages: Mayura, Mathura, Gopala, Govinda; 360° slideshow (Mayura, Mathura, a washroom); sleeps 4 (Mayura, Mathura) or 3 (Gopala, Govinda), AC, ₹5,000 an adult / ₹2,500 a child over 5 with all meals, own washroom with hot water, private sit-out, photo strip
+- #dormitories — The family rooms: Gopika (5 king beds, 10, 2 bathrooms), Nandagokula (single beds, 10, 2 bathrooms), Kaustubha (5 single beds, 5, 1 bathroom) as tabs, 360° per room, non-AC, ₹3,500 a person with all meals, group-booking link to Group Enquiries
+- Nature's comforts: cottage vs family room — sleeps, bathroom, AC, rate; every stay includes all meals, pool, farm activities, Wi-Fi, parking
 - Beyond your door: pool (6:30 am–6 pm), dining hall, traditional bath (Hande Ole Snana), games & sports centre, amphitheatre & campfire, koi pond — each opens in 360°
-- Plan your stay form: Name, Phone +91, Check-in, Check-out, Adults, Kids, Room preference, Meal plan → WhatsApp + Stayflexi + email; check-in 2 pm / check-out 1 pm, ₹5,000 deposit, Stayflexi cancellation policy
+- Plan your stay form: Name, Phone +91, Check-in, Check-out, Adults, Kids, Room preference (no meal plans: all meals included) → WhatsApp + Stayflexi + email; check-in 2 pm / check-out 1 pm, ₹5,000 deposit, Stayflexi cancellation policy
 - Footer
 
 ## THE LIVING FARM
 - Navbar
 - Header: editorial intro — "Rediscover joy in the simplicity of rural life"
 - Features List: 4-card editorial bento — Fruit Picking, Vegetable Harvesting, Guided Agri-Tour, Nature Walks
-- Features List: horizontal scroll/carousel — Feeding Farm Animals (sheep, goats, chickens, rabbits), Bullock Cart Rides, Traditional Games (lagori, gilli-danda, hopscotch), Bonfire Evenings
+- Features List: horizontal scroll/carousel — Feeding Farm Animals (sheep, goats, chickens, rabbits), Tractor Ride (extra cost)s, Traditional Games (lagori, gilli-danda, hopscotch), Bonfire Evenings
 - Feature: full-bleed split spotlighting Gau Seva Sanctuary — therapeutic Cow Cuddling
 - Feature: Soil to Table story — farm vegetables, fruits, eggs, meat, milk
 - Features List: five icon pillars — Naturally Grown Produce, Organic Practices, Farm-Fresh Dairy, Wholesome Meals, Harvest-to-Plate Experience

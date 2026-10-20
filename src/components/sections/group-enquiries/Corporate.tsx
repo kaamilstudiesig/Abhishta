@@ -8,7 +8,7 @@ import { REVIEW_URL } from "@/lib/site";
 const REASONS: { icon: ComponentType<{ size?: number; className?: string }>; title: string; line: string }[] = [
   { icon: IconOrchard, title: "Room to breathe", line: "Lawns, an orchard and a pool, 90 km from the city." },
   { icon: IconGames, title: "Team games", line: "Cricket, volleyball, throwball and basketball; carrom and chess indoors." },
-  { icon: IconBed, title: "Rooms for the whole team", line: "Four cottages for up to 5, and three Nandagokula rooms for 3 to 10." },
+  { icon: IconBed, title: "Rooms for the whole team", line: "Four AC cottages for 3 or 4, and three family rooms for 5 to 10." },
   { icon: IconDining, title: "Veg and non-veg meals", line: "From separate kitchens, cooked with what the farm grows." },
   { icon: IconProjector, title: "A projector for the session", line: "Conference facilities when the day needs a talk." },
 ];
@@ -25,7 +25,7 @@ export function Corporate() {
         <div className="min-w-0">
           <SectionHeader
             title="Corporate outings"
-            lead="Trade the boardroom for the bullock cart: a day outing or a night or two, shaped around your team."
+            lead="Trade the boardroom for a tractor ride: a day outing or a night or two, shaped around your team."
             leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
           />
           <ul className="mt-s21 grid gap-s13 sm:mt-s34 sm:gap-s21 squat:mt-s21 squat:gap-s13">

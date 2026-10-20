@@ -5,7 +5,7 @@ import Image from "next/image";
 import firepit from "@public/images/client-photos/about-firepit.jpg";
 import { ExpandingPanels, type Panel } from "@/components/bits/ExpandingPanels";
 import { TourViewer } from "@/components/TourViewer";
-import { IconCampfire, IconCart, IconGames, IconGoat, IconHen } from "@/components/icons";
+import { IconCampfire, IconGames, IconGoat, IconHen, IconTractor } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 import { GOAT_BREEDS, GOAT_VIEW, YARD_VIEW } from "./farm";
 
@@ -44,11 +44,11 @@ const PANELS: Panel[] = [
     ),
   },
   {
-    id: "cart",
-    title: "Ride a bullock cart",
-    icon: IconCart,
-    media: <Drawn icon={IconCart} />,
-    body: <p>Move at the old pace. The cart creaks, the bullocks take their time, and the fields pass slowly.</p>,
+    id: "tractor",
+    title: "Take a tractor ride",
+    icon: IconTractor,
+    media: <Drawn icon={IconTractor} />,
+    body: <p>See village life from the trailer as the fields go by. Tractor rides cost a little extra.</p>,
   },
   {
     id: "games",
@@ -88,9 +88,9 @@ export function Animals() {
       <div className={`${container} flex flex-col`}>
         <SectionHeader
           tone="dark"
-          title="Animals, carts and old games"
+          title="Animals, rides and old games"
           className="md:max-w-[46em]"
-          lead="Goats and sheep that eat from your hand, hens in the yard, a slow cart ride, and the evening by the fire."
+          lead="Cows, goats, sheep and hens to meet and feed, a tractor ride round the village, and the evening by the fire."
           leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
         />
         <ExpandingPanels

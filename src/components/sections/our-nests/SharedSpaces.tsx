@@ -10,7 +10,7 @@ import { tourUrl, type Tour } from "@/lib/tour";
 // Scenes listed in scripts/tour-scenes.mjs; views open facing the space.
 const SPACES: { name: string; detail: string; tour: Tour }[] = [
   { name: "Swimming pool", detail: "Open 6:30 am to 6 pm", tour: { node: "SwimmingPoolBliss", pan: -90, tilt: -5 } },
-  { name: "Dining hall", detail: "Vegetarian, farm-fresh meals", tour: { node: "Abhishta_03", pan: 22, tilt: -5 } },
+  { name: "Dining hall", detail: "Farm-fresh meals, all included", tour: { node: "Abhishta_03", pan: 22, tilt: -5 } },
   { name: "Traditional bath", detail: "Hande ole snana, a wood-fired copper pot", tour: { node: "Abhishta_15", pan: -6, tilt: -8 } },
   { name: "Games and sports", detail: "Cricket, volleyball, carrom, lagori", tour: { node: "Abhishta_10", pan: -174, tilt: -5 } },
   { name: "Amphitheatre and campfire", detail: "Bonfire and barbecue evenings", tour: { node: "Amphitheatre", pan: 12, tilt: -5 } },

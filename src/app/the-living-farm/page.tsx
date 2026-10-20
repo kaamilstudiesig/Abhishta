@@ -8,7 +8,7 @@ import { SoilToTable } from "@/components/sections/living-farm/SoilToTable";
 import { PlanVisit } from "@/components/sections/living-farm/PlanVisit";
 
 const description =
-  "Pick fruit in the orchard, harvest vegetables, feed the goats and sheep, ride a bullock cart and sit with the cows of the gaushaale, on a working farm 90 km from Bangalore. See the farm in 360°.";
+  "Pick fruit in the orchard, harvest vegetables, feed the goats and sheep, take a tractor ride and sit with the cows of the gaushaale, on a working farm 90 km from Bangalore. See the farm in 360°.";
 
 export const metadata: Metadata = {
   title: "The living farm — orchard, animals and gau seva | Abhishta Agri Farm Stay",

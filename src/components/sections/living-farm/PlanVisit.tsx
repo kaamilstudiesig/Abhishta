@@ -1,5 +1,6 @@
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL, CONTACT, DAY_OUTING_ENQUIRY } from "@/lib/site";
+import { RATES } from "@/components/sections/our-nests/rooms";
 import { DAY_OUTING } from "./farm";
 
 /**
@@ -37,9 +38,9 @@ export function PlanVisit() {
             <h3 className="font-display text-[clamp(22px,2vw,28px)] leading-[1.15] text-paper">A night or two</h3>
             <p className="mt-[4px] text-[15px] leading-[1.5] text-paper/80">Wake up on the farm, with the animals a short walk away.</p>
             <ul className="mt-s13 grid gap-[5px] text-[14px] leading-[1.45] text-paper/90 sm:text-[15px]">
-              <li>Four cottages, each for up to 5</li>
-              <li>Nandagokula rooms for 3 to 10, each booked whole</li>
-              <li>Room only, breakfast and dinner, or all meals</li>
+              <li>Four AC cottages for 3 or 4, {RATES.cottageAdult} an adult</li>
+              <li>Three family rooms for 5 to 10, {RATES.familyRoom} a person</li>
+              <li>Every meal, the pool and the farm activities included</li>
               <li className="text-paper/70">Check-in 2 pm, check-out 1 pm</li>
             </ul>
             <div className="mt-auto flex flex-wrap gap-s13 pt-s21 squat:pt-s13">

@@ -15,8 +15,8 @@ const LESSONS: { icon: ComponentType<{ size?: number; className?: string }>; tit
 
 /**
  * #schools — "The living classroom", on the sage band: what students do, who it
- * suits, and (large screens) the bachelors dormitory where a class can sleep —
- * ten single beds, the room booked whole. Phones: the lessons as a two-column
+ * suits, and (large screens) Nandagokula, the family room where a class can
+ * sleep — single beds for ten and two bathrooms. Phones: the lessons as a two-column
  * list and the suits line; the dorm photo gives way to keep one screen.
  */
 export function Schools() {
@@ -26,7 +26,7 @@ export function Schools() {
         <div className="min-w-0">
           <SectionHeader
             title="The living classroom"
-            lead="School and college groups learn where food comes from with their own hands, on a day outing or a night in the dorms."
+            lead="School and college groups learn where food comes from with their own hands, on a day outing or a night in the family rooms."
             leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
           />
           <ul className="mt-s21 grid grid-cols-2 gap-x-s13 gap-y-s13 sm:mt-s34 sm:gap-x-s34 sm:gap-y-s21 squat:mt-s21 squat:gap-y-s13">
@@ -47,7 +47,7 @@ export function Schools() {
           <div className="relative h-[clamp(300px,calc(100svh-330px),540px)] overflow-hidden rounded-card">
             <Image
               src={dorm}
-              alt="The Nandagokula bachelors dormitory: rows of single beds with pink bases under a tiled timber roof, two doors and a mirror at the far end"
+              alt="Nandagokula, a family room: rows of single beds with pink bases under a tiled timber roof, two doors and a mirror at the far end"
               fill
               sizes="(min-width: 1024px) 40vw, 100vw"
               placeholder="blur"
@@ -55,8 +55,8 @@ export function Schools() {
             />
           </div>
           <figcaption className="mt-s13 text-[15px] leading-[1.5] text-ink-muted">
-            <span className="font-medium text-forest">Staying over?</span> The bachelors dormitory has ten single beds and its own
-            washroom, and the room is booked whole for your group.
+            <span className="font-medium text-forest">Staying over?</span> Nandagokula, a family room, has single beds for ten and two
+            bathrooms, at ₹3,500 a person with every meal.
           </figcaption>
         </figure>
       </div>

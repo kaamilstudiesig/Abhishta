@@ -6,14 +6,7 @@ import { IconClose, IconMail, IconPhone, IconWhatsApp } from "@/components/icons
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL, CONTACT, WHATSAPP_NUMBER } from "@/lib/site";
 
-const ROOM_CHOICES = [
-  "Not sure",
-  "Cottage",
-  "Family dormitory",
-  "Bachelors dormitory",
-  "Triple room",
-];
-const MEAL_PLANS = ["Not decided", "Room only", "Breakfast + dinner", "All meals"];
+const ROOM_CHOICES = ["Not sure", "Cottage", "Gopika family room", "Nandagokula family room", "Kaustubha family room"];
 
 type Values = {
   name: string;
@@ -23,7 +16,6 @@ type Values = {
   adults: number;
   kids: number;
   room: string;
-  meals: string;
 };
 
 const fromIso = (iso: string) => {
@@ -51,7 +43,6 @@ function enquiry(v: Values) {
     `Dates: ${describeDates(v)}`,
     `Guests: ${plural(v.adults, "adult", "adults")}${v.kids ? `, ${plural(v.kids, "kid", "kids")}` : ""}`,
     `Room: ${v.room}`,
-    v.meals !== "Not decided" ? `Meals: ${v.meals}` : null,
   ]
     .filter(Boolean)
     .join("\n");
@@ -76,7 +67,6 @@ export function PlanStay() {
     adults: 2,
     kids: 0,
     room: "Not sure",
-    meals: "Not decided",
   });
   const [errors, setErrors] = useState<{ name?: string; dates?: string }>({});
   const [sent, setSent] = useState(false);
@@ -224,8 +214,9 @@ export function PlanStay() {
           <CountField id={id("adults")} label="Adults" value={values.adults} min={1} max={30} onChange={(n) => set("adults", n)} />
           <CountField id={id("kids")} label="Kids" value={values.kids} min={0} max={30} onChange={(n) => set("kids", n)} />
 
-          <Select id={id("room")} label="Room" value={values.room} options={ROOM_CHOICES} onChange={(v) => set("room", v)} />
-          <Select id={id("meals")} label="Meal plan" value={values.meals} options={MEAL_PLANS} onChange={(v) => set("meals", v)} />
+          <div className="col-span-2">
+            <Select id={id("room")} label="Room" value={values.room} options={ROOM_CHOICES} onChange={(v) => set("room", v)} />
+          </div>
 
           <div className="col-span-2 flex flex-col gap-s8 pt-[4px] sm:flex-row sm:flex-wrap sm:items-center sm:gap-s13">
             <button type="submit" className={buttonClass("primary")}>

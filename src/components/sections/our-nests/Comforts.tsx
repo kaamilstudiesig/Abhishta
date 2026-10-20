@@ -1,16 +1,17 @@
 import { SectionHeader, container, screen } from "@/components/ui";
+import { RATES } from "./rooms";
 
 /**
- * Where a cottage and a Nandagokula room actually differ. Sources: Stayflexi's
- * amenity lists (cottage: private bathroom, kettle, wardrobe; dormitory: shared
- * bathroom, shower, bottled water), the 360° tour (each dorm's washroom is inside
- * the room) and the official site (private sit-outs). What both have is in the lead.
+ * Where a cottage and a family room actually differ, from the client's rate
+ * sheet (2026-10-20): capacity, bathrooms, AC and the nightly rate. The cottage's
+ * own washroom with hot water and its sit-out are from Stayflexi and the old
+ * site. What every stay includes is in the lead.
  */
 const ROWS = [
-  { label: "Sleeps", cottage: "Up to 5", group: "10 in a dormitory, 3–4 in the triple" },
-  { label: "Washroom", cottage: "Your own, with hot water", group: "Inside the room, shared by your group, with a shower" },
-  { label: "In the room", cottage: "Electric kettle and a wardrobe", group: "Bottled water" },
-  { label: "Outside", cottage: "A private sit-out", group: "A shared veranda" },
+  { label: "Sleeps", cottage: "3 or 4", group: "10, or 5 in Kaustubha" },
+  { label: "Bathroom", cottage: "Your own, with hot water", group: "Two in the room (one in Kaustubha)" },
+  { label: "Cooling", cottage: "Air-conditioned", group: "Fans, no AC" },
+  { label: "A night", cottage: `${RATES.cottageAdult} an adult, ${RATES.cottageChild} a child over 5`, group: `${RATES.familyRoom} a person, taxes included` },
 ];
 
 /** Nature's comforts — one screen: a quiet comparison of the two kinds of room. */
@@ -20,11 +21,11 @@ export function Comforts() {
       <div className={`${container} grid gap-s34 lg:grid-cols-[1fr_1.618fr] lg:items-center lg:gap-s89`}>
         <SectionHeader
           title="Nature’s comforts"
-          lead="Every room has air-conditioning, fans and toiletries. This is where they differ."
+          lead="Every stay includes all four meals, the pool, the farm activities, Wi-Fi and parking. This is where the rooms differ."
           leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
         />
         <table className="w-full table-fixed border-collapse text-left text-[15px] leading-[1.45] sm:text-body sm:leading-[1.5]">
-          <caption className="sr-only">What a cottage has compared with a Nandagokula room</caption>
+          <caption className="sr-only">What a cottage has compared with a family room</caption>
           <colgroup>
             <col className="w-[26%] sm:w-[22%]" />
             <col />
@@ -37,7 +38,7 @@ export function Comforts() {
                 Cottage
               </th>
               <th scope="col" className="pb-s13 font-display text-[clamp(20px,2vw,28px)] leading-[1.15] font-normal text-forest">
-                Nandagokula
+                Family room
               </th>
             </tr>
           </thead>

@@ -108,14 +108,16 @@ Tokens in `src/app/meadow.css`: `farm` leaf `#2F6B3A` (actions) · `forest` deep
 `line` `#DBE3D1` · `ink-muted` `#56634F` (secondary text). Typeface: Bricolage Grotesque.
 
 ## Open items for the client
+- Client rate sheet (2026-10-20) is in `docs/wireframes/our-nests.md`: rooms, capacities, AC, rates and what every stay
+  includes. Still to confirm there: which tour scene is which family room, what "shared occupancy" means, kids under 5.
 - Instagram, Facebook and TripAdvisor URLs in `src/lib/site.ts` are best guesses, not taken from the live site. Confirm them.
 - The logo is a small raster (`src/assets/brand/`); swap in a vector when the redraw arrives.
-- The 360° tour has only two of the four cottages (Mayura and Mathura). Gopala and Govardhana could be added if
+- The 360° tour has only two of the four cottages (Mayura and Mathura). Gopala and Govinda could be added if
   Turiya shoots them.
 - Which cottage photos show Mayura and which show Mathura is a best guess (from the paintings in them). Confirm with the client.
 - Two homepage photo slots may want a different shot: School agri-tours shows the elephant statue (not a school
   group), and the Dusk card (`day-dusk.jpg`) is a daylight view of the same gazebo as Morning.
-- The living farm needs photos of the animals, the vegetable rows, the bullock cart, the old games and food on the
+- The living farm needs photos of the animals, the vegetable rows, the tractor ride, the old games and food on the
   table; the orchard's fruits and seasons; and whether meat and eggs belong in "soil to table" (see
   `docs/wireframes/the-living-farm.md`).
 - Group enquiries: the official site gives two capacities (100 or 100–150 for a gathering, 40 or 50 overnight), so

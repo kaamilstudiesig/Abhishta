@@ -3,7 +3,7 @@
 import { IconArrow } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 import { Pillows } from "./RoomParts";
-import { COTTAGE_PILLOWS, NANDAGOKULA, selectRoom, type Pillows as PillowCount } from "./rooms";
+import { COTTAGE_PILLOWS, FAMILY_ROOMS, selectRoom, type Pillows as PillowCount } from "./rooms";
 
 type Option = { name: string; suits: string; sleeps: string; pillows: PillowCount; href: string; room: string };
 
@@ -11,12 +11,12 @@ const OPTIONS: Option[] = [
   {
     name: "Cottage",
     suits: "For couples and small families.",
-    sleeps: "Sleeps up to 5",
+    sleeps: "Sleeps 3 or 4",
     pillows: COTTAGE_PILLOWS,
     href: "#cottages",
     room: "cottage",
   },
-  ...NANDAGOKULA.map((r) => ({
+  ...FAMILY_ROOMS.map((r) => ({
     name: r.name,
     suits: r.suits,
     sleeps: `Sleeps ${r.sleeps}`,
@@ -37,7 +37,7 @@ export function ChooseNest() {
       <div className={container}>
         <SectionHeader
           title="Choose your nest"
-          lead="A cottage of your own, or a room in Nandagokula for families and groups."
+          lead="An air-conditioned cottage of your own, or a family room for a bigger group."
           leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
         />
 

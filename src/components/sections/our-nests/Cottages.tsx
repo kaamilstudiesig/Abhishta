@@ -6,7 +6,7 @@ import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL } from "@/lib/site";
 import { Pillows } from "./RoomParts";
 import { TourLink, TourViewer } from "@/components/TourViewer";
-import { COTTAGE_NAMES, COTTAGE_PILLOWS, COTTAGE_VIEWS } from "./rooms";
+import { COTTAGE_NAMES, COTTAGE_PILLOWS, COTTAGE_VIEWS, RATES } from "./rooms";
 
 // Stayflexi's cottage amenities, plus the sit-out from the official site.
 const FACTS = ["Own washroom", "Hot water", "Air-conditioned", "Kettle, wardrobe", "Toiletries", "Private sit-out"];
@@ -54,8 +54,8 @@ export function Cottages() {
           <p className="flex flex-wrap items-center gap-x-s13 gap-y-[4px] text-forest">
             <Pillows {...COTTAGE_PILLOWS} className="text-farm" />
             <span>
-              <span className="font-medium">Sleeps up to 5</span>
-              <span className="text-ink-muted max-sm:hidden">, beds for 4 and an extra bed</span>
+              <span className="font-medium">Sleeps 4</span>
+              <span className="text-ink-muted max-sm:hidden"> in Mayura and Mathura, 3 in Gopala and Govinda</span>
             </span>
           </p>
           <ul className="mt-s13 grid grid-cols-2 gap-x-s21 gap-y-[6px] text-[14px] leading-[1.4] sm:max-w-[30em] sm:text-[15px]">
@@ -71,7 +71,9 @@ export function Cottages() {
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("primary")}>
               Book a cottage
             </a>
-            <span className="text-[14px] text-ink-muted">Rates for each meal plan are on the booking page.</span>
+            <span className="text-[14px] text-ink-muted">
+              {RATES.cottageAdult} an adult, {RATES.cottageChild} a child over 5, a night with all meals.
+            </span>
           </div>
         </div>
       </div>

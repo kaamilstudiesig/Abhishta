@@ -14,32 +14,32 @@ type Stay = {
   alt: string;
 };
 
-// Confirmed with the client and Stayflexi (docs/wireframes/our-nests.md): cottages sleep up to 5; Nandagokula's
-// family and bachelors dormitories sleep 10 each and the triple 3–4, each room booked whole by one group.
+// From the client's rate sheet (2026-10-20, docs/wireframes/our-nests.md): AC cottages for 3 or 4; the Gopika,
+// Nandagokula and Kaustubha family rooms (non-AC, shared occupancy) for 10, 10 and 5. Every stay includes all meals.
 const STAYS: Stay[] = [
   {
     name: "Cottages",
-    capacity: "Up to 5 guests",
-    body: "Four cottages for couples and small families, each with its own washroom and a private sit-out.",
+    capacity: "Up to 4 guests",
+    body: "Four air-conditioned cottages for couples and small families, each with its own washroom and a sit-out.",
     href: "/our-nests#cottages",
     linkLabel: "See the cottages",
     image: cottage,
     alt: "Inside a cottage: a made-up double bed with green cushions under a tiled roof, a carved wooden door and glass doors opening onto the garden",
   },
   {
-    name: "Nandagokula rooms",
-    capacity: "3 to 10 guests a room",
-    body: "A family dormitory, a bachelors dormitory and a triple room, each booked whole by one group.",
+    name: "Family rooms",
+    capacity: "5 to 10 guests a room",
+    body: "Gopika, Nandagokula and Kaustubha: shared rooms for families and groups, every meal included.",
     href: "/our-nests#dormitories",
-    linkLabel: "See the group rooms",
+    linkLabel: "See the family rooms",
     image: dorm,
-    alt: "A Nandagokula dormitory with rows of made-up beds under a high tiled roof, its door open onto the lawn",
+    alt: "A family room with rows of made-up beds under a high tiled roof, its door open onto the lawn",
   },
 ];
 
 /**
  * Stays — "Rest your head where the fields begin". One heading, then two
- * quiet editorial columns — the cottages and the Nandagokula group rooms: a
+ * quiet editorial columns — the cottages and the family rooms: a
  * photograph, the name, who it sleeps, one line, one link to Our Nests —
  * then one "Explore" button to the whole page. On lg+ the heading takes one line.
  */

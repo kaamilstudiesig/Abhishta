@@ -14,11 +14,11 @@ export function NestsHero() {
       alt="The Nandagokula veranda: terracotta walls, a doorway framed in hand-painted folk motifs, a red-oxide floor and a tiled timber roof above the lawn"
       imagePosition="object-[50%_58%]"
       lines={["Explore", "Our nests"]}
-      lead="Four cottages and the Nandagokula rooms under tiled roofs, a step from the orchard."
+      lead="Four cottages and three family rooms under tiled roofs, a step from the orchard. Every meal is included."
       cta={{ label: "Check availability", href: BOOKING_URL, external: true }}
       jumps={[
         { label: "Cottages", href: "#cottages" },
-        { label: "Nandagokula", href: "#dormitories" },
+        { label: "Family rooms", href: "#dormitories" },
         { label: "Shared spaces", href: "#shared-spaces" },
         { label: "Plan a stay", href: "#plan-your-stay" },
       ]}

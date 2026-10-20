@@ -3,32 +3,33 @@
 import { useCallback, useRef, useState } from "react";
 import { IconCheck } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
-import { BOOKING_URL, WHATSAPP_NUMBER } from "@/lib/site";
+import { whatsappUrl } from "@/lib/site";
 import { Pillows, onTabKeyDown, useActivePillInView, useSelectRoom } from "./RoomParts";
 import { TourLink, TourViewer } from "@/components/TourViewer";
-import { NANDAGOKULA } from "./rooms";
+import { FAMILY_ROOMS, RATES } from "./rooms";
 
-// The triple room isn't on Stayflexi; it's booked by asking.
-const TRIPLE_ENQUIRY = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  "Hi Abhishta, I'd like to ask about the Nandagokula triple room.",
-)}`;
-
-// Stayflexi: "Shared bathroom", shower, bottled water, toiletries, AC, fan. The tour shows the washroom inside each room.
-const FACTS = ["Washroom inside the room, shared by your group", "Shower, bottled water and toiletries", "Air-conditioning and fans"];
+const enquiry = (room: string) =>
+  whatsappUrl(`Hi Abhishta, I'd like to stay in the ${room} family room.\nDate:\nAdults:\nChildren:`);
 
 /**
- * #dormitories — Nandagokula on a forest band, one screen. Three room tabs
- * (pills on phones) turn one live 360° view between the rooms; beside it, who
- * the room suits, its beds and what's in it. Each room is booked whole by one group.
+ * #dormitories (the id the homepage links to) — the three family rooms on a
+ * forest band, one screen: Gopika, Nandagokula and Kaustubha (client's rate
+ * sheet). Room tabs (pills on phones) turn one live 360° view between them;
+ * beside it, who the room suits, its beds, bathrooms and the per-person rate.
  */
-export function Nandagokula() {
+export function FamilyRooms() {
   const [active, setActive] = useState(0);
   const listRef = useRef<HTMLDivElement>(null);
-  const count = NANDAGOKULA.length;
-  const room = NANDAGOKULA[active];
+  const count = FAMILY_ROOMS.length;
+  const room = FAMILY_ROOMS[active];
+  const facts = [
+    `${room.bathrooms} in the room`,
+    "Fans, no air-conditioning",
+    `${RATES.familyRoom} a person, meals and taxes included`,
+  ];
 
   const select = useCallback((i: number) => setActive(i), []);
-  useSelectRoom(NANDAGOKULA, select);
+  useSelectRoom(FAMILY_ROOMS, select);
   useActivePillInView(listRef, active);
 
   return (
@@ -39,27 +40,27 @@ export function Nandagokula() {
         <SectionHeader
           tone="dark"
           className="lg:[grid-area:header]"
-          title="Nandagokula"
-          lead="The village Krishna grew up in. Each room is booked whole, by one group."
+          title="Family rooms"
+          lead={`Shared rooms for families and groups, ${RATES.familyRoom} a person.`}
           leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
         />
 
         <div
           ref={listRef}
           role="tablist"
-          aria-label="Nandagokula rooms"
+          aria-label="Family rooms"
           className="relative -mx-s21 flex gap-s8 overflow-x-auto px-s21 py-[2px] [scrollbar-width:none] sm:-mx-s34 sm:px-s34 lg:mx-0 lg:mt-s34 lg:grid lg:gap-0 squat:mt-s21 lg:overflow-visible lg:border-t lg:border-paper/15 lg:px-0 lg:py-0 lg:[grid-area:tabs] [&::-webkit-scrollbar]:hidden"
         >
-          {NANDAGOKULA.map((r, i) => {
+          {FAMILY_ROOMS.map((r, i) => {
             const on = i === active;
             return (
               <button
                 key={r.id}
                 type="button"
                 role="tab"
-                id={`nandagokula-tab-${r.id}`}
+                id={`family-room-tab-${r.id}`}
                 aria-selected={on}
-                aria-controls="nandagokula-panel"
+                aria-controls="family-room-panel"
                 tabIndex={on ? 0 : -1}
                 onClick={() => setActive(i)}
                 onKeyDown={(e) => onTabKeyDown(e, count, active, setActive)}
@@ -74,7 +75,7 @@ export function Nandagokula() {
                     aria-hidden="true"
                     className={`hidden h-[3px] w-s21 origin-left rounded-full bg-gold transition-transform duration-500 ease-[var(--ease-earth)] lg:block ${on ? "scale-x-100" : "scale-x-0"}`}
                   />
-                  {r.short}
+                  {r.name}
                 </span>
                 <span
                   className={`rounded-full px-[8px] py-[1px] font-sans text-[13px] leading-[1.5] tracking-normal ${on ? "bg-gold text-forest" : "bg-paper/10 text-paper/80"}`}
@@ -88,14 +89,14 @@ export function Nandagokula() {
         </div>
 
         <div
-          id="nandagokula-panel"
+          id="family-room-panel"
           role="tabpanel"
-          aria-labelledby={`nandagokula-tab-${room.id}`}
+          aria-labelledby={`family-room-tab-${room.id}`}
           className="min-w-0 lg:[grid-area:frame]"
         >
           <TourViewer
             tour={room.tour}
-            title={`360° view of the Nandagokula ${room.name.toLowerCase()}`}
+            title={`360° view of the ${room.name} family room`}
             tone="dark"
             onPrev={() => setActive((active - 1 + count) % count)}
             onNext={() => setActive((active + 1) % count)}
@@ -117,21 +118,23 @@ export function Nandagokula() {
           <p className="mt-[4px] text-[15px] text-paper/75 max-sm:hidden squat:hidden">{room.suits}</p>
           {/* phones, tablets and short laptops get the one-line version below */}
           <ul className="mt-s13 grid gap-[6px] text-[15px] leading-[1.4] text-paper/90 max-lg:hidden squat:hidden">
-            {FACTS.map((f) => (
+            {facts.map((f) => (
               <li key={f} className="flex items-start gap-s8">
                 <IconCheck size={18} className="mt-[1px] shrink-0 text-gold" />
                 {f}
               </li>
             ))}
           </ul>
-          <p className="mt-s8 hidden text-[15px] text-paper/90 max-lg:block squat:block">Shared washroom, AC and fans</p>
+          <p className="mt-s8 hidden text-[15px] text-paper/90 max-lg:block squat:block">
+            {room.bathrooms}, fans, no AC
+          </p>
           <a
-            href={room.bookable ? BOOKING_URL : TRIPLE_ENQUIRY}
+            href={enquiry(room.name)}
             target="_blank"
             rel="noopener noreferrer"
             className={buttonClass("gold", "mt-s21 max-sm:hidden short:hidden lg:mt-s34 squat:mt-s21")}
           >
-            {room.bookable ? "Book a dormitory" : "Ask about the triple room"}
+            Ask about {room.name}
           </a>
         </div>
       </div>

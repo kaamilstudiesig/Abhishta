@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.abhishtaagrifarmstay.com"),
   title: "Abhishta Agri Farm Stay — a farm stay 90 km from Bangalore",
   description:
-    "Cottages and group dormitories on a working farm near Kunigal: nature walks, Gau Seva cow cuddling, fruit picking, farm-to-table meals, a pool and bonfire evenings, 90 km from Bangalore.",
+    "AC cottages and family rooms on a working farm near Kunigal, every meal included: nature walks, Gau Seva cow cuddling, fruit picking, a pool and bonfire evenings, 90 km from Bangalore.",
   openGraph: {
     title: "Abhishta Agri Farm Stay",
     description: "Escape the urban chaos and embrace serenity, 90 km from Bangalore.",

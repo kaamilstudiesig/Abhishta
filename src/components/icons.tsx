@@ -390,3 +390,12 @@ export const IconProjector = (p: IconProps) => (
     <path d="M6 14.5h2.5M17.5 12.5l4-2.5M17.5 16.5l4 2.5M7 18v2M14 18v2" />
   </Icon>
 );
+
+/** A tractor: the big rear wheel, the small front one, the cab. */
+export const IconTractor = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="7" cy="16" r="4" />
+    <circle cx="18" cy="17.5" r="2.5" />
+    <path d="M3.5 12V6.5h6l1.5 5.5h7.5a2 2 0 0 1 2 2v1.5M11 12H3.5M6 6.5V4M10.5 16h5" />
+  </Icon>
+);

@@ -10,6 +10,31 @@ Sources, all read 2026-10-19, and the order to trust them in (client's call):
 
 Plus the client photography in `public/images/client-photos/` and `docs/SITEMAP.md`.
 
+## Client update, 2026-10-20 — this wins over everything below
+
+The client's own rate sheet replaces what the tour names, Stayflexi and the old site said about rooms and meals:
+
+| Room | Type | Sleeps | Beds | Bathrooms | AC | Rate a night |
+| --- | --- | --- | --- | --- | --- | --- |
+| **Mayura**, **Mathura** | cottage | up to 4 | — | own | AC | ₹5,000 an adult, ₹2,500 a child over 5 |
+| **Gopala**, **Govinda** | cottage | up to 3 | — | own | AC | same |
+| **Gopika** | family room, shared occupancy | up to 10 | 5 king-size | 2 | non-AC | ₹3,500 a person, taxes included |
+| **Nandagokula** | family room, shared occupancy | up to 10 | single beds | 2 | non-AC | ₹3,500 a person, taxes included |
+| **Kaustubha** | family room, shared occupancy | up to 5 | 5 single | 1 | non-AC | ₹3,500 a person, taxes included |
+
+- The fourth cottage is **Govinda** (not Govardhana). Nandagokula is one room's name, not the block's.
+- **Every stay includes** lunch, evening snacks, dinner and breakfast; the pool; cow cuddling and feeding the animals
+  (cows, goats, sheep, chickens); guided farm tours and seasonal activities; vegetable harvesting and seasonal fruit
+  picking; nature walks; bonfire evenings; free Wi-Fi; ample parking; the traditional bath (hande ole). So there are no
+  meal plans to choose.
+- **Tractor ride** round the village at extra cost (the client no longer mentions bullock carts).
+- Enquiries: call or WhatsApp 99457 94925 (Deva Bhanu).
+- The page matches the family rooms to the tour's scenes by their beds: Gopika = "Family Dormitory" (`#Abhishta_06`),
+  Nandagokula = "Bachelors Dormitory" (`#Abhishta_04`), Kaustubha = "Triple Occupancy" (`#Abhishta_08`, which the tour
+  shows with 4 beds). **Confirm with the client**, and whether "shared occupancy" means the room is shared with other
+  guests or only within your group, and whether kids under 5 stay free.
+
+
 ## The stays
 
 ### Cottages — Mayura · Mathura · Gopala · Govardhana
