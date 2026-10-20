@@ -17,6 +17,8 @@ const ITEMS: FlowingMenuItem[] = OCCASIONS.map((o) => ({
   detail: o.detail,
   href: "#group-quote",
   onSelect: () => window.dispatchEvent(new CustomEvent<string>(SELECT_OCCASION, { detail: o.name })),
+  preview: { src: o.photo, alt: `A sample ${o.name.toLowerCase()} setup on the farm's lawns` },
+  action: "Plan this",
   chip: (
     <span className="relative block h-[clamp(40px,4.4vw,56px)] aspect-[2.2/1] overflow-hidden rounded-full">
       <Image src={o.photo} alt="" fill sizes="130px" className="object-cover" />
