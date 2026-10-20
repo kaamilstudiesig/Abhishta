@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import Image from "next/image";
+import { FlipCard } from "@/components/bits/FlipCard";
 import students from "@public/images/client-photos/group-students-amphitheatre.jpg";
 import { IconCompost, IconFields, IconGames, IconGoat, IconPool, IconSprout } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
@@ -16,8 +17,8 @@ const LESSONS: { icon: ComponentType<{ size?: number; className?: string }>; tit
 /**
  * #schools — "The living classroom", on the sage band: what students do, who it
  * suits, and (large screens) a student group at the amphitheatre, with where
- * a class can sleep in the caption. Phones: the lessons as a two-column
- * list and the suits line; the dorm photo gives way to keep one screen.
+ * a class can sleep in the caption. Below lg: the photo as a FlipCard — tap
+ * to turn it over for what students do and where they sleep.
  */
 export function Schools() {
   return (
@@ -27,9 +28,9 @@ export function Schools() {
           <SectionHeader
             title="School and college visits"
             lead="Students learn where food comes from by doing it themselves, on a day trip or an overnight stay."
-            leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
+            leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5] short:hidden"
           />
-          <ul className="mt-s21 grid grid-cols-2 gap-x-s13 gap-y-s13 sm:mt-s34 sm:gap-x-s34 sm:gap-y-s21 squat:mt-s21 squat:gap-y-s13">
+          <ul className="mt-s21 grid grid-cols-2 gap-x-s13 gap-y-s13 max-lg:hidden sm:mt-s34 sm:gap-x-s34 sm:gap-y-s21 squat:mt-s21 squat:gap-y-s13">
             {LESSONS.map(({ icon: Icon, title, line }) => (
               <li key={title} className="min-w-0">
                 <Icon size={24} className="text-farm" />
@@ -38,10 +39,35 @@ export function Schools() {
               </li>
             ))}
           </ul>
-          <p className="mt-s21 text-[15px] text-ink sm:mt-s34 squat:mt-s21">
+          <p className="mt-s21 text-[15px] text-ink max-lg:hidden sm:mt-s34 squat:mt-s21">
             <span className="font-medium text-forest">Made for</span> school picnics, college field trips and veterinary students.
           </p>
         </div>
+
+        <FlipCard
+          photo={students}
+          alt="Students with sketchbooks sitting on the tiled tiers of the amphitheatre, a brass lamp on the stage in front"
+          title="Students on the farm"
+          label="what students do on the farm"
+          className="h-[clamp(300px,calc(100svh-370px),620px)] w-full lg:hidden"
+          back={
+            <>
+              <h3 className="font-display text-[22px] leading-[1.15] text-forest">What students do here</h3>
+              <ul className="mt-s13 grid grid-cols-2 gap-x-s13 gap-y-s13">
+                {LESSONS.map(({ icon: Icon, title }) => (
+                  <li key={title} className="min-w-0">
+                    <Icon size={22} className="text-farm" />
+                    <p className="mt-[4px] text-[15px] leading-[1.3] font-medium text-forest">{title}</p>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-s21 border-t border-line pt-s13 text-[14px] leading-[1.5] text-ink-muted">
+                <span className="font-medium text-forest">Made for</span> school picnics, college field trips and veterinary students.
+                Overnight, Nandagokula sleeps ten with two bathrooms, ₹3,500 a person with every meal.
+              </p>
+            </>
+          }
+        />
 
         <figure className="max-lg:hidden">
           <div className="relative h-[clamp(300px,calc(100svh-330px),540px)] overflow-hidden rounded-card">

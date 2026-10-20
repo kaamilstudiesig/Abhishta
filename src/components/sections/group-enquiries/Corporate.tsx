@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import Image from "next/image";
+import { FlipCard } from "@/components/bits/FlipCard";
 import dining from "@public/images/client-photos/group-corporate.jpg";
 import { IconBed, IconDining, IconGames, IconOrchard, IconProjector, IconStar } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
@@ -16,7 +17,8 @@ const REASONS: { icon: ComponentType<{ size?: number; className?: string }>; tit
 /**
  * #corporate — why teams come, in five short reasons, beside the dining hall
  * photo with a real Google review of a corporate outing over it (the same
- * excerpt the homepage shows). Phones show the reasons only, to keep one screen.
+ * excerpt the homepage shows). Below lg: the photo as a FlipCard — tap to
+ * turn it over and read the reasons.
  */
 export function Corporate() {
   return (
@@ -28,7 +30,7 @@ export function Corporate() {
             lead="Take your team out of the office for a day or a weekend, planned around what you need."
             leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
           />
-          <ul className="mt-s21 grid gap-s13 sm:mt-s34 sm:gap-s21 squat:mt-s21 squat:gap-s13">
+          <ul className="mt-s21 grid gap-s13 max-lg:hidden sm:mt-s34 sm:gap-s21 squat:mt-s21 squat:gap-s13">
             {REASONS.map(({ icon: Icon, title, line }) => (
               <li key={title} className="flex gap-s13 sm:gap-s21">
                 <Icon size={24} className="mt-[2px] shrink-0 text-farm" />
@@ -39,6 +41,30 @@ export function Corporate() {
             ))}
           </ul>
         </div>
+
+        <FlipCard
+          photo={dining}
+          alt="The open-sided dining hall: long wooden tables on patterned tiles under a timber-and-tile roof"
+          title="Why teams come here"
+          label="why teams come here"
+          className="h-[clamp(320px,calc(100svh-330px),620px)] w-full lg:hidden"
+          back={
+            <>
+              <h3 className="font-display text-[22px] leading-[1.15] text-forest">Why teams come here</h3>
+              <ul className="mt-s13 grid gap-s13">
+                {REASONS.map(({ icon: Icon, title, line }) => (
+                  <li key={title} className="flex gap-s13">
+                    <Icon size={22} className="mt-[1px] shrink-0 text-farm" />
+                    <p className="text-[15px] leading-[1.4]">
+                      <span className="block font-medium text-forest">{title}</span>
+                      <span className="text-ink-muted">{line}</span>
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </>
+          }
+        />
 
         <div className="relative isolate overflow-hidden rounded-card max-lg:hidden lg:h-[clamp(380px,calc(100svh-280px),600px)]">
           <Image

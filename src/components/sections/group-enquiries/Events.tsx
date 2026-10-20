@@ -34,7 +34,7 @@ const ITEMS: FlowingMenuItem[] = OCCASIONS.map((o) => ({
 export function Events() {
   return (
     <section id="events" data-nav="dark" data-snap="" className={`on-dark overflow-hidden bg-forest text-paper ${screen}`}>
-      <div className={`${container} grid grid-cols-[minmax(0,1fr)] gap-s21 lg:grid-cols-[1fr_1.5fr] lg:items-center lg:gap-s89`}>
+      <div className={`${container} grid grid-cols-[minmax(0,1fr)] gap-s21 short:gap-s13 lg:grid-cols-[1fr_1.5fr] lg:items-center lg:gap-s89`}>
         <div className="min-w-0">
           <SectionHeader
             tone="dark"
