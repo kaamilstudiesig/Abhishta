@@ -1,13 +1,16 @@
-import Image, { type StaticImageData } from "next/image";
-import cottage from "@public/images/client-photos/stay-cottage-1.jpg";
-import dorm from "@public/images/client-photos/stay-dorm-1.jpg";
-import { IconArrow } from "@/components/icons";
+import type { StaticImageData } from "next/image";
+import cottage from "@public/images/client-photos/cottage-gopala-sitout.jpg";
+import familyRoom from "@public/images/gallery/gopika.jpg";
+import { FlipCard } from "@/components/bits/FlipCard";
+import { IconArrow, IconCheck } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 
 type Stay = {
   name: string;
   capacity: string;
   body: string;
+  rate: string;
+  facts: string[];
   href: string;
   linkLabel: string;
   image: StaticImageData;
@@ -21,27 +24,31 @@ const STAYS: Stay[] = [
     name: "Cottages",
     capacity: "Up to 4 guests",
     body: "Four air-conditioned cottages for couples and small families, each with its own washroom and a sit-out.",
+    rate: "₹5,000 an adult, ₹2,500 a child over 5. Under 5s stay free.",
+    facts: ["Air-conditioned", "Own washroom, hot water", "A private sit-out", "All meals included"],
     href: "/our-nests#cottages",
     linkLabel: "See the cottages",
     image: cottage,
-    alt: "Inside a cottage: a made-up double bed with green cushions under a tiled roof, a carved wooden door and glass doors opening onto the garden",
+    alt: "Gopala cottage’s sit-out: two chairs and a table on a patterned tile floor, with a garden in front",
   },
   {
     name: "Family rooms",
     capacity: "5 to 10 guests a room",
-    body: "Gopika, Nandagokula and Kaustubha: shared rooms for families and groups, every meal included.",
+    body: "Gopika, Nandagokula and Kaustubha: shared rooms for families and groups.",
+    rate: "₹3,500 a person, taxes included.",
+    facts: ["Sleeps 10, or 5 in Kaustubha", "Two bathrooms (one in Kaustubha)", "Fans, no AC", "All meals included"],
     href: "/our-nests#dormitories",
     linkLabel: "See the family rooms",
-    image: dorm,
-    alt: "A family room with rows of made-up beds under a high tiled roof, its door open onto the lawn",
+    image: familyRoom,
+    alt: "Gopika family room: beds made up in rows under a tiled timber roof",
   },
 ];
 
 /**
- * Stays — "Rest your head where the fields begin". One heading, then two
- * quiet editorial columns — the cottages and the family rooms: a
- * photograph, the name, who it sleeps, one line, one link to Our Nests —
- * then one "Explore" button to the whole page. On lg+ the heading takes one line.
+ * Stays — "Stay with us on the farm". Two tilting photo cards that flip
+ * (FlipCard, on every screen size): the front is the photo, the name and who
+ * it sleeps; tap to turn it over for the rate, what it has and a link to Our
+ * Nests. Phones: a swipe row with the next card peeking in. Then one "Explore".
  */
 export function Stays() {
   return (
@@ -50,34 +57,41 @@ export function Stays() {
         <SectionHeader title="Stay with us on the farm" className="mx-auto text-center lg:max-w-none [&>span]:mx-auto" />
 
         {/* phones: a swipeable row with the next stay peeking in; md+: two columns */}
-        <ul className="-mx-s21 mt-s34 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] md:mx-0 md:mt-s55 squat:mt-s34 md:grid md:grid-cols-2 md:gap-s34 md:overflow-visible md:px-0 md:pb-0 lg:gap-s89 [&::-webkit-scrollbar]:hidden">
+        <ul className="-mx-s21 mt-s21 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 py-s8 [scrollbar-width:none] md:mx-0 md:mt-s34 md:grid md:grid-cols-2 md:gap-s34 md:overflow-visible md:px-0 lg:gap-s55 squat:mt-s21 [&::-webkit-scrollbar]:hidden">
           {STAYS.map((stay) => (
-            <li key={stay.name} className="group w-[84%] shrink-0 snap-start md:w-auto">
-              <a href={stay.href} className="block">
-                <div className="relative h-[27svh] min-h-[160px] overflow-hidden rounded-card short:h-[22svh] md:h-[32svh] squat:h-[max(18svh,calc(100svh-620px))] squat:min-h-[120px]">
-                  <Image
-                    src={stay.image}
-                    alt={stay.alt}
-                    fill
-                    sizes="(min-width: 768px) 45vw, 100vw"
-                    placeholder="blur"
-                    className="object-cover transition-transform duration-1000 ease-[var(--ease-earth)] group-hover:scale-[1.02]"
-                  />
-                </div>
-                <div className="mt-s21 flex flex-col gap-[2px] sm:flex-row sm:items-baseline sm:justify-between sm:gap-s21">
-                  <h3 className="font-display text-[clamp(24px,2.4vw,28px)] leading-[1.15] text-forest">{stay.name}</h3>
-                  <p className="shrink-0 text-[13px] text-ink-muted">{stay.capacity}</p>
-                </div>
-                <p className="mt-s8 max-w-[30em] text-[15px] leading-[1.6] text-ink-muted sm:text-body">{stay.body}</p>
-                <span className="link-gold mt-s13 inline-block text-[15px] font-medium text-forest">
-                  {stay.linkLabel}
-                </span>
-              </a>
+            <li key={stay.name} className="w-[86%] shrink-0 snap-start md:w-auto">
+              <FlipCard
+                photo={stay.image}
+                alt={stay.alt}
+                tag={stay.capacity}
+                title={stay.name}
+                label={stay.name.toLowerCase()}
+                className="h-[clamp(290px,calc(100svh-410px),520px)] md:h-[clamp(300px,calc(100svh-450px),540px)] squat:h-[calc(100svh-410px)]"
+                back={
+                  <>
+                    <p className="text-[13px] font-medium text-farm">{stay.capacity}</p>
+                    <h3 className="font-display text-[clamp(22px,2.4vw,28px)] leading-[1.15] text-forest">{stay.name}</h3>
+                    <p className="mt-s8 text-[15px] leading-[1.5] text-ink-muted max-sm:hidden squat:hidden">{stay.body}</p>
+                    <ul className="mt-s13 grid gap-[6px] text-[15px] leading-[1.4] sm:grid-cols-2 sm:gap-x-s21">
+                      {stay.facts.map((f) => (
+                        <li key={f} className="flex items-start gap-s8">
+                          <IconCheck size={18} className="mt-[1px] shrink-0 text-farm" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="mt-s13 border-t border-line pt-s13 text-[15px] font-medium text-forest">{stay.rate}</p>
+                    <a href={stay.href} className="link-gold mt-s13 inline-block text-[15px] font-medium text-forest">
+                      {stay.linkLabel}
+                    </a>
+                  </>
+                }
+              />
             </li>
           ))}
         </ul>
 
-        <div className="mt-s21 flex justify-center md:mt-s34 squat:mt-s21">
+        <div className="mt-s21 flex justify-center md:mt-s34 squat:mt-s13">
           <a href="/our-nests" className={buttonClass("primary")}>
             Explore
             <IconArrow size={18} aria-hidden="true" />

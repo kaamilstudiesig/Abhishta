@@ -9,7 +9,7 @@ import { IconArrow } from "@/components/icons";
  * A photo card that flips: the front is a full photo with its title (a
  * TiltedCard, so it leans toward a mouse pointer); tapping turns it over in
  * 3D to show the details on the back, and tapping again turns it back. Made
- * for phones, where a side-by-side photo doesn't fit. With reduced motion the
+ * for showing a photo first and its details on demand. With reduced motion the
  * faces swap without the turn. The hidden face is inert, so focus and screen
  * readers only meet the side that shows.
  */
@@ -17,7 +17,8 @@ export function FlipCard({
   photo,
   alt,
   title,
-  hint = "Tap to see more",
+  tag,
+  hint = "See more",
   back,
   label,
   className = "",
@@ -25,6 +26,8 @@ export function FlipCard({
   photo: StaticImageData;
   alt: string;
   title: string;
+  /** a short line above the title on the front (e.g. who it sleeps) */
+  tag?: string;
   hint?: string;
   back: ReactNode;
   /** what the card is about, for the flip button's name */
@@ -46,7 +49,10 @@ export function FlipCard({
             <Image src={photo} alt={alt} fill sizes="(min-width: 1024px) 40vw, 92vw" placeholder="blur" className="object-cover" />
             <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.7),rgb(0_0_0/0.1)_55%,transparent)]" />
             <div className="on-dark absolute inset-x-0 bottom-0 flex items-end justify-between gap-s13 p-s21">
-              <p className="font-display text-[clamp(22px,6vw,30px)] leading-[1.1] text-paper">{title}</p>
+              <div>
+                {tag ? <p className="text-[13px] font-medium tracking-[0.04em] text-paper/85">{tag}</p> : null}
+                <p className="font-display text-[clamp(22px,2.6vw,32px)] leading-[1.1] text-paper">{title}</p>
+              </div>
               <button
                 type="button"
                 onClick={() => setFlipped(true)}
