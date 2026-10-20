@@ -1,6 +1,7 @@
 import type { ComponentType, ReactNode } from "react";
 import Image from "next/image";
 import dawn from "@public/images/client-photos/day-dawn.jpg";
+import cropRows from "@public/images/client-photos/farm-crop-rows.jpg";
 import { BentoTile, MagicBento } from "@/components/bits/MagicBento";
 import { TourViewer } from "@/components/TourViewer";
 import { IconFields, IconOrchard, IconPath, IconSprout } from "@/components/icons";
@@ -62,9 +63,10 @@ export function WorkTheLand() {
           </BentoTile>
 
           <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start flex-col justify-end p-s8 pb-s21 md:h-auto md:w-auto md:p-s21 sm:p-s34 lg:p-s21 xl:p-s34 squat:p-s21">
-            {/* phones: the icon drawn large fills the tall tile until there's a photo of the vegetable rows (TODO(client)) */}
-            <div aria-hidden="true" className="mb-s13 grid min-h-0 flex-1 place-items-center rounded-[calc(var(--radius-card)-8px)] bg-paper-deep md:hidden">
-              <IconSprout size={104} className="text-farm/55 [stroke-width:1]" />
+            {/* phones: the farm's own crop rows from above (a still from the 360° tour) fill the tall tile.
+                TODO(client): a close photo of the vegetable rows or a harvest */}
+            <div className="relative mb-s13 min-h-0 flex-1 overflow-hidden rounded-[calc(var(--radius-card)-8px)] md:hidden">
+              <Image src={cropRows} alt="The farm's crop rows seen from above, green beds between rows of young trees" fill sizes="86vw" placeholder="blur" className="object-cover" />
             </div>
             <TileText icon={IconSprout} title="Harvest vegetables">
               Pull them from the soil and learn how they’re grown organically.
