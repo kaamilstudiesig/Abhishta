@@ -9,7 +9,7 @@ import { ORCHARD_VIEW } from "./farm";
 
 function TileText({ icon: Icon, title, children }: { icon: ComponentType<{ size?: number; className?: string }>; title: string; children: ReactNode }) {
   return (
-    <div>
+    <div className="max-sm:px-s13">
       {/* the tile's icon drawn large and faint in its top corner (the tile is the positioned box), until there's a photo */}
       <Icon size={132} aria-hidden="true" className="pointer-events-none absolute top-s13 right-s13 text-farm/[0.13] [stroke-width:0.75] max-md:hidden squat:hidden" />
       <Icon size={26} className="relative text-farm" />
@@ -47,13 +47,25 @@ export function WorkTheLand() {
             </div>
           </BentoTile>
 
-          <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start flex-col justify-end p-s21 md:col-span-2 md:h-auto md:w-auto sm:p-s34 lg:col-span-2 lg:p-s34 squat:p-s21">
+          <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start flex-col justify-end p-s8 pb-s21 md:col-span-2 md:p-s21 md:h-auto md:w-auto sm:p-s34 lg:col-span-2 lg:p-s34 squat:p-s21">
+            {/* phones: the tall swipe tile would be mostly empty, so it carries the fields from above in 360° */}
+            <TourViewer
+              tour={{ node: "BirdsEyeView01", pan: -85, tilt: -40 }}
+              title="360° view of the farm's fields from above"
+              caption="The fields from above"
+              tone="light"
+              className="mb-s13 min-h-0 flex-1 md:hidden"
+            />
             <TileText icon={IconFields} title="Walk the fields on a guided agri-tour">
               Seasonal crops, the old methods, and how a farm can look after its soil. On a day outing it starts at 9:30 am.
             </TileText>
           </BentoTile>
 
-          <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start flex-col justify-end p-s21 md:h-auto md:w-auto sm:p-s34 lg:p-s21 xl:p-s34 squat:p-s21">
+          <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start flex-col justify-end p-s8 pb-s21 md:h-auto md:w-auto md:p-s21 sm:p-s34 lg:p-s21 xl:p-s34 squat:p-s21">
+            {/* phones: the icon drawn large fills the tall tile until there's a photo of the vegetable rows (TODO(client)) */}
+            <div aria-hidden="true" className="mb-s13 grid min-h-0 flex-1 place-items-center rounded-[calc(var(--radius-card)-8px)] bg-paper-deep md:hidden">
+              <IconSprout size={104} className="text-farm/55 [stroke-width:1]" />
+            </div>
             <TileText icon={IconSprout} title="Harvest vegetables">
               Pull them from the soil and learn how they’re grown organically.
             </TileText>

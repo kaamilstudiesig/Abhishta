@@ -16,7 +16,8 @@ gsap.registerPlugin(useGSAP);
  *
  * Controlled: `active` is the card in front, `onActiveChange` reports changes.
  * Cards behind the front one are inert, so keyboard focus only reaches the visible card.
- * Vertical swipes still scroll the page (touch-action: pan-y).
+ * Vertical swipes still scroll the page (touch-action: pan-y). Drags that start
+ * inside a `[data-no-swap]` element (e.g. a 360° view) are left to that element.
  */
 type CardSwapProps = {
   children: ReactNode;
@@ -172,6 +173,8 @@ export function CardSwap({ children, active, onActiveChange, label = "Cards", cl
 
   const onPointerDown = (e: PointerEvent<HTMLDivElement>) => {
     if (busyRef.current || (e.pointerType === "mouse" && e.button !== 0)) return;
+    // a drag on something that drags itself (a 360° view) belongs to it, not to the deck
+    if ((e.target as HTMLElement).closest("[data-no-swap]")) return;
     const d = dragRef.current;
     Object.assign(d, { id: e.pointerId, x: e.clientX, y: e.clientY, t: e.timeStamp, dx: 0, active: false });
   };
