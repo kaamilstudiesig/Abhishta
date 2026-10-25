@@ -70,7 +70,7 @@ export function FlipCard({
             inert={!flipped || undefined}
             className="absolute inset-0 flex flex-col overflow-hidden rounded-card bg-card shadow-card ring-1 ring-line [backface-visibility:hidden] [transform:rotateY(180deg)]"
           >
-            <div className="min-h-0 flex-1 overflow-y-auto p-s21">{back}</div>
+            <div className="min-h-0 flex-1 overflow-y-auto p-s13 sm:p-s21">{back}</div>
             <button
               type="button"
               onClick={() => setFlipped(false)}

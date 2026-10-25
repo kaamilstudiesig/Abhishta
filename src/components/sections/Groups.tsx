@@ -6,7 +6,7 @@ import corporate from "@public/images/client-photos/group-corporate.jpg";
 import school from "@public/images/client-photos/group-students-amphitheatre.jpg";
 import outing from "@public/images/client-photos/group-outing.jpg";
 import events from "@public/images/client-photos/event-lawn-party.jpg";
-import { CardSwap } from "@/components/bits/CardSwap";
+import { SlideCards } from "@/components/bits/SlideCards";
 import { IconArrow } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 
@@ -45,8 +45,9 @@ const GROUPS: Group[] = [
 
 /**
  * Bring your people — forest band. A list of the four group types on the left
- * drives a CardSwap deck on the right. The deck only moves when the visitor
- * drags it (or picks a group), never on its own.
+ * drives a card on the right that slides to the next group (SlideCards): the
+ * new card glides in as the old one drifts out, its photo settling from a
+ * slight zoom. It only moves when the visitor picks, swipes or uses the arrows.
  */
 export function Groups() {
   const [active, setActive] = useState(0);
@@ -84,32 +85,57 @@ export function Groups() {
           </ul>
         </div>
 
-        <CardSwap
-          active={active}
-          onActiveChange={setActive}
-          label="Group visits"
-          className="mx-auto h-[min(340px,42svh)] w-full max-w-[560px] translate-y-[14px] sm:h-[440px] sm:translate-y-[26px] md:max-lg:translate-y-0 lg:-translate-x-s34 squat:h-[400px] squat:translate-y-[13px]"
-        >
-          {GROUPS.map((g) => (
-            <article key={g.name} className="overflow-hidden rounded-card bg-card text-ink shadow-card">
-              <div className="relative aspect-[16/9] squat:aspect-[2/1]">
-                <Image src={g.image} alt={g.alt} fill sizes="(min-width: 1024px) 560px, 90vw" placeholder="blur" className="object-cover" />
-              </div>
-              <div className="px-s21 py-s13 sm:px-s34 sm:py-s21 squat:py-s13">
-                <h3 className="font-display text-[clamp(22px,2.4vw,28px)] leading-[1.15] text-forest">{g.name}</h3>
-                <p className="mt-s8 max-w-[30em] text-[15px] leading-[1.55] text-ink-muted">{g.body}</p>
-                <a href={g.href} className="link-gold mt-s13 inline-block text-[15px] font-medium text-forest">
-                  Enquire about {g.name.toLowerCase()}
-                </a>
-              </div>
-            </article>
-          ))}
-        </CardSwap>
-        <p className="-mt-s13 md:max-lg:mt-0 flex items-center justify-center gap-s8 text-[13px] text-paper/60 lg:col-start-2 lg:mt-0">
-          <IconArrow size={14} className="rotate-180" aria-hidden="true" />
-          Drag the card to see more
-          <IconArrow size={14} aria-hidden="true" />
-        </p>
+        <div className="mx-auto w-full max-w-[560px] lg:-translate-x-s34">
+          <SlideCards
+            active={active}
+            onActiveChange={setActive}
+            label="Group visits"
+            className="h-[min(340px,42svh)] sm:h-[440px] squat:h-[400px]"
+          >
+            {GROUPS.map((g) => (
+              <article key={g.name} className="flex h-full flex-col overflow-hidden rounded-card bg-card text-ink shadow-card">
+                <div className="relative min-h-0 flex-1 overflow-hidden">
+                  <Image
+                    src={g.image}
+                    alt={g.alt}
+                    fill
+                    sizes="(min-width: 1024px) 560px, 90vw"
+                    placeholder="blur"
+                    className="scale-[1.08] object-cover transition-transform duration-[1400ms] ease-[var(--ease-earth)] group-data-[active]/slide:scale-100 motion-reduce:transition-none"
+                  />
+                </div>
+                <div className="px-s21 py-s13 sm:px-s34 sm:py-s21 squat:py-s13">
+                  <h3 className="font-display text-[clamp(22px,2.4vw,28px)] leading-[1.15] text-forest">{g.name}</h3>
+                  <p className="mt-s8 max-w-[30em] text-[15px] leading-[1.55] text-ink-muted">{g.body}</p>
+                  <a href={g.href} className="link-gold mt-s13 inline-block text-[15px] font-medium text-forest">
+                    Enquire about {g.name.toLowerCase()}
+                  </a>
+                </div>
+              </article>
+            ))}
+          </SlideCards>
+          <div className="mt-s13 flex items-center justify-center gap-s13 sm:mt-s21 squat:mt-s13">
+            <button
+              type="button"
+              onClick={() => setActive((active - 1 + GROUPS.length) % GROUPS.length)}
+              aria-label="Previous group"
+              className="grid size-[44px] place-items-center rounded-full border-[1.5px] border-paper/30 text-paper transition-colors duration-300 hover:border-paper hover:bg-paper hover:text-forest"
+            >
+              <IconArrow size={18} className="rotate-180" />
+            </button>
+            <p className="min-w-[4em] text-center text-[14px] text-paper/70 tabular-nums" aria-live="polite">
+              {active + 1} / {GROUPS.length}
+            </p>
+            <button
+              type="button"
+              onClick={() => setActive((active + 1) % GROUPS.length)}
+              aria-label="Next group"
+              className="grid size-[44px] place-items-center rounded-full border-[1.5px] border-paper/30 text-paper transition-colors duration-300 hover:border-paper hover:bg-paper hover:text-forest"
+            >
+              <IconArrow size={18} />
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );

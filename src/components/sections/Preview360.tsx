@@ -1,31 +1,27 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import fromAbove from "@public/images/client-photos/tour-farm-from-above.jpg";
 import { CircularText } from "@/components/bits/CircularText";
-import { Icon360, IconClose, IconPlay } from "@/components/icons";
-import { TourViewer } from "@/components/TourViewer";
+import { glass } from "@/components/bits/glass";
+import { GlassFill, LiquidGlass } from "@/components/bits/LiquidGlass";
+import { Icon360, IconArrow, IconClose, IconPlay } from "@/components/icons";
+import { TourDialog } from "@/components/TourDialog";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { STORY_VIDEO_URL } from "@/lib/site";
-import type { Tour } from "@/lib/tour";
-
-// A short walk through the farm's 360° tour (scenes listed in scripts/tour-scenes.mjs).
-const HIGHLIGHTS: { name: string; tour: Tour }[] = [
-  { name: "The farm from above", tour: { node: "BirdsEyeView01", pan: -85, tilt: -40 } },
-  { name: "Swimming pool", tour: { node: "SwimmingPoolBliss", pan: -90, tilt: -5 } },
-  { name: "Dining hall", tour: { node: "Abhishta_03", pan: 22, tilt: -5 } },
-  { name: "Amphitheatre and campfire", tour: { node: "Amphitheatre", pan: 12, tilt: -5 } },
-  { name: "Cow cuddling area", tour: { node: "AerialView_03", pan: 0, tilt: -5 } },
-];
 
 /**
- * Forest band under About: the story film (lightbox) and a live 360° view that
- * steps through a few spots on the farm (arrows), turning slowly on its own.
- * The wheel scrolls past it, so it never traps the page.
+ * Forest band under About: the story film (lightbox) and the 360° virtual tour
+ * as a still card (after thebierlibrary.in) — the whole farm from straight
+ * above, from the tour itself. Clicking it opens the live tour full screen
+ * (TourDialog), so the section itself never captures a drag or the wheel.
+ * The card and its label bar are glasscn liquid-refract glass (GlassFill /
+ * LiquidGlass): clear panes whose rims bend what is behind them.
  */
 export function Preview360() {
-  const [scene, setScene] = useState(0);
+  const [tourOpen, setTourOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
-  const count = HIGHLIGHTS.length;
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -44,7 +40,7 @@ export function Preview360() {
         <SectionHeader
           tone="dark"
           title="See the farm before you visit"
-          lead="Look around the farm, the pool and the dining hall in 360°, or watch a short film about how Abhishta began."
+          lead="Take the 360° virtual tour of the whole farm, or watch a short film about how Abhishta began."
         >
           <button type="button" onClick={() => setVideoOpen(true)} className={buttonClass("ghost-light", "mt-s21 md:mt-s34")}>
             <IconPlay size={16} />
@@ -53,24 +49,50 @@ export function Preview360() {
         </SectionHeader>
 
         <div className="relative">
-          <TourViewer
-            tour={HIGHLIGHTS[scene].tour}
-            title={`360° view: ${HIGHLIGHTS[scene].name.toLowerCase()}`}
-            caption={HIGHLIGHTS[scene].name}
-            tone="dark"
-            onPrev={() => setScene((scene - 1 + count) % count)}
-            onNext={() => setScene((scene + 1) % count)}
-            className="aspect-[16/11] sm:aspect-[16/10]"
-          />
+          {/* soft glows behind the glass, so the frosting has something to blur */}
+          <span aria-hidden="true" className="pointer-events-none absolute -inset-s34 -z-0">
+            <span className="absolute top-[8%] left-[4%] size-[46%] rounded-full bg-gold/35 blur-[60px]" />
+            <span className="absolute right-[2%] bottom-[4%] size-[52%] rounded-full bg-water/40 blur-[70px]" />
+          </span>
+          <button
+            type="button"
+            onClick={() => setTourOpen(true)}
+            aria-label="Open the 360° virtual tour"
+            className={`group relative block w-full overflow-hidden rounded-[28px] p-[10px] text-left transition-[background-color] duration-500 hover:bg-white/[0.06] ${glass("dark")} shadow-[0_28px_70px_-20px_rgb(0_0_0/0.5)]`}
+          >
+            <GlassFill />
+            <span className="relative block aspect-[16/11] overflow-hidden rounded-[19px] sm:aspect-[16/10]">
+              <Image
+                src={fromAbove}
+                alt="The whole farm seen from straight above: the cottages, the pool and the orchard rows"
+                fill
+                sizes="(min-width: 1024px) 55vw, 92vw"
+                placeholder="blur"
+                className="object-cover transition-transform duration-[1400ms] ease-[var(--ease-earth)] group-hover:scale-[1.04]"
+              />
+              <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.55),transparent_55%)]" />
+              <LiquidGlass
+                as="span"
+                className="absolute inset-x-s13 bottom-s13 flex items-center justify-between gap-s13 rounded-full bg-white/[0.08] py-[10px] pr-[10px] pl-s21 text-paper [text-shadow:0_1px_4px_rgb(0_0_0/0.6)] [--liquid-glass-rim-fade:8%] [--liquid-glass-rim-light:rgb(255_255_255/0.55)] [--liquid-glass-rim-width:1.5px] sm:inset-x-s21 sm:bottom-s21"
+              >
+                <span className="font-display text-[clamp(18px,1.8vw,24px)] leading-[1.1]">360° Virtual Tour</span>
+                <span className="grid size-[40px] shrink-0 place-items-center rounded-full bg-paper text-forest transition-transform duration-300 group-hover:translate-x-[3px]">
+                  <IconArrow size={18} />
+                </span>
+              </LiquidGlass>
+            </span>
+          </button>
           <CircularText
-            text="drag to explore · 360° · drag to explore · 360° · "
+            text="virtual tour · 360° · virtual tour · 360° · "
             size={110}
-            className="absolute -top-s34 right-s13 origin-top-right scale-[0.78] rounded-full bg-forest text-gold sm:right-auto sm:-top-s55 sm:-left-s34 sm:scale-100"
+            className="pointer-events-none absolute -top-s34 right-s13 origin-top-right scale-[0.78] rounded-full bg-forest text-gold sm:right-auto sm:-top-s55 sm:-left-s34 sm:scale-100"
           >
             <Icon360 size={34} className="text-paper" />
           </CircularText>
         </div>
       </div>
+
+      <TourDialog open={tourOpen} onClose={() => setTourOpen(false)} />
 
       <dialog
         ref={dialogRef}

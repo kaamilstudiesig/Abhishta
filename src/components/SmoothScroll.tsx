@@ -42,8 +42,16 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const top = (el: Element) => Math.round(el.getBoundingClientRect().top + window.scrollY);
-    const pages = () => Array.from(document.querySelectorAll("[data-snap]"), top).sort((a, b) => a - b);
-    const stackPages = () => Array.from(document.querySelectorAll("[data-stack-page]"), top).sort((a, b) => a - b);
+    // Next keeps a page you navigated away from mounted but hidden (display: none), so only count
+    // sections that are actually laid out — a hidden page's sections all report the current scroll
+    // position, which made every gesture look as if it had already landed on a page.
+    const shown = (sel: string) =>
+      Array.from(document.querySelectorAll(sel))
+        .filter((el) => el.getClientRects().length > 0)
+        .map(top)
+        .sort((a, b) => a - b);
+    const pages = () => shown("[data-snap]");
+    const stackPages = () => shown("[data-stack-page]");
     const popoverOpen = () => {
       try {
         return !!document.querySelector(":popover-open");

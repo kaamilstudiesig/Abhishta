@@ -14,7 +14,7 @@ gsap.registerPlugin(useGSAP);
  * number (01, 02…) fading in at its top right once it lands. Escape closes it,
  * focus moves into the panel and returns to the toggle, page scroll is held.
  */
-export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
+export function StaggeredMenu({ tone = "light", solid = false }: { tone?: "light" | "dark"; /** the header bar is solid, so no text shadow is needed */ solid?: boolean }) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -106,8 +106,8 @@ export function StaggeredMenu({ tone = "light" }: { tone?: "light" | "dark" }) {
         aria-expanded={open}
         aria-controls="site-menu"
         onClick={() => setOpen((v) => !v)}
-        className={`relative z-[60] inline-flex h-[44px] items-center px-s8 text-[14px] font-medium tracking-[0.08em] uppercase transition-colors duration-300 ${
-          onDark ? `on-dark text-paper hover:text-gold-soft ${open ? "" : "[text-shadow:0_1px_6px_rgb(0_0_0/0.55)]"}` : "text-forest hover:text-farm"
+        className={`relative z-[60] inline-flex h-[44px] items-center px-s8 text-[15px] font-semibold tracking-[0.08em] uppercase transition-colors duration-300 ${
+          onDark ? `on-dark text-paper hover:text-gold-soft ${open || solid ? "" : "[text-shadow:0_1px_6px_rgb(0_0_0/0.55)]"}` : "text-forest hover:text-farm"
         }`}
       >
         <span className="relative block h-[1.4em] overflow-hidden">

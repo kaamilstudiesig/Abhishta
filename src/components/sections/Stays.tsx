@@ -48,31 +48,36 @@ const STAYS: Stay[] = [
  * Stays — "Stay with us on the farm". Two tilting photo cards that flip
  * (FlipCard, on every screen size): the front is the photo, the name and who
  * it sleeps; tap to turn it over for the rate, what it has and a link to Our
- * Nests. Phones: a swipe row with the next card peeking in. Then one "Explore".
+ * Nests. The cards are always tall rectangles (4:5 side by side on md+), sized
+ * so the whole back fits with no scrolling inside the card. Phones: a swipe row
+ * with the next card peeking in. Then one "Explore".
  */
 export function Stays() {
   return (
-    <section id="stays" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
+    <section id="stays" data-nav="light" data-snap="" className={`bg-paper ${screen} max-md:pt-[84px] max-md:pb-s21 lg:pt-[104px] lg:pb-[56px] squat:pt-[84px] squat:pb-s21`}>
       <div className={container}>
         <SectionHeader title="Stay with us on the farm" className="mx-auto text-center lg:max-w-none [&>span]:mx-auto" />
 
         {/* phones: a swipeable row with the next stay peeking in; md+: two columns */}
-        <ul className="-mx-s21 mt-s21 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 py-s8 [scrollbar-width:none] md:mx-0 md:mt-s34 md:grid md:grid-cols-2 md:gap-s34 md:overflow-visible md:px-0 lg:gap-s55 squat:mt-s21 [&::-webkit-scrollbar]:hidden">
+        <ul className="-mx-s21 mt-s21 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 py-s8 [scrollbar-width:none] md:mx-0 md:mt-s34 md:justify-center md:gap-s34 md:overflow-visible md:px-0 lg:gap-s55 squat:mt-s13 [&::-webkit-scrollbar]:hidden">
           {STAYS.map((stay) => (
-            <li key={stay.name} className="w-[86%] shrink-0 snap-start md:w-auto">
+            <li
+              key={stay.name}
+              className="w-[88%] shrink-0 snap-start [--h:clamp(380px,calc(100svh-297px),600px)] md:w-[min(calc(var(--h)*0.8),calc(50%-17px))] md:[--h:clamp(400px,calc(100svh-420px),640px)] lg:[--h:clamp(400px,calc(100svh-380px),640px)] squat:[--h:calc(100svh-276px)]"
+            >
               <FlipCard
                 photo={stay.image}
                 alt={stay.alt}
                 tag={stay.capacity}
                 title={stay.name}
                 label={stay.name.toLowerCase()}
-                className="h-[clamp(290px,calc(100svh-410px),520px)] md:h-[clamp(300px,calc(100svh-450px),540px)] squat:h-[calc(100svh-410px)]"
+                className="h-[var(--h)]"
                 back={
                   <>
                     <p className="text-[13px] font-medium text-farm">{stay.capacity}</p>
                     <h3 className="font-display text-[clamp(22px,2.4vw,28px)] leading-[1.15] text-forest">{stay.name}</h3>
-                    <p className="mt-s8 text-[15px] leading-[1.5] text-ink-muted max-sm:hidden squat:hidden">{stay.body}</p>
-                    <ul className="mt-s13 grid gap-[6px] text-[15px] leading-[1.4] sm:grid-cols-2 sm:gap-x-s21">
+                    <p className="mt-s8 text-[15px] leading-[1.5] text-ink-muted">{stay.body}</p>
+                    <ul className="mt-s13 grid gap-[6px] text-[15px] leading-[1.4]">
                       {stay.facts.map((f) => (
                         <li key={f} className="flex items-start gap-s8">
                           <IconCheck size={18} className="mt-[1px] shrink-0 text-farm" />
@@ -80,8 +85,8 @@ export function Stays() {
                         </li>
                       ))}
                     </ul>
-                    <p className="mt-s13 border-t border-line pt-s13 text-[15px] font-medium text-forest">{stay.rate}</p>
-                    <a href={stay.href} className="link-gold mt-s13 inline-block text-[15px] font-medium text-forest">
+                    <p className="mt-s13 border-t border-line pt-s8 text-[15px] leading-[1.45] font-medium text-forest">{stay.rate}</p>
+                    <a href={stay.href} className="link-gold mt-s8 inline-block text-[15px] font-medium text-forest">
                       {stay.linkLabel}
                     </a>
                   </>
@@ -91,7 +96,7 @@ export function Stays() {
           ))}
         </ul>
 
-        <div className="mt-s21 flex justify-center md:mt-s34 squat:mt-s13">
+        <div className="mt-s21 flex justify-center md:mt-s34 squat:mt-s8">
           <a href="/our-nests" className={buttonClass("primary")}>
             Explore
             <IconArrow size={18} aria-hidden="true" />

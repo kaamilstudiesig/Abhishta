@@ -4,7 +4,7 @@ Website for Abhishta Agri Farm Stay, a farm stay 90 km from Bangalore. Live prev
 Next.js (App Router) · TypeScript · Tailwind CSS 4 · GSAP + ScrollTrigger · Lenis.
 
 All five pages are built: the homepage (`/`), Our nests (`/our-nests`), The living farm (`/the-living-farm`), Group
-enquiries (`/group-enquiries`) and Field notes & 360° atlas (`/field-notes`).
+enquiries (`/group-enquiries`) and the 360° Virtual Tour (`/virtualtour`; `/field-notes` redirects there).
 
 ## Run it
 ```bash
@@ -20,8 +20,11 @@ The site renders the **Meadow** design (`src/app/meadow.css`). Only Meadow is ch
 "classic" look is still in the code (`npm run ui:classic`, port 3004), but it isn't maintained. See `docs/design-looks.md`.
 
 ## Pages
-- **Homepage** — Hero · About · See the farm before you set out (360°) · Rest your head (stays, with an
-  Explore button to Our nests) · A day on the farm · Bring your people (groups) · Reviews.
+- **Homepage** — Hero · About · See the farm before you visit (a still card that opens the 360° tour full screen) ·
+  Stay with us (flip cards) · A day on the farm · Bring your group (sliding cards) · Reviews (a stacked deck) ·
+  Around the farm (the illustrated map, just before the footer).
+- **Header** — sticky: clear over the hero, a solid bar in the band's tone once you scroll. From 1280px: logo, the
+  seven menu links and a bold Enquire button in one row; smaller screens keep Enquire · logo · Menu.
 - **Our nests** — Explore / Our nests hero · Choose your nest · The cottages · Nandagokula (the group rooms) ·
   Nature's comforts · Beyond your door · Plan your stay.
 - **The living farm** — The living / farm hero · Work the land (bento with the orchard in 360°) · Animals, carts and
@@ -30,7 +33,9 @@ The site renders the **Meadow** design (`src/app/meadow.css`). Only Meadow is ch
 - **Group enquiries** — Bring your / whole group hero · Corporate outings (with a real Google review) · A day on the
   land (nine stops on a rail turning a 360° view to each place) · The living classroom · Celebrations and retreats
   (venues in 360°) · Get a group quote (a three-step form that opens WhatsApp).
-- **Field notes & 360° atlas** — a full-screen 360° atlas with place pills · Around the farm (nearby places; the
+- **360° Virtual Tour** (`/virtualtour`) — a full-screen 360° tour with place pills · Photos from the farm (a
+  calm drifting wall) · How to reach us · Ask us anything. (Around the farm moved to the end of the homepage.)
+- *(formerly Field notes)* — Around the farm (nearby places; the
   bird's-eye view turns to face each) · Photos from the farm · How to reach us (map, contact) · Ask us anything.
 
 ## 360° views
@@ -56,12 +61,12 @@ src/
                        (breeds, 360° views, the day-outing schedule, WhatsApp enquiries)
     sections/group-enquiries/  GroupsHero · Corporate · DayOutings · Schools · Events · GroupQuote, plus groups.ts
                        (the day's stops and their 360° views, occasions, venues, group types)
-    sections/field-notes/  AtlasHero · Around · Gallery · FindUs · AskUs, plus atlas.ts (places, nearby, inclusions)
+    sections/virtual-tour/  AtlasHero · Around · Gallery · FindUs · AskUs, plus atlas.ts (places, nearby, inclusions)
     sections/PageHero  the inner-page hero the inner pages use
     forms              form fields shared by the enquiry forms
     bits/              React Bits components rebuilt in the brand system:
                        SplitText · ScrollReveal · StaggeredMenu · CircularText · GradualBlur · ScrollExpand ·
-                       ScrollStack · CardSwap · CircularGallery · FlowingMenu · GlassSurface · TiltedCard ·
+                       ScrollStack · CardSwap · CircularGallery · FlowingMenu · LiquidGlass + glass() (glasscn) · TiltedCard ·
                        MagicBento · AnimatedBeam (Magic UI) · ExpandingPanels · Stepper
     TourViewer         the 360° viewer (see above)
     SiteShell, Navbar, FloatingActions, IntroVeil, SmoothScroll, Logo, icons, ui (shared header/button/screen helpers)
@@ -126,6 +131,7 @@ Tokens in `src/app/meadow.css`: `farm` leaf `#2F6B3A` (actions) · `forest` deep
 - Group enquiries: the official site gives two capacities (100 or 100–150 for a gathering, 40 or 50 overnight), so
   the page says "up to 100" and gives room counts instead; confirm, along with where high tea is served, where the
   stage and projector are, group rates, and photos of a school group, a team and an event set-up.
-- Field notes: confirm office hours, send short reels for the gallery (see `docs/wireframes/field-notes.md`).
+- Virtual tour: new tour files are coming from the client (item on hold); confirm office hours (see
+  `docs/wireframes/virtual-tour.md`). A new homepage hero video is also on hold.
   `docs/BUILDING_PAGES.md` is the guide.
 - The full-length 1080p hero film is kept outside the repo (`../video-originals/`). The site uses a 75 s web loop.

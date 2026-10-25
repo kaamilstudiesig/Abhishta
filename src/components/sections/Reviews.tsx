@@ -1,4 +1,4 @@
-import { CircularGallery } from "@/components/bits/CircularGallery";
+import { StackCarousel } from "@/components/bits/StackCarousel";
 import { IconStar } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 import { REVIEW_URL } from "@/lib/site";
@@ -30,7 +30,7 @@ function Stars({ className = "" }: { className?: string }) {
   );
 }
 
-/** Reviews — the Google rating and a bending CircularGallery of review cards (drag, arrows or ←/→). */
+/** Reviews — the Google rating and the reviews as a calm stacked deck (StackCarousel): one in front, the next two peeking beneath; Next lifts the front one away. */
 export function Reviews() {
   return (
     <section id="reviews" data-nav="light" data-snap="" className={`overflow-hidden bg-paper ${screen}`}>
@@ -56,7 +56,12 @@ export function Reviews() {
         </div>
       </div>
 
-      <CircularGallery label="Google reviews" className="mt-s21 sm:mt-s34 squat:mt-s21" stageClassName="squat:h-[268px]">
+      <StackCarousel
+        label="Google reviews"
+        itemLabel="review"
+        className={`${container} mt-s21 sm:mt-s34 squat:mt-s21`}
+        stageClassName="max-w-[640px] h-[304px] sm:h-[336px] squat:h-[268px]"
+      >
         {REVIEWS.map((r) => (
           <figure key={r.name} className="flex h-[268px] flex-col rounded-card bg-card p-s21 sm:h-[300px] shadow-card ring-1 ring-line sm:p-s34 squat:h-[232px] squat:p-s21">
             <Stars />
@@ -79,7 +84,7 @@ export function Reviews() {
             </figcaption>
           </figure>
         ))}
-      </CircularGallery>
+      </StackCarousel>
     </section>
   );
 }

@@ -8,6 +8,8 @@ import { BOOKING_URL } from "@/lib/site";
 import { Pillows } from "./RoomParts";
 import { TourLink, TourViewer } from "@/components/TourViewer";
 import { COTTAGE_NAMES, COTTAGE_PILLOWS, COTTAGE_VIEWS, RATES } from "./rooms";
+import { glass } from "@/components/bits/glass";
+import { GlassFill } from "@/components/bits/LiquidGlass";
 
 // Stayflexi's cottage amenities, plus the sit-out from the official site.
 const FACTS = ["Own washroom", "Hot water", "Air-conditioned", "Kettle, wardrobe", "Toiletries", "Private sit-out"];
@@ -29,7 +31,7 @@ export function Cottages() {
   const prev = () => setView((view - 1 + count) % count);
   const next = () => setView((view + 1) % count);
   const control =
-    "z-10 grid size-[40px] place-items-center rounded-full bg-ink/45 text-paper backdrop-blur-[2px] transition-colors duration-300 hover:bg-ink/70";
+    `z-10 grid size-[40px] place-items-center rounded-full text-paper transition-colors duration-300 hover:bg-white/20 ${glass("dark")}`;
 
   return (
     <section id="cottages" data-nav="light" data-snap="" className={`bg-paper-deep ${screen}`}>
@@ -47,13 +49,16 @@ export function Cottages() {
           {current.photo ? (
             <div role="group" aria-label={current.title} className="absolute inset-x-0 top-0 z-20 h-[max(280px,calc(100svh-438px))] overflow-hidden rounded-card bg-card ring-1 ring-line sm:h-[clamp(350px,36svh,460px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]">
               <Image src={current.photo} alt={current.title} fill sizes="(min-width: 1024px) 55vw, 100vw" placeholder="blur" className="object-cover" />
-              <span className="absolute bottom-s13 left-s13 rounded-btn bg-ink/45 px-s13 py-[6px] text-[13px] font-medium text-paper backdrop-blur-[2px]">
+              <span className={`absolute bottom-s13 left-s13 rounded-full px-s13 py-[6px] text-[13px] font-medium text-paper ${glass("dark")}`}>
+                <GlassFill />
                 {`${current.name} · ${view + 1} of ${count}`}
               </span>
               <button type="button" onClick={prev} aria-label="Previous cottage view" className={`absolute top-1/2 left-s13 -translate-y-1/2 ${control}`}>
+                <GlassFill />
                 <IconChevronLeft size={20} />
               </button>
               <button type="button" onClick={next} aria-label="Next cottage view" className={`absolute top-1/2 right-s13 -translate-y-1/2 ${control}`}>
+                <GlassFill />
                 <IconChevronRight size={20} />
               </button>
             </div>

@@ -35,10 +35,13 @@ export const SOCIALS = [
 ] as const;
 
 
+/** The site menu (client, 2026-10-26). Farm to Table and Gau Seva are sections of the Experiences page. */
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "Our nests", href: "/our-nests" },
-  { label: "The living farm", href: "/the-living-farm" },
-  { label: "Group enquiries", href: "/group-enquiries" },
-  { label: "Field notes & 360° atlas", href: "/field-notes" },
+  { label: "Stay", href: "/our-nests" },
+  { label: "Experiences", href: "/the-living-farm" },
+  { label: "Groups & Events", href: "/group-enquiries" },
+  { label: "Farm to Table", href: "/the-living-farm#soil-to-table" },
+  { label: "360° Virtual Tour", href: "/virtualtour" },
+  { label: "Gau Seva", href: "/the-living-farm#gau-seva" },
 ] as const;

@@ -9,7 +9,8 @@ with what you see in the code, the code is the truth — then update this guide.
 Built: `/our-nests` (from **`docs/wireframes/our-nests.md`**; sections in `src/components/sections/our-nests/`) and
 `/the-living-farm` (from **`docs/wireframes/the-living-farm.md`**; sections in `src/components/sections/living-farm/`)
 `/group-enquiries` (from **`docs/wireframes/group-enquiries.md`**; sections in `src/components/sections/group-enquiries/`)
-and `/field-notes` (from **`docs/wireframes/field-notes.md`**; sections in `src/components/sections/field-notes/`).
+and `/virtualtour` (the 360° Virtual Tour, formerly `/field-notes`, which redirects; from
+**`docs/wireframes/virtual-tour.md`**; sections in `src/components/sections/virtual-tour/`).
 All pages in the menu are built.
 
 Pages still to build (all currently fall through to the branded 404, `src/app/not-found.tsx`):
@@ -25,7 +26,10 @@ Pages still to build (all currently fall through to the branded 404, `src/app/no
   Never copy its styling, placeholder images, Relume components or its Navbar/Footer.
 - **The homepage already links to these anchors** — the target page must provide matching `id`s:
   `/our-nests#cottages`, `/our-nests#dormitories`, `/group-enquiries#corporate`, `#schools`, `#day-outings`, `#events`.
-  Nav links (`NAV_LINKS` in `src/lib/site.ts`) use `/our-nests`, `/the-living-farm`, `/group-enquiries`, `/field-notes`.
+  Nav links (`NAV_LINKS` in `src/lib/site.ts`, client's menu 2026-10-26): Home, Stay (`/our-nests`), Experiences
+  (`/the-living-farm`), Groups & Events (`/group-enquiries`), Farm to Table (`/the-living-farm#soil-to-table`),
+  360° Virtual Tour (`/virtualtour`), Gau Seva (`/the-living-farm#gau-seva`). The header shows them in one row from
+  `xl` (1280px); below that the StaggeredMenu holds them.
 
 ## 2. Stack and project rules
 
@@ -101,8 +105,12 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
   band with a marquee of the detail (not used on a page right now).
 - `TiltedCard` (`amplitude`, `scaleOnHover`) — a card that leans toward the pointer, no glare; flattens while a
   button is held, so a 360° view inside it can be dragged (the shared-spaces carousel on `/our-nests`).
-- `GlassSurface` (`radius`) — a clear glass pane over a photo (no frost or tint, a bright rim): the edge bends the
-  backdrop in Chromium, plain clear glass elsewhere (the jump pills in the inner-page heroes).
+- **Glass: glasscn's liquid-refract, everywhere** (`@glasscn` in `components.json`; originals in
+  `docs/reference/react-bits-originals/glasscn-*.json`). Never hand-roll `backdrop-blur` + a tint. Put a `GlassFill`
+  (`bits/LiquidGlass.tsx`: real edge refraction in Chromium, blur elsewhere, glasscn's 8% white fill and rim) inside a
+  positioned, rounded element that has `glass(tone)` (`bits/glass.ts`: `isolate`, plus a text shadow for `"dark"`).
+  Used on the navbar bubble (`LiquidGlass` directly), the tour card and its label bar, 360° viewer controls and
+  captions, place pills, the tour dialog, cottage slides, hero jump pills, the gallery and map titles.
 - `MagicBento` + `BentoTile` — a bento grid whose tile rims and insides catch the pointer's light (React Bits
   MagicBento, glow only; "Work the land" on `/the-living-farm`).
 - `AnimatedBeam` (`containerRef`, `fromRef`, `toRef`, `duration`, `delay`) — a faint S-curve between two elements with

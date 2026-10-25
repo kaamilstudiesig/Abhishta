@@ -17,6 +17,7 @@
     "hooks": "@reference/react-bits-originals/incoming/hooks"
   },
   "registries": {
-    "@react-bits": "https://reactbits.dev/r/{name}.json"
+    "@react-bits": "https://reactbits.dev/r/{name}.json",
+    "@glasscn": "https://glasscn-components.vercel.app/r/{name}.json"
   }
 }

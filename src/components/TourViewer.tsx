@@ -4,6 +4,8 @@ import { useEffect, useId, useRef, useState } from "react";
 import { Icon360, IconChevronLeft, IconChevronRight, IconExpand, IconExternal } from "@/components/icons";
 import { TOUR_360_URL } from "@/lib/site";
 import { tourUrl, type Tour } from "@/lib/tour";
+import { glass } from "@/components/bits/glass";
+import { GlassFill } from "@/components/bits/LiquidGlass";
 
 /** The parts of Turiya's Pano2VR player this viewer uses. */
 type Player = {
@@ -197,7 +199,7 @@ export function TourViewer({
   }, [tour]);
 
   const control =
-    "z-10 grid size-[40px] place-items-center rounded-full bg-ink/45 text-paper backdrop-blur-[2px] transition-colors duration-300 hover:bg-ink/70";
+    `z-10 grid size-[40px] place-items-center rounded-full text-paper transition-colors duration-300 hover:bg-white/20 ${glass("dark")}`;
 
   return (
     <div
@@ -232,13 +234,17 @@ export function TourViewer({
           {/* bottom left: the drag cue until the first drag, then the caption (the top corners stay clear for page decoration) */}
           <span className="pointer-events-none absolute bottom-s13 left-s13 z-10 flex flex-col items-start gap-[6px]">
             {!touched ? (
-              <span className="inline-flex items-center gap-[6px] rounded-btn bg-ink/45 px-s13 py-[7px] text-[13px] font-medium text-paper backdrop-blur-[2px]">
+              <span className={`relative inline-flex items-center gap-[6px] rounded-full px-s13 py-[7px] text-[13px] font-medium text-paper ${glass("dark")}`}>
+                <GlassFill />
                 <Icon360 size={18} />
                 Drag to look around
               </span>
             ) : null}
             {caption ? (
-              <span className="rounded-btn bg-ink/45 px-s13 py-[6px] text-[13px] font-medium text-paper backdrop-blur-[2px]">{caption}</span>
+              <span className={`relative rounded-full px-s13 py-[6px] text-[13px] font-medium text-paper ${glass("dark")}`}>
+                <GlassFill />
+                {caption}
+              </span>
             ) : null}
           </span>
           {canFullscreen ? (
@@ -248,16 +254,19 @@ export function TourViewer({
               aria-label="Show full screen"
               className={`absolute right-s13 bottom-s13 ${control}`}
             >
+              <GlassFill />
               <IconExpand size={18} />
             </button>
           ) : null}
           {onPrev ? (
             <button type="button" onClick={onPrev} aria-label={prevLabel} className={`absolute top-1/2 left-s13 -translate-y-1/2 ${control}`}>
+              <GlassFill />
               <IconChevronLeft size={20} />
             </button>
           ) : null}
           {onNext ? (
             <button type="button" onClick={onNext} aria-label={nextLabel} className={`absolute top-1/2 right-s13 -translate-y-1/2 ${control}`}>
+              <GlassFill />
               <IconChevronRight size={20} />
             </button>
           ) : null}

@@ -18,6 +18,7 @@ export function DriftWall({
   items,
   columns = 4,
   speed = 18,
+  gap = "gap-s13",
   label,
   className = "",
 }: {
@@ -25,6 +26,8 @@ export function DriftWall({
   columns?: number;
   /** px per second */
   speed?: number;
+  /** the space between photos (a gap utility) */
+  gap?: string;
   label: string;
   className?: string;
 }) {
@@ -106,10 +109,10 @@ export function DriftWall({
         }}
         className={`relative overflow-hidden [perspective:1400px] ${className}`}
       >
-        <div className="grid h-full gap-s13 [transform:rotateX(var(--dw-rx,0deg))_rotateY(var(--dw-ry,0deg))] [transform-style:preserve-3d]" style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
+        <div className={`grid h-full ${gap} [transform:rotateX(var(--dw-rx,0deg))_rotateY(var(--dw-ry,0deg))] [transform-style:preserve-3d]`} style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
           {cols.map((col, c) => (
             <div key={c} className="min-w-0" onPointerEnter={() => (hovered.current = c)}>
-              <div ref={(el) => void (tracks.current[c] = el)} className="flex flex-col gap-s13 will-change-transform">
+              <div ref={(el) => void (tracks.current[c] = el)} className={`flex flex-col ${gap} will-change-transform`}>
                 {[0, 1].map((copy) =>
                   col.map((item, n) => (
                     <button

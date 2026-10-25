@@ -6,6 +6,7 @@ import { Stays } from "@/components/sections/Stays";
 import { DayOnFarm } from "@/components/sections/DayOnFarm";
 import { Groups } from "@/components/sections/Groups";
 import { Reviews } from "@/components/sections/Reviews";
+import { Around } from "@/components/sections/virtual-tour/Around";
 
 /**
  * One screen per section. Every [data-snap] element is a page: on desktop
@@ -22,6 +23,7 @@ export default function Home() {
       <DayOnFarm />
       <Groups />
       <Reviews />
+      <Around />
     </SiteShell>
   );
 }

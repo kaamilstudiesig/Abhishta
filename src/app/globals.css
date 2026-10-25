@@ -317,3 +317,10 @@ html.js .intro-veil {
     inset: -12px -8px;
   }
 }
+
+/* a photo settling in when it changes (the place photos in "Around the farm") */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}

@@ -39,8 +39,9 @@ const CONTACTS = [
 /**
  * Compact footer. On screens tall enough to hold it, it sits under the page
  * (position: sticky; bottom: 0) and is revealed as the last section scrolls
- * away, with the "Abhishta" wordmark rising as it does. Elsewhere it simply
- * follows the page, so every link is always reachable.
+ * away. Once the whole "Abhishta" wordmark is uncovered, its letters rise one
+ * by one at a watchable pace. Elsewhere it simply follows the page (the word
+ * rises once it's fully in view), so every link is always reachable.
  */
 export function Footer() {
   const ref = useRef<HTMLElement>(null);
@@ -49,14 +50,28 @@ export function Footer() {
     () => {
       const el = ref.current;
       if (!el) return;
-      const mm = gsap.matchMedia();
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from(el.querySelectorAll("[data-wordmark] span"), {
-          yPercent: 100,
-          ease: "none",
-          stagger: 0.04,
-          scrollTrigger: { trigger: el, start: "top bottom", end: "bottom bottom", scrub: 0.4 },
+      const word = el.querySelector<HTMLElement>("[data-wordmark]");
+      // this page's own main (it sits right before the footer; a page navigated away from may still be mounted, hidden)
+      const main = el.previousElementSibling?.tagName === "MAIN" ? el.previousElementSibling : null;
+      if (!word || !main) return;
+      const letters = word.querySelectorAll("span");
+      // the letters rise one after another, at a pace you can watch; scrolling back up lowers them again
+      const rise = (scrollTrigger: ScrollTrigger.Vars) =>
+        gsap.from(letters, {
+          yPercent: 110,
+          duration: 1.1,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: { ...scrollTrigger, toggleActions: "play none none reverse", invalidateOnRefresh: true },
         });
+      const mm = gsap.matchMedia();
+      // sticky footer: it waits under the page, so play once the page has slid far enough up to uncover the whole word
+      mm.add("(prefers-reduced-motion: no-preference) and (min-width: 768px) and (min-height: 680px)", () => {
+        rise({ trigger: main, start: () => `bottom ${window.innerHeight - el.offsetHeight + word.offsetTop}px` });
+      });
+      // footer in the flow: play once the whole word has scrolled into view
+      mm.add("(prefers-reduced-motion: no-preference) and (not ((min-width: 768px) and (min-height: 680px)))", () => {
+        rise({ trigger: word, start: "bottom bottom" });
       });
       return () => mm.revert();
     },
