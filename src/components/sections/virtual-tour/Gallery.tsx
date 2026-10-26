@@ -82,7 +82,8 @@ export function Gallery() {
             title === "shown" ? "scale-100 opacity-100 duration-500" : title === "gone" ? "scale-[0.98] opacity-0 duration-700" : "scale-[0.9] opacity-0 duration-0"
           }`}
         >
-          <GlassFill blur={6} className="bg-white/40" />
+          {/* frosted, milky glass here so the title reads over the moving photos */}
+          <GlassFill blur={18} saturation={1.1} fill="bg-white/75" />
           <h2 className="font-display text-[clamp(30px,4.6vw,58px)] leading-[1] text-forest">Photos from the farm</h2>
           <p className="mt-s8 text-[15px] text-ink-muted">Tap any photo to see it larger.</p>
         </div>

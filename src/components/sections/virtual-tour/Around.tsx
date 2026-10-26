@@ -448,7 +448,7 @@ export function Around() {
         <div
           className={`relative rounded-card px-s13 py-s8 lg:px-s21 lg:py-s13 ${glass()}`}
         >
-          <GlassFill blur={4} className="bg-white/40" />
+          <GlassFill blur={4} fill="bg-white/40" />
           <h2 className="font-display text-[clamp(20px,2.4vw,36px)] leading-[1.05] text-forest">
             Around the farm
           </h2>

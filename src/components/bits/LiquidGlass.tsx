@@ -178,14 +178,20 @@ export function LiquidGlass({
  * positioned element that has `isolate` (see `glass()`), and that element
  * becomes a pane of refracting glass in its own shape, its content on top.
  * glasscn's defaults throughout: an 8% white fill, 2px blur, refraction 15.
+ * `fill` replaces the fill (a bare bg class next to the default would lose to
+ * it), e.g. a milky "bg-white/75" for frosted glass behind text over photos.
  */
-export function GlassFill({ className = "", ...props }: Omit<Parameters<typeof LiquidGlass>[0], "as" | "children">) {
+export function GlassFill({
+  className = "",
+  fill = "bg-white/[0.08]",
+  ...props
+}: Omit<Parameters<typeof LiquidGlass>[0], "as" | "children"> & { fill?: string }) {
   return (
     <LiquidGlass
       as="span"
       aria-hidden
       {...props}
-      className={`pointer-events-none absolute inset-0 -z-10 rounded-[inherit] bg-white/[0.08] [--liquid-glass-rim-fade:8%] [--liquid-glass-rim-light:rgb(255_255_255/0.55)] [--liquid-glass-rim-width:1.5px] ${className}`}
+      className={`pointer-events-none absolute inset-0 -z-10 rounded-[inherit] ${fill} [--liquid-glass-rim-fade:8%] [--liquid-glass-rim-light:rgb(255_255_255/0.55)] [--liquid-glass-rim-width:1.5px] ${className}`}
     />
   );
 }
