@@ -1,15 +1,23 @@
 "use client";
 
 import { useEffect, useRef, useState, type ComponentType } from "react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import cottages from "@public/images/client-photos/gallery-cottages-path.jpg";
-import { IconArrow, IconDam, IconHill, IconLeaf, IconLoom, IconTemple } from "@/components/icons";
+import {
+  IconArrow,
+  IconDam,
+  IconHill,
+  IconLeaf,
+  IconLoom,
+  IconTemple,
+} from "@/components/icons";
 import { buttonClass } from "@/components/ui";
 import { CONTACT } from "@/lib/site";
 import { FARM, NEARBY, compass, type PlaceKind } from "./atlas";
 import { glass } from "@/components/bits/glass";
 import { GlassFill } from "@/components/bits/LiquidGlass";
 import { NEARBY_PHOTOS } from "./nearby-photos";
+import { PlaceArt } from "./PlaceArt";
 
 /*
  * The drawing: a 1400 × 900 illustrated map with the farm a little left of centre (the panel sits on the right).
@@ -26,12 +34,21 @@ const at = (bearing: number, r: number) => {
   return { x: CX + r * Math.sin(a), y: CY - r * Math.cos(a) };
 };
 const radius = (minutes: number) => 150 + (minutes - 27) * 9;
+// a little extra distance for places whose drive times put them on top of a neighbour (fingertip room on phones)
+const NUDGE: Record<string, number> = {
+  "Sidlingeshwara Yoga Vana Betta": 50,
+  "Yediyur Siddalingeshwara Temple": 20,
+};
 
 // labels sit on the side away from the farm, except where a neighbour or an edge is in the way
-const LABEL: Record<string, "left" | "right" | "above" | "below"> = {
+// "below-right": under the pin on phones (where the right edge is close), beside it on large screens
+const LABEL: Record<
+  string,
+  "left" | "right" | "above" | "below" | "below-right"
+> = {
   "Yediyur Siddalingeshwara Temple": "left",
   "Markonahalli Dam": "below",
-  "Sidlingeshwara Yoga Vana Betta": "right",
+  "Sidlingeshwara Yoga Vana Betta": "below-right",
   "Rangaswamy Betta": "right",
   "Kalur weaving": "above",
   "Hadinkal Anjaneya Temple": "above",
@@ -39,29 +56,65 @@ const LABEL: Record<string, "left" | "right" | "above" | "below"> = {
   "Panchamukhi Anjaneya Temple": "above",
 };
 const PLACES = NEARBY.map((p) => {
-  const pos = at(p.bearing, radius(p.minutes));
-  return { ...p, ...pos, side: LABEL[p.name] ?? (pos.x < CX ? "left" : "right") };
+  const pos = at(p.bearing, radius(p.minutes) + (NUDGE[p.name] ?? 0));
+  return {
+    ...p,
+    ...pos,
+    side: LABEL[p.name] ?? (pos.x < CX ? "left" : "right"),
+  };
 });
 const DAM = PLACES.find((p) => p.kind === "water")!;
 const KUNIGAL = at(122, 105);
 
-const KIND: Record<PlaceKind, { name: string; icon: ComponentType<{ size?: number; className?: string }> }> = {
+const KIND: Record<
+  PlaceKind,
+  { name: string; icon: ComponentType<{ size?: number; className?: string }> }
+> = {
   temple: { name: "Temples", icon: IconTemple },
   hill: { name: "Hill walks", icon: IconHill },
   water: { name: "Dam", icon: IconDam },
   craft: { name: "Handloom", icon: IconLoom },
 };
 
-const pct = (x: number, y: number) => ({ left: `${(x / W) * 100}%`, top: `${(y / H) * 100}%` });
+const pct = (x: number, y: number) => ({
+  left: `${(x / W) * 100}%`,
+  top: `${(y / H) * 100}%`,
+});
 const directions = (to: string) =>
   `https://www.google.com/maps/dir/?api=1&origin=${FARM.lat},${FARM.lng}&destination=${encodeURIComponent(`${to}, Karnataka`)}`;
 
 // tree crowns scattered along the river and through the groves (x, y, size)
 const TREES: [number, number, number][] = [
-  [690, 70, 1], [665, 120, 0.8], [640, 175, 1.1], [612, 230, 0.9], [640, 330, 1], [585, 360, 0.8], [520, 520, 1], [600, 560, 0.9],
-  [520, 700, 1], [585, 760, 1.1], [620, 830, 0.9], [300, 180, 1], [330, 210, 0.8], [270, 230, 0.9], [180, 470, 1], [210, 500, 0.8],
-  [880, 640, 1], [910, 670, 0.9], [850, 700, 1.1], [980, 180, 1], [1010, 210, 0.8], [400, 830, 1], [430, 800, 0.9], [760, 360, 0.8],
-  [110, 760, 1], [140, 790, 0.9], [740, 170, 0.8], [960, 780, 1], [330, 520, 0.8], [760, 760, 0.9],
+  [690, 70, 1],
+  [665, 120, 0.8],
+  [640, 175, 1.1],
+  [612, 230, 0.9],
+  [640, 330, 1],
+  [585, 360, 0.8],
+  [520, 520, 1],
+  [600, 560, 0.9],
+  [520, 700, 1],
+  [585, 760, 1.1],
+  [620, 830, 0.9],
+  [300, 180, 1],
+  [330, 210, 0.8],
+  [270, 230, 0.9],
+  [180, 470, 1],
+  [210, 500, 0.8],
+  [880, 640, 1],
+  [910, 670, 0.9],
+  [850, 700, 1.1],
+  [980, 180, 1],
+  [1010, 210, 0.8],
+  [400, 830, 1],
+  [430, 800, 0.9],
+  [760, 360, 0.8],
+  [110, 760, 1],
+  [140, 790, 0.9],
+  [740, 170, 0.8],
+  [960, 780, 1],
+  [330, 520, 0.8],
+  [760, 760, 0.9],
 ];
 
 function Paths() {
@@ -70,19 +123,45 @@ function Paths() {
       <defs>
         {/* paper grain */}
         <filter id="map-grain" x="0" y="0" width="100%" height="100%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n" />
-          <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.2  0 0 0 0 0.25  0 0 0 0 0.15  0 0 0 0.09 0" />
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.9"
+            numOctaves="2"
+            seed="7"
+            result="n"
+          />
+          <feColorMatrix
+            in="n"
+            type="matrix"
+            values="0 0 0 0 0.2  0 0 0 0 0.25  0 0 0 0 0.15  0 0 0 0.09 0"
+          />
         </filter>
         {/* the farm's own land: hatched, as the reference marks its own reserve */}
-        <pattern id="map-hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <pattern
+          id="map-hatch"
+          width="12"
+          height="12"
+          patternUnits="userSpaceOnUse"
+          patternTransform="rotate(45)"
+        >
           <rect width="12" height="12" className="fill-gold-soft" />
-          <line x1="0" y1="0" x2="0" y2="12" className="stroke-farm/35" strokeWidth="3" />
+          <line
+            x1="0"
+            y1="0"
+            x2="0"
+            y2="12"
+            className="stroke-farm/35"
+            strokeWidth="3"
+          />
         </pattern>
         <symbol id="map-tree" viewBox="-12 -12 24 24">
           <circle r="9" className="fill-farm/30" />
           <circle cx="-3" cy="-3" r="5" className="fill-farm/20" />
         </symbol>
-        <path id="map-river" d="M735 -10 C700 110 620 160 630 270 S560 420 552 520 S548 600 556 636 C566 700 610 780 650 910" />
+        <path
+          id="map-river"
+          d="M735 -10 C700 110 620 160 630 270 S560 420 552 520 S548 600 556 636 C566 700 610 780 650 910"
+        />
       </defs>
 
       {/* the land: a patchwork of fields */}
@@ -107,7 +186,12 @@ function Paths() {
 
       {/* hills: soft contour rings at the two hill walks */}
       {PLACES.filter((p) => p.kind === "hill").map((p) => (
-        <g key={p.name} transform={`translate(${p.x} ${p.y})`} className="fill-none stroke-farm/25" strokeWidth="2">
+        <g
+          key={p.name}
+          transform={`translate(${p.x} ${p.y})`}
+          className="fill-none stroke-farm/25"
+          strokeWidth="2"
+        >
           <ellipse rx="64" ry="40" />
           <ellipse rx="44" ry="27" />
           <ellipse rx="24" ry="15" className="fill-farm/10" />
@@ -115,49 +199,119 @@ function Paths() {
       ))}
 
       {/* the farm's land */}
-      <path d={`M${CX - 70} ${CY - 46} L${CX + 62} ${CY - 58} L${CX + 76} ${CY + 40} L${CX - 52} ${CY + 58} Z`} fill="url(#map-hatch)" className="stroke-farm/50" strokeWidth="2" />
+      <path
+        d={`M${CX - 70} ${CY - 46} L${CX + 62} ${CY - 58} L${CX + 76} ${CY + 40} L${CX - 52} ${CY + 58} Z`}
+        fill="url(#map-hatch)"
+        className="stroke-farm/50"
+        strokeWidth="2"
+      />
 
       {/* the Shimsha river and the Markonahalli reservoir behind the dam */}
-      <use href="#map-river" className="fill-none stroke-water" strokeWidth="11" strokeLinecap="round" opacity="0.75" />
-      <path d={`M${DAM.x - 46} ${DAM.y - 64} c 26 -24 74 -16 84 10 s -14 48 -38 54 s -64 -32 -46 -64 z`} className="fill-water/70" />
+      <use
+        href="#map-river"
+        className="fill-none stroke-water"
+        strokeWidth="11"
+        strokeLinecap="round"
+        opacity="0.75"
+      />
+      <path
+        d={`M${DAM.x - 46} ${DAM.y - 64} c 26 -24 74 -16 84 10 s -14 48 -38 54 s -64 -32 -46 -64 z`}
+        className="fill-water/70"
+      />
 
       {/* the NH75: Hassan to the west, Kunigal, Bangalore to the east */}
-      <path d={`M-10 600 C 200 590 420 560 ${KUNIGAL.x} ${KUNIGAL.y} S 1100 520 1410 520`} className="fill-none stroke-paper" strokeWidth="9" />
-      <path d={`M-10 600 C 200 590 420 560 ${KUNIGAL.x} ${KUNIGAL.y} S 1100 520 1410 520`} className="fill-none stroke-forest/45" strokeWidth="3" />
+      <path
+        d={`M-10 600 C 200 590 420 560 ${KUNIGAL.x} ${KUNIGAL.y} S 1100 520 1410 520`}
+        className="fill-none stroke-paper"
+        strokeWidth="9"
+      />
+      <path
+        d={`M-10 600 C 200 590 420 560 ${KUNIGAL.x} ${KUNIGAL.y} S 1100 520 1410 520`}
+        className="fill-none stroke-forest/45"
+        strokeWidth="3"
+      />
       {/* the lane from the farm down to the highway */}
-      <path d={`M${CX + 20} ${CY + 40} C ${CX + 40} ${CY + 80} ${KUNIGAL.x - 40} ${KUNIGAL.y - 20} ${KUNIGAL.x} ${KUNIGAL.y}`} className="fill-none stroke-forest/30" strokeWidth="2" strokeDasharray="6 6" />
+      <path
+        d={`M${CX + 20} ${CY + 40} C ${CX + 40} ${CY + 80} ${KUNIGAL.x - 40} ${KUNIGAL.y - 20} ${KUNIGAL.x} ${KUNIGAL.y}`}
+        className="fill-none stroke-forest/30"
+        strokeWidth="2"
+        strokeDasharray="6 6"
+      />
 
       {TREES.map(([x, y, s]) => (
-        <use key={`${x}-${y}`} href="#map-tree" x={x - 12 * s} y={y - 12 * s} width={24 * s} height={24 * s} />
+        <use
+          key={`${x}-${y}`}
+          href="#map-tree"
+          x={x - 12 * s}
+          y={y - 12 * s}
+          width={24 * s}
+          height={24 * s}
+        />
       ))}
 
       {/* names on the land */}
-      <g className="fill-forest font-display" style={{ paintOrder: "stroke" }} stroke="var(--color-paper-deep)" strokeWidth="5" strokeLinejoin="round">
+      <g
+        className="fill-forest font-display"
+        style={{ paintOrder: "stroke" }}
+        stroke="var(--color-paper-deep)"
+        strokeWidth="5"
+        strokeLinejoin="round"
+      >
         <text fontSize="19" letterSpacing="3" opacity="0.7">
           <textPath href="#map-river" startOffset="9%">
             SHIMSHA RIVER
           </textPath>
         </text>
-        <text x="980" y="508" fontSize="15" letterSpacing="2" textAnchor="end" opacity="0.75">
+        <text
+          x="980"
+          y="508"
+          fontSize="15"
+          letterSpacing="2"
+          textAnchor="end"
+          opacity="0.75"
+        >
           NH75 · TO BANGALORE, 90 KM →
         </text>
         <text x="16" y="585" fontSize="15" letterSpacing="2" opacity="0.75">
           ← NH75 · TO HASSAN
         </text>
-        <text x={W / 2 + 140} y="34" fontSize="15" letterSpacing="2" textAnchor="middle" opacity="0.6">
+        <text
+          x={W / 2 + 140}
+          y="34"
+          fontSize="15"
+          letterSpacing="2"
+          textAnchor="middle"
+          opacity="0.6"
+        >
           TOWARDS TUMKUR ↑
         </text>
-        <text x={W / 2 - 40} y={H - 18} fontSize="15" letterSpacing="2" textAnchor="middle" opacity="0.6">
+        <text
+          x={W / 2 - 40}
+          y={H - 18}
+          fontSize="15"
+          letterSpacing="2"
+          textAnchor="middle"
+          opacity="0.6"
+        >
           TOWARDS MANDYA ↓
         </text>
       </g>
 
       {/* compass */}
       <g transform="translate(90 200)" className="fill-forest">
-        <circle r="30" className="fill-paper/80 stroke-forest/30" strokeWidth="1.5" />
+        <circle
+          r="30"
+          className="fill-paper/80 stroke-forest/30"
+          strokeWidth="1.5"
+        />
         <path d="M0 -24 L7 0 L0 -5 L-7 0 Z" />
         <path d="M0 24 L7 0 L0 5 L-7 0 Z" className="fill-forest/30" />
-        <text y="-34" textAnchor="middle" fontSize="16" className="font-display">
+        <text
+          y="-34"
+          textAnchor="middle"
+          fontSize="16"
+          className="font-display"
+        >
           N
         </text>
       </g>
@@ -181,19 +335,46 @@ export function Around() {
   const [sel, setSel] = useState<number | null>(null); // null: the farm itself
   const place = sel === null ? null : PLACES[sel];
   const scrollRef = useRef<HTMLDivElement>(null);
+  // the card's picture: the place's photo, the farm's own photo, or (no photo yet) a drawn scene
+  const photo: {
+    image: StaticImageData;
+    alt: string;
+    focus?: string;
+    credit?: string;
+    license?: string;
+    source?: string;
+  } | null = place
+    ? (NEARBY_PHOTOS[place.name] ?? null)
+    : { image: cottages, alt: "The cottages along a stone path at Abhishta" };
 
   // phones: start the sideways-scrolling map with the farm in the middle
   useEffect(() => {
     const el = scrollRef.current;
-    if (el && el.scrollWidth > el.clientWidth) el.scrollLeft = (el.scrollWidth * CX) / W - el.clientWidth / 2;
+    if (el && el.scrollWidth > el.clientWidth)
+      el.scrollLeft = (el.scrollWidth * CX) / W - el.clientWidth / 2;
   }, []);
 
   return (
-    <section id="around" data-nav="light" data-snap="" className="relative isolate flex h-svh min-h-[600px] flex-col overflow-hidden bg-paper-deep lg:block">
+    <section
+      id="around"
+      data-nav="light"
+      data-snap=""
+      className="relative isolate flex h-svh min-h-[600px] flex-col overflow-hidden bg-paper-deep lg:block"
+    >
       {/* the map: covers the section on large screens; scrolls sideways on phones and tablets */}
-      <div ref={scrollRef} className="relative min-h-0 flex-1 overflow-x-auto overflow-y-hidden pt-[80px] [scrollbar-width:none] lg:absolute lg:inset-0 lg:overflow-hidden lg:pt-0 [&::-webkit-scrollbar]:hidden">
-        <div className="relative h-full lg:absolute lg:top-1/2 lg:left-1/2 lg:h-auto lg:min-h-full lg:w-auto lg:min-w-full lg:-translate-x-1/2 lg:-translate-y-1/2" style={{ aspectRatio: `${W} / ${H}` }}>
-          <svg viewBox={`0 0 ${W} ${H}`} aria-hidden="true" className="absolute inset-0 size-full">
+      <div
+        ref={scrollRef}
+        className="relative min-h-0 flex-1 overflow-x-auto overflow-y-hidden pt-[80px] [scrollbar-width:none] lg:absolute lg:inset-0 lg:overflow-hidden lg:pt-0 [&::-webkit-scrollbar]:hidden"
+      >
+        <div
+          className="relative h-full lg:absolute lg:top-1/2 lg:left-1/2 lg:h-auto lg:min-h-full lg:w-auto lg:min-w-full lg:-translate-x-1/2 lg:-translate-y-1/2"
+          style={{ aspectRatio: `${W} / ${H}` }}
+        >
+          <svg
+            viewBox={`0 0 ${W} ${H}`}
+            aria-hidden="true"
+            className="absolute inset-0 size-full"
+          >
             <Paths />
           </svg>
 
@@ -203,10 +384,12 @@ export function Around() {
             onClick={() => setSel(null)}
             aria-pressed={sel === null}
             aria-label="Abhishta Agri Farm Stay"
-            className="group absolute z-10 grid size-[52px] -translate-x-1/2 -translate-y-1/2 place-items-center"
+            className="group absolute z-10 grid size-[52px] scroll-m-0 -translate-x-1/2 -translate-y-1/2 place-items-center"
             style={pct(CX, CY)}
           >
-            <span className={`grid size-[38px] place-items-center rounded-full bg-forest text-gold shadow-card ring-4 transition-transform duration-300 ${sel === null ? "scale-110 ring-gold" : "ring-paper group-hover:scale-105"}`}>
+            <span
+              className={`grid size-[38px] place-items-center rounded-full bg-forest text-gold shadow-card ring-4 transition-transform duration-300 ${sel === null ? "scale-110 ring-gold" : "ring-paper group-hover:scale-105"}`}
+            >
               <IconLeaf size={20} />
             </span>
             <span className="pointer-events-none absolute top-[50px] left-1/2 -translate-x-1/2 font-display text-[15px] tracking-[0.12em] whitespace-nowrap text-forest uppercase [text-shadow:0_0_4px_var(--color-paper-deep),0_0_8px_var(--color-paper-deep)] sm:text-[17px]">
@@ -223,9 +406,11 @@ export function Around() {
                 ? "bottom-[40px] left-1/2 -translate-x-1/2 text-center"
                 : p.side === "below"
                   ? "top-[40px] left-1/2 -translate-x-1/2 text-center"
-                  : p.side === "left"
-                    ? "top-1/2 right-[42px] -translate-y-1/2 text-right"
-                    : "top-1/2 left-[42px] -translate-y-1/2";
+                  : p.side === "below-right"
+                    ? "top-[40px] left-1/2 -translate-x-1/2 text-center lg:top-1/2 lg:left-[42px] lg:translate-x-0 lg:-translate-y-1/2 lg:text-left"
+                    : p.side === "left"
+                      ? "top-1/2 right-[42px] -translate-y-1/2 text-right"
+                      : "top-1/2 left-[42px] -translate-y-1/2";
             return (
               <button
                 key={p.name}
@@ -233,12 +418,14 @@ export function Around() {
                 onClick={() => setSel(n)}
                 aria-pressed={on}
                 aria-label={`${p.name}, ${p.minutes} minutes`}
-                className="group absolute z-10 grid size-[44px] -translate-x-1/2 -translate-y-1/2 place-items-center"
+                className="group absolute z-10 grid size-[44px] scroll-m-0 -translate-x-1/2 -translate-y-1/2 place-items-center"
                 style={pct(p.x, p.y)}
               >
                 <span
                   className={`grid size-[32px] place-items-center rounded-full shadow-card ring-2 transition-[transform,background-color,color] duration-300 ${
-                    on ? "scale-110 bg-forest text-gold ring-gold" : "bg-paper text-forest ring-forest/25 group-hover:scale-110"
+                    on
+                      ? "scale-110 bg-forest text-gold ring-gold"
+                      : "bg-paper text-forest ring-forest/25 group-hover:scale-110"
                   }`}
                 >
                   <Icon size={18} />
@@ -258,10 +445,16 @@ export function Around() {
 
       {/* title chip, top left (large screens) */}
       <div className="pointer-events-none absolute top-[88px] left-s13 z-20 sm:left-s34 lg:top-auto lg:bottom-s34">
-        <div className={`relative rounded-card px-s13 py-s8 lg:px-s21 lg:py-s13 ${glass()}`}>
+        <div
+          className={`relative rounded-card px-s13 py-s8 lg:px-s21 lg:py-s13 ${glass()}`}
+        >
           <GlassFill blur={4} className="bg-white/40" />
-          <h2 className="font-display text-[clamp(20px,2.4vw,36px)] leading-[1.05] text-forest">Around the farm</h2>
-          <p className="mt-[4px] text-[13px] text-ink-muted max-sm:hidden lg:text-[14px]">Hills, temples and a dam within an hour’s drive.</p>
+          <h2 className="font-display text-[clamp(20px,2.4vw,36px)] leading-[1.05] text-forest">
+            Around the farm
+          </h2>
+          <p className="mt-[4px] text-[13px] text-ink-muted max-sm:hidden lg:text-[14px]">
+            Hills, temples and a dam within an hour’s drive.
+          </p>
         </div>
       </div>
 
@@ -297,68 +490,105 @@ export function Around() {
           </li>
         </ul>
 
-        <div aria-live="polite" className="overflow-hidden rounded-card bg-paper shadow-card ring-1 ring-line">
+        {/* the chosen place. Phones: a fixed-height card (picture beside the words) so the map above never
+            resizes or slides as you tap around; large screens: the picture on top. */}
+        <div
+          aria-live="polite"
+          className="overflow-hidden rounded-card bg-paper shadow-card ring-1 ring-line"
+        >
           {/* a striped band, as on the reference card */}
-          <div aria-hidden="true" className="h-[6px] bg-[repeating-linear-gradient(90deg,var(--color-forest)_0_28px,var(--color-gold)_28px_44px)]" />
-          {place && NEARBY_PHOTOS[place.name] ? (
-            (() => {
-              const ph = NEARBY_PHOTOS[place.name];
-              return (
-                <div className="relative h-[88px] sm:h-[120px] lg:h-[clamp(110px,20svh,200px)]">
-                  <Image
-                    key={place.name}
-                    src={ph.image}
-                    alt={ph.alt}
-                    fill
-                    sizes="(min-width: 1024px) 380px, 100vw"
-                    placeholder="blur"
-                    style={{ objectPosition: ph.focus }}
-                    className="animate-[fade-in_500ms_ease-out] object-cover motion-reduce:animate-none"
-                  />
+          <div
+            aria-hidden="true"
+            className="h-[6px] bg-[repeating-linear-gradient(90deg,var(--color-forest)_0_28px,var(--color-gold)_28px_44px)]"
+          />
+          <div className="grid max-lg:h-[150px] max-lg:grid-cols-[108px_minmax(0,1fr)] max-lg:gap-s13 max-lg:p-s13 sm:max-lg:grid-cols-[168px_minmax(0,1fr)]">
+            <div className="relative overflow-hidden bg-gold-soft max-lg:rounded-[12px] lg:h-[clamp(110px,20svh,200px)]">
+              {photo ? (
+                <Image
+                  key={place?.name ?? "farm"}
+                  src={photo.image}
+                  alt={photo.alt}
+                  fill
+                  sizes="(min-width: 1024px) 380px, 170px"
+                  placeholder="blur"
+                  style={{ objectPosition: photo.focus }}
+                  className="animate-[fade-in_500ms_ease-out] object-cover motion-reduce:animate-none"
+                />
+              ) : place ? (
+                <PlaceArt
+                  key={place.name}
+                  kind={place.kind}
+                  className="absolute inset-0 size-full animate-[fade-in_500ms_ease-out] motion-reduce:animate-none"
+                />
+              ) : null}
+              {photo?.source ? (
+                <a
+                  href={photo.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`absolute right-[6px] bottom-[6px] rounded-full px-s8 py-[2px] text-[11px] text-paper hover:underline max-lg:hidden ${glass("dark")}`}
+                >
+                  <GlassFill />
+                  Photo: {photo.credit}, {photo.license}
+                </a>
+              ) : place && !photo ? (
+                <span
+                  className={`absolute right-[6px] bottom-[6px] rounded-full px-s8 py-[2px] text-[11px] text-paper max-lg:hidden ${glass("dark")} bg-forest/40`}
+                >
+                  <GlassFill />
+                  Illustration
+                </span>
+              ) : null}
+            </div>
+            <div className="min-w-0 lg:p-s21 lg:pb-0 squat:p-s13 squat:pb-0">
+              <p className="text-[12px] font-semibold tracking-[0.08em] text-farm uppercase">
+                {place ? place.label : "You stay here"}
+              </p>
+              <h3 className="mt-[2px] font-display text-[clamp(19px,1.9vw,27px)] leading-[1.15] text-forest max-lg:line-clamp-2">
+                {place ? place.name : "Abhishta Agri Farm Stay"}
+              </h3>
+              <p className="mt-[4px] text-[14px] leading-[1.4] text-ink-muted max-lg:line-clamp-2 sm:text-[15px] lg:mt-[6px] lg:leading-[1.5]">
+                {place
+                  ? `About ${place.minutes} minutes by car, to the ${compass(place.bearing)} of the farm.`
+                  : "Near Kunigal, about 90 km from Bangalore on the NH75. Tap a place on the map to see how far it is."}
+              </p>
+              {/* phones: the credit sits under the words, where it can be read */}
+              {place ? (
+                photo?.source ? (
                   <a
-                    href={ph.source}
+                    href={photo.source}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`absolute right-[6px] bottom-[6px] rounded-full px-s8 py-[2px] text-[11px] text-paper hover:underline ${glass("dark")}`}
+                    className="mt-[2px] block truncate text-[11px] text-ink-muted underline-offset-2 hover:underline lg:hidden"
                   >
-                    <GlassFill />
-                    Photo: {ph.credit}, {ph.license}
+                    Photo: {photo.credit}, {photo.license}
                   </a>
-                </div>
-              );
-            })()
-          ) : place ? (
-            <div aria-hidden="true" className="grid h-[86px] place-items-center bg-gold-soft text-forest max-lg:hidden lg:h-[clamp(90px,14svh,150px)]">
-              {(() => {
-                const Icon = KIND[place.kind].icon;
-                return <Icon size={56} className="[stroke-width:1.1]" />;
-              })()}
+                ) : (
+                  <p className="mt-[2px] text-[11px] text-ink-muted lg:hidden">
+                    Illustration
+                  </p>
+                )
+              ) : null}
             </div>
-          ) : (
-            <div className="relative h-[86px] max-lg:hidden lg:h-[clamp(90px,18svh,190px)]">
-              <Image src={cottages} alt="The cottages along a stone path at Abhishta" fill sizes="380px" placeholder="blur" className="object-cover" />
-            </div>
-          )}
-          <div className="p-s21 squat:p-s13">
-            <p className="text-[12px] font-semibold tracking-[0.08em] text-farm uppercase">{place ? place.label : "You stay here"}</p>
-            <h3 className="mt-[2px] font-display text-[clamp(21px,1.9vw,27px)] leading-[1.15] text-forest">{place ? place.name : "Abhishta Agri Farm Stay"}</h3>
-            <p className="mt-[6px] text-[14px] leading-[1.5] text-ink-muted sm:text-[15px]">
-              {place
-                ? `About ${place.minutes} minutes by car, to the ${compass(place.bearing)} of the farm.`
-                : "Near Kunigal, about 90 km from Bangalore on the NH75. Tap a place on the map to see how far it is."}
-            </p>
+          </div>
+          <div className="px-s13 pb-s13 lg:px-s21 lg:pb-s21 squat:px-s13 squat:pb-s13">
             <a
               href={place ? directions(place.name) : CONTACT.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={buttonClass(place ? "primary" : "secondary", "mt-s13 lg:mt-s21 squat:mt-s13")}
+              className={buttonClass(
+                place ? "primary" : "secondary",
+                "w-full justify-center lg:mt-s21 lg:w-auto squat:mt-s13",
+              )}
             >
               {place ? "Directions from the farm" : "Open in Google Maps"}
               {place ? <IconArrow size={18} aria-hidden="true" /> : null}
             </a>
           </div>
         </div>
-        <p className="mt-s8 text-[12px] text-ink-muted max-lg:hidden">Not to scale. Directions and drive times from our 360° tour.</p>
+        <p className="mt-s8 text-[12px] text-ink-muted max-lg:hidden">
+          Not to scale. Directions and drive times from our 360° tour.
+        </p>
       </div>
     </section>
   );

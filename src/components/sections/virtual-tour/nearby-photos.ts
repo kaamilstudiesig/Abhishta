@@ -3,12 +3,15 @@ import markonahalli from "@public/images/nearby/markonahalli-dam.jpg";
 import yediyur from "@public/images/nearby/yediyur-temple.jpg";
 import adichunchanagiri from "@public/images/nearby/adichunchanagiri-mutt.jpg";
 import shravanabelagola from "@public/images/nearby/shravanabelagola.jpg";
+import panchamukhi from "@public/images/nearby/panchamukhi-anjaneya.jpg";
 
 /**
  * Real photos of the nearby places, from Wikimedia Commons (resized to 900 px),
  * shown on the place card in "Around the farm" with their credit. Places with
- * no good free photo (the smaller hills and temples, Kalur weaving) keep their
- * icon. Keyed by the place's name in NEARBY.
+ * no free photo anywhere yet — Rangaswamy Betta, Sidlingeshwara Yoga Vana
+ * Betta, Kalur weaving, Hadinkal Anjaneya and Shanimahatma temples — show a
+ * drawn scene instead (PlaceArt); ask the client for photos of those. Keyed by
+ * the place's name in NEARBY.
  */
 export type NearbyPhoto = {
   image: StaticImageData;
@@ -44,6 +47,14 @@ export const NEARBY_PHOTOS: Record<string, NearbyPhoto> = {
     credit: "Prof tpms",
     license: "CC BY-SA 4.0",
     source: "https://commons.wikimedia.org/wiki/File:Adichunchanagiri.3.jpg",
+  },
+  "Panchamukhi Anjaneya Temple": {
+    image: panchamukhi,
+    alt: "The 161-foot golden five-faced Anjaneya statue at Bidanagere, with visitors at its base",
+    focus: "50% 30%",
+    credit: "MicroNibble",
+    license: "CC BY-SA 4.0",
+    source: "https://commons.wikimedia.org/wiki/File:Hanuman_Staue_at_Bidanagere,_Kunigal.jpg",
   },
   Shravanabelagola: {
     image: shravanabelagola,

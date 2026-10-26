@@ -57,9 +57,11 @@ export function Navbar() {
 
   const dark = tone === "dark";
   // over a clear hero the text needs a soft shadow; on the solid bar it doesn't
-  const ink = dark
-    ? `on-dark text-paper hover:text-gold-soft ${solid ? "" : "[text-shadow:0_1px_6px_rgb(0_0_0/0.55)]"}`
-    : "text-forest hover:text-farm";
+  const ink = dark ? `on-dark text-paper ${solid ? "" : "[text-shadow:0_1px_6px_rgb(0_0_0/0.55)]"}` : "text-forest";
+  // hover (as on glasscn's header): the words keep their colour and a soft box in the hover tint sits behind them
+  const hoverBox = `rounded-[10px] transition-colors duration-300 ${
+    dark ? "hover:bg-gold-soft/40 focus-visible:bg-gold-soft/40" : "hover:bg-farm/20 focus-visible:bg-farm/20"
+  }`;
   const isActive = (href: string) => !href.includes("#") && (href === "/" ? path === "/" : path.startsWith(href));
 
   return (
@@ -80,7 +82,7 @@ export function Navbar() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className={`justify-self-start px-s8 py-s13 text-[15px] font-semibold tracking-[0.08em] uppercase transition-colors duration-300 xl:hidden ${ink}`}
+          className={`justify-self-start px-s13 py-s8 text-[15px] font-semibold tracking-[0.08em] uppercase xl:hidden ${hoverBox} ${ink}`}
         >
           Enquire
         </a>
@@ -95,7 +97,7 @@ export function Navbar() {
 
         {/* large screens: the menu in one row */}
         <nav aria-label="Main" className="hidden justify-self-center xl:block">
-          <ul className="flex items-center gap-x-[clamp(14px,1.6vw,28px)]">
+          <ul className="flex items-center gap-x-[clamp(2px,0.5vw,10px)]">
             {NAV_LINKS.map((l) => {
               const on = isActive(l.href);
               return (
@@ -103,12 +105,12 @@ export function Navbar() {
                   <Link
                     href={l.href}
                     aria-current={on ? "page" : undefined}
-                    className={`relative inline-flex min-h-[44px] items-center text-[14px] font-semibold tracking-[0.06em] whitespace-nowrap uppercase transition-colors duration-300 ${ink}`}
+                    className={`relative inline-flex min-h-[40px] items-center px-[clamp(8px,0.8vw,13px)] text-[14px] font-semibold tracking-[0.06em] whitespace-nowrap uppercase ${hoverBox} ${ink}`}
                   >
                     {l.label}
                     <span
                       aria-hidden="true"
-                      className={`absolute inset-x-0 bottom-[8px] h-[2px] origin-left rounded-full bg-gold transition-transform duration-500 ease-[var(--ease-earth)] ${on ? "scale-x-100" : "scale-x-0"}`}
+                      className={`absolute inset-x-[clamp(8px,0.8vw,13px)] bottom-[6px] h-[2px] origin-left rounded-full bg-gold transition-transform duration-500 ease-[var(--ease-earth)] ${on ? "scale-x-100" : "scale-x-0"}`}
                     />
                   </Link>
                 </li>
