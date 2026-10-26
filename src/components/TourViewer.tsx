@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
-import { Icon360, IconCheck, IconChevronLeft, IconChevronRight, IconExpand, IconExternal } from "@/components/icons";
+import { useEffect, useId, useRef, useState } from "react";
+import { Icon360, IconChevronLeft, IconChevronRight, IconExpand, IconExternal } from "@/components/icons";
 import { TOUR_360_URL } from "@/lib/site";
 import { tourUrl, type Tour } from "@/lib/tour";
 import { glass } from "@/components/bits/glass";
@@ -91,23 +91,9 @@ type Tone = "light" | "dark";
  * Optional prev/next arrows and a caption, as on Peninsula del Mar's views.
  * Controls keep to the sides and bottom corners; the top corners stay free.
  *
- * Touch screens: a framed view starts as "Tap to look around" and lets swipes
- * through to the page, so a big view can never trap you in its section (or
- * stop the page snapping). A tap hands it the finger; "Done" — or scrolling it
- * off screen — gives the finger back to the page. Edge-to-edge (`bleed`) views
- * manage this themselves.
- *
  * Always embed the tour this way — never as an iframe (that brings Turiya's
  * START card and chrome back). See docs/BUILDING_PAGES.md.
  */
-// coarse pointer = a touch screen
-const COARSE = "(pointer: coarse)";
-const onPointerChange = (cb: () => void) => {
-  const mq = window.matchMedia(COARSE);
-  mq.addEventListener("change", cb);
-  return () => mq.removeEventListener("change", cb);
-};
-
 export function TourViewer({
   tour,
   title,
@@ -143,9 +129,6 @@ export function TourViewer({
   const [status, setStatus] = useState<"waiting" | "loading" | "ready" | "error">("waiting");
   const [touched, setTouched] = useState(false);
   const [canFullscreen, setCanFullscreen] = useState(false);
-  const [live, setLive] = useState(false); // touch screens: the view has the finger
-  const touch = useSyncExternalStore(onPointerChange, () => window.matchMedia(COARSE).matches, () => false);
-  const gated = touch && !bleed && !live;
   const dark = tone === "dark";
 
   useEffect(() => {
@@ -186,7 +169,6 @@ export function TourViewer({
     // turn only while it's actually on screen
     const visible = new IntersectionObserver(([entry]) => {
       onScreenRef.current = entry.isIntersecting;
-      if (!entry.isIntersecting) setLive(false); // scrolled away: the page gets the finger back
       spin();
     });
     near.observe(wrap);
@@ -245,46 +227,13 @@ export function TourViewer({
       </p>
 
       {/* the player draws in here (it handles mouse and touch: drag to look around) */}
-      <div
-        id={containerId}
-        onPointerDown={() => setTouched(true)}
-        className={`absolute inset-0 cursor-grab active:cursor-grabbing ${gated ? "pointer-events-none" : ""}`}
-      />
+      <div id={containerId} onPointerDown={() => setTouched(true)} className="absolute inset-0 cursor-grab active:cursor-grabbing" />
 
       {status === "ready" ? (
         <>
           {/* bottom left: the drag cue until the first drag, then the caption (the top corners stay clear for page decoration) */}
-          {/* touch screens: swipes pass through to the page until you tap in */}
-          {gated ? (
-            <button
-              type="button"
-              onClick={() => {
-                setLive(true);
-                setTouched(true);
-              }}
-              aria-label={`Look around: ${title}`}
-              className="absolute inset-0 z-10 grid place-items-center"
-            >
-              <span className={`relative inline-flex items-center gap-[6px] rounded-full px-s21 py-s8 text-[15px] font-medium text-paper ${glass("dark")} bg-ink/25`}>
-                <GlassFill />
-                <Icon360 size={20} />
-                Tap to look around
-              </span>
-            </button>
-          ) : null}
-          {touch && live && !bleed ? (
-            <button
-              type="button"
-              onClick={() => setLive(false)}
-              className={`absolute top-s13 left-s13 z-10 inline-flex min-h-[40px] items-center gap-[6px] rounded-full px-s13 text-[14px] font-medium text-paper ${glass("dark")} bg-ink/25`}
-            >
-              <GlassFill />
-              <IconCheck size={16} />
-              Done
-            </button>
-          ) : null}
           <span className="pointer-events-none absolute bottom-s13 left-s13 z-10 flex flex-col items-start gap-[6px]">
-            {!touched && !touch ? (
+            {!touched ? (
               <span className={`relative inline-flex items-center gap-[6px] rounded-full px-s13 py-[7px] text-[13px] font-medium text-paper ${glass("dark")}`}>
                 <GlassFill />
                 <Icon360 size={18} />
