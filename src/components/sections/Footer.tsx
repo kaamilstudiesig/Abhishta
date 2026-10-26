@@ -55,23 +55,40 @@ export function Footer() {
       const main = el.previousElementSibling?.tagName === "MAIN" ? el.previousElementSibling : null;
       if (!word || !main) return;
       const letters = word.querySelectorAll("span");
-      // the letters rise one after another, at a pace you can watch; scrolling back up lowers them again
-      const rise = (scrollTrigger: ScrollTrigger.Vars) =>
-        gsap.from(letters, {
-          yPercent: 110,
-          duration: 1.1,
-          ease: "power3.out",
-          stagger: 0.08,
-          scrollTrigger: { ...scrollTrigger, toggleActions: "play none none reverse", invalidateOnRefresh: true },
-        });
       const mm = gsap.matchMedia();
-      // sticky footer: it waits under the page, so play once the page has slid far enough up to uncover the whole word
+      // The letters wait below the line and rise one after another, once, at a pace you can watch. They're
+      // lowered again only when the word is out of sight, instantly, so the rise is never seen to stop or
+      // restart. (A scroll-linked from() tween re-recorded its start on every ScrollTrigger refresh and
+      // jumped back to the beginning mid-rise.)
+      const setup = (showAt: ScrollTrigger.Vars, hideAt: ScrollTrigger.Vars) => {
+        let up = false;
+        gsap.set(letters, { yPercent: 110 });
+        const rise = () => {
+          if (up) return;
+          up = true;
+          gsap.to(letters, { yPercent: 0, duration: 1.1, ease: "power3.out", stagger: 0.08, overwrite: true });
+        };
+        const lower = () => {
+          if (!up) return;
+          up = false;
+          gsap.killTweensOf(letters);
+          gsap.set(letters, { yPercent: 110 });
+        };
+        const show = ScrollTrigger.create({ ...showAt, end: "max", onEnter: rise });
+        ScrollTrigger.create({ ...hideAt, end: "max", onLeaveBack: lower });
+        if (show.progress > 0) rise(); // the page opened already scrolled past it
+      };
+      // sticky footer: it waits under the page; rise once the page has slid far enough up to uncover the
+      // whole word, lower once the page covers the footer again
       mm.add("(prefers-reduced-motion: no-preference) and (min-width: 768px) and (min-height: 680px)", () => {
-        rise({ trigger: main, start: () => `bottom ${window.innerHeight - el.offsetHeight + word.offsetTop}px` });
+        setup(
+          { trigger: main, start: () => `bottom ${window.innerHeight - el.offsetHeight + word.offsetTop}px` },
+          { trigger: main, start: "bottom bottom" },
+        );
       });
-      // footer in the flow: play once the whole word has scrolled into view
+      // footer in the flow: rise once the whole word is in view, lower once it has left the screen below
       mm.add("(prefers-reduced-motion: no-preference) and (not ((min-width: 768px) and (min-height: 680px)))", () => {
-        rise({ trigger: word, start: "bottom bottom" });
+        setup({ trigger: word, start: "bottom bottom" }, { trigger: word, start: "top bottom" });
       });
       return () => mm.revert();
     },
