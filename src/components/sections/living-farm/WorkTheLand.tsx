@@ -37,7 +37,7 @@ export function WorkTheLand() {
         />
 
         <MagicBento className="-mx-s21 mt-s21 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] sm:-mx-s34 sm:scroll-px-s34 sm:px-s34 md:mx-0 md:mt-s34 md:grid md:h-[clamp(420px,calc(100svh-440px),560px)] md:grid-cols-2 md:grid-rows-[1.4fr_1fr_1fr] md:overflow-visible md:px-0 md:pb-0 lg:h-[clamp(300px,calc(100svh-420px),520px)] lg:grid-cols-4 lg:grid-rows-2 [&::-webkit-scrollbar]:hidden">
-          <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start flex-col p-s8 md:col-span-2 md:h-auto md:w-auto lg:col-span-2 lg:row-span-2">
+          <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start md:snap-align-none flex-col p-s8 md:col-span-2 md:h-auto md:w-auto lg:col-span-2 lg:row-span-2">
             <TourViewer tour={ORCHARD_VIEW} title="360° view of the orchard path" caption="The orchard" tone="light" className="min-h-0 flex-1" />
             <div className="px-s13 pt-s13 pb-s8 sm:px-s21">
               <h3 className="flex items-center gap-s13 font-display text-[clamp(20px,1.8vw,26px)] leading-[1.15] text-forest">
@@ -48,7 +48,7 @@ export function WorkTheLand() {
             </div>
           </BentoTile>
 
-          <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start flex-col justify-end p-s8 pb-s21 md:col-span-2 md:p-s21 md:h-auto md:w-auto sm:p-s34 lg:col-span-2 lg:p-s34 squat:p-s21">
+          <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start md:snap-align-none flex-col justify-end p-s8 pb-s21 md:col-span-2 md:p-s21 md:h-auto md:w-auto sm:p-s34 lg:col-span-2 lg:p-s34 squat:p-s21">
             {/* phones: the tall swipe tile would be mostly empty, so it carries the fields from above in 360° */}
             <TourViewer
               tour={{ node: "BirdsEyeView01", pan: -85, tilt: -40 }}
@@ -62,7 +62,7 @@ export function WorkTheLand() {
             </TileText>
           </BentoTile>
 
-          <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start flex-col justify-end p-s8 pb-s21 md:h-auto md:w-auto md:p-s21 sm:p-s34 lg:p-s21 xl:p-s34 squat:p-s21">
+          <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start md:snap-align-none flex-col justify-end p-s8 pb-s21 md:h-auto md:w-auto md:p-s21 sm:p-s34 lg:p-s21 xl:p-s34 squat:p-s21">
             {/* phones: the farm's own crop rows from above (a still from the 360° tour) fill the tall tile.
                 TODO(client): a close photo of the vegetable rows or a harvest */}
             <div className="relative mb-s13 min-h-0 flex-1 overflow-hidden rounded-[calc(var(--radius-card)-8px)] md:hidden">
@@ -73,7 +73,7 @@ export function WorkTheLand() {
             </TileText>
           </BentoTile>
 
-          <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start flex-col justify-end md:h-auto md:w-auto">
+          <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start md:snap-align-none flex-col justify-end md:h-auto md:w-auto">
             <Image
               src={dawn}
               alt="A stone bench in a quiet orchard clearing, framed by low mango branches"

@@ -63,7 +63,7 @@ export function Stays() {
           {STAYS.map((stay) => (
             <li
               key={stay.name}
-              className="w-[88%] shrink-0 snap-start [--h:clamp(380px,calc(100svh-297px),600px)] md:w-[min(calc(var(--h)*0.8),calc(50%-17px))] md:[--h:clamp(400px,calc(100svh-420px),640px)] lg:[--h:clamp(400px,calc(100svh-380px),640px)] squat:[--h:calc(100svh-276px)]"
+              className="w-[88%] shrink-0 snap-start md:snap-align-none [--h:clamp(380px,calc(100svh-297px),600px)] md:w-[min(calc(var(--h)*0.8),calc(50%-17px))] md:[--h:clamp(400px,calc(100svh-420px),640px)] lg:[--h:clamp(400px,calc(100svh-380px),640px)] squat:[--h:calc(100svh-276px)]"
             >
               <FlipCard
                 photo={stay.image}

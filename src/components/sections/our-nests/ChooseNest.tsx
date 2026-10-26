@@ -43,7 +43,7 @@ export function ChooseNest() {
 
         <ul className="-mx-s21 mt-s34 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] sm:-mx-s34 sm:scroll-px-s34 sm:px-s34 md:mx-0 md:mt-s55 squat:mt-s34 md:grid md:grid-cols-2 md:gap-s21 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden">
           {OPTIONS.map((o) => (
-            <li key={o.room} className="w-[78%] max-w-[320px] shrink-0 snap-start sm:w-[44%] md:w-auto md:max-w-none">
+            <li key={o.room} className="w-[78%] max-w-[320px] shrink-0 snap-start md:snap-align-none sm:w-[44%] md:w-auto md:max-w-none">
               <a
                 href={o.href}
                 onClick={() => selectRoom(o.room)}

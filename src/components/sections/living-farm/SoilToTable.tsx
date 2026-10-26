@@ -83,7 +83,7 @@ export function SoilToTable() {
           className="-mx-s21 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 [scrollbar-width:none] sm:-mx-s34 sm:scroll-px-s34 sm:px-s34 lg:col-span-2 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-s21 lg:overflow-visible lg:border-t lg:border-paper/15 lg:px-0 lg:pt-s34 squat:pt-s21 [&::-webkit-scrollbar]:hidden"
         >
           {PILLARS.map(({ icon: Icon, title, line }) => (
-            <li key={title} className="w-[62%] max-w-[240px] shrink-0 snap-start rounded-card bg-paper/[0.06] p-s13 sm:w-[40%] lg:w-auto lg:max-w-none lg:rounded-none lg:bg-transparent lg:p-0">
+            <li key={title} className="w-[62%] max-w-[240px] shrink-0 snap-start lg:snap-align-none rounded-card bg-paper/[0.06] p-s13 sm:w-[40%] lg:w-auto lg:max-w-none lg:rounded-none lg:bg-transparent lg:p-0">
               <Icon size={24} className="text-gold" />
               <h3 className="mt-s8 font-display text-[19px] leading-[1.2] text-paper lg:text-[clamp(18px,1.5vw,21px)]">{title}</h3>
               <p className="mt-[4px] text-[14px] leading-[1.45] text-paper/75 lg:text-[15px]">{line}</p>
