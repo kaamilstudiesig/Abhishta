@@ -71,9 +71,9 @@ export function Gallery() {
 
   return (
     <section ref={ref} id="gallery" data-nav="light" data-snap="" className="relative isolate h-svh min-h-[560px] overflow-hidden bg-paper">
-      <DriftWall items={ALL} label="Photos from the farm" columns={4} speed={14} gap="gap-s34" className="absolute inset-0 hidden px-s55 lg:block" />
-      <DriftWall items={ALL} label="Photos from the farm" columns={3} speed={12} gap="gap-s21" className="absolute inset-0 hidden px-s34 sm:block lg:hidden" />
-      <DriftWall items={ALL} label="Photos from the farm" columns={2} speed={11} gap="gap-s21" className="absolute inset-0 px-s21 sm:hidden" />
+      <DriftWall items={ALL} label="Photos from the farm" columns={4} speed={19} gap="gap-s34" className="absolute inset-0 hidden px-s55 lg:block" />
+      <DriftWall items={ALL} label="Photos from the farm" columns={3} speed={16} gap="gap-s21" className="absolute inset-0 hidden px-s34 sm:block lg:hidden" />
+      <DriftWall items={ALL} label="Photos from the farm" columns={2} speed={15} gap="gap-s21" className="absolute inset-0 px-s21 sm:hidden" />
 
       {/* the title: pops up as the section arrives, then gets out of the way */}
       <div className="pointer-events-none absolute inset-0 z-20 grid place-items-center px-s21">
