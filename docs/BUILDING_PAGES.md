@@ -10,7 +10,8 @@ Built: `/our-nests` (from **`docs/wireframes/our-nests.md`**; sections in `src/c
 `/the-living-farm` (from **`docs/wireframes/the-living-farm.md`**; sections in `src/components/sections/living-farm/`)
 `/group-enquiries` (from **`docs/wireframes/group-enquiries.md`**; sections in `src/components/sections/group-enquiries/`)
 and `/virtualtour` (the 360° Virtual Tour, formerly `/field-notes`, which redirects; from
-**`docs/wireframes/virtual-tour.md`**; sections in `src/components/sections/virtual-tour/`).
+**`docs/wireframes/virtual-tour.md`**; sections in `src/components/sections/virtual-tour/`) and `/gallery` (the photo
+wall that was on `/virtualtour` until 2026-10-31; `src/components/sections/gallery/`).
 All pages in the menu are built.
 
 Pages still to build (all currently fall through to the branded 404, `src/app/not-found.tsx`):
@@ -28,7 +29,7 @@ Pages still to build (all currently fall through to the branded 404, `src/app/no
   `/our-nests#cottages`, `/our-nests#dormitories`, `/group-enquiries#corporate`, `#schools`, `#day-outings`, `#events`.
   Nav links (`NAV_LINKS` in `src/lib/site.ts`, client's menu 2026-10-26): Home, Stay (`/our-nests`), Experiences
   (`/the-living-farm`), Groups & Events (`/group-enquiries`), Farm to Table (`/the-living-farm#soil-to-table`),
-  360° Virtual Tour (`/virtualtour`), Gau Seva (`/the-living-farm#gau-seva`). The header shows them in one row from
+  360° Virtual Tour (`/virtualtour`), Gallery (`/gallery`, added 2026-10-31), Gau Seva (`/the-living-farm#gau-seva`). The header shows them in one row from
   `xl` (1280px); below that the StaggeredMenu holds them.
 
 ## 2. Stack and project rules

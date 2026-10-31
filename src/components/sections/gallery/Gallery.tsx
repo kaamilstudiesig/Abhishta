@@ -39,10 +39,11 @@ const ALL: DriftWallItem[] = PHOTOS.flatMap((p, n) => (PICKS[n] ? [p, PICKS[n]] 
 const HOLD = 1800;
 
 /**
- * #gallery — the whole screen is a drifting wall of the farm's photos (React
- * Bits DriftWall, flat). Each time the section comes into view, its title pops
- * up in the middle and fades away after a moment, leaving the wall. Hover a
- * photo to stop its column and read its caption; click to see it large.
+ * #gallery — the /gallery page (client, 2026-10-31; it was a section of
+ * /virtualtour): the whole screen is a drifting wall of the farm's photos
+ * (React Bits DriftWall, flat). Each time it comes into view, its title (the
+ * page's h1) pops up in the middle and fades away after a moment, leaving the
+ * wall. Hover a photo to stop its column and read its caption; click to see it large.
  */
 export function Gallery() {
   const ref = useRef<HTMLElement>(null);
@@ -84,7 +85,7 @@ export function Gallery() {
         >
           {/* frosted, milky glass here so the title reads over the moving photos */}
           <GlassFill blur={18} saturation={1.1} fill="bg-white/75" />
-          <h2 className="font-display text-[clamp(30px,4.6vw,58px)] leading-[1] text-forest">Photos from the farm</h2>
+          <h1 className="font-display text-[clamp(30px,4.6vw,58px)] leading-[1] text-forest">Photos from the farm</h1>
           <p className="mt-s8 text-[15px] text-ink-muted">Tap any photo to see it larger.</p>
         </div>
       </div>
