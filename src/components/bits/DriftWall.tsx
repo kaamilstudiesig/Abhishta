@@ -13,6 +13,11 @@ export type DriftWallItem = { src: StaticImageData; alt: string; caption: string
  * photo stops its column, lifts the photo and shows its caption; clicking opens
  * it large in a dialog. It only moves while on screen, and with reduced motion
  * it holds still.
+ *
+ * `mode="scroll"` (the /gallery page): every photo once, in the page's own
+ * flow, so visitors scroll through the wall themselves; the columns drift
+ * against each other as the page scrolls (a gentle parallax) instead of on a
+ * timer.
  */
 export function DriftWall({
   items,
@@ -20,6 +25,7 @@ export function DriftWall({
   speed = 18,
   gap = "gap-s13",
   label,
+  mode = "loop",
   className = "",
 }: {
   items: DriftWallItem[];
@@ -29,6 +35,8 @@ export function DriftWall({
   /** the space between photos (a gap utility) */
   gap?: string;
   label: string;
+  /** "loop": a one-screen wall that drifts on its own; "scroll": the whole wall in the page, drifting as it scrolls */
+  mode?: "loop" | "scroll";
   className?: string;
 }) {
   const wallRef = useRef<HTMLDivElement>(null);
@@ -40,14 +48,40 @@ export function DriftWall({
 
   // deal the photos into columns (each column long enough to fill the wall, starting at a different photo)
   const cols = useMemo(() => {
+    if (mode === "scroll") return Array.from({ length: columns }, (_, c) => items.filter((_, n) => n % columns === c));
     const per = Math.max(5, Math.ceil(items.length / columns) + 1);
     return Array.from({ length: columns }, (_, c) => Array.from({ length: per }, (_, k) => items[(c * 2 + k * columns + k) % items.length]));
-  }, [items, columns]);
+  }, [items, columns, mode]);
 
   useEffect(() => {
     const wall = wallRef.current;
     if (!wall) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (mode === "scroll") {
+      if (reduce) return;
+      // each column drifts within ±range/2 as the wall scrolls past, alternate columns in opposite directions
+      const ranges = cols.map((_, c) => (c % 2 ? -1 : 1) * (70 + ((c * 37) % 50)));
+      let raf = 0;
+      const place = () => {
+        raf = 0;
+        const r = wall.getBoundingClientRect();
+        const progress = Math.min(1, Math.max(0, (window.innerHeight - r.top) / (window.innerHeight + r.height)));
+        tracks.current.forEach((el, c) => {
+          if (el) el.style.transform = `translate3d(0, ${((progress - 0.5) * ranges[c]).toFixed(1)}px, 0)`;
+        });
+      };
+      const schedule = () => {
+        if (!raf) raf = requestAnimationFrame(place);
+      };
+      place();
+      window.addEventListener("scroll", schedule, { passive: true });
+      window.addEventListener("resize", schedule);
+      return () => {
+        cancelAnimationFrame(raf);
+        window.removeEventListener("scroll", schedule);
+        window.removeEventListener("resize", schedule);
+      };
+    }
     const offsets = cols.map((_, c) => (c * 137) % 400);
     const speeds = cols.map((_, c) => speed * (1 + 0.35 * Math.sin(c * 2.1)) * (c % 2 ? -1 : 1));
     const vel = cols.map(() => 0);
@@ -85,7 +119,7 @@ export function DriftWall({
       io.disconnect();
       cancelAnimationFrame(raf);
     };
-  }, [cols, speed]);
+  }, [cols, speed, mode]);
 
   const show = (item: DriftWallItem) => {
     setOpen(item);
@@ -107,13 +141,13 @@ export function DriftWall({
           pointer.current = { x: 0, y: 0 };
           hovered.current = -1;
         }}
-        className={`relative overflow-hidden [perspective:1400px] ${className}`}
+        className={`relative ${mode === "scroll" ? "overflow-x-clip" : "overflow-hidden"} [perspective:1400px] ${className}`}
       >
-        <div className={`grid h-full ${gap} [transform:rotateX(var(--dw-rx,0deg))_rotateY(var(--dw-ry,0deg))] [transform-style:preserve-3d]`} style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
+        <div className={`grid ${mode === "loop" ? "h-full" : "items-start"} ${gap} [transform:rotateX(var(--dw-rx,0deg))_rotateY(var(--dw-ry,0deg))] [transform-style:preserve-3d]`} style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
           {cols.map((col, c) => (
             <div key={c} className="min-w-0" onPointerEnter={() => (hovered.current = c)}>
               <div ref={(el) => void (tracks.current[c] = el)} className={`flex flex-col ${gap} will-change-transform`}>
-                {[0, 1].map((copy) =>
+                {(mode === "loop" ? [0, 1] : [0]).map((copy) =>
                   col.map((item, n) => (
                     <button
                       key={`${copy}-${n}`}

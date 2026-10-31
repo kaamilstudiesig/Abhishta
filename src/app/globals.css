@@ -99,6 +99,12 @@ html {
     scroll-snap-align: end;
   }
 }
+/* A page that opts out of snapping (the /gallery wall): it scrolls freely on touch too. */
+@media (pointer: coarse) {
+  html:has([data-free-scroll]) {
+    scroll-snap-type: none;
+  }
+}
 
 /* Mouse/trackpad with reduced motion (no Lenis): gentle native snapping. */
 @media (pointer: fine) and (prefers-reduced-motion: reduce) {

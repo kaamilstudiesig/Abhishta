@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: { title: "Gallery — Abhishta Agri Farm Stay", description, images: ["/images/og.jpg"], locale: "en_IN", type: "website" },
 };
 
-/** The gallery (client, 2026-10-31): one screen, a drifting wall of the farm's photos, then the footer. */
+/** The gallery (client, 2026-10-31): the farm's photos as a wall that scrolls freely, then the footer. */
 export default function GalleryPage() {
   return (
     <SiteShell>
