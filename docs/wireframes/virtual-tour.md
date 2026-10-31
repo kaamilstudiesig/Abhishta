@@ -16,7 +16,7 @@ contact form). Order and direction follow `docs/SITEMAP.md`. Sources, in the ord
   vegetable harvesting and seasonal fruit picking · nature walks · bonfire evenings · free Wi-Fi · ample parking ·
   traditional bath (hande ole). Tractor ride at extra cost.
 - **Enquiries** (client): call or WhatsApp 99457 94925, Deva Bhanu. Landline +91 9379 1963 00 and email
-  hello@abhishtaagrifarmstay.com (old site). Office hours Monday to Friday, 9 am to 6 pm (old site).
+  abhishtaagrifarmstay@gmail.com (old site). Office hours Monday to Friday, 9 am to 6 pm (old site).
 - **Address** (old site): Jiddigere Village, Yediyuru Hobli, Kunigal Taluk, Tumkur, Karnataka 572134; about 90 km
   from Bangalore.
 - **Check-in 2 pm, check-out 1 pm** (Stayflexi).

@@ -10,7 +10,7 @@ export const DAY_OUTING_ENQUIRY = whatsappUrl("Hi Abhishta, I'd like to plan a d
 export const CONTACT = {
   reservation: { label: "+91 9945 7949 25", href: "tel:+919945794925" },
   landline: { label: "+91 9379 1963 00", href: "tel:+919379196300" },
-  email: { label: "hello@abhishtaagrifarmstay.com", href: "mailto:hello@abhishtaagrifarmstay.com" },
+  email: { label: "abhishtaagrifarmstay@gmail.com", href: "mailto:abhishtaagrifarmstay@gmail.com" },
   address: "Jiddigere Village, Yediyuru Hobli, Kunigal Taluk, Tumkur, Karnataka 572134",
   mapUrl: "https://www.google.com/maps?cid=10453955536286770963",
   /** who answers calls and WhatsApp (client, 2026-10-20) */

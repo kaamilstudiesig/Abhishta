@@ -53,12 +53,12 @@ Pairing rules: white text on `farm`/`forest` only. `forest` text on `gold` (neve
 ## Booking
 - All booking CTAs (docked availability bar, sticky booking button, section CTAs) → `https://bookingengine.stayflexi.com/?hotel_id=32336`
 - Floating WhatsApp button, always on screen → `https://wa.me/919945794925?text=<prefilled enquiry>`
-- Fallback: `mailto:hello@abhishtaagrifarmstay.com`
+- Fallback: `mailto:abhishtaagrifarmstay@gmail.com`
 - Availability bar fields: Stay/Outing Type, Name, Phone (+91), Check-In, Check-Out dates
 
 ## Constants
 - Phone: +91 9945 7949 25 · Landline: +91 9379 1963 00
-- Email: hello@abhishtaagrifarmstay.com
+- Email: abhishtaagrifarmstay@gmail.com
 - Address: Jiddigere Village, Yediyuru Hobli, Kunigal Taluk, Tumkur, Karnataka 572134
 - 360° tours: https://www.turiya.co/360/Abhishta/ (embed canvases)
 - Socials: Instagram, Facebook, YouTube, WhatsApp, Airbnb (TripAdvisor until 2026-10-31)

@@ -50,5 +50,5 @@ wireframe in `docs/wireframes/our-nests.md` (supersedes the Relume export).
 - Hero Header: full-screen 360° atlas canvas (turiya.co/360/Abhishta/) — auto-panning drag, hotspots (Cottages, Dorms, Orchards, Pool, Dining), Prev/Next pills
 - Gallery: bento masonry grid — silent autoplay vertical Reels + photos (farm life, harvests, rooms, animals)
 - Locations: Google Map embed + 90-km route guide (Jiddigere Village, Yediyuru Hobli, Kunigal Taluk, Tumkur 572134) + contact cards (Reservation, Landline, Email, Hours)
-- Contact Form: general enquiry → hello@abhishtaagrifarmstay.com + WhatsApp pre-filled (+91 9945 7949 25)
+- Contact Form: general enquiry → abhishtaagrifarmstay@gmail.com + WhatsApp pre-filled (+91 9945 7949 25)
 - Footer
