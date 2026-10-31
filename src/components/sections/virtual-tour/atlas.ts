@@ -6,18 +6,19 @@ import { tourFromHash, type Tour } from "@/lib/tour";
  */
 
 /**
- * Client, 2026-10-31: the Family rooms pill opens on Pathway_03 (from the newer V7 tour, see scripts/tour-scenes.mjs),
- * at the client's link #Pathway_03,0,1.71,75,4: the Nandagokula family room's front. The client's Cottages link,
- * #Pathway_03,0,-90,75,4, looks straight at the ground, and no direction from Pathway_03 shows the cottages, so the
- * Cottages pill keeps the Mayura cottage view until the client sends the right link. TODO(client).
+ * Client, 2026-10-31: the Cottages and Family rooms pills show the rooms from outside, from the newer V7 tour
+ * (scenes listed in scripts/tour-scenes.mjs). Family rooms: the client's link #Pathway_03,0,1.71, the Nandagokula
+ * front. Cottages: the client's link (#Pathway_03,0,-90) looked at the ground, so it uses Pathway_08, which stands
+ * among the cottages, turned to the row (Gopala and Govinda; turn round for Mayura and Mathura).
  */
+const COTTAGES_VIEW: Tour = { node: "Pathway_08", pan: 210, tilt: 0 };
 const FAMILY_ROOMS_VIEW = tourFromHash("#Pathway_03,0,1.71,75,4");
 
 /** The atlas: one 360° view turned from place to place. */
 export const ATLAS: { name: string; tour: Tour }[] = [
   { name: "From above", tour: { node: "BirdsEyeView01", pan: -85, tilt: -40 } },
   { name: "Entrance", tour: { node: "AerialView_01", pan: 0, tilt: -8 } },
-  { name: "Cottages", tour: { node: "Abhishta_27", pan: -12, tilt: -16 } },
+  { name: "Cottages", tour: COTTAGES_VIEW },
   { name: "Family rooms", tour: FAMILY_ROOMS_VIEW },
   { name: "Orchard", tour: { node: "AerialView_03", pan: -95, tilt: -4 } },
   { name: "Pool", tour: { node: "SwimmingPoolBliss", pan: -90, tilt: -5 } },

@@ -39,7 +39,8 @@ const SCENES = [
   // Group Enquiries (src/components/sections/group-enquiries/); the day outing also uses scenes above
   "AerialView_01", // the entrance
   // 360° Virtual Tour — the Cottages and Family rooms pills (src/components/sections/virtual-tour/atlas.ts), client 2026-10-31
-  "V7:Pathway_03",
+  "V7:Pathway_03", // Family rooms pill: the Nandagokula front
+  "V7:Pathway_08", // Cottages pill: the cottage row (Gopala, Govinda; Mayura and Mathura behind)
 ];
 
 const scenesOf = (xml) => [...xml.matchAll(/<panorama\b[^>]*>[\s\S]*?<\/panorama>/g)].map((m) => m[0]);
