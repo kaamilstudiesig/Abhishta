@@ -1,6 +1,20 @@
 import type { StaticImageData } from "next/image";
-import gopalaRoom from "@public/images/client-photos/cottage-gopala-room.jpg";
-import govindaRoom from "@public/images/client-photos/cottage-govinda-room.jpg";
+import mayura1 from "@public/images/client-photos/cottages/mayura-1.jpg";
+import mayura2 from "@public/images/client-photos/cottages/mayura-2.jpg";
+import mayura3 from "@public/images/client-photos/cottages/mayura-3.jpg";
+import mayura4 from "@public/images/client-photos/cottages/mayura-4.jpg";
+import mathura1 from "@public/images/client-photos/cottages/mathura-1.jpg";
+import mathura2 from "@public/images/client-photos/cottages/mathura-2.jpg";
+import mathura3 from "@public/images/client-photos/cottages/mathura-3.jpg";
+import mathura4 from "@public/images/client-photos/cottages/mathura-4.jpg";
+import gopala1 from "@public/images/client-photos/cottages/gopala-1.jpg";
+import gopala2 from "@public/images/client-photos/cottages/gopala-2.jpg";
+import gopala3 from "@public/images/client-photos/cottages/gopala-3.jpg";
+import gopala4 from "@public/images/client-photos/cottages/gopala-4.jpg";
+import govinda1 from "@public/images/client-photos/cottages/govinda-1.jpg";
+import govinda2 from "@public/images/client-photos/cottages/govinda-2.jpg";
+import govinda3 from "@public/images/client-photos/cottages/govinda-3.jpg";
+import govinda4 from "@public/images/client-photos/cottages/govinda-4.jpg";
 import type { Tour } from "@/lib/tour";
 
 /**
@@ -12,19 +26,37 @@ import type { Tour } from "@/lib/tour";
  */
 
 /**
- * The four cottages, one tab each (client, 2026-10-31: no washroom or sit-out slides). Mayura and Mathura show the
- * tour's 360° view; Gopala and Govinda have none, so they show the client's photo. 360° views always win over photos.
+ * The four cottages, one tab each (client, 2026-10-31: no washroom or sit-out views). Each shows the client's photos
+ * of the room as a small slideshow (client, 2026-11: photos for all four, since Gopala and Govinda have no 360° view;
+ * Mayura and Mathura keep a link to their 360° view in the tour). `focus` keeps a tall photo's bed in the frame.
  */
 export const COTTAGE_NAMES = ["Mayura", "Mathura", "Gopala", "Govinda"];
-export type Cottage = { id: string; name: string; sleeps: string; pillows: Pillows; title: string } & (
-  | { tour: Tour; photo?: never }
-  | { photo: StaticImageData; tour?: never }
-);
+export type CottagePhoto = { src: StaticImageData; alt: string; focus?: string };
+export type Cottage = { id: string; name: string; sleeps: string; pillows: Pillows; photos: CottagePhoto[]; tour?: Tour };
+const room = (name: string, n: number, src: StaticImageData, focus?: string): CottagePhoto => ({
+  src,
+  alt: `Inside ${name} cottage (${n} of 4): a double bed with green cushions and an extra bed under a tiled timber roof, on a red-oxide floor`,
+  focus,
+});
 export const COTTAGES: Cottage[] = [
-  { id: "mayura", name: "Mayura", sleeps: "4", pillows: { solo: 1, pairs: 1, extra: 1 }, title: "360° view inside Mayura cottage", tour: { node: "Abhishta_27", pan: -12, tilt: -16 } },
-  { id: "mathura", name: "Mathura", sleeps: "4", pillows: { solo: 1, pairs: 1, extra: 1 }, title: "360° view inside Mathura cottage", tour: { node: "Abhishta_25", pan: 68, tilt: -12 } },
-  { id: "gopala", name: "Gopala", sleeps: "3", pillows: { solo: 1, pairs: 1, extra: 0 }, title: "Inside Gopala cottage: a double bed with green cushions, a wardrobe and a tiled timber roof", photo: gopalaRoom },
-  { id: "govinda", name: "Govinda", sleeps: "3", pillows: { solo: 1, pairs: 1, extra: 0 }, title: "Inside Govinda cottage: a double bed under a painting of Krishna, a wardrobe and a tiled timber roof", photo: govindaRoom },
+  {
+    id: "mayura", name: "Mayura", sleeps: "4", pillows: { solo: 1, pairs: 1, extra: 1 },
+    photos: [room("Mayura", 1, mayura1), room("Mayura", 2, mayura2), room("Mayura", 3, mayura3, "50% 65%"), room("Mayura", 4, mayura4, "50% 65%")],
+    tour: { node: "Abhishta_27", pan: -12, tilt: -16 },
+  },
+  {
+    id: "mathura", name: "Mathura", sleeps: "4", pillows: { solo: 1, pairs: 1, extra: 1 },
+    photos: [room("Mathura", 1, mathura1), room("Mathura", 2, mathura2), room("Mathura", 3, mathura3), room("Mathura", 4, mathura4, "50% 65%")],
+    tour: { node: "Abhishta_25", pan: 68, tilt: -12 },
+  },
+  {
+    id: "gopala", name: "Gopala", sleeps: "3", pillows: { solo: 1, pairs: 1, extra: 0 },
+    photos: [room("Gopala", 1, gopala1), room("Gopala", 2, gopala2), room("Gopala", 3, gopala3), room("Gopala", 4, gopala4)],
+  },
+  {
+    id: "govinda", name: "Govinda", sleeps: "3", pillows: { solo: 1, pairs: 1, extra: 0 },
+    photos: [room("Govinda", 1, govinda1), room("Govinda", 2, govinda2), room("Govinda", 3, govinda3), room("Govinda", 4, govinda4)],
+  },
 ];
 
 /** Rates per person for a night, all meals included (client's rate sheet). */

@@ -2,11 +2,11 @@
 
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
-import { IconCheck, IconChevronLeft, IconChevronRight } from "@/components/icons";
+import { IconCheck, IconChevronLeft, IconChevronRight, IconExternal } from "@/components/icons";
+import { tourUrl } from "@/lib/tour";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL } from "@/lib/site";
 import { Pillows, onTabKeyDown, useActivePillInView, useSelectRoom } from "./RoomParts";
-import { TourLink, TourViewer } from "@/components/TourViewer";
 import { COTTAGES, COTTAGE_NAMES, RATES } from "./rooms";
 import { glass } from "@/components/bits/glass";
 import { GlassFill } from "@/components/bits/LiquidGlass";
@@ -18,25 +18,32 @@ const names = `${COTTAGE_NAMES.slice(0, -1).join(", ")} and ${COTTAGE_NAMES.at(-
 
 /**
  * #cottages — one screen: a pill per cottage, as the Family rooms tabs on
- * phones (a vertical list would not fit four on a laptop screen). Mayura and Mathura show the tour's live 360° view; Gopala and Govinda
- * have none, so their photo shows over the viewer. Beside it, how many the
- * cottage sleeps and what every cottage has. Phones: heading, tabs, view, facts.
+ * phones (a vertical list would not fit four on a laptop screen). Each cottage
+ * shows the client's photos of its room as a slideshow (arrows and a count);
+ * Mayura and Mathura add a link to their 360° view in the tour. Beside it, how
+ * many the cottage sleeps and what every cottage has. Phones: heading, tabs,
+ * photos, facts.
  */
 export function Cottages() {
-  const [active, setActive] = useState(0);
+  const [active, setActiveCottage] = useState(0);
+  const [shot, setShot] = useState(0); // which photo of the open cottage
+  // a new cottage starts on its first photo
+  const setActive = useCallback((i: number) => {
+    setActiveCottage(i);
+    setShot(0);
+  }, []);
   const listRef = useRef<HTMLDivElement>(null);
   const count = COTTAGES.length;
   const cottage = COTTAGES[active];
-  // the 360° player stays mounted on the nearest 360° cottage before this one while a photo shows over it
-  const tour = COTTAGES.slice(0, active + 1).findLast((c) => c.tour)?.tour ?? COTTAGES[0].tour!;
-  const prev = () => setActive((active - 1 + count) % count);
-  const next = () => setActive((active + 1) % count);
+  const shots = cottage.photos.length;
+  const photo = cottage.photos[shot];
+  const prev = () => setShot((shot - 1 + shots) % shots);
+  const next = () => setShot((shot + 1) % shots);
   const control =
     `z-10 grid size-[40px] place-items-center rounded-full text-paper transition-colors duration-300 hover:bg-white/20 ${glass("dark")}`;
   const frameHeight = "h-[max(240px,calc(100svh-500px))] sm:h-[clamp(280px,29svh,440px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]";
 
-  const select = useCallback((i: number) => setActive(i), []);
-  useSelectRoom(COTTAGES, select);
+  useSelectRoom(COTTAGES, setActive);
   useActivePillInView(listRef, active);
 
   return (
@@ -92,35 +99,47 @@ export function Cottages() {
           aria-labelledby={`cottage-tab-${cottage.id}`}
           className="relative min-w-0 lg:[grid-area:frame]"
         >
-          {cottage.photo ? (
-            <div role="group" aria-label={cottage.title} className={`absolute inset-x-0 top-0 z-20 overflow-hidden rounded-card bg-card ring-1 ring-line ${frameHeight}`}>
-              <Image src={cottage.photo} alt={cottage.title} fill sizes="(min-width: 1024px) 55vw, 100vw" placeholder="blur" className="object-cover" />
-              <span className={`absolute bottom-s13 left-s13 rounded-full px-s13 py-[6px] text-[13px] font-medium text-paper ${glass("dark")}`}>
-                <GlassFill />
-                {cottage.name}
-              </span>
-              <button type="button" onClick={prev} aria-label="Previous cottage" className={`absolute top-1/2 left-s13 -translate-y-1/2 ${control}`}>
-                <GlassFill />
-                <IconChevronLeft size={20} />
-              </button>
-              <button type="button" onClick={next} aria-label="Next cottage" className={`absolute top-1/2 right-s13 -translate-y-1/2 ${control}`}>
-                <GlassFill />
-                <IconChevronRight size={20} />
-              </button>
-            </div>
+          <div role="group" aria-roledescription="slideshow" aria-label={`Photos of ${cottage.name} cottage`} className={`relative overflow-hidden rounded-card bg-card ring-1 ring-line ${frameHeight}`}>
+            <Image
+              key={photo.src.src}
+              src={photo.src}
+              alt={photo.alt}
+              fill
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              placeholder="blur"
+              style={{ objectPosition: photo.focus }}
+              className="animate-[fade-in_500ms_ease-out] object-cover motion-reduce:animate-none"
+            />
+            {/* a soft shade at the bottom and sides, so the clear-glass count and arrows read on white walls */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.4),transparent_30%),linear-gradient(to_right,rgb(0_0_0/0.22),transparent_16%,transparent_84%,rgb(0_0_0/0.22))]"
+            />
+            <span aria-live="polite" className={`absolute bottom-s13 left-s13 rounded-full px-s13 py-[6px] text-[13px] font-medium text-paper ${glass("dark")}`}>
+              <GlassFill />
+              {`${cottage.name} · ${shot + 1} of ${shots}`}
+            </span>
+            <button type="button" onClick={prev} aria-label={`Previous photo of ${cottage.name}`} className={`absolute top-1/2 left-s13 -translate-y-1/2 ${control}`}>
+              <GlassFill />
+              <IconChevronLeft size={20} />
+            </button>
+            <button type="button" onClick={next} aria-label={`Next photo of ${cottage.name}`} className={`absolute top-1/2 right-s13 -translate-y-1/2 ${control}`}>
+              <GlassFill />
+              <IconChevronRight size={20} />
+            </button>
+          </div>
+          {cottage.tour ? (
+            <a
+              href={tourUrl(cottage.tour.node, cottage.tour)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tap mt-s13 inline-flex items-center gap-[6px] text-[14px] font-medium text-forest hover:text-farm max-sm:hidden short:hidden"
+            >
+              See {cottage.name} in 360°
+              <IconExternal size={15} />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
           ) : null}
-          <TourViewer
-            tour={tour}
-            title={cottage.tour ? cottage.title : "360° view of the cottages"}
-            caption={cottage.name}
-            tone="light"
-            onPrev={prev}
-            onNext={next}
-            prevLabel="Previous cottage"
-            nextLabel="Next cottage"
-            className={frameHeight}
-          />
-          <TourLink tour={tour} tone="light" className="mt-s13 max-sm:hidden short:hidden" />
         </div>
 
         <div className="lg:mt-s34 lg:[grid-area:details] squat:mt-s21">
