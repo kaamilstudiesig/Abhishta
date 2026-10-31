@@ -33,7 +33,7 @@ export function Cottages() {
   const next = () => setActive((active + 1) % count);
   const control =
     `z-10 grid size-[40px] place-items-center rounded-full text-paper transition-colors duration-300 hover:bg-white/20 ${glass("dark")}`;
-  const frameHeight = "h-[max(240px,calc(100svh-500px))] sm:h-[clamp(320px,34svh,440px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]";
+  const frameHeight = "h-[max(240px,calc(100svh-500px))] sm:h-[clamp(280px,29svh,440px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]";
 
   const select = useCallback((i: number) => setActive(i), []);
   useSelectRoom(COTTAGES, select);
