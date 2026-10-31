@@ -139,23 +139,24 @@ export function StaggeredMenu({ tone = "light", solid = false }: { tone?: "light
           ref={panelRef}
           aria-label="Site"
           inert={!open}
-          className="on-dark absolute inset-y-0 right-0 flex w-full flex-col overflow-y-auto overscroll-contain bg-forest px-s34 pt-s144 pb-s34 text-paper sm:w-[min(560px,61.8vw)] sm:px-s55"
+          className="on-dark absolute inset-y-0 right-0 flex w-full flex-col overflow-y-auto overscroll-contain bg-forest px-s34 pt-[104px] pb-[calc(34px+env(safe-area-inset-bottom))] text-paper sm:w-[min(560px,61.8vw)] sm:px-s55 sm:pt-s144"
         >
-          <ul className="flex flex-col gap-s8">
+          <ul className="flex flex-col gap-[6px] sm:gap-s8">
             {NAV_LINKS.map((link, i) => (
               <li key={link.href} className="overflow-hidden">
                 <a
                   data-menu-link=""
                   href={link.href}
                   onClick={close}
-                  className="block w-fit py-[3px] font-display text-[clamp(34px,6vw,45px)] leading-[1.1] tracking-[-0.015em] transition-colors duration-300 hover:text-gold-soft"
+                  className="flex w-fit items-start gap-s8 py-[2px] font-display text-[clamp(27px,7.6vw,45px)] leading-[1.15] tracking-[-0.015em] whitespace-nowrap transition-colors duration-300 hover:text-gold-soft sm:gap-s13"
                 >
                   {link.label}
-                  {/* the item's number, as in React Bits' StaggeredMenu; decorative, so screen readers skip it */}
+                  {/* the item's number, as in React Bits' StaggeredMenu: always at the label's top right, never wrapped
+                      below it; decorative, so screen readers skip it */}
                   <span
                     data-menu-num=""
                     aria-hidden="true"
-                    className="ml-s13 inline-block align-top font-sans text-[15px] leading-[2] font-medium tracking-[0.04em] whitespace-nowrap text-gold tabular-nums"
+                    className="shrink-0 pt-[0.3em] font-sans text-[12px] leading-none font-medium tracking-[0.04em] text-gold tabular-nums sm:text-[14px]"
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -164,7 +165,7 @@ export function StaggeredMenu({ tone = "light", solid = false }: { tone?: "light
             ))}
           </ul>
 
-          <div className="mt-auto grid gap-s21 pt-s55 text-[15px] text-paper/80">
+          <div className="mt-auto grid gap-s21 pt-s34 text-[15px] text-paper/80 sm:pt-s55">
             <div data-menu-extra="" className="grid gap-[3px]">
               <span className="eyebrow text-gold">Reservations</span>
               <a href={CONTACT.reservation.href} className="w-fit text-paper link-gold">
