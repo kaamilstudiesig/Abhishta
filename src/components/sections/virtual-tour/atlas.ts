@@ -6,21 +6,19 @@ import { tourFromHash, type Tour } from "@/lib/tour";
  */
 
 /**
- * Client, 2026-10-31: the Cottages and Family rooms pills open on the Pathway_03 scene, at the views in these Turiya
- * links. Pathway_03 isn't in public/tour/scenes.xml yet (Turiya couldn't be reached when this was written): run
- * `npm run tour:scenes` (the scene is already listed in scripts/tour-scenes.mjs), check both views look right, then
- * set PATHWAY_03_READY to true. Until then the pills keep the room views below.
+ * Client, 2026-10-31: the Family rooms pill opens on Pathway_03 (from the newer V7 tour, see scripts/tour-scenes.mjs),
+ * at the client's link #Pathway_03,0,1.71,75,4: the Nandagokula family room's front. The client's Cottages link,
+ * #Pathway_03,0,-90,75,4, looks straight at the ground, and no direction from Pathway_03 shows the cottages, so the
+ * Cottages pill keeps the Mayura cottage view until the client sends the right link. TODO(client).
  */
-const PATHWAY_03_READY = false;
-const COTTAGES_VIEW = tourFromHash("#Pathway_03,0,-90,75,4");
 const FAMILY_ROOMS_VIEW = tourFromHash("#Pathway_03,0,1.71,75,4");
 
 /** The atlas: one 360° view turned from place to place. */
 export const ATLAS: { name: string; tour: Tour }[] = [
   { name: "From above", tour: { node: "BirdsEyeView01", pan: -85, tilt: -40 } },
   { name: "Entrance", tour: { node: "AerialView_01", pan: 0, tilt: -8 } },
-  { name: "Cottages", tour: PATHWAY_03_READY ? COTTAGES_VIEW : { node: "Abhishta_27", pan: -12, tilt: -16 } },
-  { name: "Family rooms", tour: PATHWAY_03_READY ? FAMILY_ROOMS_VIEW : { node: "Abhishta_06", pan: -120, tilt: -15 } },
+  { name: "Cottages", tour: { node: "Abhishta_27", pan: -12, tilt: -16 } },
+  { name: "Family rooms", tour: FAMILY_ROOMS_VIEW },
   { name: "Orchard", tour: { node: "AerialView_03", pan: -95, tilt: -4 } },
   { name: "Pool", tour: { node: "SwimmingPoolBliss", pan: -90, tilt: -5 } },
   { name: "Dining hall", tour: { node: "Abhishta_03", pan: 22, tilt: -8 } },

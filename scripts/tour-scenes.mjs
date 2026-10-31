@@ -5,6 +5,9 @@
 // their arrow keys. Image tiles still load from Turiya.
 // To show another scene: add its Turiya id (customnodeid) below, run `npm run tour:scenes`, and use
 // the same id in the page. The output is generated — don't edit public/tour/scenes.xml by hand.
+// Turiya also hosts a newer version of the tour at V7/ (new scene ids, WebP tiles). A scene written as
+// "V7:<id>" is taken from there: its tile paths point into V7/ and its internal id gets a "v7" prefix,
+// so it can sit beside the original scenes in one config.
 import { mkdir, writeFile } from "node:fs/promises";
 
 const TOUR = "https://www.turiya.co/360/Abhishta/";
@@ -12,7 +15,6 @@ const SCENES = [
   // Our Nests — rooms (src/components/sections/our-nests/rooms.ts)
   "Abhishta_27", // Mayura cottage
   "Abhishta_25", // Mathura cottage
-  "Abhishta_28", // Mayura cottage's washroom (no longer shown since 2026-10-31; drop it next time the script runs)
   "Abhishta_06", // Nandagokula family dormitory
   "Abhishta_04", // Nandagokula bachelors dormitory
   "Abhishta_08", // Nandagokula triple room
@@ -37,19 +39,26 @@ const SCENES = [
   // Group Enquiries (src/components/sections/group-enquiries/); the day outing also uses scenes above
   "AerialView_01", // the entrance
   // 360° Virtual Tour — the Cottages and Family rooms pills (src/components/sections/virtual-tour/atlas.ts), client 2026-10-31
-  "Pathway_03",
+  "V7:Pathway_03",
 ];
 
+const scenesOf = (xml) => [...xml.matchAll(/<panorama\b[^>]*>[\s\S]*?<\/panorama>/g)].map((m) => m[0]);
 const xml = await (await fetch(`${TOUR}pano.xml`)).text();
 const head = xml.match(/<tour\b[^>]*>/)?.[0];
 if (!head) throw new Error("No <tour> element in pano.xml");
+const versions = { "": scenesOf(xml) };
+for (const v of new Set(SCENES.filter((s) => s.includes(":")).map((s) => s.split(":")[0]))) {
+  versions[v] = scenesOf(await (await fetch(`${TOUR}${v}/pano.xml`)).text());
+}
 
-const all = [...xml.matchAll(/<panorama\b[^>]*>[\s\S]*?<\/panorama>/g)].map((m) => m[0]);
-const kept = SCENES.map((id) => {
-  const scene = all.find((s) => s.includes(`customnodeid="${id}"`));
-  if (!scene) throw new Error(`Scene ${id} not found in the tour`);
+const kept = SCENES.map((entry) => {
+  const [v, id] = entry.includes(":") ? entry.split(":") : ["", entry];
+  let scene = versions[v].find((s) => s.includes(`customnodeid="${id}"`));
+  if (!scene) throw new Error(`Scene ${entry} not found in the tour`);
+  // a scene from another version: its tiles live under that folder, and its node ids must not clash
+  if (v) scene = scene.replace(/"tiles\//g, `"${v}/tiles/`).replace(/\b(id|nodeid)="node(\d+)"/g, `$1="${v.toLowerCase()}node$2"`);
   return scene
-    .replace(/<hotspots>[\s\S]*?<\/hotspots>/g, "<hotspots/>")
+    .replace(/<hotspots\b[^>]*>[\s\S]*?<\/hotspots>/g, "<hotspots/>")
     // attribute-aware: some hotspot titles hold raw ">" (escaped HTML) inside their quotes
     .replace(/<hotspot\b(?:[^"'>]|"[^"]*"|'[^']*')*\/>/g, "")
     .replace(/lockedwheel="0"/g, 'lockedwheel="1"')

@@ -15,12 +15,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="14-02-2022 18:09" customnodeid="Abhishta_27" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Mayura" heading="0" tags="9K|Cottages|Ver03(NewSkin)|Rooms" latitude="" nodeid="node1" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -43,39 +38,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 9:46 AM" customnodeid="Abhishta_25" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Mathura" heading="0" tags="9K|Cottages|Rooms" latitude="" nodeid="node46" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-    </hotspots>
-    <media/>
-    <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
-    <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
-    <control dblclickfullscreen="0" contextfullscreen="1" invertwheel="0" hideabout="1" simulatemass="1" lockedkeyboardzoom="1" lockedkeyboard="1" invertcontrol="1" speedwheel="1" rubberband="0" sensitivity="8" lockedwheel="1" lockedmouse="0" contextprojections="0">
-      <menulink url="https://turiya.co/" text="Created By TURIYA"/>
-    </control>
-  </panorama>
-<panorama hideabout="1" id="node48">
-    <input overlap="1" levelbias="0.400" levelbiashidpi="1.000" leveltilesize="510" leveltileurl="tiles/node48/cf_%c/l_%l/c_%x/tile_%y.jpg" levelingpitch="0" width="2250" levelingroll="0" height="2250">
-      <level preload="0" width="2250" height="2250" predecode="0"/>
-      <level preload="0" width="1125" height="1125" predecode="0"/>
-      <level preload="0" width="562" height="562" predecode="0"/>
-      <level preload="1" width="281" height="281" predecode="1"/>
-      <preview strip="1" color="0x808080"/>
-    </input>
-    <view fovmode="0" pannorth="0">
-      <start projection="4" tilt="0" fov="75" pan="117.85"/>
-      <flyin projection="9" tilt="-90" fov="170" pan="0"/>
-      <min tilt="-90" fov="75" pan="0"/>
-      <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
-    </view>
-    <userdata datetime="8/21/2024 9:56 AM" customnodeid="Abhishta_28" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Washroom" heading="0" tags="9K|SL|Cottages|Rooms" latitude="" nodeid="node48" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -98,12 +61,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 11:11 AM" customnodeid="Abhishta_06" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Nandagokula Family Dormitory" heading="0" tags="9K|Cottages|Rooms" latitude="" nodeid="node7" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -126,12 +84,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 11:00 AM" customnodeid="Abhishta_04" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Nandagokula Bachelors Dormitory" heading="0" tags="9K|Cottages|Rooms" latitude="" nodeid="node5" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -154,12 +107,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 11:15 AM" customnodeid="Abhishta_08" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Nandagokula Triple Occupancy" heading="0" tags="9K|Cottages|Rooms" latitude="" nodeid="node8" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -182,26 +130,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 9:39 AM" customnodeid="BirdsEyeView01" copyright="" comment="" altitude="865.82" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Bird's Eye View" heading="0" tags="9K|BirdsEyeView|SL|Aerialview" latitude="13.084506" nodeid="node40" longitude="76.924179" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -224,13 +153,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 12:14 PM" customnodeid="SwimmingPoolBliss" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Bliss | Swimming Pool" heading="0" tags="9K|Facilities|Amenities" latitude="" nodeid="node23" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -253,12 +176,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 10:37 AM" customnodeid="Abhishta_03" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Dining Zone" heading="0" tags="9K|Facilities|Amenities" latitude="" nodeid="node4" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -281,13 +199,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 12:02 PM" customnodeid="Amphitheatre" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Amphitheater / Campfire Area" heading="0" tags="9K|Facilities|Amenities" latitude="" nodeid="node19" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -310,15 +222,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 12:59 PM" customnodeid="AerialView_03" copyright="" comment="" altitude="796.62" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Cow Cuddling Area" heading="0" tags="9K|BirdsEyeView|Amenities" latitude="13.084879" nodeid="node43" longitude="76.924129" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-      
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -341,11 +245,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 11:52 AM" customnodeid="Abhishta_15" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Traditional Bath / Hande Ole Snana" heading="0" tags="9K|Facilities|Amenities" latitude="" nodeid="node17" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -368,11 +268,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 11:28 AM" customnodeid="Abhishta_10" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Office Room / Game &amp; Sports Centre" heading="0" tags="9K|Others|Amenities" latitude="" nodeid="node10" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -395,11 +291,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 11:37 AM" customnodeid="Abhishta_11" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Coy Pond" heading="0" tags="9K|Facilities|Amenities" latitude="" nodeid="node11" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -422,11 +314,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 12:29 PM" customnodeid="Abhishta_20" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="&lt;ol style=&quot;margin: 0;&quot; >&lt;li>&lt;b>Punganur Gidda:&lt;/b> The Punganur Gidda is a compact powerhouse of resilience and adaptability.&lt;/li>&#xa;&lt;li>&lt;b>Jersey :&lt;/b> The Jersey cow is a small breed with a big reputation for rich, creamy milk.&lt;/li>&#xa;&lt;li>&lt;b>Hallikar :&lt;/b> Known for their strength and stamina, Hallikar cows are the workhorses of Indian agriculture.&lt;/li>&#xa;&lt;li>&lt;b>Gir :&lt;/b>The Gir cow combines beauty and productivity with its distinctive hump and high milk yield.&lt;/li>&#xa;&lt;li>&lt;b>Kankrej :&lt;/b>The Kankrej is a robust and versatile breed, thriving in harsh climates and offering excellent draught power.&lt;/li>&#xa;&lt;li>&lt;b>Holstein Friesian :&lt;/b> The Holstein Friesian is the global icon of dairy farming, renowned for its impressive milk production.&lt;/li>&lt;/ol>" author="" title="Gaushaale" heading="0" tags="9K|Amenities|Farm|Infopop" latitude="" nodeid="node25" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -449,12 +337,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 12:33 PM" customnodeid="Abhishta_21" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="&lt;ol style=&quot;margin: 0;&quot; >&lt;li>&lt;b>Punganur Gidda:&lt;/b> The Punganur Gidda is a compact powerhouse of resilience and adaptability.&lt;/li>&#xa;&lt;li>&lt;b>Jersey :&lt;/b> The Jersey cow is a small breed with a big reputation for rich, creamy milk.&lt;/li>&#xa;&lt;li>&lt;b>Hallikar :&lt;/b> Known for their strength and stamina, Hallikar cows are the workhorses of Indian agriculture.&lt;/li>&#xa;&lt;li>&lt;b>Gir :&lt;/b>The Gir cow combines beauty and productivity with its distinctive hump and high milk yield.&lt;/li>&#xa;&lt;li>&lt;b>Kankrej :&lt;/b>The Kankrej is a robust and versatile breed, thriving in harsh climates and offering excellent draught power.&lt;/li>&#xa;&lt;li>&lt;b>Holstein Friesian :&lt;/b> The Holstein Friesian is the global icon of dairy farming, renowned for its impressive milk production.&lt;/li>&lt;/ol>" author="" title="Gaushaale" heading="0" tags="9K|Amenities|Farm|Infopop" latitude="" nodeid="node27" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -477,11 +360,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 12:37 PM" customnodeid="Abhishta_22" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="&lt;ol style=&quot;margin: 0;&quot; >&lt;li>&lt;b>Punganur Gidda:&lt;/b> The Punganur Gidda is a compact powerhouse of resilience and adaptability.&lt;/li>&#xa;&lt;li>&lt;b>Jersey :&lt;/b> The Jersey cow is a small breed with a big reputation for rich, creamy milk.&lt;/li>&#xa;&lt;li>&lt;b>Hallikar :&lt;/b> Known for their strength and stamina, Hallikar cows are the workhorses of Indian agriculture.&lt;/li>&#xa;&lt;li>&lt;b>Gir :&lt;/b>The Gir cow combines beauty and productivity with its distinctive hump and high milk yield.&lt;/li>&#xa;&lt;li>&lt;b>Kankrej :&lt;/b>The Kankrej is a robust and versatile breed, thriving in harsh climates and offering excellent draught power.&lt;/li>&#xa;&lt;li>&lt;b>Holstein Friesian :&lt;/b> The Holstein Friesian is the global icon of dairy farming, renowned for its impressive milk production.&lt;/li>&lt;/ol>" author="" title="Gaushaale" heading="0" tags="9K|Amenities|Farm|Infopop" latitude="" nodeid="node28" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -504,11 +383,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 12:50 PM" customnodeid="Abhishta_24" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="&lt;ol style=&quot;margin: 0;&quot; >&lt;li>&lt;b>Jamnapari:&lt;/b>The Jamnapari goat is an elegant and prolific milk producer with a striking appearance.&lt;/li>&#xa;&lt;li>&lt;b>South African Boer:&lt;/b> The South African Boer goat is a hardy meat breed known for its impressive growth rates and adaptability.&lt;/li>&#xa;&lt;li>&lt;b>Thalassery:&lt;/b>The Thalassery goat is a prized breed for its fine quality meat and unique local charm.&lt;/li>&#xa;&lt;li>&lt;b>Bannur Sheep:&lt;/b> The Bannur sheep, with its robust build and high-quality wool, is a valued breed in Karnataka's pastoral tradition.&lt;/li>&lt;/ol>" author="" title="Goat and Sheep Shelter" heading="0" tags="9K|Amenities|Farm|Infopop" latitude="" nodeid="node30" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -531,15 +406,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 12:45 PM" customnodeid="Abhishta_23" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Pathway" heading="0" tags="9K|Farm|SL|Pathways" latitude="" nodeid="node29" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-      
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -562,15 +429,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 11:46 AM" customnodeid="Abhishta_14" copyright="" comment="" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Pathway" heading="0" tags="9K|SL|Pathways" latitude="" nodeid="node15" longitude="" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-      
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -593,16 +452,7 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 9:29 AM" customnodeid="Pathway" copyright="" comment="" altitude="779.90" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Pathway" heading="0" tags="9K|BirdsEyeView|SL|Pathways" latitude="13.084948" nodeid="node35" longitude="76.923801" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-      
-      
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
@@ -625,17 +475,39 @@
       <max fovstereographic="270" fovfisheye="360" tilt="90" scaletofit="1" fov="75" pan="360"/>
     </view>
     <userdata datetime="8/21/2024 9:27 AM" customnodeid="AerialView_01" copyright="" comment="" altitude="782.58" info="https://turiya.co/360/Abhishta/" description="Abhista Agri Farm Stay is a charming rural retreat offering an immersive experience in agricultural and pastoral life. Guests can dive into various farming activities, from crop cultivation to animal husbandry, and enjoy local cuisine prepared with fresh, organic ingredients straight from the farm. The stay provides a serene environment away from urban hustle, perfect for relaxation and scenic beauty. Visitors also have the opportunity to experience local traditions, customs, and crafts." author="" title="Entrance" heading="0" tags="9K|BirdsEyeView|SL|Entrance" latitude="13.084978" nodeid="node34" longitude="76.923533" source=""/>
-    <hotspots width="180" height="20" wordwrap="1">
-      <label background="1" backgroundalpha="1" textalpha="1" textcolor="0x000000" width="180" enabled="1" bordercolor="0x000000" height="20" borderalpha="1" border="1" borderradius="1" wordwrap="1" backgroundcolor="0xffffff"/>
-      <polystyle backgroundalpha="0.25098" handcursor="1" bordercolor="0x0000ff" mode="0" borderalpha="1" backgroundcolor="0x0000ff"/>
-      
-      
-    </hotspots>
+    <hotspots/>
     <media/>
     <transition zoomoutpause="1" type="crossdissolve" softedge="0" enabled="1" zoomout="0" zoomfov="20" blendcolor="0x000000" zoomspeed="2" zoomin="0" blendtime="1"/>
     <animation syncanimationwithvideo="0" useinautorotation="0" animsequence="Animation01"/>
     <control dblclickfullscreen="0" contextfullscreen="1" invertwheel="0" hideabout="1" simulatemass="1" lockedkeyboardzoom="1" lockedkeyboard="1" invertcontrol="1" speedwheel="1" rubberband="0" sensitivity="8" lockedwheel="1" lockedmouse="0" contextprojections="0">
       <menulink url="https://turiya.co/" text="Created By TURIYA"/>
+    </control>
+  </panorama>
+<panorama hideabout="1" id="v7node11">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node11/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="0" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="330"/>
+    </view>
+    <userdata tags="Pathway" longitude="" info="" comment="" title="Pathway" nodeid="v7node11" description="" copyright="" datetime="12-09-2026 07:21 AM" source="DSC04231 Panorama.jpg" latitude="" heading="0" author="" customnodeid="Pathway_03">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
     </control>
   </panorama>
 </tour>
