@@ -40,48 +40,39 @@ const PHOTOS: DriftWallItem[] = [
   { src: lawn, caption: "An afternoon on the lawn", alt: "Guests seated on the amphitheatre tiers and on chairs around the lawn stage, under the trees" },
 ];
 // the featured photos with one of each room and a few garden corners mixed in (client, 2026-10-26: fewer photos, more
-// space), plus the group photos from 2026-10-31 now that the page scrolls
+// space), plus four of the group photos from 2026-10-31
 const PICKS = MORE_PHOTOS;
 const ALL: DriftWallItem[] = PHOTOS.flatMap((p, n) => (PICKS[n] ? [p, PICKS[n]] : [p]));
 
 /**
- * #gallery — the /gallery page (client, 2026-10-31; it was a one-screen
- * section of /virtualtour). The wall of the farm's photos runs down the page
- * and scrolls with it, its columns drifting against each other as you go
- * (DriftWall, mode "scroll"). Hover a photo to read its caption; click to see
- * it large. The title (the page's h1 is a hidden copy of it) pops up in the middle when the page opens and stays
- * until it's closed (×) or the visitor starts scrolling. The page scrolls
- * freely: no snapping (data-free-scroll).
+ * #gallery — the /gallery page (client, 2026-10-31; it was a section of
+ * /virtualtour): the whole screen is a drifting wall of the farm's photos
+ * (React Bits DriftWall, flat). Grab any column and drag it up or down; let go
+ * and it drifts on. Hover a photo to read its caption; click to see it large.
+ * The title pops up in the middle when the page opens and stays until it's
+ * closed (×) or the visitor starts on the wall; it doesn't come back.
  */
 export function Gallery() {
   const [title, setTitle] = useState<"hidden" | "shown" | "gone">("hidden");
 
   useEffect(() => {
     const show = requestAnimationFrame(() => setTitle("shown"));
-    const onScroll = () => {
-      if (window.scrollY > 80) setTitle("gone");
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      cancelAnimationFrame(show);
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => cancelAnimationFrame(show);
   }, []);
-
-  const wall = (columns: number, gap: string, className: string) => (
-    <DriftWall items={ALL} label="Photos from the farm" mode="scroll" columns={columns} gap={gap} className={className} />
-  );
+  const dismiss = () => setTitle("gone");
 
   return (
-    <section id="gallery" data-nav="light" data-free-scroll="" className="relative bg-paper pt-[92px] pb-s89 md:pt-[112px]">
+    <section id="gallery" data-nav="light" data-snap="" className="relative isolate h-svh min-h-[560px] overflow-hidden bg-paper">
       <h1 className="sr-only">Photos from the farm</h1>
-      {wall(4, "gap-s34", "hidden px-s55 pb-s55 lg:block")}
-      {wall(3, "gap-s21", "hidden px-s34 pb-s55 sm:block lg:hidden")}
-      {wall(2, "gap-s13", "px-s21 pb-s55 sm:hidden")}
+      <div className="absolute inset-0" onPointerDown={dismiss}>
+        <DriftWall items={ALL} label="Photos from the farm" columns={4} speed={19} gap="gap-s34" className="absolute inset-0 hidden px-s55 lg:block" />
+        <DriftWall items={ALL} label="Photos from the farm" columns={3} speed={16} gap="gap-s21" className="absolute inset-0 hidden px-s34 sm:block lg:hidden" />
+        <DriftWall items={ALL} label="Photos from the farm" columns={2} speed={15} gap="gap-s21" className="absolute inset-0 px-s21 sm:hidden" />
+      </div>
 
-      {/* the title: pops up as the page opens, until it's closed or the page scrolls */}
+      {/* the title: pops up as the page opens, until it's closed or the wall is touched */}
       <div
-        className={`pointer-events-none fixed inset-0 z-[60] grid place-items-center px-s21 ${title === "gone" ? "invisible delay-700" : ""}`}
+        className={`pointer-events-none absolute inset-0 z-20 grid place-items-center px-s21 ${title === "gone" ? "invisible delay-700" : ""}`}
         aria-hidden={title === "gone" || undefined}
       >
         <div
@@ -89,18 +80,18 @@ export function Gallery() {
             title === "shown" ? "pointer-events-auto scale-100 opacity-100 duration-500" : title === "gone" ? "scale-[0.98] opacity-0 duration-700" : "scale-[0.9] opacity-0 duration-0"
           }`}
         >
-          {/* frosted, milky glass here so the title reads over the photos */}
+          {/* frosted, milky glass here so the title reads over the moving photos */}
           <GlassFill blur={18} saturation={1.1} fill="bg-white/75" />
           <button
             type="button"
-            onClick={() => setTitle("gone")}
+            onClick={dismiss}
             aria-label="Close the title"
             className="absolute top-[6px] right-[6px] z-10 grid size-[44px] place-items-center rounded-full text-forest transition-colors duration-300 hover:bg-forest/10"
           >
             <IconClose size={20} />
           </button>
           <p aria-hidden="true" className="relative font-display text-[clamp(30px,4.6vw,58px)] leading-[1] text-forest">Photos from the farm</p>
-          <p className="relative mt-s8 text-[15px] text-ink-muted">Scroll to see them all. Tap any photo to see it larger.</p>
+          <p className="relative mt-s8 text-[15px] text-ink-muted">Drag the photos up or down. Tap any photo to see it larger.</p>
         </div>
       </div>
     </section>
