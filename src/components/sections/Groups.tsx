@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image, { type StaticImageData } from "next/image";
-import corporate from "@public/images/client-photos/group-corporate.jpg";
+import corporate from "@public/images/client-photos/group-corporate-team-1.jpg";
 import school from "@public/images/client-photos/group-students-amphitheatre.jpg";
 import outing from "@public/images/client-photos/group-outing.jpg";
 import events from "@public/images/client-photos/event-lawn-party.jpg";
@@ -18,7 +18,7 @@ const GROUPS: Group[] = [
     body: "Take your team out of the office for games, fresh air and good food.",
     href: "/group-enquiries#corporate",
     image: corporate,
-    alt: "The open-sided dining hall: long wooden tables on patterned tiles under a timber-and-tile roof",
+    alt: "A corporate team on the lawn stage, standing between two Kathakali dancers in full costume",
   },
   {
     name: "School agri-tours",

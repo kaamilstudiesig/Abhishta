@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import Image from "next/image";
 import { FlipCard } from "@/components/bits/FlipCard";
-import students from "@public/images/client-photos/group-students-amphitheatre.jpg";
+import students from "@public/images/client-photos/group-school-team.jpg";
 import { IconCompost, IconFields, IconGames, IconGoat, IconPool, IconSprout } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 
@@ -46,7 +46,7 @@ export function Schools() {
 
         <FlipCard
           photo={students}
-          alt="Students with sketchbooks sitting on the tiled tiers of the amphitheatre, a brass lamp on the stage in front"
+          alt="A school team in matching tracksuits on the lawn with their coach, palms and a cottage roof behind"
           title="Students on the farm"
           label="what students do on the farm"
           className="h-[clamp(300px,calc(100svh-370px),620px)] w-full lg:hidden"
@@ -73,7 +73,7 @@ export function Schools() {
           <div className="relative h-[clamp(300px,calc(100svh-330px),540px)] overflow-hidden rounded-card">
             <Image
               src={students}
-              alt="Students with sketchbooks sitting on the tiled tiers of the amphitheatre, a brass lamp on the stage in front"
+              alt="A school team in matching tracksuits on the lawn with their coach, palms and a cottage roof behind"
               fill
               sizes="(min-width: 1024px) 40vw, 100vw"
               placeholder="blur"

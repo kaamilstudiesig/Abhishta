@@ -1,13 +1,13 @@
-import amphitheatre from "@public/images/client-photos/group-event.jpg";
+import audience from "@public/images/client-photos/group-lawn-audience-3.jpg";
 import { PageHero } from "@/components/sections/PageHero";
 
-/** Group enquiries hero — the amphitheatre's tiled tiers on the lawn, "Bring your / whole group" drifting as you scroll. */
+/** Group enquiries hero — a group gathered on the amphitheatre's tiers, "Bring your / whole group" drifting as you scroll. */
 export function GroupsHero() {
   return (
     <PageHero
-      image={amphitheatre}
-      alt="The amphitheatre: curved tiers patterned in tile around a round stage, on a lawn under the trees"
-      imagePosition="object-[50%_55%]"
+      image={audience}
+      alt="A big group seated on the amphitheatre's tiled tiers under the trees, a brass lamp with marigolds on the stage"
+      imagePosition="object-[50%_50%]"
       lines={["Bring your", "whole group"]}
       lead="Corporate teams, school groups, day outings and family celebrations, on a working farm 90 km from Bangalore."
       cta={{ label: "Get a group quote", href: "#group-quote" }}

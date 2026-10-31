@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import Image from "next/image";
 import { FlipCard } from "@/components/bits/FlipCard";
-import dining from "@public/images/client-photos/group-corporate.jpg";
+import team from "@public/images/client-photos/group-corporate-team-1.jpg";
 import { IconBed, IconDining, IconGames, IconOrchard, IconProjector, IconStar } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 import { REVIEW_URL } from "@/lib/site";
@@ -15,8 +15,8 @@ const REASONS: { icon: ComponentType<{ size?: number; className?: string }>; tit
 ];
 
 /**
- * #corporate — why teams come, in five short reasons, beside the dining hall
- * photo with a real Google review of a corporate outing over it (the same
+ * #corporate — why teams come, in five short reasons, beside a photo of a
+ * corporate team on the farm with a real Google review of a corporate outing over it (the same
  * excerpt the homepage shows). Below lg: the photo as a FlipCard — tap to
  * turn it over and read the reasons.
  */
@@ -43,8 +43,8 @@ export function Corporate() {
         </div>
 
         <FlipCard
-          photo={dining}
-          alt="The open-sided dining hall: long wooden tables on patterned tiles under a timber-and-tile roof"
+          photo={team}
+          alt="A corporate team on the lawn stage, standing between two Kathakali dancers in full costume"
           title="Why teams come here"
           label="why teams come here"
           className="h-[clamp(320px,calc(100svh-330px),620px)] w-full lg:hidden"
@@ -68,8 +68,8 @@ export function Corporate() {
 
         <div className="relative isolate overflow-hidden rounded-card max-lg:hidden lg:h-[clamp(380px,calc(100svh-280px),600px)]">
           <Image
-            src={dining}
-            alt="The open-sided dining hall: long wooden tables on patterned tiles under a timber-and-tile roof"
+            src={team}
+            alt="A corporate team on the lawn stage, standing between two Kathakali dancers in full costume"
             fill
             sizes="(min-width: 1024px) 45vw, 100vw"
             placeholder="blur"
