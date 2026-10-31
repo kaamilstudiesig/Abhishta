@@ -1,3 +1,5 @@
+import type { StaticImageData } from "next/image";
+import cropRows from "@public/images/client-photos/farm-crop-rows.jpg";
 import { whatsappUrl as whatsapp } from "@/lib/site";
 import type { Tour } from "@/lib/tour";
 
@@ -51,3 +53,31 @@ export const DAY_OUTING: { time: string; what: string }[] = [
   { time: "5:00", what: "High tea" },
   { time: "6:00", what: "Head home" },
 ];
+
+/**
+ * "From the farm to your plate" (client, 2026-10-31): each stop of the Farm to table diagram, shown as a live 360°
+ * view where the tour has one, or a photo where it doesn't. `id` matches the diagram's nodes.
+ */
+export type FarmStop = { id: string; label: string; caption: string; line: string } & (
+  | { tour: Tour; photo?: never }
+  | { photo: { src: StaticImageData; alt: string }; tour?: never }
+);
+export const FARM_STOPS: FarmStop[] = [
+  {
+    id: "rows",
+    label: "Vegetable rows",
+    caption: "The vegetable rows",
+    line: "Beds of vegetables between young fruit trees.",
+    photo: { src: cropRows, alt: "The farm's crop rows seen from above, green beds between rows of young trees" },
+  },
+  { id: "orchard", label: "Orchard", caption: "The orchard path", line: "Fruit from the orchard, picked in season.", tour: ORCHARD_VIEW },
+  { id: "cows", label: "Gaushaale", caption: "The gaushaale", line: "Milk from the farm’s own cows.", tour: COW_VIEWS[0].tour },
+  { id: "kitchen", label: "The kitchen", caption: "The buffet", line: "Simple, home-style food, served at the buffet.", tour: { node: "Abhishta_03", pan: -150, tilt: -8 } },
+  { id: "plate", label: "Your plate", caption: "The dining hall", line: "Every meal is included in your stay.", tour: { node: "Abhishta_03", pan: 22, tilt: -8 } },
+];
+
+/** Open a stop in "From the farm to your plate" from the diagram above it. */
+export const SELECT_STOP = "farm:select-stop";
+export function selectStop(id: string) {
+  window.dispatchEvent(new CustomEvent<string>(SELECT_STOP, { detail: id }));
+}

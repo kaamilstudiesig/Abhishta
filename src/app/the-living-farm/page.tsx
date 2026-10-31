@@ -5,6 +5,7 @@ import { WorkTheLand } from "@/components/sections/living-farm/WorkTheLand";
 import { Animals } from "@/components/sections/living-farm/Animals";
 import { GauSeva } from "@/components/sections/living-farm/GauSeva";
 import { SoilToTable } from "@/components/sections/living-farm/SoilToTable";
+import { FarmViews } from "@/components/sections/living-farm/FarmViews";
 import { PlanVisit } from "@/components/sections/living-farm/PlanVisit";
 
 const description =
@@ -35,6 +36,7 @@ export default function TheLivingFarm() {
       <Animals />
       <GauSeva />
       <SoilToTable />
+      <FarmViews />
       <PlanVisit />
     </SiteShell>
   );
