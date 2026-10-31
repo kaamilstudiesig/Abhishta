@@ -2,14 +2,10 @@
 
 import { useCallback, useRef, useState } from "react";
 import { IconCheck } from "@/components/icons";
-import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
-import { whatsappUrl } from "@/lib/site";
+import { SectionHeader, container, screen } from "@/components/ui";
 import { Pillows, onTabKeyDown, useActivePillInView, useSelectRoom } from "./RoomParts";
 import { TourLink, TourViewer } from "@/components/TourViewer";
 import { FAMILY_ROOMS, RATES } from "./rooms";
-
-const enquiry = (room: string) =>
-  whatsappUrl(`Hi Abhishta, I'd like to stay in the ${room} family room.\nDate:\nAdults:\nChildren:`);
 
 /**
  * #dormitories (the id the homepage links to) — the three family rooms on a
@@ -128,14 +124,6 @@ export function FamilyRooms() {
           <p className="mt-s8 hidden text-[15px] text-paper/90 max-lg:block squat:block">
             {room.bathrooms}, fans, no AC
           </p>
-          <a
-            href={enquiry(room.name)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={buttonClass("gold", "mt-s21 max-sm:hidden short:hidden lg:mt-s34 squat:mt-s21")}
-          >
-            Ask about {room.name}
-          </a>
         </div>
       </div>
     </section>
