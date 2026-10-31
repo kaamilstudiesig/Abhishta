@@ -61,7 +61,7 @@ Pairing rules: white text on `farm`/`forest` only. `forest` text on `gold` (neve
 - Email: hello@abhishtaagrifarmstay.com
 - Address: Jiddigere Village, Yediyuru Hobli, Kunigal Taluk, Tumkur, Karnataka 572134
 - 360° tours: https://www.turiya.co/360/Abhishta/ (embed canvases)
-- Socials: Instagram, Facebook, YouTube, WhatsApp, TripAdvisor
+- Socials: Instagram, Facebook, YouTube, WhatsApp, Airbnb (TripAdvisor until 2026-10-31)
 
 ## Don'ts
 - No white text on gold. No Poiret One / Poppins (old brand). No purple/blue gradients, no generic AI-look heroes. No emoji iconography. No lorem ipsum — use the wireframe copy direction.

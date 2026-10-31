@@ -25,13 +25,13 @@ export const STORY_VIDEO_URL = "https://www.youtube-nocookie.com/embed/4L4cuBmsb
 
 export const REVIEW_URL = CONTACT.mapUrl;
 
-// TODO(client): confirm Instagram, Facebook and TripAdvisor handles — they are not on the live site.
+// TODO(client): confirm the Instagram and Facebook handles — they are not on the live site. Airbnb: client, 2026-10-31.
 export const SOCIALS = [
   { name: "Instagram", href: "https://www.instagram.com/abhishtaagrifarmstay/" },
   { name: "Facebook", href: "https://www.facebook.com/abhishtaagrifarmstay" },
   { name: "YouTube", href: "https://www.youtube.com/watch?v=4L4cuBmsb38" },
   { name: "WhatsApp", href: WHATSAPP_URL },
-  { name: "TripAdvisor", href: "https://www.tripadvisor.in/Search?q=Abhishta%20Agri%20Farm%20Stay" },
+  { name: "Airbnb", href: "https://www.airbnb.co.in/rooms/1797850774961029695" },
 ] as const;
 
 

@@ -149,11 +149,11 @@ export const IconYouTube = (p: IconProps) => (
   </Icon>
 );
 
-export const IconTripAdvisor = (p: IconProps) => (
+/** Airbnb's loop mark, drawn as a 1.5px line like the other socials. */
+export const IconAirbnb = (p: IconProps) => (
   <Icon {...p}>
-    <circle cx="7" cy="13" r="3.5" />
-    <circle cx="17" cy="13" r="3.5" />
-    <path d="M7 13h.01M17 13h.01M3.5 9.5 5 11M20.5 9.5 19 11M5 9c4-2.5 10-2.5 14 0M12 16.5l-1 1.5h2z" />
+    <path d="M12 3.5c-1 0-1.7.7-2.3 1.9L4.6 15.6c-.9 1.9.3 4 2.4 4 1.7 0 3.1-1.3 5-3.4 1.9 2.1 3.3 3.4 5 3.4 2.1 0 3.3-2.1 2.4-4L14.3 5.4C13.7 4.2 13 3.5 12 3.5z" />
+    <path d="M12 16.2c-1.4-1.7-2.3-3.3-2.3-4.6 0-1.3 1-2.3 2.3-2.3s2.3 1 2.3 2.3c0 1.3-.9 2.9-2.3 4.6z" />
   </Icon>
 );
 

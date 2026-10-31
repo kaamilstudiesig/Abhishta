@@ -5,13 +5,13 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import {
+  IconAirbnb,
   IconFacebook,
   IconInstagram,
   IconLandline,
   IconMail,
   IconPhone,
   IconPin,
-  IconTripAdvisor,
   IconWhatsApp,
   IconYouTube,
 } from "@/components/icons";
@@ -26,7 +26,7 @@ const SOCIAL_ICONS = {
   Facebook: IconFacebook,
   YouTube: IconYouTube,
   WhatsApp: IconWhatsApp,
-  TripAdvisor: IconTripAdvisor,
+  Airbnb: IconAirbnb,
 } as const;
 
 const CONTACTS = [
