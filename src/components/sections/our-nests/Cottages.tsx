@@ -17,8 +17,8 @@ const FACTS = ["Own washroom", "Hot water", "Air-conditioned", "Kettle, wardrobe
 const names = `${COTTAGE_NAMES.slice(0, -1).join(", ")} and ${COTTAGE_NAMES.at(-1)}`;
 
 /**
- * #cottages — one screen: a tab per cottage (pills on phones), as in Family
- * rooms. Mayura and Mathura show the tour's live 360° view; Gopala and Govinda
+ * #cottages — one screen: a pill per cottage, as the Family rooms tabs on
+ * phones (a vertical list would not fit four on a laptop screen). Mayura and Mathura show the tour's live 360° view; Gopala and Govinda
  * have none, so their photo shows over the viewer. Beside it, how many the
  * cottage sleeps and what every cottage has. Phones: heading, tabs, view, facts.
  */
@@ -55,7 +55,7 @@ export function Cottages() {
           ref={listRef}
           role="tablist"
           aria-label="Cottages"
-          className="relative -mx-s21 flex gap-s8 overflow-x-auto px-s21 py-[2px] [scrollbar-width:none] sm:-mx-s34 sm:px-s34 lg:mx-0 lg:mt-s34 lg:grid lg:gap-0 squat:mt-s21 lg:overflow-visible lg:border-t lg:border-line lg:px-0 lg:py-0 lg:[grid-area:tabs] [&::-webkit-scrollbar]:hidden"
+          className="relative -mx-s21 flex gap-s8 overflow-x-auto px-s21 py-[2px] [scrollbar-width:none] sm:-mx-s34 sm:px-s34 lg:mx-0 lg:mt-s34 lg:flex-nowrap lg:overflow-visible lg:px-0 lg:[grid-area:tabs] squat:mt-s21 [&::-webkit-scrollbar]:hidden"
         >
           {COTTAGES.map((c, i) => {
             const on = i === active;
@@ -70,21 +70,13 @@ export function Cottages() {
                 tabIndex={on ? 0 : -1}
                 onClick={() => setActive(i)}
                 onKeyDown={(e) => onTabKeyDown(e, count, active, setActive)}
-                className={`relative flex min-h-[44px] shrink-0 items-center gap-s8 rounded-btn border px-s21 text-[15px] whitespace-nowrap transition-colors duration-300 lg:justify-between lg:rounded-none lg:border-0 lg:border-b lg:border-line lg:px-0 lg:py-[10px] lg:text-left squat:py-[8px] lg:font-display lg:text-[clamp(20px,1.7vw,24px)] ${
-                  on
-                    ? "border-forest bg-forest text-paper lg:bg-transparent lg:text-forest"
-                    : "border-forest/25 text-forest/75 hover:text-forest lg:text-forest/55"
+                className={`relative flex min-h-[44px] shrink-0 items-center gap-s8 rounded-btn border px-s21 text-[15px] whitespace-nowrap transition-colors duration-300 lg:px-s13 ${
+                  on ? "border-forest bg-forest text-paper" : "border-forest/25 text-forest/75 hover:border-forest/60 hover:text-forest"
                 }`}
               >
-                <span className="flex items-center gap-s13">
-                  <span
-                    aria-hidden="true"
-                    className={`hidden h-[3px] w-s21 origin-left rounded-full bg-gold transition-transform duration-500 ease-[var(--ease-earth)] lg:block ${on ? "scale-x-100" : "scale-x-0"}`}
-                  />
-                  {c.name}
-                </span>
+                {c.name}
                 <span
-                  className={`rounded-full px-[8px] py-[1px] font-sans text-[13px] leading-[1.5] tracking-normal ${on ? "bg-gold text-forest" : "bg-forest/10 text-forest/80"}`}
+                  className={`rounded-full px-[8px] py-[1px] font-sans text-[13px] leading-[1.5] tracking-normal lg:hidden ${on ? "bg-gold text-forest" : "bg-forest/10 text-forest/80"}`}
                 >
                   <span className="sr-only">sleeps </span>
                   {c.sleeps}
@@ -149,7 +141,7 @@ export function Cottages() {
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("primary")}>
               Book a cottage
             </a>
-            <span className="text-[14px] text-ink-muted">
+            <span className="text-[14px] text-ink-muted squat:hidden">
               {RATES.cottageAdult} an adult, {RATES.cottageChild} a child over 5, all meals included. Children under 5 stay free.
             </span>
           </div>

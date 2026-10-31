@@ -20,7 +20,7 @@ const ROWS = [
 export function Comforts() {
   return (
     <section id="comforts" data-nav="light" data-snap="" className={`bg-paper-deep ${screen}`}>
-      <div className={`${container} grid gap-s34 lg:grid-cols-[1fr_1.618fr] lg:items-center lg:gap-s89`}>
+      <div className={`${container} grid gap-s34 short:gap-s21 lg:grid-cols-[1fr_1.618fr] lg:items-center lg:gap-s89`}>
         <SectionHeader
           title="Compare the rooms"
           lead="Every stay includes all four meals, the pool, the farm activities, Wi-Fi and parking. This is where the rooms differ."
@@ -47,11 +47,11 @@ export function Comforts() {
           <tbody>
             {ROWS.map((r) => (
               <tr key={r.label} className="border-b border-line align-top">
-                <th scope="row" className="py-s13 pr-s13 text-[14px] font-normal text-ink-muted sm:text-[15px]">
+                <th scope="row" className="py-s13 pr-s13 short:py-[8px] text-[14px] font-normal text-ink-muted sm:text-[15px]">
                   {r.label}
                 </th>
-                <td className="py-s13 pr-s13 text-ink">{r.cottage}</td>
-                <td className="py-s13 text-ink">{r.group}</td>
+                <td className="py-s13 pr-s13 text-ink short:py-[8px]">{r.cottage}</td>
+                <td className="py-s13 text-ink short:py-[8px]">{r.group}</td>
               </tr>
             ))}
           </tbody>
