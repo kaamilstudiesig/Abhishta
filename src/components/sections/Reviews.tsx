@@ -20,12 +20,25 @@ const REVIEWS = [
   { name: "Prashanth K", text: "A perfect family getaway!" },
 ];
 
-function Stars({ className = "" }: { className?: string }) {
+/** The farm's Google rating (verified 2026-10-31). */
+const RATING = 4.8;
+const REVIEW_COUNT = 395;
+
+/** Five stars filled to `value` — the last one partly, so 4.8 reads as 4.8, not 5. */
+function Stars({ value = 5, size = 18, className = "" }: { value?: number; size?: number; className?: string }) {
   return (
-    <span role="img" aria-label="5 out of 5 stars" className={`inline-flex gap-[2px] text-gold ${className}`}>
-      {Array.from({ length: 5 }, (_, i) => (
-        <IconStar key={i} size={18} fill="currentColor" />
-      ))}
+    <span role="img" aria-label={`${value} out of 5 stars`} className={`inline-flex gap-[2px] ${className}`}>
+      {Array.from({ length: 5 }, (_, i) => {
+        const fill = Math.max(0, Math.min(1, value - i));
+        return (
+          <span key={i} className="relative inline-block" style={{ width: size, height: size }}>
+            <IconStar size={size} className="absolute inset-0 text-gold/45" />
+            <span className="absolute inset-y-0 left-0 overflow-hidden text-gold" style={{ width: `${fill * 100}%` }}>
+              <IconStar size={size} fill="currentColor" />
+            </span>
+          </span>
+        );
+      })}
     </span>
   );
 }
@@ -40,10 +53,10 @@ export function Reviews() {
           className="md:max-w-[38em]"
         />
         <div className="flex items-center gap-s13 md:justify-self-end md:gap-s21">
-          <span className="font-display text-[34px] leading-none text-forest md:text-h1">5.0</span>
+          <span className="font-display text-[34px] leading-none text-forest md:text-h1">{RATING.toFixed(1)}</span>
           <span className="flex flex-wrap items-center gap-x-s13 gap-y-[5px] md:grid md:gap-[5px]">
-            <Stars />
-            <span className="hidden text-[15px] text-ink-muted md:inline">Google reviews</span>
+            <Stars value={RATING} size={20} />
+            <span className="text-[15px] text-ink-muted">{REVIEW_COUNT} Google reviews</span>
             <a
               href={REVIEW_URL}
               target="_blank"
