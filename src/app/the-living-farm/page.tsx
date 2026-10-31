@@ -3,9 +3,8 @@ import { SiteShell } from "@/components/SiteShell";
 import { FarmHero } from "@/components/sections/living-farm/FarmHero";
 import { WorkTheLand } from "@/components/sections/living-farm/WorkTheLand";
 import { Animals } from "@/components/sections/living-farm/Animals";
-import { GauSeva } from "@/components/sections/living-farm/GauSeva";
+import { GauSevaTeaser } from "@/components/sections/living-farm/GauSevaTeaser";
 import { SoilToTable } from "@/components/sections/living-farm/SoilToTable";
-import { FarmViews } from "@/components/sections/living-farm/FarmViews";
 import { PlanVisit } from "@/components/sections/living-farm/PlanVisit";
 
 const description =
@@ -27,6 +26,7 @@ export const metadata: Metadata = {
 /**
  * The living farm — one screen per section, like the homepage and Our nests:
  * every section is a [data-snap] page. Built from docs/wireframes/the-living-farm.md.
+ * Gau seva and Farm to table are short here; each has its own page (/gau-seva, /farm-to-table).
  */
 export default function TheLivingFarm() {
   return (
@@ -34,9 +34,8 @@ export default function TheLivingFarm() {
       <FarmHero />
       <WorkTheLand />
       <Animals />
-      <GauSeva />
-      <SoilToTable />
-      <FarmViews />
+      <GauSevaTeaser />
+      <SoilToTable compact />
       <PlanVisit />
     </SiteShell>
   );

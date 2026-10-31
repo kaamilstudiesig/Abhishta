@@ -2,26 +2,76 @@
 
 import { useRef, type ComponentType, type RefObject } from "react";
 import { AnimatedBeam } from "@/components/bits/AnimatedBeam";
-import { IconBasket, IconCompost, IconDining, IconLeaf, IconMilk, IconOrchard, IconPot, IconSprout } from "@/components/icons";
-import { SectionHeader, container, screen } from "@/components/ui";
+import {
+  IconBasket,
+  IconCompost,
+  IconDining,
+  IconLeaf,
+  IconMilk,
+  IconOrchard,
+  IconPot,
+  IconSprout,
+} from "@/components/icons";
+import Link from "next/link";
+import { IconArrow } from "@/components/icons";
+import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { selectStop } from "./farm";
 
 type IconType = ComponentType<{ size?: number; className?: string }>;
 
 const PILLARS: { icon: IconType; title: string; line: string }[] = [
-  { icon: IconLeaf, title: "Naturally grown", line: "Grown with sun, water and good soil." },
-  { icon: IconCompost, title: "Organic practices", line: "Organic fertiliser and compost feed the land." },
-  { icon: IconMilk, title: "Farm-fresh dairy", line: "Milk from the farm’s own cows." },
-  { icon: IconDining, title: "Wholesome meals", line: "Simple, home-style food." },
-  { icon: IconBasket, title: "Harvest to plate", line: "Learn how it’s grown, then taste it at the table." },
+  {
+    icon: IconLeaf,
+    title: "Naturally grown",
+    line: "Grown with sun, water and good soil.",
+  },
+  {
+    icon: IconCompost,
+    title: "Organic practices",
+    line: "Organic fertiliser and compost feed the land.",
+  },
+  {
+    icon: IconMilk,
+    title: "Farm-fresh dairy",
+    line: "Milk from the farm’s own cows.",
+  },
+  {
+    icon: IconDining,
+    title: "Wholesome meals",
+    line: "Simple, home-style food.",
+  },
+  {
+    icon: IconBasket,
+    title: "Harvest to plate",
+    line: "Learn how it’s grown, then taste it at the table.",
+  },
 ];
 
-/** A stop in the diagram; it opens the same stop in "See where it comes from" below. */
-function Node({ nodeRef, icon: Icon, label, stop, large = false }: { nodeRef: RefObject<HTMLDivElement | null>; icon: IconType; label: string; stop: string; large?: boolean }) {
+/**
+ * A stop in the diagram; it opens the same stop in "See where it comes from" — below on the Farm to table page, or
+ * on that page from the compact diagram on The living farm (`?stop=` tells it which).
+ */
+function Node({
+  nodeRef,
+  icon: Icon,
+  label,
+  stop,
+  large = false,
+  away = false,
+}: {
+  nodeRef: RefObject<HTMLDivElement | null>;
+  icon: IconType;
+  label: string;
+  stop: string;
+  large?: boolean;
+  away?: boolean;
+}) {
   return (
     <a
-      href="#from-the-farm"
-      onClick={() => selectStop(stop)}
+      href={
+        away ? `/farm-to-table?stop=${stop}#from-the-farm` : "#from-the-farm"
+      }
+      onClick={away ? undefined : () => selectStop(stop)}
       aria-label={`${label}: look around`}
       className="group relative z-10 flex flex-col items-center gap-[6px] rounded-card"
     >
@@ -31,7 +81,9 @@ function Node({ nodeRef, icon: Icon, label, stop, large = false }: { nodeRef: Re
       >
         <Icon size={large ? 30 : 24} className="text-gold" />
       </div>
-      <span className="text-center text-[13px] leading-[1.2] text-paper/80 transition-colors duration-300 group-hover:text-paper sm:text-[14px]">{label}</span>
+      <span className="text-center text-[13px] leading-[1.2] text-paper/80 transition-colors duration-300 group-hover:text-paper sm:text-[14px]">
+        {label}
+      </span>
     </a>
   );
 }
@@ -42,8 +94,10 @@ function Node({ nodeRef, icon: Icon, label, stop, large = false }: { nodeRef: Re
  * kitchen and on to your plate (AnimatedBeam), then the farm's five pillars.
  * The sitemap's "Soil to table" and "five pillars" share this one screen.
  * Each stop in the diagram opens its 360° view (or photo) in the next section.
+ * `compact` (The living farm): the diagram without the pillars, a link to the
+ * Farm to table page, and stops that open their view there.
  */
-export function SoilToTable() {
+export function SoilToTable({ compact = false }: { compact?: boolean }) {
   const diagram = useRef<HTMLDivElement>(null);
   const rows = useRef<HTMLDivElement>(null);
   const orchard = useRef<HTMLDivElement>(null);
@@ -52,14 +106,31 @@ export function SoilToTable() {
   const plate = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="soil-to-table" data-nav="dark" data-snap="" className={`on-dark bg-forest text-paper ${screen}`}>
-      <div className={`${container} grid gap-s21 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:gap-x-s89 lg:gap-y-s55 squat:gap-y-s34`}>
+    <section
+      id="soil-to-table"
+      data-nav="dark"
+      data-snap=""
+      className={`on-dark bg-forest text-paper ${screen}`}
+    >
+      <div
+        className={`${container} grid gap-s21 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:gap-x-s89 lg:gap-y-s55 squat:gap-y-s34`}
+      >
         <SectionHeader
           tone="dark"
           title="Farm to table"
           lead="Our vegetables, fruit and milk come from the farm, so the food on your plate is fresh and simple."
           leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
-        />
+        >
+          {compact ? (
+            <Link
+              href="/farm-to-table"
+              className={buttonClass("ghost-light", "mt-s21 md:mt-s34")}
+            >
+              See farm to table
+              <IconArrow size={18} aria-hidden="true" />
+            </Link>
+          ) : null}
+        </SectionHeader>
 
         {/* the journey: three sources, the kitchen, your plate */}
         <div
@@ -69,35 +140,97 @@ export function SoilToTable() {
           className="relative grid h-[clamp(190px,30svh,300px)] grid-cols-3 items-center text-paper"
         >
           <div className="flex h-full flex-col justify-between">
-            <Node nodeRef={rows} icon={IconSprout} label="Vegetable rows" stop="rows" />
-            <Node nodeRef={orchard} icon={IconOrchard} label="Orchard" stop="orchard" />
-            <Node nodeRef={cows} icon={IconMilk} label="Gaushaale" stop="cows" />
+            <Node
+              nodeRef={rows}
+              icon={IconSprout}
+              label="Vegetable rows"
+              stop="rows"
+              away={compact}
+            />
+            <Node
+              nodeRef={orchard}
+              icon={IconOrchard}
+              label="Orchard"
+              stop="orchard"
+              away={compact}
+            />
+            <Node
+              nodeRef={cows}
+              icon={IconMilk}
+              label="Gaushaale"
+              stop="cows"
+              away={compact}
+            />
           </div>
           <div className="flex justify-center">
-            <Node nodeRef={kitchen} icon={IconPot} label="The kitchen" stop="kitchen" large />
+            <Node
+              nodeRef={kitchen}
+              icon={IconPot}
+              label="The kitchen"
+              stop="kitchen"
+              away={compact}
+              large
+            />
           </div>
           <div className="flex justify-center">
-            <Node nodeRef={plate} icon={IconDining} label="Your plate" stop="plate" large />
+            <Node
+              nodeRef={plate}
+              icon={IconDining}
+              label="Your plate"
+              stop="plate"
+              away={compact}
+              large
+            />
           </div>
-          <AnimatedBeam containerRef={diagram} fromRef={rows} toRef={kitchen} delay={0} />
-          <AnimatedBeam containerRef={diagram} fromRef={orchard} toRef={kitchen} delay={0.6} />
-          <AnimatedBeam containerRef={diagram} fromRef={cows} toRef={kitchen} delay={1.2} />
-          <AnimatedBeam containerRef={diagram} fromRef={kitchen} toRef={plate} delay={1.9} duration={2.6} />
+          <AnimatedBeam
+            containerRef={diagram}
+            fromRef={rows}
+            toRef={kitchen}
+            delay={0}
+          />
+          <AnimatedBeam
+            containerRef={diagram}
+            fromRef={orchard}
+            toRef={kitchen}
+            delay={0.6}
+          />
+          <AnimatedBeam
+            containerRef={diagram}
+            fromRef={cows}
+            toRef={kitchen}
+            delay={1.2}
+          />
+          <AnimatedBeam
+            containerRef={diagram}
+            fromRef={kitchen}
+            toRef={plate}
+            delay={1.9}
+            duration={2.6}
+          />
         </div>
 
         {/* the five pillars; phones: a swipe row */}
-        <ul
-          aria-label="How the farm grows and cooks"
-          className="-mx-s21 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 [scrollbar-width:none] sm:-mx-s34 sm:scroll-px-s34 sm:px-s34 lg:col-span-2 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-s21 lg:overflow-visible lg:border-t lg:border-paper/15 lg:px-0 lg:pt-s34 squat:pt-s21 [&::-webkit-scrollbar]:hidden"
-        >
-          {PILLARS.map(({ icon: Icon, title, line }) => (
-            <li key={title} className="w-[62%] max-w-[240px] shrink-0 snap-start lg:snap-align-none rounded-card bg-paper/[0.06] p-s13 sm:w-[40%] lg:w-auto lg:max-w-none lg:rounded-none lg:bg-transparent lg:p-0">
-              <Icon size={24} className="text-gold" />
-              <h3 className="mt-s8 font-display text-[19px] leading-[1.2] text-paper lg:text-[clamp(18px,1.5vw,21px)]">{title}</h3>
-              <p className="mt-[4px] text-[14px] leading-[1.45] text-paper/75 lg:text-[15px]">{line}</p>
-            </li>
-          ))}
-        </ul>
+        {compact ? null : (
+          <ul
+            aria-label="How the farm grows and cooks"
+            className="-mx-s21 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 [scrollbar-width:none] sm:-mx-s34 sm:scroll-px-s34 sm:px-s34 lg:col-span-2 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-s21 lg:overflow-visible lg:border-t lg:border-paper/15 lg:px-0 lg:pt-s34 squat:pt-s21 [&::-webkit-scrollbar]:hidden"
+          >
+            {PILLARS.map(({ icon: Icon, title, line }) => (
+              <li
+                key={title}
+                className="w-[62%] max-w-[240px] shrink-0 snap-start lg:snap-align-none rounded-card bg-paper/[0.06] p-s13 sm:w-[40%] lg:w-auto lg:max-w-none lg:rounded-none lg:bg-transparent lg:p-0"
+              >
+                <Icon size={24} className="text-gold" />
+                <h3 className="mt-s8 font-display text-[19px] leading-[1.2] text-paper lg:text-[clamp(18px,1.5vw,21px)]">
+                  {title}
+                </h3>
+                <p className="mt-[4px] text-[14px] leading-[1.45] text-paper/75 lg:text-[15px]">
+                  {line}
+                </p>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );

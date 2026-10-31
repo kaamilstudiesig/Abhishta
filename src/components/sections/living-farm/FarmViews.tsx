@@ -19,7 +19,7 @@ const ICONS: Record<string, ComponentType<{ size?: number; className?: string }>
 };
 
 /**
- * #from-the-farm — right after Farm to table (client, 2026-10-31): the same
+ * #from-the-farm — on the Farm to table page, after the diagram (client, 2026-10-31): the same
  * five stops, now to look at. A tab per stop (pills on phones) turns one live
  * 360° view between the orchard, the gaushaale and the dining hall; the
  * vegetable rows have no 360° view, so their photo shows over the viewer.
@@ -43,6 +43,9 @@ export function FarmViews() {
       if (i >= 0) setActive(i);
     };
     window.addEventListener(SELECT_STOP, onSelect);
+    // arriving from the compact diagram on The living farm: /farm-to-table?stop=orchard#from-the-farm
+    const fromLink = new URLSearchParams(window.location.search).get("stop");
+    if (fromLink) window.dispatchEvent(new CustomEvent<string>(SELECT_STOP, { detail: fromLink }));
     return () => window.removeEventListener(SELECT_STOP, onSelect);
   }, []);
   useActivePillInView(listRef, active);
