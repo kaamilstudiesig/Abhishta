@@ -52,8 +52,8 @@ function enquiry(v: Values) {
  * Plan your stay — one light screen, so the forest footer reads as its own
  * band when it's revealed beneath. There's no booking backend: the form writes
  * the enquiry and opens WhatsApp with it, ready to send (email works the same
- * way); live availability and rates stay on Stayflexi. The stay's essentials
- * sit beside it, and Stayflexi's cancellation policy opens in a popover.
+ * way); "Check availability" opens a plain WhatsApp booking chat. The stay's
+ * essentials sit beside it, and the cancellation policy opens in a popover.
  */
 export function PlanStay() {
   const uid = useId();
@@ -246,7 +246,7 @@ const STAY_FACTS = [
   { term: "Deposit", detail: "₹5,000, refundable" },
 ];
 
-/** The stay's essentials, and Stayflexi's cancellation policy in plain words (it replaces the old site's pages). */
+/** The stay's essentials, and the cancellation policy (from Stayflexi, which the site no longer links) in plain words (it replaces the old site's pages). */
 function SmallPrint() {
   return (
     <div className="lg:mt-s34 lg:[grid-area:fine]">

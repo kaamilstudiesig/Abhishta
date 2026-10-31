@@ -1,9 +1,9 @@
-export const BOOKING_URL = "https://bookingengine.stayflexi.com/?hotel_id=32336";
-
 export const WHATSAPP_NUMBER = "919945794925";
 /** A WhatsApp chat with the farm, opened with a message already written. */
 export const whatsappUrl = (message: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 export const WHATSAPP_URL = whatsappUrl("Hi Abhishta, I'd like to know more about a stay at the farm.");
+/** Every booking CTA: a WhatsApp chat asking for dates (Stayflexi was dropped, client 2026-10-31). */
+export const BOOKING_URL = whatsappUrl("Hi Abhishta, I'd like to book a stay at the farm.\nCheck-in:\nCheck-out:\nAdults:\nChildren:");
 /** A day outing enquiry (The living farm, Group enquiries). */
 export const DAY_OUTING_ENQUIRY = whatsappUrl("Hi Abhishta, I'd like to plan a day outing at the farm.\nDate:\nAdults:\nChildren:");
 

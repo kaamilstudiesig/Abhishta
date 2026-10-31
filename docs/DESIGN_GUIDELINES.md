@@ -51,7 +51,7 @@ Pairing rules: white text on `farm`/`forest` only. `forest` text on `gold` (neve
 - Headline reveals per section; `prefers-reduced-motion` respected everywhere.
 
 ## Booking
-- All booking CTAs (docked availability bar, sticky booking button, section CTAs) → `https://bookingengine.stayflexi.com/?hotel_id=32336`
+- All booking CTAs (docked availability bar, sticky booking button, section CTAs) → WhatsApp, prefilled (`BOOKING_URL`; was Stayflexi until 2026-10-31)
 - Floating WhatsApp button, always on screen → `https://wa.me/919945794925?text=<prefilled enquiry>`
 - Fallback: `mailto:abhishtaagrifarmstay@gmail.com`
 - Availability bar fields: Stay/Outing Type, Name, Phone (+91), Check-In, Check-Out dates

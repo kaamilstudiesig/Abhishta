@@ -6,7 +6,7 @@ import { DAY_OUTING } from "./farm";
 /**
  * #plan-your-visit — the two ways in, side by side: a day outing (its schedule,
  * from the official site, and a WhatsApp enquiry) or a stay (Our nests and the
- * Stayflexi booking engine), with email and phone underneath. Phones: a swipe
+ * a WhatsApp booking chat), with email and phone underneath. Phones: a swipe
  * row of the two cards.
  */
 export function PlanVisit() {

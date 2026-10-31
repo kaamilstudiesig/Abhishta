@@ -150,7 +150,7 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
   "Others"); resize to 1600 px before adding them to `public/images/client-photos/`.
 - If a page needs a photo that doesn't exist, use an existing client photo or a neutral placeholder block and say
   which shot is missing — don't use stock imagery of other places presented as Abhishta.
-- **Booking:** every booking CTA goes to `BOOKING_URL`; enquiries to `WHATSAPP_URL` (prefilled) or `CONTACT.email`.
+- **Booking:** every booking CTA goes to `BOOKING_URL` (a prefilled WhatsApp chat; Stayflexi was dropped 2026-10-31); enquiries to `WHATSAPP_URL` (prefilled) or `CONTACT.email`.
   Forms have no backend yet: build them to open WhatsApp/email with the details prefilled, and say so in the UI
   only where a guest needs to know.
 - **360° views — the rule.** Never embed the Turiya tour as an `<iframe>` (that brings back Turiya's START card,
