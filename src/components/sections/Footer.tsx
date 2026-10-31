@@ -105,7 +105,7 @@ export function Footer() {
         <div>
           <Logo tone="light" />
           <p className="mt-s13 max-w-[22em] text-[15px] text-paper/75">
-            A working farm stay ninety kilometres from Bangalore.
+            A working farm stay 90 km from Bangalore.
           </p>
           <ul className="mt-s21 flex flex-wrap gap-s8">
             {SOCIALS.map((s) => {

@@ -125,7 +125,7 @@ export function Hero() {
         {/* phones: indented under the second line, close to the headline (after the reference) */}
         <div className="mt-s34 ml-[24%] md:mt-s55 md:mr-[calc(4vw+8%)] md:ml-0 md:w-[min(26em,40%)] md:self-end">
           <p data-hero-reveal="" className="font-display text-[clamp(17px,1.4vw,20px)] leading-[1.3] text-paper/90 md:leading-[1.45]">
-            Experience countryside living, fresh air, and wonderful times at Abhishta Agri Farm Stay, just 90 kilometres from Bangalore.
+            Experience countryside living, fresh air, and wonderful times at Abhishta Agri Farm Stay, just 90 km from Bangalore.
           </p>
           <div data-hero-reveal="" className="mt-s21 flex items-stretch gap-[6px] md:mt-s34">
             <a
