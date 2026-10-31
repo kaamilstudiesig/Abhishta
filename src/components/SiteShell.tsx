@@ -7,7 +7,7 @@ import { Footer } from "@/components/sections/Footer";
 
 /**
  * The chrome every page shares: skip link, navbar, main, the sticky footer
- * revealed beneath it, the floating booking/WhatsApp buttons, all inside
+ * revealed beneath it, the floating booking button, all inside
  * SmoothScroll. `intro` plays the page-load veil (homepage only).
  */
 export function SiteShell({ children, intro = false }: { children: ReactNode; intro?: boolean }) {
