@@ -113,6 +113,17 @@ main :is(a, button, input, select, summary) {
   scroll-margin-bottom: 88px;
 }
 
+/* The hand cursor on everything clickable (Tailwind 4 resets buttons to the arrow; client 2026-10-31).
+   In the base layer, so utilities like cursor-grab still win. */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  summary,
+  label:has(> input:is([type="radio"], [type="checkbox"])) {
+    cursor: pointer;
+  }
+}
+
 /* A page per section; scroll-snap-stop keeps a fast flick from skipping one. */
 [data-snap] {
   scroll-snap-align: start;

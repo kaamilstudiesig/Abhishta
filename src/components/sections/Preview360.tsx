@@ -58,7 +58,7 @@ export function Preview360() {
             type="button"
             onClick={() => setTourOpen(true)}
             aria-label="Open the 360° virtual tour"
-            className={`group relative block w-full overflow-hidden rounded-[28px] p-[10px] text-left transition-[background-color] duration-500 hover:bg-white/[0.06] ${glass("dark")} shadow-[0_28px_70px_-20px_rgb(0_0_0/0.5)]`}
+            className={`group relative block w-full cursor-pointer overflow-hidden rounded-[28px] p-[10px] text-left transition-[background-color] duration-500 hover:bg-white/[0.06] ${glass("dark")} shadow-[0_28px_70px_-20px_rgb(0_0_0/0.5)]`}
           >
             <GlassFill />
             <span className="relative block aspect-[16/11] overflow-hidden rounded-[19px] sm:aspect-[16/10]">
