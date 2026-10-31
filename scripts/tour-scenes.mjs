@@ -36,6 +36,8 @@ const SCENES = [
   "Pathway", // path by the chicken coop, near the entrance
   // Group Enquiries (src/components/sections/group-enquiries/); the day outing also uses scenes above
   "AerialView_01", // the entrance
+  // 360° Virtual Tour — the Cottages and Family rooms pills (src/components/sections/virtual-tour/atlas.ts), client 2026-10-31
+  "Pathway_03",
 ];
 
 const xml = await (await fetch(`${TOUR}pano.xml`)).text();
