@@ -5,12 +5,14 @@ import { RATES } from "./rooms";
  * Where a cottage and a family room actually differ, from the client's rate
  * sheet (2026-10-20): capacity, bathrooms, AC and the nightly rate. The cottage's
  * own washroom with hot water and its sit-out are from Stayflexi and the old
- * site. What every stay includes is in the lead.
+ * site. Food (client, 2026-10-31) is the same for both. What every stay
+ * includes is in the lead.
  */
 const ROWS = [
   { label: "Sleeps", cottage: "3 or 4", group: "10, or 5 in Kaustubha" },
   { label: "Bathroom", cottage: "Your own, with hot water", group: "Two in the room (one in Kaustubha)" },
   { label: "Cooling", cottage: "Air-conditioned", group: "Fans, no AC" },
+  { label: "Food", cottage: "All meals included", group: "All meals included" },
   { label: "A night", cottage: `${RATES.cottageAdult} an adult, ${RATES.cottageChild} a child over 5, under 5 free`, group: `${RATES.familyRoom} a person, taxes included` },
 ];
 
