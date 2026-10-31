@@ -12,7 +12,7 @@ const SCENES = [
   // Our Nests — rooms (src/components/sections/our-nests/rooms.ts)
   "Abhishta_27", // Mayura cottage
   "Abhishta_25", // Mathura cottage
-  "Abhishta_28", // Mayura cottage's washroom
+  "Abhishta_28", // Mayura cottage's washroom (no longer shown since 2026-10-31; drop it next time the script runs)
   "Abhishta_06", // Nandagokula family dormitory
   "Abhishta_04", // Nandagokula bachelors dormitory
   "Abhishta_08", // Nandagokula triple room

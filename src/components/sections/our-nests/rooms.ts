@@ -1,8 +1,6 @@
 import type { StaticImageData } from "next/image";
 import gopalaRoom from "@public/images/client-photos/cottage-gopala-room.jpg";
-import gopalaSitout from "@public/images/client-photos/cottage-gopala-sitout.jpg";
 import govindaRoom from "@public/images/client-photos/cottage-govinda-room.jpg";
-import govindaSitout from "@public/images/client-photos/cottage-govinda-sitout.jpg";
 import type { Tour } from "@/lib/tour";
 
 /**
@@ -14,19 +12,19 @@ import type { Tour } from "@/lib/tour";
  */
 
 /**
- * The cottage slideshow: the 360° views first (the tour has Mayura, Mathura and Mayura's washroom), then the client's
- * photos of Gopala and Govinda, which have no 360° view. 360° views always win over photos.
+ * The four cottages, one tab each (client, 2026-10-31: no washroom or sit-out slides). Mayura and Mathura show the
+ * tour's 360° view; Gopala and Govinda have none, so they show the client's photo. 360° views always win over photos.
  */
 export const COTTAGE_NAMES = ["Mayura", "Mathura", "Gopala", "Govinda"];
-export type CottageSlide = { name: string; title: string } & ({ tour: Tour; photo?: never } | { photo: StaticImageData; tour?: never });
-export const COTTAGE_VIEWS: CottageSlide[] = [
-  { name: "Mayura", title: "360° view inside Mayura cottage", tour: { node: "Abhishta_27", pan: -12, tilt: -16 } },
-  { name: "Mathura", title: "360° view inside Mathura cottage", tour: { node: "Abhishta_25", pan: 68, tilt: -12 } },
-  { name: "Mayura’s washroom", title: "360° view of Mayura cottage’s washroom", tour: { node: "Abhishta_28", pan: 118, tilt: -10 } },
-  { name: "Gopala", title: "Inside Gopala cottage: a double bed with green cushions, a wardrobe and a tiled timber roof", photo: gopalaRoom },
-  { name: "Gopala’s sit-out", title: "Gopala cottage’s sit-out: two chairs and a table on a patterned tile floor, with a garden in front", photo: gopalaSitout },
-  { name: "Govinda", title: "Inside Govinda cottage: a double bed under a painting of Krishna, a wardrobe and a tiled timber roof", photo: govindaRoom },
-  { name: "Govinda’s sit-out", title: "Govinda cottage’s sit-out: chairs on a tiled veranda by carved wooden pillars", photo: govindaSitout },
+export type Cottage = { id: string; name: string; sleeps: string; pillows: Pillows; title: string } & (
+  | { tour: Tour; photo?: never }
+  | { photo: StaticImageData; tour?: never }
+);
+export const COTTAGES: Cottage[] = [
+  { id: "mayura", name: "Mayura", sleeps: "4", pillows: { solo: 1, pairs: 1, extra: 1 }, title: "360° view inside Mayura cottage", tour: { node: "Abhishta_27", pan: -12, tilt: -16 } },
+  { id: "mathura", name: "Mathura", sleeps: "4", pillows: { solo: 1, pairs: 1, extra: 1 }, title: "360° view inside Mathura cottage", tour: { node: "Abhishta_25", pan: 68, tilt: -12 } },
+  { id: "gopala", name: "Gopala", sleeps: "3", pillows: { solo: 1, pairs: 1, extra: 0 }, title: "Inside Gopala cottage: a double bed with green cushions, a wardrobe and a tiled timber roof", photo: gopalaRoom },
+  { id: "govinda", name: "Govinda", sleeps: "3", pillows: { solo: 1, pairs: 1, extra: 0 }, title: "Inside Govinda cottage: a double bed under a painting of Krishna, a wardrobe and a tiled timber roof", photo: govindaRoom },
 ];
 
 /** Rates per person for a night, all meals included (client's rate sheet). */

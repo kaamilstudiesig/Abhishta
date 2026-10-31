@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import { IconCheck, IconChevronLeft, IconChevronRight } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL } from "@/lib/site";
-import { Pillows } from "./RoomParts";
+import { Pillows, onTabKeyDown, useActivePillInView, useSelectRoom } from "./RoomParts";
 import { TourLink, TourViewer } from "@/components/TourViewer";
-import { COTTAGE_NAMES, COTTAGE_PILLOWS, COTTAGE_VIEWS, RATES } from "./rooms";
+import { COTTAGES, COTTAGE_NAMES, RATES } from "./rooms";
 import { glass } from "@/components/bits/glass";
 import { GlassFill } from "@/components/bits/LiquidGlass";
 
@@ -17,26 +17,32 @@ const FACTS = ["Own washroom", "Hot water", "Air-conditioned", "Kettle, wardrobe
 const names = `${COTTAGE_NAMES.slice(0, -1).join(", ")} and ${COTTAGE_NAMES.at(-1)}`;
 
 /**
- * #cottages — one screen: a slideshow of the cottages — 360° views of Mayura,
- * Mathura and Mayura's washroom, then photos of Gopala and Govinda (no 360°
- * view there) — beside what every cottage has. The
- * four names are said once, in the lead. Phones: heading, view, facts.
+ * #cottages — one screen: a tab per cottage (pills on phones), as in Family
+ * rooms. Mayura and Mathura show the tour's live 360° view; Gopala and Govinda
+ * have none, so their photo shows over the viewer. Beside it, how many the
+ * cottage sleeps and what every cottage has. Phones: heading, tabs, view, facts.
  */
 export function Cottages() {
-  const [view, setView] = useState(0);
-  const count = COTTAGE_VIEWS.length;
-  const current = COTTAGE_VIEWS[view];
-  // the 360° player stays mounted on the nearest 360° slide before this one while a photo shows over it
-  const tour = COTTAGE_VIEWS.slice(0, view + 1).findLast((s) => s.tour)?.tour ?? COTTAGE_VIEWS[0].tour!;
-  const prev = () => setView((view - 1 + count) % count);
-  const next = () => setView((view + 1) % count);
+  const [active, setActive] = useState(0);
+  const listRef = useRef<HTMLDivElement>(null);
+  const count = COTTAGES.length;
+  const cottage = COTTAGES[active];
+  // the 360° player stays mounted on the nearest 360° cottage before this one while a photo shows over it
+  const tour = COTTAGES.slice(0, active + 1).findLast((c) => c.tour)?.tour ?? COTTAGES[0].tour!;
+  const prev = () => setActive((active - 1 + count) % count);
+  const next = () => setActive((active + 1) % count);
   const control =
     `z-10 grid size-[40px] place-items-center rounded-full text-paper transition-colors duration-300 hover:bg-white/20 ${glass("dark")}`;
+  const frameHeight = "h-[max(240px,calc(100svh-500px))] sm:h-[clamp(320px,34svh,440px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]";
+
+  const select = useCallback((i: number) => setActive(i), []);
+  useSelectRoom(COTTAGES, select);
+  useActivePillInView(listRef, active);
 
   return (
     <section id="cottages" data-nav="light" data-snap="" className={`bg-paper-deep ${screen}`}>
       <div
-        className={`${container} grid gap-y-s21 lg:grid-cols-[1.618fr_1fr] lg:grid-rows-[1fr_auto_auto_1fr] lg:gap-x-s89 lg:gap-y-0 lg:[grid-template-areas:'frame_.'_'frame_header'_'frame_details'_'frame_.']`}
+        className={`${container} grid gap-y-s13 sm:gap-y-s21 lg:grid-cols-[1.618fr_1fr] lg:grid-rows-[1fr_auto_auto_auto_1fr] lg:gap-x-s89 lg:gap-y-0 lg:[grid-template-areas:'frame_.'_'frame_header'_'frame_tabs'_'frame_details'_'frame_.']`}
       >
         <SectionHeader
           className="lg:[grid-area:header]"
@@ -45,19 +51,67 @@ export function Cottages() {
           leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
         />
 
-        <div className="relative min-w-0 lg:[grid-area:frame]">
-          {current.photo ? (
-            <div role="group" aria-label={current.title} className="absolute inset-x-0 top-0 z-20 h-[max(280px,calc(100svh-438px))] overflow-hidden rounded-card bg-card ring-1 ring-line sm:h-[clamp(350px,36svh,460px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]">
-              <Image src={current.photo} alt={current.title} fill sizes="(min-width: 1024px) 55vw, 100vw" placeholder="blur" className="object-cover" />
+        <div
+          ref={listRef}
+          role="tablist"
+          aria-label="Cottages"
+          className="relative -mx-s21 flex gap-s8 overflow-x-auto px-s21 py-[2px] [scrollbar-width:none] sm:-mx-s34 sm:px-s34 lg:mx-0 lg:mt-s34 lg:grid lg:gap-0 squat:mt-s21 lg:overflow-visible lg:border-t lg:border-line lg:px-0 lg:py-0 lg:[grid-area:tabs] [&::-webkit-scrollbar]:hidden"
+        >
+          {COTTAGES.map((c, i) => {
+            const on = i === active;
+            return (
+              <button
+                key={c.id}
+                type="button"
+                role="tab"
+                id={`cottage-tab-${c.id}`}
+                aria-selected={on}
+                aria-controls="cottage-panel"
+                tabIndex={on ? 0 : -1}
+                onClick={() => setActive(i)}
+                onKeyDown={(e) => onTabKeyDown(e, count, active, setActive)}
+                className={`relative flex min-h-[44px] shrink-0 items-center gap-s8 rounded-btn border px-s21 text-[15px] whitespace-nowrap transition-colors duration-300 lg:justify-between lg:rounded-none lg:border-0 lg:border-b lg:border-line lg:px-0 lg:py-[10px] lg:text-left squat:py-[8px] lg:font-display lg:text-[clamp(20px,1.7vw,24px)] ${
+                  on
+                    ? "border-forest bg-forest text-paper lg:bg-transparent lg:text-forest"
+                    : "border-forest/25 text-forest/75 hover:text-forest lg:text-forest/55"
+                }`}
+              >
+                <span className="flex items-center gap-s13">
+                  <span
+                    aria-hidden="true"
+                    className={`hidden h-[3px] w-s21 origin-left rounded-full bg-gold transition-transform duration-500 ease-[var(--ease-earth)] lg:block ${on ? "scale-x-100" : "scale-x-0"}`}
+                  />
+                  {c.name}
+                </span>
+                <span
+                  className={`rounded-full px-[8px] py-[1px] font-sans text-[13px] leading-[1.5] tracking-normal ${on ? "bg-gold text-forest" : "bg-forest/10 text-forest/80"}`}
+                >
+                  <span className="sr-only">sleeps </span>
+                  {c.sleeps}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div
+          id="cottage-panel"
+          role="tabpanel"
+          aria-labelledby={`cottage-tab-${cottage.id}`}
+          className="relative min-w-0 lg:[grid-area:frame]"
+        >
+          {cottage.photo ? (
+            <div role="group" aria-label={cottage.title} className={`absolute inset-x-0 top-0 z-20 overflow-hidden rounded-card bg-card ring-1 ring-line ${frameHeight}`}>
+              <Image src={cottage.photo} alt={cottage.title} fill sizes="(min-width: 1024px) 55vw, 100vw" placeholder="blur" className="object-cover" />
               <span className={`absolute bottom-s13 left-s13 rounded-full px-s13 py-[6px] text-[13px] font-medium text-paper ${glass("dark")}`}>
                 <GlassFill />
-                {`${current.name} · ${view + 1} of ${count}`}
+                {cottage.name}
               </span>
-              <button type="button" onClick={prev} aria-label="Previous cottage view" className={`absolute top-1/2 left-s13 -translate-y-1/2 ${control}`}>
+              <button type="button" onClick={prev} aria-label="Previous cottage" className={`absolute top-1/2 left-s13 -translate-y-1/2 ${control}`}>
                 <GlassFill />
                 <IconChevronLeft size={20} />
               </button>
-              <button type="button" onClick={next} aria-label="Next cottage view" className={`absolute top-1/2 right-s13 -translate-y-1/2 ${control}`}>
+              <button type="button" onClick={next} aria-label="Next cottage" className={`absolute top-1/2 right-s13 -translate-y-1/2 ${control}`}>
                 <GlassFill />
                 <IconChevronRight size={20} />
               </button>
@@ -65,27 +119,24 @@ export function Cottages() {
           ) : null}
           <TourViewer
             tour={tour}
-            title={current.tour ? current.title : "360° view of the cottages"}
-            caption={`${current.name} · ${view + 1} of ${count}`}
+            title={cottage.tour ? cottage.title : "360° view of the cottages"}
+            caption={cottage.name}
             tone="light"
             onPrev={prev}
             onNext={next}
-            prevLabel="Previous cottage view"
-            nextLabel="Next cottage view"
-            className="h-[max(280px,calc(100svh-438px))] sm:h-[clamp(350px,36svh,460px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]"
+            prevLabel="Previous cottage"
+            nextLabel="Next cottage"
+            className={frameHeight}
           />
           <TourLink tour={tour} tone="light" className="mt-s13 max-sm:hidden short:hidden" />
         </div>
 
-        <div className="lg:mt-s34 lg:[grid-area:details]">
+        <div className="lg:mt-s34 lg:[grid-area:details] squat:mt-s21">
           <p className="flex flex-wrap items-center gap-x-s13 gap-y-[4px] text-forest">
-            <Pillows {...COTTAGE_PILLOWS} className="text-farm" />
-            <span>
-              <span className="font-medium">Sleeps 4</span>
-              <span className="text-ink-muted max-sm:hidden"> in Mayura and Mathura, 3 in Gopala and Govinda</span>
-            </span>
+            <Pillows {...cottage.pillows} className="text-farm" />
+            <span className="font-medium">Sleeps {cottage.sleeps}</span>
           </p>
-          <ul className="mt-s13 grid grid-cols-2 gap-x-s21 gap-y-[6px] text-[14px] leading-[1.4] sm:max-w-[30em] sm:text-[15px]">
+          <ul className="mt-s13 grid grid-cols-2 gap-x-s21 gap-y-[6px] text-[14px] leading-[1.4] sm:max-w-[30em] sm:text-[15px] short:mt-s8">
             {FACTS.map((f) => (
               <li key={f} className="flex items-start gap-s8">
                 <IconCheck size={18} className="mt-[1px] shrink-0 text-farm" />
@@ -94,7 +145,7 @@ export function Cottages() {
             ))}
           </ul>
           {/* phones lean on the floating "Book a stay" button instead, so the 360° view can be taller */}
-          <div className="mt-s21 flex flex-wrap items-center gap-x-s21 gap-y-s8 max-sm:hidden lg:mt-s34 short:hidden">
+          <div className="mt-s21 flex flex-wrap items-center gap-x-s21 gap-y-s8 max-sm:hidden lg:mt-s34 short:hidden squat:mt-s21">
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("primary")}>
               Book a cottage
             </a>
