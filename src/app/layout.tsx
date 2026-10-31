@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { preconnect } from "react-dom";
-import { Bricolage_Grotesque, DM_Sans, Fraunces } from "next/font/google";
+import { DM_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 import "./meadow.css";
 
@@ -18,9 +18,6 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
   display: "swap",
 });
-
-// Meadow's typeface. Fraunces + DM Sans above are the classic look's.
-const bricolage = Bricolage_Grotesque({ variable: "--font-bricolage", subsets: ["latin"], display: "swap" });
 
 /** Meadow is the site's look; NEXT_PUBLIC_UI_VARIANT=classic (npm run ui:classic) renders the original design. */
 const UI_VARIANT = process.env.NEXT_PUBLIC_UI_VARIANT === "classic" ? undefined : "meadow";
@@ -51,7 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en-IN"
       data-ui={UI_VARIANT}
-      className={`${fraunces.variable} ${dmSans.variable} ${bricolage.variable}`}
+      className={`${fraunces.variable} ${dmSans.variable}`}
       suppressHydrationWarning
     >
       <head>

@@ -1,7 +1,7 @@
 # Design looks
 
 The site renders **Meadow**, chosen from a round of UI experiments: leaf greens on a cool white,
-Bricolage Grotesque throughout, soft 28px cards and pill buttons, and a bold flush-left hero.
+Fraunces headings and DM Sans body (Bricolage Grotesque until 2026-10-31), soft 28px cards and pill buttons, and a bold flush-left hero.
 Its tokens and scoped rules live in `src/app/meadow.css` and apply via `<html data-ui="meadow">`.
 
 The original **classic** look (olive and brass, Fraunces + DM Sans) is the base design in

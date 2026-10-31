@@ -131,7 +131,7 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
 1. Pull its source with the shadcn MCP (`.mcp.json`) or CLI: `npx shadcn@latest add @react-bits/<Name>-TS-TW`
    (registry in `components.json`). It lands in `docs/reference/react-bits-originals/incoming/` — reference only,
    outside the build. Originals of the components already used are in `docs/reference/react-bits-originals/`.
-2. Rebuild it in `src/components/bits/` in the brand system: tokens only, Bricolage/φ type via the theme, 21px
+2. Rebuild it in `src/components/bits/` in the brand system: tokens only, Fraunces/DM Sans and φ type via the theme, 21px
    card / 13px button radii (tokens), calm easing, `prefers-reduced-motion` respected, keyboard and screen-reader
    accessible, no new dependencies unless essential. It must not look stock.
 3. Review `git diff` after any `shadcn add` — it may touch `globals.css` or `package.json`; revert anything unwanted.
