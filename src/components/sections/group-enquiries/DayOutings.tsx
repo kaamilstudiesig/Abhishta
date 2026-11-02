@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { TourViewer } from "@/components/TourViewer";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { DAY_OUTING_ENQUIRY } from "@/lib/site";
+import { RATES } from "@/components/sections/our-nests/rooms";
 import { DAY_STOPS } from "./groups";
 
 /**
@@ -35,7 +36,7 @@ export function DayOutings() {
           <SectionHeader
             tone="dark"
             title="A day outing, hour by hour"
-            lead="8 am to 6 pm, with breakfast, lunch and high tea. Pick a time to see where it happens."
+            lead={`8 am to 6 pm, ${RATES.dayOuting} a person with breakfast, lunch and high tea. Pick a time to see where it happens.`}
             leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
           />
           <a href={DAY_OUTING_ENQUIRY} target="_blank" rel="noopener noreferrer" className={buttonClass("gold", "mt-s34 max-lg:hidden squat:mt-s21")}>

@@ -59,11 +59,12 @@ export const COTTAGES: Cottage[] = [
   },
 ];
 
-/** Rates per person for a night, all meals included (client's rate sheet). */
+/** Rates per person for a night, all meals included (client's rate sheet), and a day outing (client, 2026-11-02). */
 export const RATES = {
   cottageAdult: "₹5,000",
   cottageChild: "₹2,500",
   familyRoom: "₹3,500",
+  dayOuting: "₹1,750",
 };
 
 /** How a room sleeps, drawn as pillows: `pairs` share a double bed; `extra` are dashed (an extra bed, or the room's upper range). */

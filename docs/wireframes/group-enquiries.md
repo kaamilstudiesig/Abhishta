@@ -30,7 +30,7 @@ all of us had an unforgettable experience at Abhishta Agri Farm Stay…".
 
 8:00 am arrival and welcome drink · 8:30 breakfast · 9:30 guided farm tour and the animals · 11:30 games and free
 time · 1:30 pm vegetarian lunch · 3:00 pool · 4:00 cow cuddling · 5:00 high tea · 6:00 pm check-out.
-Games: cricket, basketball, volleyball, throwball; chess, UNO, Ludo, carrom; lagori, aluguli mane. No prices online.
+Games: cricket, basketball, volleyball, throwball; chess, UNO, Ludo, carrom; lagori, aluguli mane. **₹1,750 a person** (client, 2026-11-02).
 
 ### School and college visits (School & Corporate page)
 

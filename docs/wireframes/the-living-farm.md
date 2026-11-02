@@ -54,7 +54,7 @@ so dates don't clash. Companies can take part through CSR. Revenue from the stay
 
 8:00 am arrival and welcome drink · 8:30 breakfast · 9:30 guided farm tour and the animals · 11:30 games and free
 time · 1:30 pm vegetarian lunch · 3:00 pool · **4:00 cow cuddling** · 5:00 high tea · 6:00 pm check-out.
-Included: the meals above, pool, farm tour, cow cuddling, indoor and outdoor games. No prices on the site.
+Included: the meals above, pool, farm tour, cow cuddling, indoor and outdoor games. **₹1,750 a person** (client, 2026-11-02).
 
 ### Food
 
@@ -160,4 +160,3 @@ the jump pills use the ids below.
 - Whether tractor rides, fruit picking and vegetable harvesting run every day or by season or on request.
 - Meat and eggs: the official site's "From Farm to Table" mentions both, but day-outing meals are vegetarian. The
   page names vegetables, greens, fruit and milk only, until the client says otherwise.
-- Day-outing prices (not on the official site): the page routes to WhatsApp instead of quoting.

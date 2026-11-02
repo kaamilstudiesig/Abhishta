@@ -6,6 +6,7 @@ import anniversary from "@public/images/client-photos/event-anniversary.jpg";
 import kittyParty from "@public/images/client-photos/event-kitty-party.jpg";
 import shastipoorthi from "@public/images/client-photos/event-shastipoorthi.jpg";
 import type { Tour } from "@/lib/tour";
+import { RATES } from "@/components/sections/our-nests/rooms";
 
 /**
  * Facts for the Group Enquiries page — see docs/wireframes/group-enquiries.md
@@ -48,6 +49,6 @@ export type GroupType = "Corporate outing" | "School or college visit" | "Day ou
 export const GROUP_TYPES: { value: GroupType; line: string }[] = [
   { value: "Corporate outing", line: "A team day or a retreat" },
   { value: "School or college visit", line: "A field trip or picnic" },
-  { value: "Day outing", line: "Friends and families, 8 to 6" },
+  { value: "Day outing", line: `8 to 6, ${RATES.dayOuting} a person` },
   { value: "Destination event", line: "A celebration or a retreat" },
 ];

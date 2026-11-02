@@ -9,6 +9,7 @@ import events from "@public/images/client-photos/event-lawn-party.jpg";
 import { SlideCards } from "@/components/bits/SlideCards";
 import { IconArrow } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
+import { RATES } from "@/components/sections/our-nests/rooms";
 
 type Group = { name: string; body: string; href: string; image: StaticImageData; alt: string };
 
@@ -29,7 +30,7 @@ const GROUPS: Group[] = [
   },
   {
     name: "Day outings",
-    body: "A short trip from Bangalore. Swim, eat and relax, then head home.",
+    body: `A short trip from Bangalore, ${RATES.dayOuting} a person. Swim, eat and relax, then head home.`,
     href: "/group-enquiries#day-outings",
     image: outing,
     alt: "A shaded veranda with patterned tiles and garden chairs beside a stone path through the lawns",

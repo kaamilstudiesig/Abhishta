@@ -18,7 +18,10 @@ export function PlanVisit() {
         <ul className="-mx-s21 mt-s21 flex items-start snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] sm:-mx-s34 sm:scroll-px-s34 sm:px-s34 md:mt-s34 lg:mx-0 lg:grid lg:grid-cols-[1.35fr_1fr] lg:items-stretch squat:mt-s21 lg:gap-s21 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
           <li className="flex w-[88%] shrink-0 snap-start lg:snap-align-none flex-col rounded-card bg-card p-s21 ring-1 ring-line sm:w-[62%] sm:p-s34 lg:w-auto squat:p-s21">
             <h3 className="font-display text-[clamp(22px,2vw,28px)] leading-[1.15] text-forest">A day outing</h3>
-            <p className="mt-[4px] text-[15px] text-ink-muted short:hidden">8 am to 6 pm, with breakfast, lunch and high tea.</p>
+            <p className="mt-[4px] text-[15px] text-ink-muted">
+              <span className="font-medium text-forest">{RATES.dayOuting} a person</span>
+              <span className="short:hidden">, 8 am to 6 pm, with breakfast, lunch and high tea</span>
+            </p>
             <ol className="mt-s13 grid gap-x-s34 gap-y-[3px] text-[14px] leading-[1.45] sm:text-[15px] lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-[repeat(5,auto)]">
               {DAY_OUTING.map((d) => (
                 <li key={d.time} className={`flex gap-s13 ${d.what === "Cow cuddling" ? "font-medium text-forest" : "text-ink"}`}>
