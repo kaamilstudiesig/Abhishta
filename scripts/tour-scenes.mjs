@@ -48,6 +48,10 @@ const SCENES = [
   "V7:OfficeRoom", // games and sports centre
   "V7:AmphitheaterCampfireArea",
   "V7:KoiPond",
+  // Homepage tour pop-up (src/components/TourDialog.tsx), from the V7 tour; pool, dining, campfire, koi pond and the cottage row are above
+  "V7:Entrance",
+  "V7:FarmOverview",
+  "V7:Gaushaale_01",
 ];
 
 const scenesOf = (xml) => [...xml.matchAll(/<panorama\b[^>]*>[\s\S]*?<\/panorama>/g)].map((m) => m[0]);

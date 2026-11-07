@@ -1,5 +1,17 @@
-import type { ReactNode } from "react";
-import { IconChevronDown, IconMinus, IconPlus } from "@/components/icons";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
+import {
+  IconCheck,
+  IconChevronDown,
+  IconMinus,
+  IconPlus,
+} from "@/components/icons";
 
 /**
  * Form fields shared by the enquiry forms (Our nests "Plan your stay", Group
@@ -9,17 +21,31 @@ import { IconChevronDown, IconMinus, IconPlus } from "@/components/icons";
  */
 export const field =
   "min-h-[44px] w-full min-w-0 rounded-[14px] border border-line bg-card px-s13 text-[16px] text-ink transition-colors duration-300 hover:border-sage aria-[invalid=true]:border-alert";
-export const labelClass = "mb-[4px] block text-[13px] font-medium text-ink-muted sm:text-[14px]";
+/** Errors float in the gap under their field (no layout height), so a "snap" screen never grows when one shows. Keep the text to one short line. */
+export const errorClass =
+  "pointer-events-none absolute top-full left-0 z-10 mt-[1px] text-[13px] leading-[14px] whitespace-nowrap text-alert";
+export const labelClass =
+  "mb-[4px] block text-[13px] font-medium text-ink-muted sm:text-[14px]";
 
-export function Field({ label, htmlFor, error, children }: { label: string; htmlFor: string; error?: string; children: ReactNode }) {
+export function Field({
+  label,
+  htmlFor,
+  error,
+  children,
+}: {
+  label: string;
+  htmlFor: string;
+  error?: string;
+  children: ReactNode;
+}) {
   return (
-    <div className="min-w-0">
+    <div className="relative min-w-0">
       <label htmlFor={htmlFor} className={labelClass}>
         {label}
       </label>
       {children}
       {error ? (
-        <p id={`${htmlFor}-error`} className="mt-[4px] text-[13px] leading-[1.35] text-alert">
+        <p id={`${htmlFor}-error`} className={errorClass}>
           {error}
         </p>
       ) : null}
@@ -42,7 +68,8 @@ export function CountField({
   max: number;
   onChange: (n: number) => void;
 }) {
-  const clamp = (n: number) => Math.min(max, Math.max(min, Number.isFinite(n) ? n : min));
+  const clamp = (n: number) =>
+    Math.min(max, Math.max(min, Number.isFinite(n) ? n : min));
   const step =
     "grid size-[40px] shrink-0 place-items-center rounded-full text-forest transition-colors duration-300 hover:bg-paper-deep disabled:opacity-35 disabled:hover:bg-transparent";
   return (
@@ -51,7 +78,13 @@ export function CountField({
         {label}
       </label>
       <div className="flex min-h-[44px] items-center justify-between rounded-[14px] border border-line bg-card px-[1px]">
-        <button type="button" onClick={() => onChange(clamp(value - 1))} disabled={value <= min} aria-label={`Fewer ${label.toLowerCase()}`} className={step}>
+        <button
+          type="button"
+          onClick={() => onChange(clamp(value - 1))}
+          disabled={value <= min}
+          aria-label={`Fewer ${label.toLowerCase()}`}
+          className={step}
+        >
           <IconMinus size={18} />
         </button>
         <input
@@ -66,7 +99,13 @@ export function CountField({
           onChange={(e) => onChange(clamp(e.target.valueAsNumber))}
           className="w-[3ch] min-w-0 bg-transparent text-center text-[16px] text-ink [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
-        <button type="button" onClick={() => onChange(clamp(value + 1))} disabled={value >= max} aria-label={`More ${label.toLowerCase()}`} className={step}>
+        <button
+          type="button"
+          onClick={() => onChange(clamp(value + 1))}
+          disabled={value >= max}
+          aria-label={`More ${label.toLowerCase()}`}
+          className={step}
+        >
           <IconPlus size={18} />
         </button>
       </div>
@@ -100,15 +139,18 @@ export type CountryKey = (typeof COUNTRY_CODES)[number]["key"];
 export type Phone = { country: CountryKey; number: string };
 export const EMPTY_PHONE: Phone = { country: "IN", number: "" };
 
-const dialOf = (country: CountryKey) => COUNTRY_CODES.find((c) => c.key === country)?.dial ?? "";
+const dialOf = (country: CountryKey) =>
+  COUNTRY_CODES.find((c) => c.key === country)?.dial ?? "";
 
 /** The national digits: spaces and dashes dropped, and a leading trunk 0 (or the country's own code) taken off. */
 function nationalDigits({ country, number }: Phone) {
   let d = number.replace(/\D/g, "");
   const dial = dialOf(country);
   if (!dial) return d.replace(/^00/, ""); // "Other": the code is typed in, sometimes as 00…
-  if (number.trim().startsWith("+") && d.startsWith(dial)) d = d.slice(dial.length);
-  else if (country === "IN" && d.length === 12 && d.startsWith("91")) d = d.slice(2);
+  if (number.trim().startsWith("+") && d.startsWith(dial))
+    d = d.slice(dial.length);
+  else if (country === "IN" && d.length === 12 && d.startsWith("91"))
+    d = d.slice(2);
   return d.replace(/^0/, "");
 }
 
@@ -117,7 +159,8 @@ export function phoneError(p: Phone) {
   if (!p.number.trim()) return undefined;
   const n = nationalDigits(p).length;
   if (p.country === "IN") return n === 10 ? undefined : "Enter all 10 digits.";
-  if (p.country === "OTHER") return n >= 7 && n <= 15 ? undefined : "Add the country code too.";
+  if (p.country === "OTHER")
+    return n >= 7 && n <= 15 ? undefined : "Add the country code too.";
   return n >= 6 && n <= 14 ? undefined : "Check the number.";
 }
 
@@ -134,39 +177,47 @@ export function fullPhone(p: Phone) {
  * number. The visible label names both; the select also says it's the
  * country code.
  */
-export function PhoneField({ id, value, error, onChange }: { id: string; value: Phone; error?: string; onChange: (p: Phone) => void }) {
-  const current = COUNTRY_CODES.find((c) => c.key === value.country) ?? COUNTRY_CODES[0];
+export function PhoneField({
+  id,
+  value,
+  error,
+  onChange,
+}: {
+  id: string;
+  value: Phone;
+  error?: string;
+  onChange: (p: Phone) => void;
+}) {
+  const current =
+    COUNTRY_CODES.find((c) => c.key === value.country) ?? COUNTRY_CODES[0];
   const other = value.country === "OTHER";
   const errorId = `${id}-error`;
   return (
-    <div className="min-w-0">
+    <div className="relative min-w-0">
       <label id={`${id}-label`} htmlFor={id} className={labelClass}>
         Contact number
       </label>
       <div className="flex">
-        <div className="relative flex min-h-[44px] shrink-0 items-center gap-[2px] rounded-l-[14px] border border-r-0 border-line bg-paper-deep pr-[5px] pl-[8px] text-[15px] text-ink transition-colors duration-300 hover:border-sage has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-farm">
-          <span aria-hidden="true" className="whitespace-nowrap">
-            {current.short}
-          </span>
-          <IconChevronDown size={14} className="text-ink-muted" />
+        <div className="shrink-0">
           <span id={`${id}-code-label`} className="sr-only">
             country code
           </span>
-          <select
+          <Listbox
             id={`${id}-code`}
             name="country-code"
-            autoComplete="off"
-            aria-labelledby={`${id}-label ${id}-code-label`}
             value={value.country}
-            onChange={(e) => onChange({ ...value, country: e.target.value as CountryKey })}
-            className="absolute inset-0 cursor-pointer appearance-none opacity-0 outline-none"
+            options={COUNTRY_CODES.map((c) => ({
+              value: c.key,
+              label: c.dial ? `${c.name} +${c.dial}` : c.name,
+            }))}
+            onChange={(v) => onChange({ ...value, country: v as CountryKey })}
+            labelledBy={`${id}-label ${id}-code-label`}
+            popupClass="w-[250px] max-w-full"
+            rootClass="static"
+            buttonClass="flex min-h-[44px] items-center gap-[2px] rounded-l-[14px] border border-r-0 border-line bg-paper-deep pr-[5px] pl-[8px] text-[15px] whitespace-nowrap text-ink transition-colors duration-300 hover:border-sage"
           >
-            {COUNTRY_CODES.map((c) => (
-              <option key={c.key} value={c.key}>
-                {c.dial ? `${c.name} +${c.dial}` : c.name}
-              </option>
-            ))}
-          </select>
+            {current.short}
+          </Listbox>
         </div>
         <input
           id={id}
@@ -183,7 +234,7 @@ export function PhoneField({ id, value, error, onChange }: { id: string; value: 
         />
       </div>
       {error ? (
-        <p id={errorId} className="mt-[4px] text-[13px] leading-[1.35] text-alert">
+        <p id={errorId} className={errorClass}>
           {error}
         </p>
       ) : null}
@@ -191,23 +242,188 @@ export function PhoneField({ id, value, error, onChange }: { id: string; value: 
   );
 }
 
-export function Select({ id, label, value, options, onChange }: { id: string; label: string; value: string; options: string[]; onChange: (v: string) => void }) {
+export function Select({
+  id,
+  label,
+  value,
+  options,
+  onChange,
+}: {
+  id: string;
+  label: string;
+  value: string;
+  options: string[];
+  onChange: (v: string) => void;
+}) {
   return (
     <div className="min-w-0">
-      <label htmlFor={id} className={labelClass}>
+      <label id={`${id}-label`} htmlFor={id} className={labelClass}>
         {label}
       </label>
-      <div className="relative">
-        <select id={id} name={id} value={value} onChange={(e) => onChange(e.target.value)} className={`${field} appearance-none truncate pr-s34`}>
-          {options.map((o) => (
-            <option key={o} value={o}>
-              {o}
-            </option>
-          ))}
-        </select>
-        <IconChevronDown size={18} className="pointer-events-none absolute top-1/2 right-s13 -translate-y-1/2 text-ink-muted" />
-      </div>
+      <Listbox
+        id={id}
+        name={id}
+        value={value}
+        options={options.map((o) => ({ value: o, label: o }))}
+        onChange={onChange}
+        labelledBy={`${id}-label`}
+        buttonClass={`${field} flex items-center justify-between gap-s8 text-left`}
+      >
+        <span className="truncate">{value}</span>
+      </Listbox>
     </div>
   );
 }
 
+type Option = { value: string; label: string };
+
+/**
+ * Themed dropdown (the browser's own list is OS-drawn and looks foreign): a
+ * button plus a role=listbox card. Arrow keys, Home/End, Enter/Space pick,
+ * Escape and clicking outside close, typing a letter jumps. A hidden input
+ * keeps `name`/value in the form. `children` is the button face; `popupClass`
+ * sizes the list.
+ */
+function Listbox({
+  id,
+  name,
+  value,
+  options,
+  onChange,
+  labelledBy,
+  buttonClass,
+  popupClass = "w-full",
+  rootClass = "relative",
+  children,
+}: {
+  id: string;
+  name: string;
+  value: string;
+  options: Option[];
+  onChange: (v: string) => void;
+  labelledBy: string;
+  buttonClass: string;
+  popupClass?: string;
+  rootClass?: string;
+  children: ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0);
+  const root = useRef<HTMLDivElement>(null);
+  const list = useRef<HTMLUListElement>(null);
+  const uid = useId();
+  const listId = `${uid}-list`;
+  const selected = Math.max(
+    0,
+    options.findIndex((o) => o.value === value),
+  );
+
+  useEffect(() => {
+    if (!open) return;
+    const away = (e: PointerEvent) => {
+      if (!root.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", away);
+    return () => document.removeEventListener("pointerdown", away);
+  }, [open]);
+
+  useEffect(() => {
+    if (open)
+      list.current?.children[active]?.scrollIntoView({ block: "nearest" });
+  }, [open, active]);
+
+  const show = () => {
+    setActive(selected);
+    setOpen(true);
+  };
+  const pick = (i: number) => {
+    onChange(options[i].value);
+    setOpen(false);
+    root.current?.querySelector("button")?.focus();
+  };
+  const onKey = (e: KeyboardEvent) => {
+    const last = options.length - 1;
+    if (e.key === "Tab") return setOpen(false);
+    if (e.key === "Escape") {
+      if (open) e.preventDefault();
+      return setOpen(false);
+    }
+    const move = (i: number) => {
+      e.preventDefault();
+      if (!open) show();
+      else setActive(Math.min(last, Math.max(0, i)));
+    };
+    if (e.key === "ArrowDown") return move(active + 1);
+    if (e.key === "ArrowUp") return move(active - 1);
+    if (e.key === "Home") return move(0);
+    if (e.key === "End") return move(last);
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      return open ? pick(active) : show();
+    }
+    if (e.key.length === 1 && /\S/.test(e.key)) {
+      const from = open ? active + 1 : selected + 1;
+      const at = [...options.slice(from), ...options.slice(0, from)].findIndex(
+        (o) => o.label.toLowerCase().startsWith(e.key.toLowerCase()),
+      );
+      if (at >= 0) {
+        const i = (from + at) % options.length;
+        if (open) setActive(i);
+        else onChange(options[i].value);
+      }
+    }
+  };
+
+  return (
+    <div ref={root} className={`min-w-0 ${rootClass}`} onKeyDown={onKey}>
+      <input type="hidden" name={name} value={value} />
+      <button
+        type="button"
+        id={id}
+        role="combobox"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={open ? listId : undefined}
+        aria-labelledby={labelledBy}
+        aria-activedescendant={open ? `${uid}-opt-${active}` : undefined}
+        onClick={() => (open ? setOpen(false) : show())}
+        className={buttonClass}
+      >
+        {children}
+        <IconChevronDown
+          size={18}
+          className={`shrink-0 text-ink-muted transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      {open ? (
+        <ul
+          ref={list}
+          id={listId}
+          role="listbox"
+          aria-labelledby={labelledBy}
+          className={`absolute top-full left-0 z-30 mt-[6px] max-h-[min(280px,45svh)] overflow-y-auto overscroll-contain rounded-card border border-line bg-card p-[6px] shadow-card ${popupClass}`}
+        >
+          {options.map((o, i) => (
+            <li
+              key={o.value}
+              id={`${uid}-opt-${i}`}
+              role="option"
+              aria-selected={o.value === value}
+              onPointerDown={(e) => e.preventDefault()}
+              onClick={() => pick(i)}
+              onPointerMove={() => setActive(i)}
+              className={`flex min-h-[40px] cursor-pointer items-center justify-between gap-s8 rounded-[10px] px-s13 py-[6px] text-[15px] leading-[1.3] text-ink transition-colors duration-150 ${
+                i === active ? "bg-paper-deep" : ""
+              } ${o.value === value ? "font-medium text-forest" : ""}`}
+            >
+              <span>{o.label}</span>
+              {o.value === value ? (
+                <IconCheck size={16} className="shrink-0 text-farm" />
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}

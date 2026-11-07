@@ -2,24 +2,27 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+// To try the entrance instead: import cover from "@public/images/client-photos/tour-entrance-gate.jpg" (and update the alt below).
 import cover from "@public/images/client-photos/nests-hero-cottage-row.jpg";
+import { TourDialog } from "@/components/TourDialog";
 import { CircularText } from "@/components/bits/CircularText";
 import { glass } from "@/components/bits/glass";
 import { GlassFill, LiquidGlass } from "@/components/bits/LiquidGlass";
 import { Icon360, IconArrow, IconClose, IconPlay } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
-import { STORY_VIDEO_URL, VIRTUAL_TOUR_URL } from "@/lib/site";
+import { STORY_VIDEO_URL } from "@/lib/site";
 
 /**
  * Forest band under About: the story film (lightbox) and the virtual tour as a
  * still card (after thebierlibrary.in) — the cottage row under the palms.
- * Clicking it opens the full Turiya tour in a new tab, so the section itself
+ * Clicking it opens the tour in a pop-up (TourDialog; full screen on phones), so the section itself
  * never captures a drag or the wheel.
  * The card and its label bar are glasscn liquid-refract glass (GlassFill /
  * LiquidGlass): clear panes whose rims bend what is behind them.
  */
 export function Preview360() {
   const [videoOpen, setVideoOpen] = useState(false);
+  const [tourOpen, setTourOpen] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -54,11 +57,11 @@ export function Preview360() {
             <span className="absolute top-[8%] left-[4%] size-[46%] rounded-full bg-gold/35 blur-[60px]" />
             <span className="absolute right-[2%] bottom-[4%] size-[52%] rounded-full bg-water/40 blur-[70px]" />
           </span>
-          <a
-            href={VIRTUAL_TOUR_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open the virtual tour (opens in a new tab)"
+          <button
+            type="button"
+            onClick={() => setTourOpen(true)}
+            aria-haspopup="dialog"
+            aria-label="Open the 360° virtual tour"
             className={`group relative block w-full cursor-pointer overflow-hidden rounded-[28px] p-[10px] text-left transition-[background-color] duration-500 hover:bg-white/[0.06] ${glass("dark")} shadow-[0_28px_70px_-20px_rgb(0_0_0/0.5)]`}
           >
             <GlassFill />
@@ -82,7 +85,7 @@ export function Preview360() {
                 </span>
               </LiquidGlass>
             </span>
-          </a>
+          </button>
           <CircularText
             text="virtual tour · 360° · virtual tour · 360° · "
             size={110}
@@ -92,6 +95,8 @@ export function Preview360() {
           </CircularText>
         </div>
       </div>
+
+      <TourDialog open={tourOpen} onClose={() => setTourOpen(false)} />
 
       <dialog
         ref={dialogRef}

@@ -699,4 +699,85 @@
       <menulink text="Created By TURIYA" url="https://turiya.co/"/>
     </control>
   </panorama>
+<panorama hideabout="1" id="v7node46">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node46/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="0" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="330"/>
+    </view>
+    <userdata tags="Entrance" longitude="76.923576" altitude="852.79" info="" comment="" title="Entrance" nodeid="v7node46" description="" copyright="" datetime="12-09-2026 06:38 AM" source="001_0019 Panorama.jpg" latitude="13.084956" heading="0" author="" customnodeid="Entrance">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
+<panorama hideabout="1" id="v7node47">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node47/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="-90" pan="-85.4068" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="270"/>
+    </view>
+    <userdata tags="AerialView" longitude="76.924179" altitude="865.82" info="" comment="" title="Farm Overview" nodeid="v7node47" description="" copyright="" datetime="8/21/2024 9:39 AM" source="101_0733 Panorama.jpg" latitude="13.084506" heading="0" author="" customnodeid="FarmOverview">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
+<panorama hideabout="1" id="v7node57">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node57/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="14.83" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="270"/>
+    </view>
+    <userdata tags="Amenities|Popup_Nodes" longitude="" info="" comment="" title="Gaushaale" nodeid="v7node57" description="&lt;ol style=&quot;margin: 0;&quot; >&lt;li>&lt;b>Punganur Gidda:&lt;/b> The Punganur Gidda is a compact powerhouse of resilience and adaptability.&lt;/li>&#xa;&lt;li>&lt;b>Jersey :&lt;/b> The Jersey cow is a small breed with a big reputation for rich, creamy milk.&lt;/li>&#xa;&lt;li>&lt;b>Hallikar :&lt;/b> Known for their strength and stamina, Hallikar cows are the workhorses of Indian agriculture.&lt;/li>&#xa;&lt;li>&lt;b>Gir :&lt;/b>The Gir cow combines beauty and productivity with its distinctive hump and high milk yield.&lt;/li>&#xa;&lt;li>&lt;b>Kankrej :&lt;/b>The Kankrej is a robust and versatile breed, thriving in harsh climates and offering excellent draught power.&lt;/li>&#xa;&lt;li>&lt;b>Holstein Friesian :&lt;/b> The Holstein Friesian is the global icon of dairy farming, renowned for its impressive milk production.&lt;/li>&lt;/ol>" copyright="" datetime="8/21/2024 12:29 PM" source="DSC03779 Panorama.jpg" latitude="" heading="0" author="Gaushaale" customnodeid="Gaushaale_01">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
 </tour>

@@ -2,7 +2,18 @@
 
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { Stepper } from "@/components/bits/Stepper";
-import { CountField, EMPTY_PHONE, Field, PhoneField, field, fullPhone, labelClass, phoneError, type Phone } from "@/components/forms";
+import {
+  CountField,
+  EMPTY_PHONE,
+  Field,
+  PhoneField,
+  errorClass,
+  field,
+  fullPhone,
+  labelClass,
+  phoneError,
+  type Phone,
+} from "@/components/forms";
 import { IconMail, IconPhone, IconWhatsApp } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { CONTACT, whatsappUrl } from "@/lib/site";
@@ -29,7 +40,11 @@ const ORGANISATION_LABEL: Record<GroupType, string> = {
 
 const pretty = (iso: string) => {
   const [y, m, d] = iso.split("-").map(Number);
-  return new Date(y, m - 1, d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+  return new Date(y, m - 1, d).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
 };
 
 function enquiry(v: Values) {
@@ -39,7 +54,9 @@ function enquiry(v: Values) {
     `How many: ${v.people}`,
     v.type !== "Day outing" ? `Day or overnight: ${v.stay}` : null,
     `Date: ${v.date ? pretty(v.date) : "flexible"}`,
-    v.organisation.trim() && v.type ? `${ORGANISATION_LABEL[v.type].replace(" (optional)", "")}: ${v.organisation.trim()}` : null,
+    v.organisation.trim() && v.type
+      ? `${ORGANISATION_LABEL[v.type].replace(" (optional)", "")}: ${v.organisation.trim()}`
+      : null,
     `Name: ${v.name.trim()}`,
     fullPhone(v.phone) ? `Contact number: ${fullPhone(v.phone)}` : null,
     v.email.trim() ? `Email: ${v.email.trim()}` : null,
@@ -71,14 +88,22 @@ export function GroupQuote() {
     email: "",
     note: "",
   });
-  const [errors, setErrors] = useState<{ type?: string; name?: string; phone?: string }>({});
+  const [errors, setErrors] = useState<{
+    type?: string;
+    name?: string;
+    phone?: string;
+  }>({});
   const [sent, setSent] = useState(false);
 
   // an occasion picked in the events list fills in the form: a destination event, that occasion
   useEffect(() => {
     const onPick = (e: Event) => {
       const occasion = (e as CustomEvent<string>).detail;
-      setValues((v) => ({ ...v, type: "Destination event", organisation: occasion }));
+      setValues((v) => ({
+        ...v,
+        type: "Destination event",
+        organisation: occasion,
+      }));
       setErrors((er) => ({ ...er, type: undefined }));
       setSent(false);
       setStep(0);
@@ -91,7 +116,8 @@ export function GroupQuote() {
   useEffect(() => {
     const now = new Date();
     const pad = (n: number) => String(n).padStart(2, "0");
-    if (dateRef.current) dateRef.current.min = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+    if (dateRef.current)
+      dateRef.current.min = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
   }, [step]);
 
   const set = <K extends keyof Values>(key: K, value: Values[K]) => {
@@ -106,7 +132,7 @@ export function GroupQuote() {
       return false;
     }
     if (from === 2) {
-      const name = values.name.trim() ? undefined : "Add your name so we know who’s asking.";
+      const name = values.name.trim() ? undefined : "Add your name.";
       const phone = phoneError(values.phone);
       setErrors((e) => ({ ...e, name, phone }));
       if (name || phone) {
@@ -140,53 +166,88 @@ export function GroupQuote() {
 
   const groupStep = (
     <div className="grid gap-s13 sm:gap-s21">
-      <div role="radiogroup" aria-label="Kind of group" aria-describedby={errors.type ? id("type-error") : undefined} className="grid grid-cols-2 gap-s8 sm:gap-s13">
-        {GROUP_TYPES.map((g, i) => (
-          <label
-            key={g.value}
-            className={`relative flex min-h-[52px] cursor-pointer flex-col justify-center rounded-[14px] border px-s13 py-s8 transition-colors duration-300 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-farm ${
-              values.type === g.value ? "border-forest bg-forest text-paper" : "border-line bg-card text-forest hover:border-sage"
-            }`}
-          >
-            <input
-              id={id(`type-${i}`)}
-              type="radio"
-              name="group-type"
-              value={g.value}
-              checked={values.type === g.value}
-              onChange={() => {
-                set("type", g.value);
-                if (g.value === "Day outing") set("stay", "Day outing");
-                setErrors((er) => ({ ...er, type: undefined }));
-              }}
-              className="sr-only"
-            />
-            <span className="text-[15px] leading-[1.25] font-medium">{g.value}</span>
-            <span className={`text-[13px] leading-[1.3] max-sm:hidden ${values.type === g.value ? "text-paper/75" : "text-ink-muted"}`}>{g.line}</span>
-          </label>
-        ))}
+      <div className="relative">
+        <div
+          role="radiogroup"
+          aria-label="Kind of group"
+          aria-describedby={errors.type ? id("type-error") : undefined}
+          className="grid grid-cols-2 gap-s8 sm:gap-s13"
+        >
+          {GROUP_TYPES.map((g, i) => (
+            <label
+              key={g.value}
+              className={`relative flex min-h-[52px] cursor-pointer flex-col justify-center rounded-[14px] border px-s13 py-s8 transition-colors duration-300 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-farm ${
+                values.type === g.value
+                  ? "border-forest bg-forest text-paper"
+                  : "border-line bg-card text-forest hover:border-sage"
+              }`}
+            >
+              <input
+                id={id(`type-${i}`)}
+                type="radio"
+                name="group-type"
+                value={g.value}
+                checked={values.type === g.value}
+                onChange={() => {
+                  set("type", g.value);
+                  if (g.value === "Day outing") set("stay", "Day outing");
+                  setErrors((er) => ({ ...er, type: undefined }));
+                }}
+                className="sr-only"
+              />
+              <span className="text-[15px] leading-[1.25] font-medium">
+                {g.value}
+              </span>
+              <span
+                className={`text-[13px] leading-[1.3] max-sm:hidden ${values.type === g.value ? "text-paper/75" : "text-ink-muted"}`}
+              >
+                {g.line}
+              </span>
+            </label>
+          ))}
+        </div>
+        {errors.type ? (
+          <p id={id("type-error")} className={errorClass}>
+            {errors.type}
+          </p>
+        ) : null}
       </div>
-      {errors.type ? (
-        <p id={id("type-error")} className="-mt-[6px] text-[13px] text-alert">
-          {errors.type}
-        </p>
-      ) : null}
       <div className="grid grid-cols-2 gap-s13 sm:gap-s21">
-        <CountField id={id("people")} label="People" value={values.people} min={1} max={150} onChange={(n) => set("people", n)} />
+        <CountField
+          id={id("people")}
+          label="People"
+          value={values.people}
+          min={1}
+          max={150}
+          onChange={(n) => set("people", n)}
+        />
         {values.type !== "Day outing" ? (
           <div className="min-w-0">
             <span id={id("stay-label")} className={labelClass}>
               Day or overnight
             </span>
-            <div role="radiogroup" aria-labelledby={id("stay-label")} className="grid min-h-[44px] grid-cols-2 rounded-[14px] border border-line bg-card p-[3px]">
+            <div
+              role="radiogroup"
+              aria-labelledby={id("stay-label")}
+              className="grid min-h-[44px] grid-cols-2 rounded-[14px] border border-line bg-card p-[3px]"
+            >
               {(["Day outing", "Overnight stay"] as const).map((o) => (
                 <label
                   key={o}
                   className={`relative grid cursor-pointer place-items-center rounded-[11px] px-[6px] text-center text-[14px] leading-[1.15] transition-colors duration-300 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-farm ${
-                    values.stay === o ? "bg-forest text-paper" : "text-forest hover:bg-paper-deep"
+                    values.stay === o
+                      ? "bg-forest text-paper"
+                      : "text-forest hover:bg-paper-deep"
                   }`}
                 >
-                  <input type="radio" name="stay" value={o} checked={values.stay === o} onChange={() => set("stay", o)} className="sr-only" />
+                  <input
+                    type="radio"
+                    name="stay"
+                    value={o}
+                    checked={values.stay === o}
+                    onChange={() => set("stay", o)}
+                    className="sr-only"
+                  />
                   {o === "Day outing" ? "Day" : "Overnight"}
                 </label>
               ))}
@@ -211,7 +272,14 @@ export function GroupQuote() {
           className={field}
         />
       </Field>
-      <Field label={values.type ? ORGANISATION_LABEL[values.type] : "Organisation (optional)"} htmlFor={id("organisation")}>
+      <Field
+        label={
+          values.type
+            ? ORGANISATION_LABEL[values.type]
+            : "Organisation (optional)"
+        }
+        htmlFor={id("organisation")}
+      >
         <input
           id={id("organisation")}
           name="organisation"
@@ -222,7 +290,9 @@ export function GroupQuote() {
           className={field}
         />
       </Field>
-      <p className="col-span-2 text-[14px] leading-[1.45] text-ink-muted">Not sure of the date yet? Leave it empty and we’ll suggest some.</p>
+      <p className="col-span-2 text-[14px] leading-[1.45] text-ink-muted">
+        Not sure of the date yet? Leave it empty and we’ll suggest some.
+      </p>
     </div>
   );
 
@@ -291,8 +361,15 @@ export function GroupQuote() {
   );
 
   return (
-    <section id="group-quote" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
-      <div className={`${container} grid gap-y-s13 sm:gap-y-s21 lg:grid-cols-[1fr_1.4fr] lg:items-center lg:gap-x-s89`}>
+    <section
+      id="group-quote"
+      data-nav="light"
+      data-snap=""
+      className={`bg-paper ${screen}`}
+    >
+      <div
+        className={`${container} grid gap-y-s13 sm:gap-y-s21 lg:grid-cols-[1fr_1.4fr] lg:items-center lg:gap-x-s89`}
+      >
         <div className="min-w-0">
           <SectionHeader
             title="Get a group quote"
@@ -301,7 +378,10 @@ export function GroupQuote() {
           />
           <ul className="mt-s34 hidden gap-s8 text-[15px] lg:grid squat:mt-s21">
             <li>
-              <a href={mailto} className="tap inline-flex items-center gap-s13 text-forest hover:text-farm">
+              <a
+                href={mailto}
+                className="tap inline-flex items-center gap-s13 text-forest hover:text-farm"
+              >
                 <IconMail size={20} className="shrink-0 text-farm" />
                 <span>
                   <span className="sr-only">Email instead: </span>
@@ -310,7 +390,10 @@ export function GroupQuote() {
               </a>
             </li>
             <li>
-              <a href={CONTACT.reservation.href} className="tap inline-flex items-center gap-s13 text-forest hover:text-farm">
+              <a
+                href={CONTACT.reservation.href}
+                className="tap inline-flex items-center gap-s13 text-forest hover:text-farm"
+              >
                 <IconPhone size={20} className="shrink-0 text-farm" />
                 <span>
                   <span className="sr-only">Call: </span>
@@ -321,7 +404,12 @@ export function GroupQuote() {
           </ul>
         </div>
 
-        <form noValidate onSubmit={onSubmit} aria-label="Group quote" className="lg:rounded-card lg:bg-card lg:p-s34 lg:shadow-card lg:ring-1 lg:ring-line squat:p-s21">
+        <form
+          noValidate
+          onSubmit={onSubmit}
+          aria-label="Group quote"
+          className="lg:rounded-card lg:bg-card lg:p-s34 lg:shadow-card lg:ring-1 lg:ring-line squat:p-s21"
+        >
           <Stepper
             step={step}
             onStepChange={(n) => {
@@ -342,8 +430,13 @@ export function GroupQuote() {
               </button>
             }
           />
-          <p role="status" className="mt-s13 text-[14px] text-ink-muted empty:hidden">
-            {sent ? "WhatsApp has opened with your enquiry. Press send there and it reaches us." : ""}
+          <p
+            role="status"
+            className="mt-s13 text-[14px] text-ink-muted empty:hidden"
+          >
+            {sent
+              ? "WhatsApp has opened with your enquiry. Press send there and it reaches us."
+              : ""}
           </p>
         </form>
       </div>

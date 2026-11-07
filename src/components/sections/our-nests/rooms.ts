@@ -28,6 +28,10 @@ import kaustubha2 from "@public/images/client-photos/family-kaustubha-2.jpg";
 import kaustubha3 from "@public/images/client-photos/family-kaustubha-3.jpg";
 import kaustubha4 from "@public/images/client-photos/family-kaustubha-4.jpg";
 import type { Tour } from "@/lib/tour";
+import { TOUR_360_URL } from "@/lib/site";
+
+/** Link to a room in the new V7 tour (a new tab): #node,pan,tilt,fov,projection, the same hash as the old tour. */
+export const tourV7Url = (t: Tour) => `${TOUR_360_URL}V7/#${t.node},${t.pan},${t.tilt},75,4`;
 
 /**
  * Rooms on the Our Nests page, from the client's own rate sheet (2026-10-20), which replaces what Stayflexi and the
@@ -54,12 +58,12 @@ export const COTTAGES: Cottage[] = [
   {
     id: "mayura", name: "Mayura", sleeps: "4", pillows: { solo: 1, pairs: 1, extra: 1 },
     photos: [room("Mayura", 1, mayura1), room("Mayura", 2, mayura2), room("Mayura", 3, mayura3, "50% 65%"), room("Mayura", 4, mayura4, "50% 65%")],
-    tour: { node: "Abhishta_27", pan: -12, tilt: -16 },
+    tour: { node: "Mayura", pan: 0, tilt: 0 },
   },
   {
     id: "mathura", name: "Mathura", sleeps: "4", pillows: { solo: 1, pairs: 1, extra: 1 },
     photos: [room("Mathura", 1, mathura1), room("Mathura", 2, mathura2), room("Mathura", 3, mathura3), room("Mathura", 4, mathura4, "50% 65%")],
-    tour: { node: "Abhishta_25", pan: 68, tilt: -12 },
+    tour: { node: "Mathura", pan: 0, tilt: 0 },
   },
   {
     id: "gopala", name: "Gopala", sleeps: "3", pillows: { solo: 1, pairs: 1, extra: 0 },
@@ -113,7 +117,7 @@ export const FAMILY_ROOMS: GroupRoom[] = [
       { src: gopika3, alt: "Gopika room: double beds in two rows, windows with green curtains and wall fans" },
       { src: gopika4, alt: "The Gopika block from outside: an orange building with a tiled roof and patterned window frames, palms and a lawn", focus: "30% 50%" },
     ],
-    tour: { node: "Abhishta_06", pan: -120, tilt: -15 },
+    tour: { node: "NandagokulaFamilyRoom", pan: 0, tilt: 0 },
   },
   {
     id: "nandagokula",
@@ -129,7 +133,7 @@ export const FAMILY_ROOMS: GroupRoom[] = [
       { src: nandagokula3, alt: "Nandagokula room: single beds with tan blankets and brown towels, hanging lamps from the roof beams", focus: "50% 60%" },
       { src: nandagokula4, alt: "The Nandagokula front porch: a painted door frame, wooden pillars and the room's name sign under a tiled gable", focus: "50% 35%" },
     ],
-    tour: { node: "Abhishta_04", pan: -18, tilt: -15 },
+    tour: { node: "NandagokulaBachelorsDormitory", pan: 0, tilt: 0 },
   },
   {
     id: "kaustubha",
@@ -145,7 +149,7 @@ export const FAMILY_ROOMS: GroupRoom[] = [
       { src: kaustubha3, alt: "Kaustubha room: a bed with folded towels in front, more beds and a fan behind", focus: "50% 65%" },
       { src: kaustubha4, alt: "The Kaustubha front: an orange wall with wooden pillars, a hanging lantern and the room's name sign over the door", focus: "50% 40%" },
     ],
-    tour: { node: "Abhishta_08", pan: -57, tilt: -15 },
+    tour: { node: "Kausthuba", pan: 0, tilt: 0 },
   },
 ];
 

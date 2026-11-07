@@ -3,6 +3,7 @@ import Image, { type StaticImageData } from "next/image";
 import resting from "@public/images/client-photos/tour-gaushaale-resting.jpg";
 import feeding from "@public/images/client-photos/tour-gau-feeding.jpg";
 import cowPen from "@public/images/client-photos/tour-outing-cow-pen.jpg";
+import { FlipCard } from "@/components/bits/FlipCard";
 import { IconClock, IconCow, IconDawn, IconDusk } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { GAU_SEVA_ENQUIRY } from "@/components/sections/living-farm/farm";
@@ -46,13 +47,22 @@ const WAYS: {
   },
 ];
 
+/** the flip cards need a photo on the front; the pooja and the aarti use this still of the cows until the farm sends their own */
+const FALLBACK = {
+  src: resting,
+  alt: "Cows resting in the gaushaale: Holstein Friesians lying on rubber mats beside the troughs under the long shed",
+  focus: undefined,
+};
+
 /**
  * #ways-to-serve — on the forest band: what you can do with the cows (feed
  * them, sit with them, a Gau Pooja or a Gau Aarti), beside a still of the
  * cows resting in the gaushaale from the farm's 360° tour, then one enquiry
  * button. Each way has a small still on top of its card (a placeholder for the
  * pooja and the aarti until the farm sends photos). Phones: the big photo is
- * left out so it fits one screen.
+ * left out and the four ways are flip cards in a swipe row, like the stays on
+ * the home page: photo and title on the front, tap to turn it over for the
+ * details.
  */
 export function WaysToServe() {
   return (
@@ -82,7 +92,34 @@ export function WaysToServe() {
             lead="Tell us before you come so we can plan it."
             leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
           />
-          <ul className="mt-s13 grid grid-cols-2 gap-s8 sm:mt-s21 sm:gap-s21 lg:mt-s34 squat:mt-s13 squat:gap-s13">
+          {/* phones: flip cards in a swipe row, the next one peeking in */}
+          <ul className="-mx-s21 mt-s13 flex snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 py-s8 [scrollbar-width:none] sm:hidden [&::-webkit-scrollbar]:hidden">
+            {WAYS.map(({ title, line, photo }) => {
+              const p = photo ?? FALLBACK;
+              return (
+                <li key={title} className="w-[78%] shrink-0 snap-start">
+                  <FlipCard
+                    photo={p.src}
+                    alt={p.alt}
+                    title={title}
+                    label={title.toLowerCase()}
+                    className="h-[clamp(220px,calc(100svh-400px),420px)]"
+                    back={
+                      <>
+                        <h3 className="font-display text-[22px] leading-[1.15] text-forest">
+                          {title}
+                        </h3>
+                        <p className="mt-s8 text-[15px] leading-[1.5] text-ink-muted">
+                          {line}
+                        </p>
+                      </>
+                    }
+                  />
+                </li>
+              );
+            })}
+          </ul>
+          <ul className="mt-s13 hidden grid-cols-2 gap-s8 sm:mt-s21 sm:grid sm:gap-s21 lg:mt-s34 squat:mt-s13 squat:gap-s13">
             {WAYS.map(({ icon: Icon, title, line, photo }) => (
               <li
                 key={title}

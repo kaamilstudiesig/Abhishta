@@ -4,11 +4,10 @@ import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import { IconCheck, IconChevronLeft, IconChevronRight, IconExternal } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
-import { tourUrl } from "@/lib/tour";
 import { glass } from "@/components/bits/glass";
 import { GlassFill } from "@/components/bits/LiquidGlass";
 import { Pillows, onTabKeyDown, useActivePillInView, useSelectRoom } from "./RoomParts";
-import { FAMILY_ROOMS, RATES } from "./rooms";
+import { FAMILY_ROOMS, RATES, tourV7Url } from "./rooms";
 
 /**
  * #dormitories (the id the homepage links to) — the three family rooms on a
@@ -141,7 +140,7 @@ export function FamilyRooms() {
             </button>
           </div>
           <a
-            href={tourUrl(room.tour.node, room.tour)}
+            href={tourV7Url(room.tour)}
             target="_blank"
             rel="noopener noreferrer"
             className="tap mt-s8 inline-flex items-center gap-[6px] text-[14px] font-medium text-paper hover:text-gold sm:mt-s13"

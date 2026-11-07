@@ -21,8 +21,8 @@ export function Gallery() {
   return (
     <>
       <h1 className="sr-only">Gallery</h1>
-      <GalleryWall id="beauty" title="The Beauty of Abhishta" lead="Property, infrastructure & surroundings" items={BEAUTY} />
-      <GalleryWall id="moments" title="Moments at Abhishta" lead="Events, activities & guest experiences" items={MOMENTS} />
+      <GalleryWall id="beauty" num="01" title="The Beauty of Abhishta" lead="Property, infrastructure & surroundings" items={BEAUTY} />
+      <GalleryWall id="moments" num="02" title="Moments at Abhishta" lead="Events, activities & guest experiences" items={MOMENTS} />
     </>
   );
 }
@@ -30,9 +30,9 @@ export function Gallery() {
 /**
  * One full-screen wall. Its title card pops up in the middle when the wall
  * comes into view, then fades after a moment (or at once when it's closed or
- * the wall is touched); it doesn't come back.
+ * the wall is touched); it shows again each time the wall comes back into view.
  */
-function GalleryWall({ id, title, lead, items }: { id: string; title: string; lead: string; items: DriftWallItem[] }) {
+function GalleryWall({ id, num, title, lead, items }: { id: string; num: string; title: string; lead: string; items: DriftWallItem[] }) {
   const ref = useRef<HTMLElement>(null);
   const [state, setState] = useState<"hidden" | "shown" | "gone">("hidden");
 
@@ -40,14 +40,16 @@ function GalleryWall({ id, title, lead, items }: { id: string; title: string; le
     const el = ref.current;
     if (!el) return;
     let timer = 0;
+    // a low threshold, so a short phone screen (browser bars, sticky nav) still counts as "in view"
     const io = new IntersectionObserver(
       ([e]) => {
-        if (!e.isIntersecting) return;
-        io.disconnect();
-        setState((s) => (s === "hidden" ? "shown" : s));
-        timer = window.setTimeout(() => setState("gone"), TITLE_MS);
+        clearTimeout(timer);
+        if (e.isIntersecting) {
+          setState("shown");
+          timer = window.setTimeout(() => setState("gone"), TITLE_MS);
+        } else setState("hidden"); // off screen: reset, so it shows again each time the wall comes into view
       },
-      { threshold: 0.6 },
+      { threshold: 0.4 },
     );
     io.observe(el);
     return () => {
@@ -65,6 +67,13 @@ function GalleryWall({ id, title, lead, items }: { id: string; title: string; le
         <DriftWall items={items} label={title} columns={3} speed={16} gap="gap-s21" className="absolute inset-0 hidden px-s34 sm:block lg:hidden" />
         <DriftWall items={items} label={title} columns={2} speed={15} gap="gap-s21" className="absolute inset-0 px-s21 sm:hidden" />
       </div>
+
+      {/* a small label that stays, so it's clear which gallery you're in */}
+      <p className={`pointer-events-none absolute top-[84px] left-s13 z-10 flex items-center gap-s8 rounded-full px-s13 py-[6px] text-[13px] font-medium text-forest sm:left-s21 ${glass()}`}>
+        <GlassFill blur={0} saturation={1.1} fill="bg-white/60" />
+        <span className="relative tabular-nums text-ink-muted">{num}</span>
+        <span className="relative">{title}</span>
+      </p>
 
       {/* the title: pops up as the wall comes into view, then fades */}
       <div

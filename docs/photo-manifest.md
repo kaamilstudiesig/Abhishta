@@ -216,3 +216,15 @@ gallery-mango-bench (darker, branches in front).
 
 Skip: group-corporate-team-2 (a near-duplicate), group-lawn-audience-1 and -2 (the same crowd), and
 group-corporate, group-event, group-outing and group-school (no people in them; see the table).
+
+## Stock photos (credit needed)
+
+Free-licence photos from Wikimedia Commons, used on the Breeds cards of /gau-seva because the farm's tour has no
+labelled Punganur Gidda, Jersey or Kankrej. All are CC BY-SA, so each card carries a short credit line. Resized to
+1200px wide, JPEG q82. Replace with the farm's own photos when they send them.
+
+| File | Breed | Source | Author | Licence |
+| --- | --- | --- | --- | --- |
+| breed-punganur.jpg | Punganur Gidda | https://commons.wikimedia.org/wiki/File:Punganur_cow_in_Chittoor.jpg | SandeepLPU | CC BY-SA 4.0 |
+| breed-jersey.jpg | Jersey | https://commons.wikimedia.org/wiki/File:Jersey_cow_J1.jpg | Jamain | CC BY-SA 3.0 |
+| breed-kankrej.jpg | Kankrej | https://commons.wikimedia.org/wiki/File:Kankrej_01.JPG | Pavanaja | CC BY-SA 3.0 |

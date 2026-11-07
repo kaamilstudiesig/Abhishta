@@ -88,10 +88,10 @@ export function PlanStay() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const next: typeof errors = {};
-    if (!values.name.trim()) next.name = "Add your name so we know who’s asking.";
+    if (!values.name.trim()) next.name = "Add your name.";
     next.phone = phoneError(values.phone);
     if (values.checkIn && values.checkOut && values.checkOut <= values.checkIn)
-      next.dates = "Pick a check-out after check-in.";
+      next.dates = "Pick a later date.";
     setErrors(next);
     if (next.name) {
       document.getElementById(id("name"))?.focus();

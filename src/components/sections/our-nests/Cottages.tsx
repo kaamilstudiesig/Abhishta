@@ -3,11 +3,10 @@
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import { IconCheck, IconChevronLeft, IconChevronRight, IconExternal } from "@/components/icons";
-import { tourUrl } from "@/lib/tour";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL } from "@/lib/site";
 import { Pillows, onTabKeyDown, useActivePillInView, useSelectRoom } from "./RoomParts";
-import { COTTAGES, COTTAGE_NAMES, RATES } from "./rooms";
+import { COTTAGES, COTTAGE_NAMES, RATES, tourV7Url } from "./rooms";
 import { glass } from "@/components/bits/glass";
 import { GlassFill } from "@/components/bits/LiquidGlass";
 
@@ -130,7 +129,7 @@ export function Cottages() {
           </div>
           {cottage.tour ? (
             <a
-              href={tourUrl(cottage.tour.node, cottage.tour)}
+              href={tourV7Url(cottage.tour)}
               target="_blank"
               rel="noopener noreferrer"
               className="tap mt-s13 inline-flex items-center gap-[6px] text-[14px] font-medium text-forest hover:text-farm max-sm:hidden short:hidden"
