@@ -1,16 +1,18 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
-import { CountField, Field, Select, field } from "@/components/forms";
+import { CountField, EMPTY_PHONE, Field, PhoneField, Select, field, fullPhone, phoneError, type Phone } from "@/components/forms";
 import { IconClose, IconMail, IconPhone, IconWhatsApp } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
-import { BOOKING_URL, CONTACT, WHATSAPP_NUMBER } from "@/lib/site";
+import { BOOKING_URL, CONTACT, whatsappUrl } from "@/lib/site";
 
-const ROOM_CHOICES = ["Not sure", "Cottage", "Gopika family room", "Nandagokula family room", "Kaustubha family room"];
+/** Room categories (docs/wireframes/our-nests.md): cottages are AC and sleep 3–4; the family rooms are shared, non-AC, up to 10 (Kaustubha up to 5). */
+const NOT_SURE = "Not sure, recommend one";
+const ROOM_CHOICES = [NOT_SURE, "Cottage (AC, up to 4)", "Family room (shared, non-AC, up to 10)"];
 
 type Values = {
   name: string;
-  phone: string;
+  phone: Phone;
   checkIn: string;
   checkOut: string;
   adults: number;
@@ -39,10 +41,10 @@ function enquiry(v: Values) {
   return [
     "Hi Abhishta, I'd like to plan a stay.",
     `Name: ${v.name.trim()}`,
-    v.phone.trim() ? `Phone: +91 ${v.phone.trim()}` : null,
+    fullPhone(v.phone) ? `Contact number: ${fullPhone(v.phone)}` : null,
     `Dates: ${describeDates(v)}`,
     `Guests: ${plural(v.adults, "adult", "adults")}${v.kids ? `, ${plural(v.kids, "kid", "kids")}` : ""}`,
-    `Room: ${v.room}`,
+    `Category of room: ${v.room === NOT_SURE ? "not sure, please recommend one" : v.room}`,
   ]
     .filter(Boolean)
     .join("\n");
@@ -61,14 +63,14 @@ export function PlanStay() {
   const checkInRef = useRef<HTMLInputElement>(null);
   const [values, setValues] = useState<Values>({
     name: "",
-    phone: "",
+    phone: EMPTY_PHONE,
     checkIn: "",
     checkOut: "",
     adults: 2,
     kids: 0,
-    room: "Not sure",
+    room: NOT_SURE,
   });
-  const [errors, setErrors] = useState<{ name?: string; dates?: string }>({});
+  const [errors, setErrors] = useState<{ name?: string; phone?: string; dates?: string }>({});
   const [sent, setSent] = useState(false);
 
   // no past check-in dates (set after mount: the server doesn't know the guest's today)
@@ -87,6 +89,7 @@ export function PlanStay() {
     e.preventDefault();
     const next: typeof errors = {};
     if (!values.name.trim()) next.name = "Add your name so we know who’s asking.";
+    next.phone = phoneError(values.phone);
     if (values.checkIn && values.checkOut && values.checkOut <= values.checkIn)
       next.dates = "Pick a check-out after check-in.";
     setErrors(next);
@@ -94,11 +97,15 @@ export function PlanStay() {
       document.getElementById(id("name"))?.focus();
       return;
     }
+    if (next.phone) {
+      document.getElementById(id("phone"))?.focus();
+      return;
+    }
     if (next.dates) {
       document.getElementById(id("checkout"))?.focus();
       return;
     }
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(enquiry(values))}`;
+    const url = whatsappUrl(enquiry(values));
     const win = window.open(url, "_blank");
     if (win) win.opener = null;
     else window.location.href = url;
@@ -147,42 +154,33 @@ export function PlanStay() {
           aria-label="Stay enquiry"
           className="grid grid-cols-2 gap-x-s13 gap-y-s13 self-center sm:gap-x-s21 sm:gap-y-s21 lg:rounded-card lg:bg-card lg:p-s34 lg:shadow-card lg:ring-1 lg:ring-line lg:[grid-area:form]"
         >
-          <Field label="Name" htmlFor={id("name")} error={errors.name}>
-            <input
-              id={id("name")}
-              name="name"
-              type="text"
-              autoComplete="name"
-              required
-              aria-required="true"
-              aria-invalid={errors.name ? true : undefined}
-              aria-describedby={errors.name ? `${id("name")}-error` : undefined}
-              value={values.name}
-              onChange={(e) => set("name", e.target.value)}
-              className={field}
-            />
-          </Field>
-          <Field label="Phone" htmlFor={id("phone")}>
-            <div className="flex">
-              <span
-                aria-hidden="true"
-                className="grid min-h-[44px] shrink-0 place-items-center rounded-l-[14px] border border-r-0 border-line bg-paper-deep px-[10px] text-[15px] text-ink-muted"
-              >
-                +91
-              </span>
+          {/* phones: the contact number gets more of the row, so a whole number shows */}
+          <div className="col-span-2 grid grid-cols-[minmax(0,4fr)_minmax(0,7fr)] gap-x-s13 sm:grid-cols-2 sm:gap-x-s21">
+            <Field label="Name" htmlFor={id("name")} error={errors.name}>
               <input
-                id={id("phone")}
-                name="phone"
-                type="tel"
-                inputMode="tel"
-                autoComplete="tel-national"
-                aria-label="Phone number, India (+91)"
-                value={values.phone}
-                onChange={(e) => set("phone", e.target.value)}
-                className={`${field} rounded-l-none`}
+                id={id("name")}
+                name="name"
+                type="text"
+                autoComplete="name"
+                required
+                aria-required="true"
+                aria-invalid={errors.name ? true : undefined}
+                aria-describedby={errors.name ? `${id("name")}-error` : undefined}
+                value={values.name}
+                onChange={(e) => set("name", e.target.value)}
+                className={field}
               />
-            </div>
-          </Field>
+            </Field>
+            <PhoneField
+              id={id("phone")}
+              value={values.phone}
+              error={errors.phone}
+              onChange={(p) => {
+                set("phone", p);
+                setErrors((er) => ({ ...er, phone: undefined }));
+              }}
+            />
+          </div>
 
           <Field label="Check-in" htmlFor={id("checkin")}>
             <input
@@ -215,7 +213,7 @@ export function PlanStay() {
           <CountField id={id("kids")} label="Kids" value={values.kids} min={0} max={30} onChange={(n) => set("kids", n)} />
 
           <div className="col-span-2">
-            <Select id={id("room")} label="Room" value={values.room} options={ROOM_CHOICES} onChange={(v) => set("room", v)} />
+            <Select id={id("room")} label="Category of room" value={values.room} options={ROOM_CHOICES} onChange={(v) => set("room", v)} />
           </div>
 
           <div className="col-span-2 flex flex-col gap-s8 pt-[4px] sm:flex-row sm:flex-wrap sm:items-center sm:gap-s13">

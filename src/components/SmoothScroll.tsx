@@ -9,10 +9,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ease = (t: number) => 1 - Math.pow(1 - t, 4);
 const GESTURE_GAP_MS = 260; // a new free gesture starts after this long without events
-const MIN_KICK = 8; // momentum tails are tiny deltas; a real flick starts bigger
 const COOLDOWN_MS = 380; // after a programmatic glide, swallow leftover momentum
 const SWALLOW_GAP_MS = 700; // a paged gesture is only over after a long silence…
 const ACCEL = 1.35; // …or once the deltas grow again (a new swipe), since momentum only decays
+// The card stack steps lighter than a full section: a quicker glide, a smaller kick to start it,
+// and a shorter silence before the next notch or swipe can move the next card.
+const STACK_STEP_S = 0.55;
+const STACK_KICK = 4; // momentum tails are tiny deltas; a real flick or notch starts bigger
+const STACK_COOLDOWN_MS = 150;
+const STACK_SWALLOW_GAP_MS = 400;
 
 /**
  * Smooth scrolling with snapping that never fights it.
@@ -70,17 +75,19 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     let anchor = 0; // scroll position where the current free gesture began
     let pending = false; // a free gesture needs settling once motion stops
     let pendingDir = 1;
+    let swallowGap = SWALLOW_GAP_MS;
 
-    const go = (y: number) => {
+    const go = (y: number, card = false) => {
       pending = false;
       paging = true;
+      swallowGap = card ? STACK_SWALLOW_GAP_MS : SWALLOW_GAP_MS;
       instance.scrollTo(y, {
-        duration: 0.9,
+        duration: card ? STACK_STEP_S : 0.9,
         easing: ease,
         lock: true,
         onComplete: () => {
           paging = false;
-          coolUntil = performance.now() + COOLDOWN_MS;
+          coolUntil = performance.now() + (card ? STACK_COOLDOWN_MS : COOLDOWN_MS);
         },
       });
     };
@@ -131,7 +138,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
         lastWheel = now;
         // A gesture that paged keeps being swallowed through its momentum tail
         // (which only ever decays), even if the event stream stutters under load.
-        if (swallow && !paging && (gap > SWALLOW_GAP_MS || abs > lastAbs * ACCEL + 2)) swallow = false;
+        if (swallow && !paging && (gap > swallowGap || abs > lastAbs * ACCEL + 2)) swallow = false;
         lastAbs = abs;
         if (paging || swallow || now < coolUntil) return veto();
 
@@ -147,10 +154,10 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
           // Inside the stack: one card per gesture.
           if (inside && ((dir > 0 && y < last - 2) || (dir < 0 && y > first + 2))) {
-            if (Math.abs(deltaY) < MIN_KICK) return veto(); // momentum tail, not a new intent
+            if (Math.abs(deltaY) < STACK_KICK) return veto(); // momentum tail, not a new intent
             const next = dir > 0 ? cards.find((c) => c > y + 2) : [...cards].reverse().find((c) => c < y - 2);
             swallow = true;
-            if (next !== undefined) go(next);
+            if (next !== undefined) go(next, true);
             return veto();
           }
 

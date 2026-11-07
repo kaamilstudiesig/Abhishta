@@ -1,6 +1,8 @@
 import type { ComponentType } from "react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import resting from "@public/images/client-photos/tour-gaushaale-resting.jpg";
+import feeding from "@public/images/client-photos/tour-gau-feeding.jpg";
+import cowPen from "@public/images/client-photos/tour-outing-cow-pen.jpg";
 import { IconClock, IconCow, IconDawn, IconDusk } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { GAU_SEVA_ENQUIRY } from "@/components/sections/living-farm/farm";
@@ -9,16 +11,28 @@ const WAYS: {
   icon: ComponentType<{ size?: number; className?: string }>;
   title: string;
   line: string;
+  /** a still from the farm's 360° tour; none yet for the pooja and the aarti */
+  photo?: { src: StaticImageData; alt: string; focus?: string };
 }[] = [
   {
     icon: IconCow,
     title: "Feed the cows",
     line: "Help at feeding time in the gaushaale.",
+    photo: {
+      src: feeding,
+      alt: "A white cow eating at a long trough beside the walkway of the gaushaale",
+      focus: "32% 55%",
+    },
   },
   {
     icon: IconClock,
     title: "Cow cuddling",
     line: "On a day outing you can sit with them at 4 pm. It is calm and relaxing.",
+    photo: {
+      src: cowPen,
+      alt: "The cow cuddling pen: a small yellow wooden fence on the grass among mango trees",
+      focus: "60% 60%",
+    },
   },
   {
     icon: IconDawn,
@@ -36,7 +50,9 @@ const WAYS: {
  * #ways-to-serve — on the forest band: what you can do with the cows (feed
  * them, sit with them, a Gau Pooja or a Gau Aarti), beside a still of the
  * cows resting in the gaushaale from the farm's 360° tour, then one enquiry
- * button. Phones: the photo is left out so it fits one screen.
+ * button. Each way has a small still on top of its card (a placeholder for the
+ * pooja and the aarti until the farm sends photos). Phones: the big photo is
+ * left out so it fits one screen.
  */
 export function WaysToServe() {
   return (
@@ -67,21 +83,41 @@ export function WaysToServe() {
             leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
           />
           <ul className="mt-s13 grid grid-cols-2 gap-s8 sm:mt-s21 sm:gap-s21 lg:mt-s34 squat:mt-s13 squat:gap-s13">
-            {WAYS.map(({ icon: Icon, title, line }) => (
+            {WAYS.map(({ icon: Icon, title, line, photo }) => (
               <li
                 key={title}
-                className="rounded-card bg-paper/[0.06] p-s13 ring-1 ring-paper/10 sm:p-s21 squat:p-s13"
+                className="overflow-hidden rounded-card bg-paper/[0.06] ring-1 ring-paper/10"
               >
-                <Icon
-                  size={24}
-                  className="text-gold max-sm:hidden squat:hidden"
-                />
-                <h3 className="font-display sm:mt-s8 squat:mt-0 text-[clamp(19px,1.7vw,24px)] leading-[1.2] text-paper">
-                  {title}
-                </h3>
-                <p className="mt-[4px] text-[13px] leading-[1.4] text-paper/75 sm:text-[15px] sm:leading-[1.45] squat:text-[14px]">
-                  {line}
-                </p>
+                <div className="relative h-[clamp(56px,9svh,120px)] bg-paper/[0.06] sm:h-[clamp(40px,calc(100svh-826px),90px)]">
+                  {photo ? (
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      sizes="(min-width: 1024px) 22vw, 50vw"
+                      placeholder="blur"
+                      style={{ objectPosition: photo.focus }}
+                      className="object-cover"
+                    />
+                  ) : (
+                    // TODO(client photo): a photo of this at the farm
+                    <p className="absolute inset-0 flex items-center justify-center gap-s8 px-s13 text-center text-[12px] leading-[1.3] text-paper/60 sm:text-[13px]">
+                      <Icon
+                        size={20}
+                        className="shrink-0 text-gold max-sm:hidden"
+                      />
+                      Photo of the {title} to come
+                    </p>
+                  )}
+                </div>
+                <div className="p-s13 sm:p-s21 squat:p-s13">
+                  <h3 className="font-display text-[clamp(19px,1.7vw,24px)] leading-[1.2] text-paper">
+                    {title}
+                  </h3>
+                  <p className="mt-[4px] text-[13px] leading-[1.4] text-paper/75 sm:text-[15px] sm:leading-[1.45] squat:text-[14px]">
+                    {line}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>

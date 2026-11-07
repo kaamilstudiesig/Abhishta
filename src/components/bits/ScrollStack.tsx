@@ -43,7 +43,7 @@ export function ScrollStack({ children, header, id, className = "" }: ScrollStac
       const wide = window.matchMedia("(min-width: 768px)").matches;
       const tl = gsap.timeline({
         defaults: { ease: "none", duration: 1 },
-        scrollTrigger: { trigger: root, start: "top top", end: "bottom bottom", scrub: 0.3 },
+        scrollTrigger: { trigger: root, start: "top top", end: "bottom bottom", scrub: 0.12 },
       });
       for (let i = 1; i < count; i++) {
         tl.to(cards[i], { yPercent: 0 }, i - 1);

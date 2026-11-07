@@ -15,28 +15,28 @@ type Group = { name: string; body: string; href: string; image: StaticImageData;
 
 const GROUPS: Group[] = [
   {
-    name: "Corporate offsites",
+    name: "Corporate Retreats & Leadership Offsites",
     body: "Take your team out of the office for games, fresh air and good food.",
     href: "/group-enquiries#corporate",
     image: corporate,
     alt: "A corporate team on the lawn stage, standing between two Kathakali dancers in full costume",
   },
   {
-    name: "School agri-tours",
+    name: "Educational Farm Experiences",
     body: "Children learn where food comes from by harvesting it themselves.",
     href: "/group-enquiries#schools",
     image: school,
     alt: "Students with sketchbooks sitting on the tiled tiers of the amphitheatre, a brass lamp on the stage in front",
   },
   {
-    name: "Day outings",
+    name: "Curated Day Getaways",
     body: `A short trip from Bangalore, ${RATES.dayOuting} a person. Swim, eat and relax, then head home.`,
     href: "/group-enquiries#day-outings",
     image: outing,
     alt: "A shaded veranda with patterned tiles and garden chairs beside a stone path through the lawns",
   },
   {
-    name: "Destination events",
+    name: "Private Celebrations & Destination Events",
     body: "Birthdays, anniversaries and family get-togethers in the open air.",
     href: "/group-enquiries#events",
     image: events,
@@ -69,7 +69,7 @@ export function Groups() {
                   type="button"
                   aria-pressed={active === i}
                   onClick={() => setActive(i)}
-                  className={`flex min-h-[44px] w-full items-center gap-s13 rounded-full border px-s21 text-left text-[15px] whitespace-nowrap transition-colors duration-300 md:rounded-none md:border-0 md:px-0 md:py-[8px] lg:py-s13 squat:py-[8px] md:font-display md:text-h3 ${
+                  className={`flex min-h-[44px] w-full items-center gap-s13 rounded-full border px-s21 text-left text-[15px] whitespace-nowrap transition-colors duration-300 md:rounded-none md:border-0 md:px-0 md:py-[8px] md:whitespace-normal md:text-balance lg:py-s13 squat:py-[8px] md:font-display md:text-[clamp(20px,1.9vw,27px)] md:leading-[1.2] ${
                     active === i
                       ? "border-paper/60 bg-paper/10 text-paper md:bg-transparent"
                       : "border-paper/20 text-paper/70 hover:text-paper"
@@ -77,7 +77,7 @@ export function Groups() {
                 >
                   <span
                     aria-hidden="true"
-                    className={`hidden h-[2px] bg-gold transition-[width] duration-500 ease-[var(--ease-earth)] md:block ${active === i ? "w-s21" : "w-0"}`}
+                    className={`hidden h-[2px] shrink-0 bg-gold transition-[width] duration-500 ease-[var(--ease-earth)] md:block ${active === i ? "w-s21" : "w-0"}`}
                   />
                   {g.name}
                 </button>
@@ -106,10 +106,14 @@ export function Groups() {
                   />
                 </div>
                 <div className="px-s21 py-s13 sm:px-s34 sm:py-s21 squat:py-s13">
-                  <h3 className="font-display text-[clamp(22px,2.4vw,28px)] leading-[1.15] text-forest">{g.name}</h3>
+                  <h3 className="font-display text-[clamp(20px,2.2vw,26px)] leading-[1.15] text-balance text-forest">{g.name}</h3>
                   <p className="mt-s8 max-w-[30em] text-[15px] leading-[1.55] text-ink-muted">{g.body}</p>
-                  <a href={g.href} className="link-gold mt-s13 inline-block text-[15px] font-medium text-forest">
-                    Enquire about {g.name.toLowerCase()}
+                  <a
+                    href={g.href}
+                    aria-label={`Enquire about ${g.name.toLowerCase()}`}
+                    className="link-gold mt-s13 inline-block text-[15px] font-medium text-forest"
+                  >
+                    Enquire now
                   </a>
                 </div>
               </article>

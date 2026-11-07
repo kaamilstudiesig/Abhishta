@@ -10,7 +10,7 @@ export function FarmToTableHero() {
       alt="The dining hall: long tables and chairs under a tiled timber roof, open to the garden on every side"
       imagePosition="object-[50%_55%]"
       lines={["Farm to", "table"]}
-      lead="Our vegetables, fruit and milk come from the farm, so the food on your plate is fresh and simple."
+      lead="Vegetables, greens, fruit and milk from our own farm, cooked into simple, home-style meals."
       cta={{
         label: "Plan a farm day",
         href: DAY_OUTING_ENQUIRY,

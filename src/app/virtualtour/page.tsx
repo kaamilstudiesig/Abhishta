@@ -8,10 +8,10 @@ const description =
   "Walk around Abhishta Agri Farm Stay in 360°: the cottages, family rooms, orchard, pool, dining hall and gaushaale. Then find the way from Bangalore (about 90 km) and ask us anything.";
 
 export const metadata: Metadata = {
-  title: "360° Virtual Tour | Abhishta Agri Farm Stay",
+  title: "Virtual Tour | Abhishta Agri Farm Stay",
   description,
   alternates: { canonical: "/virtualtour" },
-  openGraph: { title: "360° Virtual Tour — Abhishta Agri Farm Stay", description, images: ["/images/og.jpg"], locale: "en_IN", type: "website" },
+  openGraph: { title: "Virtual Tour — Abhishta Agri Farm Stay", description, images: ["/images/og.jpg"], locale: "en_IN", type: "website" },
 };
 
 /**

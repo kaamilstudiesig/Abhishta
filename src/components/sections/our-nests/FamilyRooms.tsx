@@ -1,31 +1,47 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { IconCheck } from "@/components/icons";
+import Image from "next/image";
+import { IconCheck, IconChevronLeft, IconChevronRight, IconExternal } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
+import { tourUrl } from "@/lib/tour";
+import { glass } from "@/components/bits/glass";
+import { GlassFill } from "@/components/bits/LiquidGlass";
 import { Pillows, onTabKeyDown, useActivePillInView, useSelectRoom } from "./RoomParts";
-import { TourLink, TourViewer } from "@/components/TourViewer";
 import { FAMILY_ROOMS, RATES } from "./rooms";
 
 /**
  * #dormitories (the id the homepage links to) — the three family rooms on a
  * forest band, one screen: Gopika, Nandagokula and Kaustubha (client's rate
- * sheet). Room tabs (pills on phones) turn one live 360° view between them;
- * beside it, who the room suits, its beds, bathrooms and the per-person rate.
+ * sheet). Room tabs (pills on phones) switch a photo slideshow of the room,
+ * as on the cottages (arrows and a count; the last photo is the block from
+ * outside), with a link to the room's 360° view in the tour. Beside it, who
+ * the room suits, its beds, bathrooms and the per-person rate.
  */
 export function FamilyRooms() {
-  const [active, setActive] = useState(0);
+  const [active, setActiveRoom] = useState(0);
+  const [shot, setShot] = useState(0); // which photo of the open room
+  // a new room starts on its first photo
+  const setActive = useCallback((i: number) => {
+    setActiveRoom(i);
+    setShot(0);
+  }, []);
   const listRef = useRef<HTMLDivElement>(null);
   const count = FAMILY_ROOMS.length;
   const room = FAMILY_ROOMS[active];
+  const shots = room.photos.length;
+  const photo = room.photos[shot];
+  const prev = () => setShot((shot - 1 + shots) % shots);
+  const next = () => setShot((shot + 1) % shots);
+  const control =
+    `z-10 grid size-[40px] place-items-center rounded-full text-paper transition-colors duration-300 hover:bg-white/20 ${glass("dark")}`;
   const facts = [
     `${room.bathrooms} in the room`,
     "Fans, no air-conditioning",
     `${RATES.familyRoom} a person, meals and taxes included`,
   ];
 
-  const select = useCallback((i: number) => setActive(i), []);
-  useSelectRoom(FAMILY_ROOMS, select);
+  useSelectRoom(FAMILY_ROOMS, setActive);
   useActivePillInView(listRef, active);
 
   return (
@@ -90,17 +106,50 @@ export function FamilyRooms() {
           aria-labelledby={`family-room-tab-${room.id}`}
           className="min-w-0 lg:[grid-area:frame]"
         >
-          <TourViewer
-            tour={room.tour}
-            title={`360° view of the ${room.name} family room`}
-            tone="dark"
-            onPrev={() => setActive((active - 1 + count) % count)}
-            onNext={() => setActive((active + 1) % count)}
-            prevLabel="Previous room"
-            nextLabel="Next room"
-            className="h-[max(280px,calc(100svh-444px))] sm:h-[clamp(350px,36svh,460px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]"
-          />
-          <TourLink tour={room.tour} tone="dark" className="mt-s13 max-lg:hidden" />
+          <div
+            role="group"
+            aria-roledescription="slideshow"
+            aria-label={`Photos of the ${room.name} family room`}
+            className="relative h-[max(240px,calc(100svh-488px))] overflow-hidden rounded-card bg-paper/[0.06] ring-1 ring-paper/10 sm:h-[clamp(320px,34svh,440px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]"
+          >
+            <Image
+              key={photo.src.src}
+              src={photo.src}
+              alt={photo.alt}
+              fill
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              placeholder="blur"
+              style={{ objectPosition: photo.focus }}
+              className="animate-[fade-in_500ms_ease-out] object-cover motion-reduce:animate-none"
+            />
+            {/* a soft shade at the bottom and sides, so the clear-glass count and arrows read on white walls */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.4),transparent_30%),linear-gradient(to_right,rgb(0_0_0/0.22),transparent_16%,transparent_84%,rgb(0_0_0/0.22))]"
+            />
+            <span aria-live="polite" className={`absolute bottom-s13 left-s13 rounded-full px-s13 py-[6px] text-[13px] font-medium text-paper ${glass("dark")}`}>
+              <GlassFill />
+              {`${room.name} · ${shot + 1} of ${shots}`}
+            </span>
+            <button type="button" onClick={prev} aria-label={`Previous photo of ${room.name}`} className={`absolute top-1/2 left-s13 -translate-y-1/2 ${control}`}>
+              <GlassFill />
+              <IconChevronLeft size={20} />
+            </button>
+            <button type="button" onClick={next} aria-label={`Next photo of ${room.name}`} className={`absolute top-1/2 right-s13 -translate-y-1/2 ${control}`}>
+              <GlassFill />
+              <IconChevronRight size={20} />
+            </button>
+          </div>
+          <a
+            href={tourUrl(room.tour.node, room.tour)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="tap mt-s8 inline-flex items-center gap-[6px] text-[14px] font-medium text-paper hover:text-gold sm:mt-s13"
+          >
+            See {room.name} in 360°
+            <IconExternal size={15} />
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
         </div>
 
         <div className="lg:mt-s34 lg:[grid-area:details] squat:mt-s21">

@@ -5,41 +5,46 @@ import { TiltedCard } from "@/components/bits/TiltedCard";
 import { TourViewer } from "@/components/TourViewer";
 import { IconArrow, IconExternal } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
-import { tourUrl, type Tour } from "@/lib/tour";
+import { type Tour } from "@/lib/tour";
+import { TOUR_360_URL } from "@/lib/site";
 
-// Scenes listed in scripts/tour-scenes.mjs; views open facing the space.
+// Scenes from the V7 tour ("V7:<id>" in scripts/tour-scenes.mjs); each view opens facing the space
+// (angles checked by eye, 2026-11-07).
 const SPACES: { name: string; detail: string; tour: Tour }[] = [
   {
     name: "Swimming pool",
     detail: "Open 6:30 am to 6 pm",
-    tour: { node: "SwimmingPoolBliss", pan: -90, tilt: -5 },
+    tour: { node: "BlissSwimmingPool", pan: 0, tilt: -8 },
   },
   {
     name: "Dining hall",
     detail: "Farm-fresh meals, all included",
-    tour: { node: "Abhishta_03", pan: 22, tilt: -5 },
+    tour: { node: "DiningZone", pan: 20, tilt: -8 },
   },
   {
     name: "Traditional bath",
     detail: "Hande ole snana, a wood-fired copper pot",
-    tour: { node: "Abhishta_15", pan: -6, tilt: -8 },
+    tour: { node: "TraditionalBath", pan: 22, tilt: -20 },
   },
   {
     name: "Games and sports",
     detail: "Cricket, volleyball, carrom, lagori",
-    tour: { node: "Abhishta_10", pan: -174, tilt: -5 },
+    tour: { node: "OfficeRoom", pan: 95, tilt: -12 },
   },
   {
     name: "Amphitheatre and campfire",
     detail: "Bonfire and barbecue evenings",
-    tour: { node: "Amphitheatre", pan: 12, tilt: -5 },
+    tour: { node: "AmphitheaterCampfireArea", pan: 10, tilt: -5 },
   },
   {
     name: "Koi pond",
     detail: "A quiet spot by the water",
-    tour: { node: "Abhishta_11", pan: -33, tilt: -10 },
+    tour: { node: "KoiPond", pan: 185, tilt: -8 },
   },
 ];
+
+/** These scenes live in the V7 tour, so the full-tour link opens V7 (tourUrl points at the original tour). */
+const v7TourUrl = ({ node, pan, tilt }: Tour) => `${TOUR_360_URL}V7/#${node},${pan},${tilt},75,4`;
 
 function FarmLink({
   className = "",
@@ -179,7 +184,7 @@ export function SharedSpaces() {
                         {s.detail}
                       </p>
                       <a
-                        href={tourUrl(s.tour.node, s.tour)}
+                        href={v7TourUrl(s.tour)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="tap mt-s8 inline-flex items-center gap-[6px] text-[14px] font-medium text-farm hover:text-forest max-sm:hidden short:hidden"

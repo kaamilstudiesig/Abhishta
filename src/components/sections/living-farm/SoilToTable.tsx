@@ -23,27 +23,27 @@ const PILLARS: { icon: IconType; title: string; line: string }[] = [
   {
     icon: IconLeaf,
     title: "Naturally grown",
-    line: "Grown with sun, water and good soil.",
+    line: "Vegetables, greens and fruit, grown here on the farm.",
   },
   {
     icon: IconCompost,
     title: "Organic practices",
-    line: "Organic fertiliser and compost feed the land.",
+    line: "We feed the soil with organic fertilisers.",
   },
   {
     icon: IconMilk,
     title: "Farm-fresh dairy",
-    line: "Milk from the farm’s own cows.",
+    line: "Milk from our own cows in the gaushaale.",
   },
   {
     icon: IconDining,
     title: "Wholesome meals",
-    line: "Simple, home-style food.",
+    line: "Simple, home-style food at every meal.",
   },
   {
     icon: IconBasket,
     title: "Harvest to plate",
-    line: "Learn how it’s grown, then taste it at the table.",
+    line: "See how it’s grown, then eat it at the table.",
   },
 ];
 
@@ -118,7 +118,7 @@ export function SoilToTable({ compact = false }: { compact?: boolean }) {
         <SectionHeader
           tone="dark"
           title="Farm to table"
-          lead="Our vegetables, fruit and milk come from the farm, so the food on your plate is fresh and simple."
+          lead="The vegetables, greens, fruit and milk we cook with come from this farm. Simple food, fresh from the field."
           leadClassName="max-sm:mt-s13 max-sm:text-[15px] max-sm:leading-[1.5]"
         >
           {compact ? (

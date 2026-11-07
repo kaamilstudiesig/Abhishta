@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Image, { type StaticImageData } from "next/image";
 import dawn from "@public/images/client-photos/day-dawn.jpg";
 import morning from "@public/images/client-photos/day-morning.jpg";
@@ -24,9 +25,9 @@ type Moment = {
 const MOMENTS: Moment[] = [
   {
     time: "Dawn",
-    title: "Walk and cuddle",
-    body: "Start the day with a nature walk. Then spend some time with the cows at the gaushaale.",
-    activities: ["Nature walks", "Gau Seva cow cuddling"],
+    title: "Walk, Connect & Unwind",
+    body: "Begin your morning with a leisurely walk through the tranquil landscapes of Abhishta. As the day unfolds, spend a little time with the gentle souls of the farm through Gau Seva and the heartwarming experience of cow cuddling.",
+    activities: ["Nature Walks", "Gau Seva", "Cow Cuddling"],
     icon: IconDawn,
     image: dawn,
     alt: "A stone bench in a quiet orchard clearing, framed by low mango branches",
@@ -34,9 +35,9 @@ const MOMENTS: Moment[] = [
   },
   {
     time: "Morning",
-    title: "Pick and harvest",
-    body: "Join a guided farm tour. Pick fresh fruit and pull vegetables straight from the field.",
-    activities: ["Agri-tours", "Fruit picking", "Harvesting"],
+    title: "Pick & Harvest",
+    body: "Explore the beauty of farm life on a guided tour through Abhishta's landscapes. Experience the simple pleasure of picking fresh fruits and harvesting seasonal vegetables straight from the fields.",
+    activities: ["Agri-Tours", "Fruit Picking", "Harvesting"],
     icon: IconMorning,
     image: morning,
     alt: "A garden gazebo with a scalloped canopy on the lawn, beside a painted clay pot",
@@ -44,9 +45,9 @@ const MOMENTS: Moment[] = [
   },
   {
     time: "Midday",
-    title: "Eat and swim",
-    body: "Sit down to a fresh meal made with food from the farm. Then cool off in the pool.",
-    activities: ["Farm-to-table dining", "Pool"],
+    title: "Savour, Relax & Rejuvenate",
+    body: "Enjoy wholesome, freshly prepared farm-to-table meals, featuring fresh produce from the farm. Afterwards, unwind by the pool or take a refreshing dip as you soak in the tranquillity of the countryside.",
+    activities: ["Farm-to-Table Dining", "Swimming", "Leisure"],
     icon: IconMidday,
     image: midday,
     alt: "Tables and chairs in the dining hall, behind a low wall painted with white folk figures",
@@ -54,9 +55,9 @@ const MOMENTS: Moment[] = [
   },
   {
     time: "Dusk",
-    title: "Play and relax",
-    body: "Play lagori, gilli-danda or hopscotch in the evening. End the day around a bonfire.",
-    activities: ["Lagori", "Gilli-danda", "Hopscotch", "Bonfire"],
+    title: "Gather Around Good Times",
+    body: "Bring out your playful side with a selection of traditional outdoor games. As twilight sets in, come together around the bonfire and enjoy an evening filled with warmth, stories, and memorable company.",
+    activities: ["Outdoor Games", "Bonfire Gatherings"],
     icon: IconDusk,
     image: dusk,
     alt: "The garden gazebo on the lawn, lined with potted plants and small solar lamps",
@@ -92,17 +93,22 @@ export function DayOnFarm() {
             <div className="relative min-h-0">
               <Image src={m.image} alt={m.alt} fill sizes="(min-width: 768px) 60vw, 100vw" placeholder="blur" className="object-cover" />
             </div>
-            <div className="flex flex-col justify-center px-s21 pt-s13 pb-s21 sm:p-s34 lg:p-s55">
+            <div className="flex flex-col justify-center px-s21 pt-s13 pb-s13 sm:p-s34 lg:p-s55">
               <p className={`flex items-center gap-s8 text-[15px] ${m.dark ? "text-gold" : "text-[#4f4f44]"}`}>
                 <m.icon size={20} />
                 {m.time}
               </p>
-              <h3 className={`mt-[6px] font-display text-[clamp(24px,3.2vw,45px)] md:mt-s13 leading-[1.08] tracking-[-0.015em] ${m.dark ? "text-paper" : "text-forest"}`}>
+              <h3 className={`mt-[4px] font-display text-[clamp(21px,3.2vw,45px)] md:mt-s13 leading-[1.08] tracking-[-0.015em] ${m.dark ? "text-paper" : "text-forest"}`}>
                 {m.title}
               </h3>
-              <p className={`mt-s8 text-[15px] leading-[1.55] sm:text-body md:mt-s13 ${m.dark ? "text-paper/85" : "text-[#4f4f44]"}`}>{m.body}</p>
-              <p className={`mt-s21 hidden border-t pt-s13 text-[14px] md:block ${m.dark ? "border-paper/15 text-paper/75" : "border-ink/10 text-[#4f4f44]"}`}>
-                {m.activities.join(", ")}
+              <p className={`mt-[6px] text-[14px] leading-[1.45] sm:text-[15px] sm:leading-[1.55] md:mt-s13 lg:text-body ${m.dark ? "text-paper/85" : "text-[#4f4f44]"}`}>{m.body}</p>
+              <p className={`mt-s8 border-t pt-s8 text-[12.5px] leading-[1.5] md:mt-s21 md:pt-s13 md:text-[14px] ${m.dark ? "border-paper/15 text-paper/75" : "border-ink/10 text-[#4f4f44]"}`}>
+                {m.activities.map((a, i) => (
+                  <Fragment key={a}>
+                    {i > 0 ? " · " : null}
+                    <span className="whitespace-nowrap">{a}</span>
+                  </Fragment>
+                ))}
               </p>
             </div>
             <span aria-hidden="true" className="pointer-events-none absolute inset-0 bg-forest opacity-[var(--dim)]" />

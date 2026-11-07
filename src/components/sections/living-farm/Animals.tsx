@@ -12,8 +12,10 @@ type Item = {
   name: string;
   line: string;
   icon: ComponentType<{ size?: number; className?: string }>;
-  /** the 360° view of this; without one, the card shows its icon until there's a photo (TODO(client): tractor photo) */
+  /** the 360° view of this; without one, the card shows a placeholder naming the missing shot */
   tour?: Tour;
+  /** TODO(client): the photo still needed where the tour has no view */
+  missing?: string;
   place?: string;
 };
 
@@ -21,7 +23,7 @@ type Item = {
 const ITEMS: Item[] = [
   { name: "Feed the goats and sheep", line: "Jamnapari, Boer and Thalassery goats, and Bannur sheep.", icon: IconGoat, tour: GOAT_VIEW, place: "The goat and sheep shelter" },
   { name: "Chickens, ducks and rabbits", line: "Hens in the yard, ducks by the canopy, rabbits by the rooms.", icon: IconHen, tour: YARD_VIEW, place: "The chicken yard" },
-  { name: "Take a tractor ride", line: "See village life from the trailer. A little extra cost.", icon: IconTractor },
+  { name: "Take a tractor ride", line: "See village life from the trailer. A little extra cost.", icon: IconTractor, missing: "Photo of the tractor ride coming soon" },
   { name: "Play the old games", line: "Lagori, gilli-danda, hopscotch and aluguli mane.", icon: IconGames, tour: { node: "Abhishta_10", pan: 95, tilt: -14 }, place: "The games corner" },
   { name: "Gather by the bonfire", line: "End the evening with stories under the stars.", icon: IconCampfire, tour: { node: "Amphitheatre", pan: 12, tilt: -5 }, place: "The campfire area" },
 ];
@@ -90,14 +92,18 @@ export function Animals() {
                       nextLabel="Next"
                       className="h-full"
                     />
-                  ) : (
+                  ) : it.tour ? (
                     <div aria-hidden="true" className="grid h-full place-items-center">
                       <Icon size={96} className="text-farm/60 [stroke-width:1]" />
-                      {it.tour ? (
-                        <span className="absolute bottom-s13 left-s13 inline-flex items-center gap-[6px] text-[13px] text-ink-muted">
-                          <Icon360 size={16} /> 360° view
-                        </span>
-                      ) : null}
+                      <span className="absolute bottom-s13 left-s13 inline-flex items-center gap-[6px] text-[13px] text-ink-muted">
+                        <Icon360 size={16} /> 360° view
+                      </span>
+                    </div>
+                  ) : (
+                    // no photo or 360° view of this yet: a placeholder that says which shot is missing
+                    <div className="flex h-full flex-col items-center justify-center gap-s8 border border-dashed border-farm/30 bg-[repeating-linear-gradient(135deg,transparent_0_14px,rgb(0_0_0/0.025)_14px_28px)] text-center">
+                      <Icon size={72} className="text-farm/60 [stroke-width:1]" />
+                      <span className="text-[13px] text-ink-muted">{it.missing}</span>
                     </div>
                   )}
                 </div>

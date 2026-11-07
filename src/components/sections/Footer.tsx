@@ -17,7 +17,7 @@ import {
 } from "@/components/icons";
 import { Logo } from "@/components/Logo";
 import { container } from "@/components/ui";
-import { CONTACT, NAV_LINKS, SOCIALS } from "@/lib/site";
+import { CONTACT, NAV_LINKS, SOCIALS, linkProps } from "@/lib/site";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -101,13 +101,16 @@ export function Footer() {
       data-nav="dark"
       className="on-dark bottom-0 z-0 overflow-hidden bg-forest text-paper [@media(min-width:768px)_and_(min-height:680px)]:sticky"
     >
-      <div className={`${container} grid gap-s34 pt-s89 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1.6fr] lg:gap-s55`}>
-        <div>
-          <Logo tone="light" />
-          <p className="mt-s13 max-w-[22em] text-[15px] text-paper/75">
+      {/* the links: brand, explore, contact side by side on laptops, in a tight grid on phones */}
+      <div
+        className={`${container} grid gap-x-s21 gap-y-s21 pt-s34 sm:grid-cols-2 lg:grid-cols-[1.25fr_1.1fr_1.6fr] lg:gap-x-s55 lg:pt-[clamp(21px,4svh,55px)]`}
+      >
+        <div className="flex flex-wrap items-center gap-x-s21 gap-y-s13 sm:block">
+          <Logo tone="light" className="h-[40px] sm:h-[44px] lg:h-[42px]" />
+          <p className="max-w-[22em] text-[14px] leading-[1.4] text-paper/75 sm:mt-s8 sm:text-[15px]">
             A working farm stay 90 km from Bangalore.
           </p>
-          <ul className="mt-s21 flex flex-wrap gap-s8">
+          <ul className="flex w-full flex-wrap gap-s8 sm:mt-s13">
             {SOCIALS.map((s) => {
               const Icon = SOCIAL_ICONS[s.name];
               return (
@@ -118,7 +121,7 @@ export function Footer() {
                     rel="noopener noreferrer"
                     aria-label={s.name}
                     title={s.name}
-                    className="grid size-[44px] place-items-center rounded-full border border-paper/25 text-paper transition-colors duration-300 hover:border-gold hover:text-gold"
+                    className="grid size-[44px] place-items-center rounded-full border lg:size-[40px] border-paper/25 text-paper transition-colors duration-300 hover:border-gold hover:text-gold"
                   >
                     <Icon size={20} />
                   </a>
@@ -130,10 +133,10 @@ export function Footer() {
 
         <nav aria-label="Footer">
           <p className="eyebrow text-gold">Explore</p>
-          <ul className="mt-s13 grid grid-cols-2 gap-x-s21 gap-y-s8 sm:grid-cols-1 sm:gap-y-[6px]">
+          <ul className="mt-s8 grid grid-cols-2 gap-x-s21 gap-y-[5px] leading-[1.35]">
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="tap text-[15px] text-paper transition-colors duration-300 hover:text-gold">
+                <a href={l.href} {...linkProps(l.href)} className="tap text-[15px] text-paper transition-colors duration-300 hover:text-gold">
                   {l.label}
                 </a>
               </li>
@@ -143,15 +146,15 @@ export function Footer() {
 
         <div className="sm:col-span-2 lg:col-span-1">
           <p className="eyebrow text-gold">Contact</p>
-          <ul className="mt-s13 grid gap-s8">
+          <ul className="mt-s8 grid gap-x-s21 gap-y-[5px] sm:grid-cols-2">
             {CONTACTS.map(({ label, value, href, icon: Icon }) => (
-              <li key={label}>
+              <li key={label} className={label === "Email" || label === "Address" ? "sm:col-span-2" : ""}>
                 <a
                   href={href}
                   {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="tap flex items-start gap-s13 text-[15px] leading-[1.5] text-paper transition-colors duration-300 hover:text-gold"
+                  className="tap flex items-start gap-s8 text-[15px] leading-[1.35] text-paper transition-colors duration-300 hover:text-gold"
                 >
-                  <Icon size={20} className="mt-[2px] shrink-0 text-gold" />
+                  <Icon size={18} className="mt-[2px] shrink-0 text-gold" />
                   <span className="min-w-0 break-words">
                     <span className="sr-only">{label}: </span>
                     {value}
@@ -163,24 +166,28 @@ export function Footer() {
         </div>
       </div>
 
-      <p
-        data-wordmark=""
-        aria-hidden="true"
-        translate="no"
-        className="mt-s34 flex justify-center overflow-hidden px-s13 font-display text-[13vw] leading-[0.82] font-light tracking-[-0.04em] text-paper/90 select-none"
+      {/* the wordmark band: the big name, the small print beside it (the right is left clear for the floating buttons) */}
+      <div
+        className={`${container} mt-s21 flex flex-col gap-y-s8 border-t border-paper/15 pt-s13 pb-[84px] lg:mt-[clamp(13px,2.5svh,34px)] lg:flex-row lg:items-end lg:gap-x-s55 lg:pb-s21`}
       >
-        {"Abhishta".split("").map((c, i) => (
-          <span key={i} className="inline-block pb-[0.06em]">
-            {c}
-          </span>
-        ))}
-      </p>
-
-      <div className={`${container} flex flex-wrap gap-x-s21 gap-y-[3px] border-t border-paper/15 py-s13 text-[13px] text-paper/70`}>
-        <p>© 2026 Abhishta Agri Farm Stay. Jiddigere, Kunigal.</p>
-        <a href="#top" className="tap w-fit text-paper/80 hover:text-gold">
-          Back to top
-        </a>
+        <p
+          data-wordmark=""
+          aria-hidden="true"
+          translate="no"
+          className="flex overflow-hidden font-display text-[clamp(64px,19vw,96px)] leading-[0.82] font-light tracking-[-0.04em] text-paper/90 select-none lg:text-[clamp(88px,min(10vw,14svh),170px)]"
+        >
+          {"Abhishta".split("").map((c, i) => (
+            <span key={i} className="inline-block pb-[0.06em]">
+              {c}
+            </span>
+          ))}
+        </p>
+        <div className="flex flex-wrap gap-x-s21 gap-y-[3px] text-[13px] text-paper/70 lg:flex-col lg:pb-[1.1em]">
+          <p>© 2026 Abhishta Agri Farm Stay. Jiddigere, Kunigal.</p>
+          <a href="#top" className="tap w-fit text-paper/80 hover:text-gold">
+            Back to top
+          </a>
+        </div>
       </div>
     </footer>
   );

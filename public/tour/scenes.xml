@@ -537,4 +537,166 @@
       <menulink text="Created By TURIYA" url="https://turiya.co/"/>
     </control>
   </panorama>
+<panorama hideabout="1" id="v7node31">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node31/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="0" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="330"/>
+    </view>
+    <userdata tags="Amenities|Popup_Nodes" longitude="" info="" comment="" title="Bliss - Swimming Pool" nodeid="v7node31" description="&lt;ul style=&quot;margin: 0px;&quot;>&#xa;&lt;li>Pool Depth: Less than 4.5 feet&lt;/li>&#xa;&lt;li>No Pets Allowed&lt;/li>&#xa;&lt;li>No Smoking/Alcohol Allowed&lt;/li>&#xa;&lt;/ul>" copyright="" datetime="12-09-2026 08:23 AM" source="DSC04513 Panorama.jpg" latitude="" heading="0" author="Bliss - Swimming Pool" customnodeid="BlissSwimmingPool">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
+<panorama hideabout="1" id="v7node52">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node52/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="22.1" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="270"/>
+    </view>
+    <userdata tags="Amenities|Popup_Nodes" longitude="" info="" comment="" title="Dining Zone" nodeid="v7node52" description="&lt;ul style=&quot;margin: 0px;&quot;>&#xa;&lt;li>No Pets Allowed&lt;/li>&#xa;&lt;li>No Smoking/Alcohol Allowed&lt;/li>&#xa;&lt;/ul>" copyright="" datetime="8/21/2024 10:37 AM" source="DSC03407 Panorama.jpg" latitude="" heading="0" author="Dining Zone" customnodeid="DiningZone">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
+<panorama hideabout="1" id="v7node51">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node51/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="-6" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="270"/>
+    </view>
+    <userdata tags="Amenities|Popup_Nodes" longitude="" info="" comment="" title="Traditional Bath / Hande Ole Snana" nodeid="v7node51" description="Hande Ole is a traditional bathing space that reflects the rich heritage and bathing customs of Karnataka. Traditionally used for a warm water bath, it features a large metal vessel or Hande where water is heated and prepared for bathing. This traditional setup offers a glimpse into the region’s cultural practices and timeless way of life." copyright="" datetime="8/21/2024 11:52 AM" source="DSC03662 Panorama.jpg" latitude="" heading="0" author="Traditional Bath / Hande Ole Snana" customnodeid="TraditionalBath">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
+<panorama hideabout="1" id="v7node54">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node54/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="-173.9" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="270"/>
+    </view>
+    <userdata tags="Amenities" longitude="" info="" comment="" title="Office Room / Game &amp; Sports Centre" nodeid="v7node54" description="" copyright="" datetime="8/21/2024 11:28 AM" source="DSC03536 Panorama.jpg" latitude="" heading="0" author="" customnodeid="OfficeRoom">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
+<panorama hideabout="1" id="v7node30">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node30/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="-36.18" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="330"/>
+    </view>
+    <userdata tags="Amenities|Popup_Nodes" longitude="" info="" comment="" title="Amphitheater / Campfire Area" nodeid="v7node30" description="A beautiful open air space where special moments turn into lasting memories. The amphitheatre is a favourite setting for birthday celebrations and group gatherings, bringing guests together in a spacious and welcoming environment filled with laughter, celebration and togetherness." copyright="" datetime="12-09-2026 08:20 AM" source="DSC04501 Panorama.jpg" latitude="" heading="0" author="Amphitheatre" customnodeid="AmphitheaterCampfireArea">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
+<panorama hideabout="1" id="v7node15">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node15/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="-143.23" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="330"/>
+    </view>
+    <userdata tags="Amenities" longitude="" info="" comment="" title="Koi Pond" nodeid="v7node15" description="" copyright="" datetime="12-09-2026 07:29 AM" source="DSC04276 Panorama.jpg" latitude="" heading="0" author="" customnodeid="KoiPond">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
 </tour>

@@ -1,3 +1,6 @@
+import Image from "next/image";
+import pool from "@public/images/client-photos/tour-pool.jpg";
+import cottageRow from "@public/images/client-photos/nests-hero-cottage-row.jpg";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL, CONTACT, DAY_OUTING_ENQUIRY } from "@/lib/site";
 import { RATES } from "@/components/sections/our-nests/rooms";
@@ -7,8 +10,13 @@ import { DAY_OUTING } from "./farm";
  * #plan-your-visit — the two ways in, side by side: a day outing (its schedule,
  * from the official site, and a WhatsApp enquiry) or a stay (Our nests and the
  * a WhatsApp booking chat), with email and phone underneath. Phones: a swipe
- * row of the two cards.
+ * row of the two cards. Each card opens with a photo strip (the pool, a still
+ * from the 360° tour; the cottage row) on screens tall enough to hold it.
  */
+
+/** A card's photo strip, bled to the card's top edge; dropped on screens under 880px tall, where the card fills the screen. */
+const strip =
+  "relative -mx-s21 -mt-s21 mb-s21 h-[clamp(96px,calc(100svh-800px),132px)] shrink-0 overflow-hidden rounded-t-card sm:-mx-s34 sm:-mt-s34 md:h-[132px] lg:h-[clamp(96px,calc(100svh-760px),160px)] [@media(max-height:879px)]:hidden";
 export function PlanVisit() {
   return (
     <section id="plan-your-visit" data-nav="light" data-snap="" className={`bg-paper ${screen}`}>
@@ -17,6 +25,9 @@ export function PlanVisit() {
 
         <ul className="-mx-s21 mt-s21 flex items-start snap-x snap-mandatory gap-s13 overflow-x-auto scroll-px-s21 px-s21 pb-s8 [scrollbar-width:none] sm:-mx-s34 sm:scroll-px-s34 sm:px-s34 md:mt-s34 lg:mx-0 lg:grid lg:grid-cols-[1.35fr_1fr] lg:items-stretch squat:mt-s21 lg:gap-s21 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
           <li className="flex w-[88%] shrink-0 snap-start lg:snap-align-none flex-col rounded-card bg-card p-s21 ring-1 ring-line sm:w-[62%] sm:p-s34 lg:w-auto squat:p-s21">
+            <div className={strip}>
+              <Image src={pool} alt="The farm's swimming pool, a water spout splashing into it, with palms and garden behind" fill sizes="(min-width: 1024px) 50vw, 88vw" placeholder="blur" className="object-cover object-[50%_65%]" />
+            </div>
             <h3 className="font-display text-[clamp(22px,2vw,28px)] leading-[1.15] text-forest">A day outing</h3>
             <p className="mt-[4px] text-[15px] text-ink-muted">
               <span className="font-medium text-forest">{RATES.dayOuting} a person</span>
@@ -38,6 +49,9 @@ export function PlanVisit() {
           </li>
 
           <li className="flex w-[88%] shrink-0 snap-start lg:snap-align-none flex-col rounded-card bg-forest p-s21 text-paper sm:w-[62%] sm:p-s34 lg:w-auto squat:p-s21 on-dark">
+            <div className={strip}>
+              <Image src={cottageRow} alt="A row of white cottages with verandas along a garden path" fill sizes="(min-width: 1024px) 40vw, 88vw" placeholder="blur" className="object-cover" />
+            </div>
             <h3 className="font-display text-[clamp(22px,2vw,28px)] leading-[1.15] text-paper">A night or two</h3>
             <p className="mt-[4px] text-[15px] leading-[1.5] text-paper/80">Wake up on the farm, with the animals a short walk away.</p>
             <ul className="mt-s13 grid gap-[5px] text-[14px] leading-[1.45] text-paper/90 sm:text-[15px]">

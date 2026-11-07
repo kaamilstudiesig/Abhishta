@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 import { buttonClass } from "@/components/ui";
 
 export type Step = { title: string; content: ReactNode };
@@ -102,12 +102,14 @@ export function Stepper({
       </fieldset>
 
       <div className="mt-s21 flex flex-wrap items-center gap-s13">
+        {/* distinct keys: if React reused Continue's element as the submit button, the click
+            that reaches the last step would also submit the form */}
         {step < last ? (
-          <button type="button" onClick={() => go(step + 1)} className={buttonClass("primary")}>
+          <button key="continue" type="button" onClick={() => go(step + 1)} className={buttonClass("primary")}>
             Continue
           </button>
         ) : (
-          finish
+          <Fragment key="finish">{finish}</Fragment>
         )}
         {step > 0 ? (
           <button type="button" onClick={() => go(step - 1)} className={buttonClass("secondary")}>

@@ -1,30 +1,49 @@
 import type { ComponentType, ReactNode } from "react";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import dawn from "@public/images/client-photos/day-dawn.jpg";
 import cropRows from "@public/images/client-photos/farm-crop-rows.jpg";
+import fieldPath from "@public/images/client-photos/tour-field-path.jpg";
 import { BentoTile, MagicBento } from "@/components/bits/MagicBento";
 import { TourViewer } from "@/components/TourViewer";
 import { IconFields, IconOrchard, IconPath, IconSprout } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 import { ORCHARD_VIEW } from "./farm";
 
+/** A tile's words: dark on paper on phones (media above them), light over the tile's photo from md up. */
 function TileText({ icon: Icon, title, children }: { icon: ComponentType<{ size?: number; className?: string }>; title: string; children: ReactNode }) {
   return (
     <div className="max-sm:px-s13">
-      {/* the tile's icon drawn large and faint in its top corner (the tile is the positioned box), until there's a photo */}
-      <Icon size={132} aria-hidden="true" className="pointer-events-none absolute top-s13 right-s13 text-farm/[0.13] [stroke-width:0.75] max-md:hidden squat:hidden" />
-      <Icon size={26} className="relative text-farm" />
-      <h3 className="relative mt-s13 font-display text-[clamp(20px,1.8vw,26px)] leading-[1.15] text-balance text-forest">{title}</h3>
-      <p className="relative mt-[6px] max-w-[32em] text-[15px] leading-[1.5] text-ink-muted">{children}</p>
+      <Icon size={26} className="relative text-farm md:text-gold" />
+      <h3 className="relative mt-s13 font-display text-[clamp(20px,1.8vw,26px)] leading-[1.15] text-balance text-forest md:text-paper">{title}</h3>
+      <p className="relative mt-[6px] max-w-[32em] text-[15px] leading-[1.5] text-ink-muted md:text-paper/85">{children}</p>
     </div>
+  );
+}
+
+/** md up: the tile's photo behind its words, shaded at the bottom like the nature-walk tile (phones show media above). */
+function TilePhoto({ src, alt, position = "object-center" }: { src: StaticImageData; alt: string; position?: string }) {
+  return (
+    <>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(min-width: 1024px) 45vw, 90vw"
+        placeholder="blur"
+        className={`-z-10 hidden object-cover md:block ${position}`}
+      />
+      <span aria-hidden="true" className="absolute inset-0 -z-10 hidden bg-[linear-gradient(to_top,rgb(0_0_0/0.72),rgb(0_0_0/0.25)_70%,rgb(0_0_0/0.1))] md:block" />
+    </>
   );
 }
 
 /**
  * #work-the-land — the four hands-on things to do on the land, as a bento whose
  * rims catch the pointer's light (MagicBento): the orchard in 360° as the large
- * tile, the guided agri-tour, harvesting vegetables, and nature walks with the
- * orchard bench photo. Phones: a swipe row of the four tiles.
+ * tile, the guided agri-tour (the field path by the entrance, a still from the
+ * 360° tour), harvesting vegetables (the crop rows from above) and nature walks
+ * with the orchard bench photo. Phones: a swipe row of the four tiles, each with
+ * its media above the words (the agri-tour keeps its live 360° view there).
  */
 export function WorkTheLand() {
   return (
@@ -57,17 +76,23 @@ export function WorkTheLand() {
               tone="light"
               className="mb-s13 min-h-0 flex-1 md:hidden"
             />
+            <TilePhoto
+              src={fieldPath}
+              alt="A farm road running between open fields and a fence line lined with pink wildflowers, under a blue sky"
+              position="object-[50%_60%]"
+            />
             <TileText icon={IconFields} title="Walk the fields on a guided agri-tour">
               Seasonal crops, the old methods, and how a farm can look after its soil. On a day outing it starts at 9:30 am.
             </TileText>
           </BentoTile>
 
           <BentoTile className="flex h-[min(400px,58svh)] w-[86%] shrink-0 snap-start md:snap-align-none flex-col justify-end p-s8 pb-s21 md:h-auto md:w-auto md:p-s21 sm:p-s34 lg:p-s21 xl:p-s34 squat:p-s21">
-            {/* phones: the farm's own crop rows from above (a still from the 360° tour) fill the tall tile.
+            {/* the farm's own crop rows from above: above the words on phones, behind them from md up.
                 TODO(client): a close photo of the vegetable rows or a harvest */}
             <div className="relative mb-s13 min-h-0 flex-1 overflow-hidden rounded-[calc(var(--radius-card)-8px)] md:hidden">
               <Image src={cropRows} alt="The farm's crop rows seen from above, green beds between rows of young trees" fill sizes="86vw" placeholder="blur" className="object-cover" />
             </div>
+            <TilePhoto src={cropRows} alt="The farm's crop rows seen from above, green beds between rows of young trees" />
             <TileText icon={IconSprout} title="Harvest vegetables">
               Pull them from the soil and learn how they’re grown organically.
             </TileText>

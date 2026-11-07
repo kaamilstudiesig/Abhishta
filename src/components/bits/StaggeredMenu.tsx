@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { CONTACT, NAV_LINKS, SOCIALS } from "@/lib/site";
+import { CONTACT, NAV_LINKS, SOCIALS, linkProps } from "@/lib/site";
 
 gsap.registerPlugin(useGSAP);
 
@@ -147,6 +147,7 @@ export function StaggeredMenu({ tone = "light", solid = false }: { tone?: "light
                 <a
                   data-menu-link=""
                   href={link.href}
+                  {...linkProps(link.href)}
                   onClick={close}
                   className="flex w-fit items-start gap-s8 py-[2px] font-display text-[clamp(27px,7.6vw,45px)] leading-[1.15] tracking-[-0.015em] whitespace-nowrap transition-colors duration-300 hover:text-gold-soft sm:gap-s13"
                 >

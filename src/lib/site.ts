@@ -36,13 +36,20 @@ export const SOCIALS = [
 
 
 /** The site menu (client, 2026-10-26; Gallery added 2026-10-31; Farm to Table and Gau Seva got their own pages 2026-11). */
+/** The full Turiya tour (V7). The menu opens it in a new tab until it's rebuilt on our own page (client, 2026-11-07). */
+export const VIRTUAL_TOUR_URL = "https://www.turiya.co/360/Abhishta/V7/";
+
+/** External links open in a new tab. */
+const EXT = { target: "_blank", rel: "noopener noreferrer" } as const;
+export const linkProps = (href: string) => (href.startsWith("http") ? EXT : {});
+
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Stay", href: "/our-nests" },
   { label: "Experiences", href: "/the-living-farm" },
   { label: "Groups & Events", href: "/group-enquiries" },
   { label: "Farm to Table", href: "/farm-to-table" },
-  { label: "360° Virtual Tour", href: "/virtualtour" },
+  { label: "Virtual Tour", href: VIRTUAL_TOUR_URL },
   { label: "Gallery", href: "/gallery" },
   { label: "Gau Seva", href: "/gau-seva" },
 ] as const;

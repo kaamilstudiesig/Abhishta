@@ -7,7 +7,7 @@ import { Logo } from "@/components/Logo";
 import { LiquidGlass } from "@/components/bits/LiquidGlass";
 import { StaggeredMenu } from "@/components/bits/StaggeredMenu";
 import { IconWhatsApp } from "@/components/icons";
-import { NAV_LINKS, WHATSAPP_URL } from "@/lib/site";
+import { NAV_LINKS, WHATSAPP_URL, linkProps } from "@/lib/site";
 
 /**
  * The sticky header, after peninsuladelmar.com. Its tone follows whatever band
@@ -104,6 +104,7 @@ export function Navbar() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
+                    {...linkProps(l.href)}
                     aria-current={on ? "page" : undefined}
                     className={`relative inline-flex min-h-[40px] items-center px-[clamp(8px,0.8vw,13px)] text-[14px] font-semibold tracking-[0.06em] whitespace-nowrap uppercase ${hoverBox} ${ink}`}
                   >

@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { Stepper } from "@/components/bits/Stepper";
-import { CountField, Field, field, labelClass } from "@/components/forms";
+import { CountField, EMPTY_PHONE, Field, PhoneField, field, fullPhone, labelClass, phoneError, type Phone } from "@/components/forms";
 import { IconMail, IconPhone, IconWhatsApp } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { CONTACT, whatsappUrl } from "@/lib/site";
@@ -15,7 +15,7 @@ type Values = {
   date: string;
   organisation: string;
   name: string;
-  phone: string;
+  phone: Phone;
   email: string;
   note: string;
 };
@@ -41,9 +41,9 @@ function enquiry(v: Values) {
     `Date: ${v.date ? pretty(v.date) : "flexible"}`,
     v.organisation.trim() && v.type ? `${ORGANISATION_LABEL[v.type].replace(" (optional)", "")}: ${v.organisation.trim()}` : null,
     `Name: ${v.name.trim()}`,
-    v.phone.trim() ? `Phone: +91 ${v.phone.trim()}` : null,
+    fullPhone(v.phone) ? `Contact number: ${fullPhone(v.phone)}` : null,
     v.email.trim() ? `Email: ${v.email.trim()}` : null,
-    v.note.trim() ? `Note: ${v.note.trim()}` : null,
+    v.note.trim() ? `Additional info: ${v.note.trim()}` : null,
   ]
     .filter(Boolean)
     .join("\n");
@@ -51,8 +51,8 @@ function enquiry(v: Values) {
 
 /**
  * #group-quote — "Get a group quote", on paper so the forest footer reads as its
- * own band. Three short steps (React Bits Stepper): the group, the date, then
- * who's asking. There's no backend: sending opens WhatsApp with the enquiry
+ * own band. Four short steps (React Bits Stepper): the group, the date, who's
+ * asking, then anything else they'd like us to know. There's no backend: sending opens WhatsApp with the enquiry
  * written out, ready to send; email works the same way.
  */
 export function GroupQuote() {
@@ -67,11 +67,11 @@ export function GroupQuote() {
     date: "",
     organisation: "",
     name: "",
-    phone: "",
+    phone: EMPTY_PHONE,
     email: "",
     note: "",
   });
-  const [errors, setErrors] = useState<{ type?: string; name?: string }>({});
+  const [errors, setErrors] = useState<{ type?: string; name?: string; phone?: string }>({});
   const [sent, setSent] = useState(false);
 
   // an occasion picked in the events list fills in the form: a destination event, that occasion
@@ -105,19 +105,28 @@ export function GroupQuote() {
       document.getElementById(id("type-0"))?.focus();
       return false;
     }
+    if (from === 2) {
+      const name = values.name.trim() ? undefined : "Add your name so we know who’s asking.";
+      const phone = phoneError(values.phone);
+      setErrors((e) => ({ ...e, name, phone }));
+      if (name || phone) {
+        document.getElementById(id(name ? "name" : "phone"))?.focus();
+        return false;
+      }
+    }
     return true;
   };
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Enter in a field before the last step moves on rather than sending
-    if (step < 2) {
+    if (step < 3) {
       if (canLeave(step)) setStep(step + 1);
       return;
     }
-    if (!values.name.trim()) {
-      setErrors((er) => ({ ...er, name: "Add your name so we know who’s asking." }));
-      document.getElementById(id("name"))?.focus();
+    // the details step was checked on the way here; if they've gone wrong since, go back to it
+    if (!values.name.trim() || phoneError(values.phone)) {
+      setStep(2);
       return;
     }
     const url = whatsappUrl(enquiry(values));
@@ -219,45 +228,36 @@ export function GroupQuote() {
 
   const youStep = (
     <div className="grid grid-cols-2 gap-s13 sm:gap-s21">
-      <Field label="Name" htmlFor={id("name")} error={errors.name}>
-        <input
-          id={id("name")}
-          name="name"
-          type="text"
-          autoComplete="name"
-          required
-          aria-required="true"
-          aria-invalid={errors.name ? true : undefined}
-          aria-describedby={errors.name ? `${id("name")}-error` : undefined}
-          value={values.name}
-          onChange={(e) => {
-            set("name", e.target.value);
-            setErrors((er) => ({ ...er, name: undefined }));
-          }}
-          className={field}
-        />
-      </Field>
-      <Field label="Phone" htmlFor={id("phone")}>
-        <div className="flex">
-          <span
-            aria-hidden="true"
-            className="grid min-h-[44px] shrink-0 place-items-center rounded-l-[14px] border border-r-0 border-line bg-paper-deep px-[10px] text-[15px] text-ink-muted"
-          >
-            +91
-          </span>
+      {/* phones: the contact number gets more of the row, so a whole number shows */}
+      <div className="col-span-2 grid grid-cols-[minmax(0,4fr)_minmax(0,7fr)] gap-x-s13 sm:grid-cols-2 sm:gap-x-s21">
+        <Field label="Name" htmlFor={id("name")} error={errors.name}>
           <input
-            id={id("phone")}
-            name="phone"
-            type="tel"
-            inputMode="tel"
-            autoComplete="tel-national"
-            aria-label="Phone number, India (+91)"
-            value={values.phone}
-            onChange={(e) => set("phone", e.target.value)}
-            className={`${field} rounded-l-none`}
+            id={id("name")}
+            name="name"
+            type="text"
+            autoComplete="name"
+            required
+            aria-required="true"
+            aria-invalid={errors.name ? true : undefined}
+            aria-describedby={errors.name ? `${id("name")}-error` : undefined}
+            value={values.name}
+            onChange={(e) => {
+              set("name", e.target.value);
+              setErrors((er) => ({ ...er, name: undefined }));
+            }}
+            className={field}
           />
-        </div>
-      </Field>
+        </Field>
+        <PhoneField
+          id={id("phone")}
+          value={values.phone}
+          error={errors.phone}
+          onChange={(p) => {
+            set("phone", p);
+            setErrors((er) => ({ ...er, phone: undefined }));
+          }}
+        />
+      </div>
       <div className="col-span-2">
         <Field label="Email (optional)" htmlFor={id("email")}>
           <input
@@ -272,20 +272,22 @@ export function GroupQuote() {
           />
         </Field>
       </div>
-      <div className="col-span-2 short:hidden">
-        <Field label="Anything else (optional)" htmlFor={id("note")}>
-          <textarea
-            id={id("note")}
-            name="note"
-            rows={2}
-            autoComplete="off"
-            value={values.note}
-            onChange={(e) => set("note", e.target.value)}
-            className={`${field} min-h-[64px] resize-none py-s8`}
-          />
-        </Field>
-      </div>
     </div>
+  );
+
+  const moreStep = (
+    <Field label="Additional info (optional)" htmlFor={id("note")}>
+      <textarea
+        id={id("note")}
+        name="note"
+        rows={5}
+        autoComplete="off"
+        placeholder="Meals you’d like, activities, accessibility needs or any special requests"
+        value={values.note}
+        onChange={(e) => set("note", e.target.value)}
+        className={`${field} min-h-[128px] resize-none py-s8 leading-[1.45] short:min-h-[104px] squat:min-h-[112px]`}
+      />
+    </Field>
   );
 
   return (
@@ -330,7 +332,8 @@ export function GroupQuote() {
             steps={[
               { title: "Your group", content: groupStep },
               { title: "When", content: whenStep },
-              { title: "You", content: youStep },
+              { title: "Personal details", content: youStep },
+              { title: "Additional info", content: moreStep },
             ]}
             finish={
               <button type="submit" className={buttonClass("primary")}>

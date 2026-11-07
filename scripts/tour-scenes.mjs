@@ -41,6 +41,13 @@ const SCENES = [
   // 360° Virtual Tour — the Cottages and Family rooms pills (src/components/sections/virtual-tour/atlas.ts), client 2026-10-31
   "V7:Pathway_03", // Family rooms pill: the Nandagokula front
   "V7:Pathway_08", // Cottages pill: the cottage row (Gopala, Govinda; Mayura and Mathura behind)
+  // Our Nests — "Shared spaces" carousel (src/components/sections/our-nests/SharedSpaces.tsx), from the V7 tour
+  "V7:BlissSwimmingPool",
+  "V7:DiningZone",
+  "V7:TraditionalBath",
+  "V7:OfficeRoom", // games and sports centre
+  "V7:AmphitheaterCampfireArea",
+  "V7:KoiPond",
 ];
 
 const scenesOf = (xml) => [...xml.matchAll(/<panorama\b[^>]*>[\s\S]*?<\/panorama>/g)].map((m) => m[0]);

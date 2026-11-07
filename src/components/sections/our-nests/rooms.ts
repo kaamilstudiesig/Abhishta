@@ -15,6 +15,18 @@ import govinda1 from "@public/images/client-photos/cottages/govinda-1.jpg";
 import govinda2 from "@public/images/client-photos/cottages/govinda-2.jpg";
 import govinda3 from "@public/images/client-photos/cottages/govinda-3.jpg";
 import govinda4 from "@public/images/client-photos/cottages/govinda-4.jpg";
+import gopika1 from "@public/images/client-photos/family-gopika-1.jpg";
+import gopika2 from "@public/images/client-photos/family-gopika-2.jpg";
+import gopika3 from "@public/images/client-photos/family-gopika-3.jpg";
+import gopika4 from "@public/images/client-photos/family-gopika-4.jpg";
+import nandagokula1 from "@public/images/client-photos/family-nandagokula-1.jpg";
+import nandagokula2 from "@public/images/client-photos/family-nandagokula-2.jpg";
+import nandagokula3 from "@public/images/client-photos/family-nandagokula-3.jpg";
+import nandagokula4 from "@public/images/client-photos/family-nandagokula-4.jpg";
+import kaustubha1 from "@public/images/client-photos/family-kaustubha-1.jpg";
+import kaustubha2 from "@public/images/client-photos/family-kaustubha-2.jpg";
+import kaustubha3 from "@public/images/client-photos/family-kaustubha-3.jpg";
+import kaustubha4 from "@public/images/client-photos/family-kaustubha-4.jpg";
 import type { Tour } from "@/lib/tour";
 
 /**
@@ -81,6 +93,8 @@ export type GroupRoom = {
   bathrooms: string;
   suits: string;
   pillows: Pillows;
+  /** The client's photos (2026-11-07): three of the room, then the block from outside with its name over the door. */
+  photos: CottagePhoto[];
   tour: Tour;
 };
 
@@ -93,6 +107,12 @@ export const FAMILY_ROOMS: GroupRoom[] = [
     bathrooms: "2 bathrooms",
     suits: "For families who travel together.",
     pillows: { solo: 0, pairs: 5, extra: 0 },
+    photos: [
+      { src: gopika1, alt: "Gopika room: double beds with white sheets and tan blankets on a red floor, under a high tiled timber roof" },
+      { src: gopika2, alt: "Gopika room: rows of double beds leading to two washroom doors and a mirror, big windows on both sides" },
+      { src: gopika3, alt: "Gopika room: double beds in two rows, windows with green curtains and wall fans" },
+      { src: gopika4, alt: "The Gopika block from outside: an orange building with a tiled roof and patterned window frames, palms and a lawn", focus: "30% 50%" },
+    ],
     tour: { node: "Abhishta_06", pan: -120, tilt: -15 },
   },
   {
@@ -103,6 +123,12 @@ export const FAMILY_ROOMS: GroupRoom[] = [
     bathrooms: "2 bathrooms",
     suits: "For friends, school groups and camps.",
     pillows: { solo: 10, pairs: 0, extra: 0 },
+    photos: [
+      { src: nandagokula1, alt: "Nandagokula room: a long hall of single beds with red bases, big garden windows and an open glass door" },
+      { src: nandagokula2, alt: "Nandagokula room: the hall of single beds seen from a corner, under a high tiled timber roof", focus: "50% 70%" },
+      { src: nandagokula3, alt: "Nandagokula room: single beds with tan blankets and brown towels, hanging lamps from the roof beams", focus: "50% 60%" },
+      { src: nandagokula4, alt: "The Nandagokula front porch: a painted door frame, wooden pillars and the room's name sign under a tiled gable", focus: "50% 35%" },
+    ],
     tour: { node: "Abhishta_04", pan: -18, tilt: -15 },
   },
   {
@@ -113,6 +139,12 @@ export const FAMILY_ROOMS: GroupRoom[] = [
     bathrooms: "1 bathroom",
     suits: "For a small family or a few friends.",
     pillows: { solo: 5, pairs: 0, extra: 0 },
+    photos: [
+      { src: kaustubha1, alt: "Kaustubha room: single and folding beds with mustard blankets on a red floor, a window at the far end" },
+      { src: kaustubha2, alt: "Kaustubha room: beds on both sides, an open shelf and an open door out to the lawn" },
+      { src: kaustubha3, alt: "Kaustubha room: a bed with folded towels in front, more beds and a fan behind", focus: "50% 65%" },
+      { src: kaustubha4, alt: "The Kaustubha front: an orange wall with wooden pillars, a hanging lantern and the room's name sign over the door", focus: "50% 40%" },
+    ],
     tour: { node: "Abhishta_08", pan: -57, tilt: -15 },
   },
 ];

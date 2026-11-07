@@ -3,7 +3,7 @@ import { SiteShell } from "@/components/SiteShell";
 import { Gallery } from "@/components/sections/gallery/Gallery";
 
 const description =
-  "Photos of Abhishta Agri Farm Stay: the cottages and family rooms, the dining hall, the garden, the amphitheatre and the orchard, on a working farm 90 km from Bangalore.";
+  "Photos of Abhishta Agri Farm Stay: the cottages and family rooms, the dining hall, the garden and the amphitheatre, and the events, school visits and gatherings held there.";
 
 export const metadata: Metadata = {
   title: "Gallery | Abhishta Agri Farm Stay",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: { title: "Gallery — Abhishta Agri Farm Stay", description, images: ["/images/og.jpg"], locale: "en_IN", type: "website" },
 };
 
-/** The gallery (client, 2026-10-31): one screen, a drifting wall of the farm's photos you can drag, then the footer. */
+/** The gallery (client, 2026-11-07): two one-screen drifting photo walls — #beauty (the property) and #moments (events and guests) — then the footer. */
 export default function GalleryPage() {
   return (
     <SiteShell>

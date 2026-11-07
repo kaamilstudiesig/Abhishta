@@ -67,13 +67,13 @@ export const FARM_STOPS: FarmStop[] = [
     id: "rows",
     label: "Vegetable rows",
     caption: "The vegetable rows",
-    line: "Beds of vegetables between young fruit trees.",
+    line: "Vegetables and greens, grown with organic fertilisers.",
     photo: { src: cropRows, alt: "The farm's crop rows seen from above, green beds between rows of young trees" },
   },
   { id: "orchard", label: "Orchard", caption: "The orchard path", line: "Fruit from the orchard, picked in season.", tour: ORCHARD_VIEW },
   { id: "cows", label: "Gaushaale", caption: "The gaushaale", line: "Milk from the farm’s own cows.", tour: COW_VIEWS[0].tour },
-  { id: "kitchen", label: "The kitchen", caption: "The buffet", line: "Simple, home-style food, served at the buffet.", tour: { node: "Abhishta_03", pan: -150, tilt: -8 } },
-  { id: "plate", label: "Your plate", caption: "The dining hall", line: "Every meal is included in your stay.", tour: { node: "Abhishta_03", pan: 22, tilt: -8 } },
+  { id: "kitchen", label: "The kitchen", caption: "The buffet", line: "Veg and non-veg are cooked in separate kitchens, then served at the buffet.", tour: { node: "Abhishta_03", pan: -150, tilt: -8 } },
+  { id: "plate", label: "Your plate", caption: "The dining hall", line: "Sit down to eat in the dining hall. Every meal is included in your stay.", tour: { node: "Abhishta_03", pan: 22, tilt: -8 } },
 ];
 
 /** Open a stop in "From the farm to your plate" from the diagram above it. */

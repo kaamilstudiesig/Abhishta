@@ -2,25 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import fromAbove from "@public/images/client-photos/tour-farm-from-above.jpg";
+import cover from "@public/images/client-photos/nests-hero-cottage-row.jpg";
 import { CircularText } from "@/components/bits/CircularText";
 import { glass } from "@/components/bits/glass";
 import { GlassFill, LiquidGlass } from "@/components/bits/LiquidGlass";
 import { Icon360, IconArrow, IconClose, IconPlay } from "@/components/icons";
-import { TourDialog } from "@/components/TourDialog";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
-import { STORY_VIDEO_URL } from "@/lib/site";
+import { STORY_VIDEO_URL, VIRTUAL_TOUR_URL } from "@/lib/site";
 
 /**
- * Forest band under About: the story film (lightbox) and the 360° virtual tour
- * as a still card (after thebierlibrary.in) — the whole farm from straight
- * above, from the tour itself. Clicking it opens the live tour full screen
- * (TourDialog), so the section itself never captures a drag or the wheel.
+ * Forest band under About: the story film (lightbox) and the virtual tour as a
+ * still card (after thebierlibrary.in) — the cottage row under the palms.
+ * Clicking it opens the full Turiya tour in a new tab, so the section itself
+ * never captures a drag or the wheel.
  * The card and its label bar are glasscn liquid-refract glass (GlassFill /
  * LiquidGlass): clear panes whose rims bend what is behind them.
  */
 export function Preview360() {
-  const [tourOpen, setTourOpen] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
@@ -36,15 +34,17 @@ export function Preview360() {
 
   return (
     <section id="look-around" data-nav="dark" data-snap="" className={`on-dark bg-forest text-paper ${screen}`}>
-      <div className={`${container} grid items-center gap-s34 md:gap-s55 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
+      <div className={`${container} grid items-center gap-s34 short:gap-s21 md:gap-s55 lg:grid-cols-[1fr_1.618fr] lg:gap-s89`}>
         <SectionHeader
           tone="dark"
-          title="See the farm before you visit"
-          lead="Take the 360° virtual tour of the whole farm, or watch a short film about how Abhishta began."
+          titleClassName="max-sm:short:!text-[26px]"
+          leadClassName="max-sm:short:mt-s13 max-sm:short:text-[15px] max-sm:short:leading-[1.5]"
+          title="Explore Abhishta, From Wherever You Are"
+          lead="Step into the world of Abhishta Agri Farm Stay through an immersive 360° virtual experience and discover the inspiration and journey behind the farm through our short film."
         >
-          <button type="button" onClick={() => setVideoOpen(true)} className={buttonClass("ghost-light", "mt-s21 md:mt-s34")}>
+          <button type="button" onClick={() => setVideoOpen(true)} className={buttonClass("ghost-light", "mt-s21 max-sm:short:mt-s13 md:mt-s34")}>
             <IconPlay size={16} />
-            Watch our story
+            Watch
           </button>
         </SectionHeader>
 
@@ -54,17 +54,18 @@ export function Preview360() {
             <span className="absolute top-[8%] left-[4%] size-[46%] rounded-full bg-gold/35 blur-[60px]" />
             <span className="absolute right-[2%] bottom-[4%] size-[52%] rounded-full bg-water/40 blur-[70px]" />
           </span>
-          <button
-            type="button"
-            onClick={() => setTourOpen(true)}
-            aria-label="Open the 360° virtual tour"
+          <a
+            href={VIRTUAL_TOUR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the virtual tour (opens in a new tab)"
             className={`group relative block w-full cursor-pointer overflow-hidden rounded-[28px] p-[10px] text-left transition-[background-color] duration-500 hover:bg-white/[0.06] ${glass("dark")} shadow-[0_28px_70px_-20px_rgb(0_0_0/0.5)]`}
           >
             <GlassFill />
             <span className="relative block aspect-[16/11] overflow-hidden rounded-[19px] sm:aspect-[16/10]">
               <Image
-                src={fromAbove}
-                alt="The whole farm seen from straight above: the cottages, the pool and the orchard rows"
+                src={cover}
+                alt="A row of tiled-roof cottages with pillared verandas under coconut palms, beside a stone path through the garden"
                 fill
                 sizes="(min-width: 1024px) 55vw, 92vw"
                 placeholder="blur"
@@ -75,13 +76,13 @@ export function Preview360() {
                 as="span"
                 className="absolute inset-x-s13 bottom-s13 flex items-center justify-between gap-s13 rounded-full bg-white/[0.08] py-[10px] pr-[10px] pl-s21 text-paper [text-shadow:0_1px_4px_rgb(0_0_0/0.6)] [--liquid-glass-rim-fade:8%] [--liquid-glass-rim-light:rgb(255_255_255/0.55)] [--liquid-glass-rim-width:1.5px] sm:inset-x-s21 sm:bottom-s21"
               >
-                <span className="font-display text-[clamp(18px,1.8vw,24px)] leading-[1.1]">360° Virtual Tour</span>
+                <span className="font-display text-[clamp(18px,1.8vw,24px)] leading-[1.1]">Virtual Tour</span>
                 <span className="grid size-[40px] shrink-0 place-items-center rounded-full bg-paper text-forest transition-transform duration-300 group-hover:translate-x-[3px]">
                   <IconArrow size={18} />
                 </span>
               </LiquidGlass>
             </span>
-          </button>
+          </a>
           <CircularText
             text="virtual tour · 360° · virtual tour · 360° · "
             size={110}
@@ -91,8 +92,6 @@ export function Preview360() {
           </CircularText>
         </div>
       </div>
-
-      <TourDialog open={tourOpen} onClose={() => setTourOpen(false)} />
 
       <dialog
         ref={dialogRef}

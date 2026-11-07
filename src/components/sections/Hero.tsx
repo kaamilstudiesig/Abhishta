@@ -13,8 +13,8 @@ import { BOOKING_URL } from "@/lib/site";
 
 /**
  * Full-screen hero, editorial and quiet: the farm's own film under one flat
- * shade, an oversized thin serif headline in two offset lines ("Experience /
- * Countryside"), one serif subline and one booking CTA.
+ * shade, an oversized thin serif headline in two offset lines ("The art of /
+ * countryside living"), one serif subline and one booking CTA.
  * They enter in sequence as the intro veil lifts (headline lines through a clip
  * mask → subline → CTA, ~1.2s).
  */
@@ -55,7 +55,7 @@ export function Hero() {
     };
   }, []);
 
-  // As you scroll away from the hero, BELOVED drifts right and COUNTRYSIDE left,
+  // As you scroll away from the hero, the first line drifts right and the second left,
   // closing in on each other (scrubbed to the scroll, so it reverses on the way back).
   const sectionRef = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -116,16 +116,17 @@ export function Hero() {
         <h1 className="hero-display text-[11.6vw] leading-[1] tracking-[0.005em] uppercase md:text-[clamp(64px,9.2vw,148px)] md:leading-[0.95]">
           {/* the two lines drift toward each other as you scroll away from the hero */}
           <span data-hero-line="" className="block will-change-transform">
-            <SplitText as="span" trigger="intro" by="lines" delay={0.1} text="Experience" className="block" />
+            <SplitText as="span" trigger="intro" by="lines" delay={0.1} text="The art of" className="block" />
           </span>
           <span data-hero-line="" className="block text-right will-change-transform md:pr-[4vw]">
-            <SplitText as="span" trigger="intro" by="lines" delay={0.25} text="Countryside" className="block" />
+            <SplitText as="span" trigger="intro" by="lines" delay={0.25} text="countryside living" className="block" />
           </span>
         </h1>
         {/* phones: indented under the second line, close to the headline (after the reference) */}
         <div className="mt-s34 ml-[24%] md:mt-s55 md:mr-[calc(4vw+8%)] md:ml-0 md:w-[min(26em,40%)] md:self-end">
           <p data-hero-reveal="" className="font-display text-[clamp(17px,1.4vw,20px)] leading-[1.3] text-paper/90 md:leading-[1.45]">
-            Experience countryside living, fresh air, and wonderful times at Abhishta Agri Farm Stay, just 90 km from Bangalore.
+            An exclusive countryside escape just 90 km from Bangalore. Discover tranquil landscapes, thoughtfully curated
+            experiences and the luxury of slowing down at Abhishta Agri Farm Stay.
           </p>
           <div data-hero-reveal="" className="mt-s21 flex items-stretch gap-[6px] md:mt-s34">
             <a
