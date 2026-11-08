@@ -49,7 +49,7 @@ export const NAV_LINKS = [
   { label: "Experiences", href: "/the-living-farm" },
   { label: "Groups & Events", href: "/group-enquiries" },
   { label: "Farm to Table", href: "/farm-to-table" },
-  { label: "Virtual Tour", href: VIRTUAL_TOUR_URL },
+  { label: "Virtual Tour", href: "/virtualtour" },
   { label: "Gallery", href: "/gallery" },
   { label: "Gau Seva", href: "/gau-seva" },
 ] as const;

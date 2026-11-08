@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SiteShell } from "@/components/SiteShell";
-import { AtlasHero } from "@/components/sections/virtual-tour/AtlasHero";
+import { FullTour } from "@/components/sections/virtual-tour/FullTour";
 import { FindUs } from "@/components/sections/virtual-tour/FindUs";
 import { AskUs } from "@/components/sections/virtual-tour/AskUs";
 
@@ -16,13 +16,13 @@ export const metadata: Metadata = {
 
 /**
  * The 360° Virtual Tour (/virtualtour, the shareable link the client asked for; /field-notes redirects here) —
- * one screen per section: the full-screen tour, how to reach us, ask us. The photos moved to /gallery (2026-10-31). Built from
+ * one screen per section: Turiya's full V7 tour embedded (client: the tour must live on this address), how to reach us, ask us. The photos moved to /gallery (2026-10-31). Built from
  * docs/wireframes/virtual-tour.md. "Around the farm" now closes the homepage.
  */
 export default function VirtualTour() {
   return (
     <SiteShell>
-      <AtlasHero />
+      <FullTour />
       <FindUs />
       <AskUs />
     </SiteShell>
