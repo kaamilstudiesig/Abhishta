@@ -100,6 +100,15 @@ html {
   }
 }
 
+/* Mouse/trackpad before SmoothScroll has started (first moments after a load or reload):
+   gentle native snapping, so an early scroll never strands the page between sections.
+   Once Lenis adds html.lenis it takes over and this switches off. */
+@media (pointer: fine) {
+  html:not(.lenis) {
+    scroll-snap-type: y proximity;
+  }
+}
+
 /* Mouse/trackpad with reduced motion (no Lenis): gentle native snapping. */
 @media (pointer: fine) and (prefers-reduced-motion: reduce) {
   html {

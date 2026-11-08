@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
+import { INTRO_DONE } from "@/lib/intro";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -218,7 +219,36 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     gsap.ticker.lagSmoothing(0);
     window.addEventListener("keydown", onKey);
 
+    // After a load or reload the browser may restore a scroll position between two sections
+    // (or an early scroll may stop there before this ran). Nothing would settle it until the
+    // next scroll, so settle it now: onto the nearest section, unless already on one or in the footer.
+    let retries = 0;
+    let retry: ReturnType<typeof setTimeout> | undefined;
+    const settleStranded = () => {
+      // the homepage intro locks scrolling for a few seconds: try again once it has lifted
+      if (blocked()) {
+        if (retries++ < 20) retry = setTimeout(settleStranded, 500);
+        return;
+      }
+      if (paging || pending) return;
+      const list = pages();
+      if (!list.length) return;
+      const y = window.scrollY;
+      if (y > list[list.length - 1] + 4) return; // footer: free
+      if (list.some((p) => Math.abs(p - y) <= 2)) return;
+      go(list.reduce((a, c) => (Math.abs(c - y) < Math.abs(a - y) ? c : a)));
+    };
+    const timers = [setTimeout(settleStranded, 250), setTimeout(settleStranded, 1200)];
+    window.addEventListener("load", settleStranded);
+    window.addEventListener("pageshow", settleStranded);
+    window.addEventListener(INTRO_DONE, settleStranded);
+
     return () => {
+      timers.forEach(clearTimeout);
+      clearTimeout(retry);
+      window.removeEventListener("load", settleStranded);
+      window.removeEventListener("pageshow", settleStranded);
+      window.removeEventListener(INTRO_DONE, settleStranded);
       window.removeEventListener("keydown", onKey);
       gsap.ticker.remove(raf);
       instance.destroy();
