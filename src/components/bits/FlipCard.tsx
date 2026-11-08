@@ -22,6 +22,7 @@ export function FlipCard({
   back,
   label,
   className = "",
+  stacked = false,
 }: {
   photo: StaticImageData;
   alt: string;
@@ -33,6 +34,8 @@ export function FlipCard({
   /** what the card is about, for the flip button's name */
   label: string;
   className?: string;
+  /** narrow cards: the title on its own line with the "See more" button under it */
+  stacked?: boolean;
 }) {
   const [flipped, setFlipped] = useState(false);
 
@@ -48,7 +51,7 @@ export function FlipCard({
           <div inert={flipped || undefined} className="absolute inset-0 overflow-hidden rounded-card shadow-card [backface-visibility:hidden]">
             <Image src={photo} alt={alt} fill sizes="(min-width: 1024px) 40vw, 92vw" placeholder="blur" className="object-cover" />
             <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.7),rgb(0_0_0/0.1)_55%,transparent)]" />
-            <div className="on-dark absolute inset-x-0 bottom-0 flex items-end justify-between gap-s13 p-s21">
+            <div className={`on-dark absolute inset-x-0 bottom-0 flex p-s21 ${stacked ? "flex-col items-start gap-s13" : "items-end justify-between gap-s13"}`}>
               <div>
                 {tag ? <p className="text-[13px] font-medium tracking-[0.04em] text-paper/85">{tag}</p> : null}
                 <p className="font-display text-[clamp(22px,2.6vw,32px)] leading-[1.1] text-paper">{title}</p>
