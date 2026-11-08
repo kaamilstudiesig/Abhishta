@@ -14,10 +14,11 @@ export type DriftWallItem = { src: StaticImageData; alt: string; caption: string
  * it large in a dialog. It only moves while on screen, and with reduced motion
  * it holds still.
  *
- * Each column can be grabbed and dragged up or down (mouse or touch); let go
- * and it carries on with the flick, then eases back into its drift. On touch
- * screens a swipe on a column moves the column; the gaps between columns still
- * scroll the page. A drag never counts as a click on a photo.
+ * With a mouse, each column can be grabbed and dragged up or down; let go and
+ * it carries on with the flick, then eases back into its drift. On touch
+ * screens the wall only drifts by itself: a swipe anywhere on it scrolls the
+ * page (it used to move the column, which trapped phones on the first wall,
+ * 2026-11-08), and a tap still opens the photo. A drag never counts as a click.
  */
 export function DriftWall({
   items,
@@ -105,7 +106,8 @@ export function DriftWall({
   }, [cols, speed]);
 
   const onDragStart = (c: number) => (e: PointerEvent<HTMLDivElement>) => {
-    if (e.button !== 0 || !e.isPrimary) return;
+    // mouse only: on touch a swipe must always scroll the page
+    if (e.pointerType !== "mouse" || e.button !== 0 || !e.isPrimary) return;
     drag.current = { c, id: e.pointerId, y: e.clientY, t: e.timeStamp, fling: 0, moved: 0 };
   };
   const onDragMove = (e: PointerEvent<HTMLDivElement>) => {
@@ -158,7 +160,7 @@ export function DriftWall({
           {cols.map((col, c) => (
             <div
               key={c}
-              className="min-w-0 cursor-grab touch-none select-none active:cursor-grabbing"
+              className="min-w-0 cursor-grab touch-pan-y select-none active:cursor-grabbing"
               onPointerEnter={() => (hovered.current = c)}
               onPointerDown={onDragStart(c)}
               onPointerMove={onDragMove}

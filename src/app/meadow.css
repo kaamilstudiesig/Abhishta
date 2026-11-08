@@ -83,3 +83,17 @@ html[data-ui="meadow"] blockquote {
   font-style: normal;
   font-weight: 500;
 }
+
+/* /gallery — on phones, tablets and touch screens the corner label of each wall
+   gives way to the fixed "Beauty | Moments" switch (Gallery.tsx). */
+html[data-ui="meadow"] .gallery-switch {
+  display: none;
+}
+@media (max-width: 1023.98px), (pointer: coarse) {
+  html[data-ui="meadow"] .gallery-switch {
+    display: flex;
+  }
+  html[data-ui="meadow"] .gallery-label {
+    display: none;
+  }
+}

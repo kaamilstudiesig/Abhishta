@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { DriftWall, type DriftWallItem } from "@/components/bits/DriftWall";
 import { BEAUTY, MOMENTS } from "./photos";
 import { glass } from "@/components/bits/glass";
@@ -14,16 +14,101 @@ const TITLE_MS = 2600;
  * /gallery (client, 2026-11-07): two one-screen drifting photo walls, one after
  * the other — #beauty (the property, its buildings and grounds) and #moments
  * (events, groups and guests). Each wall is a React Bits DriftWall (flat): grab
- * any column and drag it up or down; let go and it drifts on. Hover a photo to
- * read its caption; click to see it large.
+ * any column and drag it up or down with a mouse; let go and it drifts on.
+ * Hover a photo to read its caption; click or tap to see it large.
+ *
+ * Phones, tablets and touch screens (below lg, or a coarse pointer): the walls
+ * only drift (a swipe scrolls the page, so the second wall and the footer are
+ * always reachable), and the corner label becomes a clear-glass
+ * "Beauty | Moments" switch that follows you down the page and jumps to the
+ * other wall in one tap (2026-11-08).
  */
+const WALLS = [
+  { id: "beauty", short: "Beauty" },
+  { id: "moments", short: "Moments" },
+] as const;
+
 export function Gallery() {
   return (
     <>
       <h1 className="sr-only">Gallery</h1>
       <GalleryWall id="beauty" num="01" title="The Beauty of Abhishta" lead="Property, infrastructure & surroundings" items={BEAUTY} />
       <GalleryWall id="moments" num="02" title="Moments at Abhishta" lead="Events, activities & guest experiences" items={MOMENTS} />
+      <GallerySwitch />
     </>
+  );
+}
+
+/**
+ * The phone/tablet switch (shown by `.gallery-switch` in meadow.css). It shows
+ * while a wall fills most of the screen, marks the one you're on, and fades out
+ * over the footer.
+ */
+function GallerySwitch() {
+  const [active, setActive] = useState(-1);
+
+  useEffect(() => {
+    let raf = 0;
+    const check = () => {
+      raf = 0;
+      const h = window.innerHeight;
+      // the wall that covers at least half the screen, if any
+      const i = WALLS.findIndex(({ id }) => {
+        const r = document.getElementById(id)?.getBoundingClientRect();
+        return r ? Math.min(r.bottom, h) - Math.max(r.top, 0) >= h * 0.5 : false;
+      });
+      setActive(i);
+    };
+    const onScroll = () => void (raf ||= requestAnimationFrame(check));
+    check();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  const go = (id: string) => (e: MouseEvent) => {
+    // with a mouse, Lenis handles the #anchor (smoothly, then it snaps); on touch, scroll natively
+    if (document.documentElement.classList.contains("lenis")) return;
+    e.preventDefault();
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.getElementById(id)?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  };
+
+  const shown = active >= 0;
+  return (
+    <nav
+      aria-label="Galleries"
+      aria-hidden={!shown || undefined}
+      className={`gallery-switch fixed top-[84px] left-1/2 z-30 -translate-x-1/2 items-center rounded-full p-[4px] shadow-card ${glass()} transition-opacity duration-500 ease-[var(--ease-earth)] motion-reduce:transition-none ${
+        shown ? "opacity-100" : "pointer-events-none opacity-0"
+      }`}
+    >
+      <GlassFill blur={0} saturation={1.1} fill="bg-white/55" />
+      {/* the leaf-green pill slides under the wall you're on */}
+      <span
+        aria-hidden="true"
+        className="absolute inset-y-[4px] left-[4px] w-[calc(50%-4px)] rounded-full bg-forest transition-transform duration-500 ease-[var(--ease-earth)] motion-reduce:transition-none"
+        style={{ transform: active === 1 ? "translateX(100%)" : "none" }}
+      />
+      {WALLS.map(({ id, short }, i) => (
+        <a
+          key={id}
+          href={`#${id}`}
+          onClick={go(id)}
+          tabIndex={shown ? undefined : -1}
+          aria-current={active === i ? "true" : undefined}
+          className={`relative grid h-[44px] w-[108px] place-items-center rounded-full text-[15px] font-medium transition-colors duration-500 ${
+            active === i ? "text-paper" : "text-forest"
+          }`}
+        >
+          {short}
+        </a>
+      ))}
+    </nav>
   );
 }
 
@@ -69,7 +154,7 @@ function GalleryWall({ id, num, title, lead, items }: { id: string; num: string;
       </div>
 
       {/* a small label that stays, so it's clear which gallery you're in */}
-      <p className={`pointer-events-none absolute top-[84px] left-s13 z-10 flex items-center gap-s8 rounded-full px-s13 py-[6px] text-[13px] font-medium text-forest sm:left-s21 ${glass()}`}>
+      <p className={`gallery-label pointer-events-none absolute top-[84px] left-s13 z-10 flex items-center gap-s8 rounded-full px-s13 py-[6px] text-[13px] font-medium text-forest sm:left-s21 ${glass()}`}>
         <GlassFill blur={0} saturation={1.1} fill="bg-white/60" />
         <span className="relative tabular-nums text-ink-muted">{num}</span>
         <span className="relative">{title}</span>

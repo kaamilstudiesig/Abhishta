@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { TourViewer } from "@/components/TourViewer";
+import { TourOrPhoto } from "@/components/TourOrPhoto";
 import { Icon360 } from "@/components/icons";
 import { container } from "@/components/ui";
 import { ATLAS } from "./atlas";
@@ -74,12 +74,14 @@ export function AtlasHero() {
   return (
     <section id="top" data-nav="dark" data-snap="" className="on-dark relative isolate h-svh min-h-[560px] overflow-hidden bg-forest text-paper">
       <div className="absolute inset-0" onPointerDown={used} onWheel={used}>
-        <TourViewer
+        <TourOrPhoto
           tour={place.tour}
           title={`360° view of the farm: ${place.name.toLowerCase()}`}
           caption={place.name}
           tone="dark"
           bleed
+          defaultLive
+          switchClassName="top-[92px] right-s21 sm:right-s34"
           onPrev={() => setI((i - 1 + count) % count)}
           onNext={() => setI((i + 1) % count)}
           prevLabel="Previous place"
@@ -94,7 +96,7 @@ export function AtlasHero() {
               setExploring(true);
               used();
             }}
-            className="absolute inset-0 z-20 flex touch-pan-y items-center justify-center"
+            className="absolute inset-x-0 top-[136px] bottom-0 z-20 flex touch-pan-y items-center justify-center"
             aria-label="Look around the farm in 360°"
           >
             <span className={`relative mt-[18svh] inline-flex items-center gap-s8 rounded-full px-s21 py-s13 text-[15px] font-medium text-paper ${glass("dark")}`}>

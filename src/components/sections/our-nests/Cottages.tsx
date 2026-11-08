@@ -2,16 +2,33 @@
 
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
-import { IconCheck, IconChevronLeft, IconChevronRight, IconExternal } from "@/components/icons";
+import {
+  IconCheck,
+  IconChevronLeft,
+  IconChevronRight,
+} from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL } from "@/lib/site";
-import { Pillows, onTabKeyDown, useActivePillInView, useSelectRoom } from "./RoomParts";
-import { COTTAGES, COTTAGE_NAMES, RATES, tourV7Url } from "./rooms";
+import {
+  Pillows,
+  onTabKeyDown,
+  useActivePillInView,
+  useSelectRoom,
+} from "./RoomParts";
+import { COTTAGES, COTTAGE_NAMES, RATES } from "./rooms";
+import { TourOrPhoto } from "@/components/TourOrPhoto";
 import { glass } from "@/components/bits/glass";
 import { GlassFill } from "@/components/bits/LiquidGlass";
 
 // Stayflexi's cottage amenities, plus the sit-out from the official site.
-const FACTS = ["Own washroom", "Hot water", "Air-conditioned", "Kettle, wardrobe", "Toiletries", "Private sit-out"];
+const FACTS = [
+  "Own washroom",
+  "Hot water",
+  "Air-conditioned",
+  "Kettle, wardrobe",
+  "Toiletries",
+  "Private sit-out",
+];
 
 const names = `${COTTAGE_NAMES.slice(0, -1).join(", ")} and ${COTTAGE_NAMES.at(-1)}`;
 
@@ -38,15 +55,70 @@ export function Cottages() {
   const photo = cottage.photos[shot];
   const prev = () => setShot((shot - 1 + shots) % shots);
   const next = () => setShot((shot + 1) % shots);
-  const control =
-    `z-10 grid size-[40px] place-items-center rounded-full text-paper transition-colors duration-300 hover:bg-white/20 ${glass("dark")}`;
-  const frameHeight = "h-[max(240px,calc(100svh-500px))] sm:h-[clamp(280px,29svh,440px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]";
+  const control = `z-10 grid size-[40px] place-items-center rounded-full text-paper transition-colors duration-300 hover:bg-white/20 ${glass("dark")}`;
+  const frameHeight =
+    "h-[max(240px,calc(100svh-500px))] sm:h-[clamp(280px,29svh,440px)] lg:h-[clamp(360px,calc(100svh-280px),580px)]";
+
+  const slideshow = (
+    <div
+      role="group"
+      aria-roledescription="slideshow"
+      aria-label={`Photos of ${cottage.name} cottage`}
+      className="relative h-full overflow-hidden rounded-card bg-card ring-1 ring-line"
+    >
+      <Image
+        key={photo.src.src}
+        src={photo.src}
+        alt={photo.alt}
+        fill
+        sizes="(min-width: 1024px) 55vw, 100vw"
+        placeholder="blur"
+        style={{ objectPosition: photo.focus }}
+        className="animate-[fade-in_500ms_ease-out] object-cover motion-reduce:animate-none"
+      />
+      {/* a soft shade at the bottom and sides, so the clear-glass count and arrows read on white walls */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.4),transparent_30%),linear-gradient(to_right,rgb(0_0_0/0.22),transparent_16%,transparent_84%,rgb(0_0_0/0.22))]"
+      />
+      <span
+        aria-live="polite"
+        className={`absolute bottom-s13 left-s13 rounded-full px-s13 py-[6px] text-[13px] font-medium text-paper ${glass("dark")}`}
+      >
+        <GlassFill />
+        {`${cottage.name} · ${shot + 1} of ${shots}`}
+      </span>
+      <button
+        type="button"
+        onClick={prev}
+        aria-label={`Previous photo of ${cottage.name}`}
+        className={`absolute top-1/2 left-s13 -translate-y-1/2 ${control}`}
+      >
+        <GlassFill />
+        <IconChevronLeft size={20} />
+      </button>
+      <button
+        type="button"
+        onClick={next}
+        aria-label={`Next photo of ${cottage.name}`}
+        className={`absolute top-1/2 right-s13 -translate-y-1/2 ${control}`}
+      >
+        <GlassFill />
+        <IconChevronRight size={20} />
+      </button>
+    </div>
+  );
 
   useSelectRoom(COTTAGES, setActive);
   useActivePillInView(listRef, active);
 
   return (
-    <section id="cottages" data-nav="light" data-snap="" className={`bg-paper-deep ${screen}`}>
+    <section
+      id="cottages"
+      data-nav="light"
+      data-snap=""
+      className={`bg-paper-deep ${screen}`}
+    >
       <div
         className={`${container} grid gap-y-s13 sm:gap-y-s21 lg:grid-cols-[1.618fr_1fr] lg:grid-rows-[1fr_auto_auto_auto_1fr] lg:gap-x-s89 lg:gap-y-0 lg:[grid-template-areas:'frame_.'_'frame_header'_'frame_tabs'_'frame_details'_'frame_.']`}
       >
@@ -77,7 +149,9 @@ export function Cottages() {
                 onClick={() => setActive(i)}
                 onKeyDown={(e) => onTabKeyDown(e, count, active, setActive)}
                 className={`relative flex min-h-[44px] shrink-0 items-center gap-s8 rounded-btn border px-s21 text-[15px] whitespace-nowrap transition-colors duration-300 lg:px-s13 ${
-                  on ? "border-forest bg-forest text-paper" : "border-forest/25 text-forest/75 hover:border-forest/60 hover:text-forest"
+                  on
+                    ? "border-forest bg-forest text-paper"
+                    : "border-forest/25 text-forest/75 hover:border-forest/60 hover:text-forest"
                 }`}
               >
                 {c.name}
@@ -98,47 +172,18 @@ export function Cottages() {
           aria-labelledby={`cottage-tab-${cottage.id}`}
           className="relative min-w-0 lg:[grid-area:frame]"
         >
-          <div role="group" aria-roledescription="slideshow" aria-label={`Photos of ${cottage.name} cottage`} className={`relative overflow-hidden rounded-card bg-card ring-1 ring-line ${frameHeight}`}>
-            <Image
-              key={photo.src.src}
-              src={photo.src}
-              alt={photo.alt}
-              fill
-              sizes="(min-width: 1024px) 55vw, 100vw"
-              placeholder="blur"
-              style={{ objectPosition: photo.focus }}
-              className="animate-[fade-in_500ms_ease-out] object-cover motion-reduce:animate-none"
-            />
-            {/* a soft shade at the bottom and sides, so the clear-glass count and arrows read on white walls */}
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.4),transparent_30%),linear-gradient(to_right,rgb(0_0_0/0.22),transparent_16%,transparent_84%,rgb(0_0_0/0.22))]"
-            />
-            <span aria-live="polite" className={`absolute bottom-s13 left-s13 rounded-full px-s13 py-[6px] text-[13px] font-medium text-paper ${glass("dark")}`}>
-              <GlassFill />
-              {`${cottage.name} · ${shot + 1} of ${shots}`}
-            </span>
-            <button type="button" onClick={prev} aria-label={`Previous photo of ${cottage.name}`} className={`absolute top-1/2 left-s13 -translate-y-1/2 ${control}`}>
-              <GlassFill />
-              <IconChevronLeft size={20} />
-            </button>
-            <button type="button" onClick={next} aria-label={`Next photo of ${cottage.name}`} className={`absolute top-1/2 right-s13 -translate-y-1/2 ${control}`}>
-              <GlassFill />
-              <IconChevronRight size={20} />
-            </button>
-          </div>
           {cottage.tour ? (
-            <a
-              href={tourV7Url(cottage.tour)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="tap mt-s13 inline-flex items-center gap-[6px] text-[14px] font-medium text-forest hover:text-farm max-sm:hidden short:hidden"
-            >
-              See {cottage.name} in 360°
-              <IconExternal size={15} />
-              <span className="sr-only">(opens in a new tab)</span>
-            </a>
-          ) : null}
+            <TourOrPhoto
+              tour={cottage.tour}
+              title={`360° view inside ${cottage.name} cottage`}
+              caption={cottage.name}
+              tone="light"
+              photo={slideshow}
+              className={frameHeight}
+            />
+          ) : (
+            <div className={frameHeight}>{slideshow}</div>
+          )}
         </div>
 
         <div className="lg:mt-s34 lg:[grid-area:details] squat:mt-s21">
@@ -156,11 +201,17 @@ export function Cottages() {
           </ul>
           {/* phones lean on the floating "Book a stay" button instead, so the 360° view can be taller */}
           <div className="mt-s21 flex flex-wrap items-center gap-x-s21 gap-y-s8 max-sm:hidden lg:mt-s34 short:hidden squat:mt-s21">
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("primary")}>
+            <a
+              href={BOOKING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonClass("primary")}
+            >
               Book a cottage
             </a>
             <span className="text-[14px] text-ink-muted squat:hidden">
-              {RATES.cottageAdult} an adult, {RATES.cottageChild} a child over 5, all meals included. Children under 5 stay free.
+              {RATES.cottageAdult} an adult, {RATES.cottageChild} a child over
+              5, all meals included. Children under 5 stay free.
             </span>
           </div>
         </div>

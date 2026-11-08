@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TourViewer } from "@/components/TourViewer";
+import { TourOrPhoto } from "@/components/TourOrPhoto";
 import { IconArrow } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BREEDS, COW_VIEWS, GAU_SEVA_ENQUIRY } from "./farm";
@@ -21,7 +21,7 @@ export function GauSevaTeaser() {
       <div
         className={`${container} grid gap-s21 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-s89`}
       >
-        <TourViewer
+        <TourOrPhoto
           tour={COW_VIEWS[0].tour}
           title={COW_VIEWS[0].title}
           caption={COW_VIEWS[0].name}

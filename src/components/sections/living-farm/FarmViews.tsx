@@ -5,7 +5,7 @@ import Image from "next/image";
 import { glass } from "@/components/bits/glass";
 import { GlassFill } from "@/components/bits/LiquidGlass";
 import { IconChevronLeft, IconChevronRight, IconDining, IconMilk, IconOrchard, IconPot, IconSprout } from "@/components/icons";
-import { TourViewer } from "@/components/TourViewer";
+import { TourOrPhoto } from "@/components/TourOrPhoto";
 import { SectionHeader, container, screen } from "@/components/ui";
 import { onTabKeyDown, useActivePillInView } from "@/components/sections/our-nests/RoomParts";
 import { FARM_STOPS, SELECT_STOP } from "./farm";
@@ -113,7 +113,7 @@ export function FarmViews() {
               </button>
             </div>
           ) : null}
-          <TourViewer
+          <TourOrPhoto
             tour={tour}
             title={stop.tour ? `360° view: ${stop.caption.toLowerCase()}` : "360° view of the farm"}
             caption={`${stop.caption}, ${active + 1} of ${count}`}

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { TiltedCard } from "@/components/bits/TiltedCard";
-import { TourViewer } from "@/components/TourViewer";
+import { TourOrPhoto } from "@/components/TourOrPhoto";
 import { IconArrow, IconExternal } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 import { type Tour } from "@/lib/tour";
@@ -169,7 +169,7 @@ export function SharedSpaces() {
               >
                 <TiltedCard>
                   <article className="rounded-card bg-card p-s8 text-ink shadow-card">
-                    <TourViewer
+                    <TourOrPhoto
                       tour={s.tour}
                       title={`360° view: ${s.name.toLowerCase()}`}
                       tone="light"

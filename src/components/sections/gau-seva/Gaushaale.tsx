@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TourViewer } from "@/components/TourViewer";
+import { TourOrPhoto } from "@/components/TourOrPhoto";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import {
   COW_VIEWS,
@@ -30,7 +30,7 @@ export function Gaushaale() {
       {/* large screens: the view bleeds to the left and bottom edges; it starts below the navbar */}
       <div className="lg:absolute lg:top-[80px] lg:bottom-0 lg:left-0 lg:w-[calc(50%-21px)]">
         <div className={`${container} lg:h-full lg:max-w-none lg:px-0`}>
-          <TourViewer
+          <TourOrPhoto
             tour={current.tour}
             title={current.title}
             caption={`${current.name}, ${view + 1} of ${count}`}

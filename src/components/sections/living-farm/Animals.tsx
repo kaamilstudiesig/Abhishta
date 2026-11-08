@@ -2,7 +2,7 @@
 
 import { useState, type ComponentType } from "react";
 import { CardSwap } from "@/components/bits/CardSwap";
-import { TourViewer } from "@/components/TourViewer";
+import { TourOrPhoto } from "@/components/TourOrPhoto";
 import { Icon360, IconCampfire, IconGames, IconGoat, IconHen, IconTractor } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 import type { Tour } from "@/lib/tour";
@@ -80,7 +80,7 @@ export function Animals() {
               <article key={it.name} className="overflow-hidden rounded-card bg-card text-ink shadow-card">
                 <div data-no-swap="" className="relative aspect-[16/10] bg-paper-deep squat:aspect-[2/1]">
                   {it.tour && i === active ? (
-                    <TourViewer
+                    <TourOrPhoto
                       tour={it.tour}
                       title={`360° view: ${it.place?.toLowerCase()}`}
                       caption={it.place}

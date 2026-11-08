@@ -52,6 +52,12 @@ const SCENES = [
   "V7:Entrance",
   "V7:FarmOverview",
   "V7:Gaushaale_01",
+  // Our Nests — the 360° side of the Photo | 360° switch on the room cards (src/components/sections/our-nests/rooms.ts), from the V7 tour
+  "V7:Mayura",
+  "V7:Mathura",
+  "V7:NandagokulaFamilyRoom", // Gopika
+  "V7:NandagokulaBachelorsDormitory",
+  "V7:Kausthuba",
 ];
 
 const scenesOf = (xml) => [...xml.matchAll(/<panorama\b[^>]*>[\s\S]*?<\/panorama>/g)].map((m) => m[0]);

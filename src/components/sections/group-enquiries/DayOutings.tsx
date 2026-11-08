@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { TourViewer } from "@/components/TourViewer";
-import { IconChevronLeft, IconChevronRight } from "@/components/icons";
-import { glass } from "@/components/bits/glass";
-import { GlassFill } from "@/components/bits/LiquidGlass";
+import { TourOrPhoto } from "@/components/TourOrPhoto";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { DAY_OUTING_ENQUIRY } from "@/lib/site";
 import { RATES } from "@/components/sections/our-nests/rooms";
@@ -22,17 +18,11 @@ import { DAY_STOPS } from "./groups";
  */
 export function DayOutings() {
   const [stop, setStop] = useState(0);
-  const [live, setLive] = useState(false);
   const railRef = useRef<HTMLOListElement>(null);
   const count = DAY_STOPS.length;
   const current = DAY_STOPS[stop];
   const prev = () => setStop((stop - 1 + count) % count);
   const next = () => setStop((stop + 1) % count);
-  const control = `grid size-[40px] place-items-center rounded-full text-paper transition-colors duration-300 hover:bg-white/20 ${glass("dark")}`;
-  const modes = [
-    { label: "Photo", on: !live, set: () => setLive(false) },
-    { label: "360°", on: live, set: () => setLive(true) },
-  ];
 
   // keep the chosen stop in view on a rail that scrolls (phones), without moving the page
   useEffect(() => {
@@ -59,76 +49,18 @@ export function DayOutings() {
         </div>
 
         <div className="relative h-[clamp(170px,27svh,320px)] sm:h-[34svh] lg:h-[clamp(260px,calc(100svh-470px),480px)]">
-          {live ? (
-            <TourViewer
-              tour={current.tour}
-              title={`360° view: ${current.place.toLowerCase()}, for “${current.what.toLowerCase()}” at ${current.time}`}
-              caption={`${current.time}  ${current.place}`}
-              tone="dark"
-              onPrev={prev}
-              onNext={next}
-              prevLabel="Earlier in the day"
-              nextLabel="Later in the day"
-              className="h-full"
-            />
-          ) : (
-            <div
-              role="group"
-              aria-label={`Photo: ${current.place.toLowerCase()}, for “${current.what.toLowerCase()}” at ${current.time}`}
-              className="relative isolate h-full overflow-hidden rounded-card bg-paper/[0.06] ring-1 ring-paper/10"
-            >
-              <Image
-                key={current.time}
-                src={current.photo}
-                alt={current.alt}
-                fill
-                sizes="(min-width: 1024px) 58vw, 100vw"
-                placeholder="blur"
-                style={{ objectPosition: current.focus }}
-                className="animate-[fade-in_500ms_ease-out] object-cover motion-reduce:animate-none"
-              />
-              {/* a soft shade at the bottom and sides, so the clear-glass caption and arrows read on bright skies and walls */}
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgb(0_0_0/0.4),transparent_30%),linear-gradient(to_right,rgb(0_0_0/0.22),transparent_16%,transparent_84%,rgb(0_0_0/0.22))]"
-              />
-              <span aria-live="polite" className={`absolute bottom-s13 left-s13 rounded-full px-s13 py-[6px] text-[13px] font-medium text-paper ${glass("dark")}`}>
-                <GlassFill />
-                {`${current.time}  ${current.place}`}
-              </span>
-              <button type="button" onClick={prev} aria-label="Earlier in the day" className={`absolute top-1/2 left-s13 z-10 -translate-y-1/2 ${control}`}>
-                <GlassFill />
-                <IconChevronLeft size={20} />
-              </button>
-              <button type="button" onClick={next} aria-label="Later in the day" className={`absolute top-1/2 right-s13 z-10 -translate-y-1/2 ${control}`}>
-                <GlassFill />
-                <IconChevronRight size={20} />
-              </button>
-            </div>
-          )}
-
-          {/* a soft shade in the top-right corner, so the switch reads on a bright sky in either view */}
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-10 rounded-card bg-[radial-gradient(circle_at_100%_0%,rgb(0_0_0/0.38),transparent_200px)]"
+          <TourOrPhoto
+            tour={current.tour}
+            still={{ src: current.photo, alt: current.alt, focus: current.focus }}
+            title={`360° view: ${current.place.toLowerCase()}, for “${current.what.toLowerCase()}” at ${current.time}`}
+            caption={`${current.time}  ${current.place}`}
+            tone="dark"
+            onPrev={prev}
+            onNext={next}
+            prevLabel="Earlier in the day"
+            nextLabel="Later in the day"
+            className="h-full"
           />
-          {/* top right: switch this stop between the photo and the live 360° of the same place */}
-          <div role="group" aria-label="Show as" className={`absolute top-s13 right-s13 z-20 flex rounded-full p-[3px] ${glass("dark")}`}>
-            <GlassFill />
-            {modes.map((m) => (
-              <button
-                key={m.label}
-                type="button"
-                aria-pressed={m.on}
-                onClick={m.set}
-                className={`tap relative rounded-full px-s13 py-[5px] text-[13px] font-medium transition-colors duration-300 ${
-                  m.on ? "bg-paper text-forest [text-shadow:none]" : "text-paper hover:bg-white/20"
-                }`}
-              >
-                {m.label}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* the day: a rail of stops, filled up to the chosen one */}

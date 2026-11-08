@@ -780,4 +780,139 @@
       <menulink text="Created By TURIYA" url="https://turiya.co/"/>
     </control>
   </panorama>
+<panorama hideabout="1" id="v7node62">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node62/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="-71.95" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="270"/>
+    </view>
+    <userdata tags="Accommodation|BookNow|Popup_Nodes" longitude="" info="" comment="" title="Mayura" nodeid="v7node62" description="&lt;ul style=&quot;margin: 0px;&quot;>&#xa;&lt;li>Upto 4 Guests&lt;/li>&#xa;&lt;li>Air-conditioned Room&lt;/li>&#xa;&lt;li>2 King size Beds&lt;/li>&#xa;&lt;/ul>" copyright="https://bookingengine.stayflexi.com/?hotel_id=32336" datetime="14-02-2022 18:09" source="DSC03350 Panorama.jpg" latitude="" heading="0" author="Mayura" customnodeid="Mayura">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
+<panorama hideabout="1" id="v7node63">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node63/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="68.6" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="270"/>
+    </view>
+    <userdata tags="Accommodation|Popup_Nodes|BookNow" longitude="" info="" comment="" title="Mathura" nodeid="v7node63" description="&lt;ul style=&quot;margin: 0px;&quot;>&#xa;&lt;li>Upto 4 Guests&lt;/li>&#xa;&lt;li>Air-conditioned Room&lt;/li>&#xa;&lt;li>King size Bed&lt;/li>&#xa;&lt;/ul>" copyright="https://bookingengine.stayflexi.com/?hotel_id=32336" datetime="8/21/2024 9:46 AM" source="DSC03284 Panorama.jpg" latitude="" heading="0" author="Mathura" customnodeid="Mathura">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
+<panorama hideabout="1" id="v7node64">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node64/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="10.82" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="270"/>
+    </view>
+    <userdata tags="Accommodation|Popup_Nodes|BookNow" longitude="" info="" comment="" title="Gopika Family Room" nodeid="v7node64" description="&lt;ul style=&quot;margin: 0px;&quot;>&#xa;&lt;li>5 King size Beds&lt;/li>&#xa;&lt;li>2 Washrooms&lt;/li>&#xa;&lt;li>Accommodates 10+ Kids&lt;/li>&#xa;&lt;li>Non Air-conditioned Room&lt;/li>&#xa;&lt;/ul>" copyright="https://bookingengine.stayflexi.com/?hotel_id=32336" datetime="8/21/2024 11:11 AM" source="DSC03467 Panorama.jpg" latitude="" heading="0" author="Gopika Family Room" customnodeid="NandagokulaFamilyRoom">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
+<panorama hideabout="1" id="v7node65">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node65/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="-11.49" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="270"/>
+    </view>
+    <userdata tags="Accommodation|Popup_Nodes|BookNow" longitude="" info="" comment="" title="Nandagokula Bachelor's Dormitory" nodeid="v7node65" description="&lt;ul style=&quot;margin: 0px;&quot;>&#xa;&lt;li>9-10 Single Beds&lt;/li>&#xa;&lt;li>2 Washrooms&lt;/li>&#xa;&lt;li>Non Air-conditioned Room&lt;/li>&#xa;&lt;/ul>" copyright="https://bookingengine.stayflexi.com/?hotel_id=32336" datetime="8/21/2024 11:00 AM" source="DSC03425 Panorama.jpg" latitude="" heading="0" author="Nandagokula Bachelor's Dormitory" customnodeid="NandagokulaBachelorsDormitory">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
+<panorama hideabout="1" id="v7node68">
+    <input levelingpitch="0" overlap="1" leveltileurl="V7/tiles/node68/cf_%c/l_%l/c_%x/tile_%y.webp" levelbiashidpi="1.000" levelingroll="0" height="2250" width="2250" levelbias="0.400" leveltilesize="472">
+      <level predecode="0" height="2250" width="2250" preload="0"/>
+      <level predecode="0" height="1125" width="1125" preload="0"/>
+      <level predecode="0" height="562" width="562" preload="0"/>
+      <level predecode="1" height="281" width="281" preload="1"/>
+      <preview strip="1" color="0x808080"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start projection="4" tilt="0" pan="-57.25" fov="75"/>
+      <flyin projection="9" tilt="-90" pan="0" fov="170"/>
+      <min tilt="-90" pan="0" fov="75"/>
+      <max tilt="90" pan="360" fovfisheye="360" scaletofit="1" fov="75" fovstereographic="270"/>
+    </view>
+    <userdata tags="Accommodation|BookNow|Popup_Nodes" longitude="" info="" comment="" title="Kausthuba" nodeid="v7node68" description="&lt;ul style=&quot;margin: 0px;&quot;>&#xa;&lt;li>4-5 Single Beds&lt;/li>&#xa;&lt;li>Non Air-conditioned Room&lt;/li>&#xa;&lt;/ul>" copyright="https://bookingengine.stayflexi.com/?hotel_id=32336" datetime="8/21/2024 11:15 AM" source="DSC03485 Panorama.jpg" latitude="" heading="0" author="Kausthuba" customnodeid="Kausthuba">
+      <custompropertyvalue variablename="varDayNight" value="false"/>
+      <custompropertyvalue variablename="varNodeID" value=""/>
+      <custompropertyvalue variablename="varMode" value=""/>
+    </userdata>
+    <hotspots/>
+    <media/>
+    <transition blendtime="1" zoomout="0" delay="none" zoomafteroutfov="40" zoomin="7" blendcolor="0x000000" type="mesh" zoomfov="75" softedge="0" zoomafterinfov="140" enabled="1" zoomoutpause="1" zoomspeed="2"/>
+    <animation animsequence="Animation01" useinautorotation="0" clipsrandom="0" syncanimationwithvideo="0"/>
+    <control lockedwheel="1" lockedmouse="0" simulatemass="1" dblclickfullscreen="0" contextvr="0" lockedkeyboardzoom="1" speedwheel="1" invertcontrol="1" invertwheel="0" contextfullscreen="0" hideabout="1" sensitivity="8" lockedkeyboard="1" contextprojections="0" zoomcentercursor="1" rubberband="0">
+      <menulink text="Created By TURIYA" url="https://turiya.co/"/>
+    </control>
+  </panorama>
 </tour>
