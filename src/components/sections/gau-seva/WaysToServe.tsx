@@ -1,8 +1,8 @@
 import type { ComponentType } from "react";
 import type { StaticImageData } from "next/image";
-import resting from "@public/images/client-photos/tour-gaushaale-resting.jpg";
-import feeding from "@public/images/client-photos/tour-gau-feeding.jpg";
-import cowPen from "@public/images/client-photos/tour-outing-cow-pen.jpg";
+import resting from "@public/images/client-photos/tour-gaushaale-resting.webp";
+import feeding from "@public/images/client-photos/tour-gau-feeding.webp";
+import cowPen from "@public/images/client-photos/tour-outing-cow-pen.webp";
 import { FlipCard } from "@/components/bits/FlipCard";
 import { IconClock, IconCow, IconDawn, IconDusk } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";

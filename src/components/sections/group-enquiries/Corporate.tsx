@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import Image from "next/image";
 import { FlipCard } from "@/components/bits/FlipCard";
-import team from "@public/images/client-photos/group-corporate-team-1.jpg";
+import team from "@public/images/client-photos/group-corporate-team-1.webp";
 import { IconBed, IconDining, IconGames, IconOrchard, IconProjector, IconStar } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 import { REVIEW_URL } from "@/lib/site";

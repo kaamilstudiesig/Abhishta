@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import entrance from "@public/images/client-photos/tour-entrance-gate.webp";
 import { IconArrow } from "@/components/icons";
 import { glass } from "@/components/bits/glass";
 import { GlassFill } from "@/components/bits/LiquidGlass";
@@ -12,6 +14,9 @@ import { VIRTUAL_TOUR_URL } from "@/lib/site";
  * (abhishtaagrifarmstay.com/virtualtour, client's ask). It fills the screen under the navbar; the tour opens on
  * Turiya's START screen. This and the homepage pop-up (TourDialog) are the only Turiya iframes on the site.
  *
+ * Loading: Turiya's tour pulls 30 MB+ of tiles, so it only loads when someone clicks "Start the virtual tour" over a
+ * still of the entrance (a visitor had to click into the tour once anyway).
+ *
  * Scrolling: an iframe swallows the wheel and swipes, so the page could never move on. A clear layer sits over the
  * tour: scrolling over it scrolls (and snaps) the page; a click or tap hands the tour the mouse or finger, with a
  * small "Click to explore the tour" pill on hover so the first click doesn't feel lost. The layer comes back when
@@ -20,6 +25,8 @@ import { VIRTUAL_TOUR_URL } from "@/lib/site";
 export function FullTour() {
   const ref = useRef<HTMLElement>(null);
   const [live, setLive] = useState(false);
+  // the tour (30 MB+ of Turiya's tiles) only loads once someone asks for it; until then, a still of the entrance
+  const [loaded, setLoaded] = useState(false);
 
   // give scrolling back to the page once the tour is out of view
   useEffect(() => {
@@ -48,25 +55,42 @@ export function FullTour() {
           if (e.pointerType === "mouse") setLive(false);
         }}
       >
-        <iframe
-          src={VIRTUAL_TOUR_URL}
-          title="Abhishta Agri Farm Stay virtual tour"
-          allow="fullscreen; accelerometer; gyroscope; xr-spatial-tracking"
-          allowFullScreen
-          className="h-full w-full rounded-card border-0 bg-ink"
-        />
+        {loaded ? (
+          <iframe
+            src={VIRTUAL_TOUR_URL}
+            title="Abhishta Agri Farm Stay virtual tour"
+            allow="fullscreen; accelerometer; gyroscope; xr-spatial-tracking"
+            allowFullScreen
+            className="h-full w-full rounded-card border-0 bg-ink"
+          />
+        ) : (
+          <div className="relative h-full w-full overflow-hidden rounded-card bg-ink">
+            <Image
+              src={entrance}
+              alt="The entrance gate of Abhishta Agri Farm Stay, a still from the virtual tour"
+              fill
+              sizes="100vw"
+              preload
+              placeholder="blur"
+              className="object-cover opacity-80"
+            />
+          </div>
+        )}
         {live ? null : (
           <button
             type="button"
-            onClick={() => setLive(true)}
+            onClick={() => {
+              setLoaded(true);
+              setLive(true);
+            }}
             aria-label="Explore the virtual tour"
-            className="absolute inset-0 mx-[max(8px,env(safe-area-inset-left))] flex touch-pan-y items-start justify-center rounded-card pt-s21 sm:mx-s13"
+            className={`absolute inset-0 mx-[max(8px,env(safe-area-inset-left))] flex touch-pan-y justify-center rounded-card sm:mx-s13 ${loaded ? "items-start pt-s21" : "items-center"}`}
           >
             <span
-              className={`relative rounded-full px-s21 py-s8 text-[15px] font-medium text-paper opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 ${glass("dark")}`}
+              className={`relative rounded-full px-s21 py-s8 text-[15px] font-medium text-paper transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 ${loaded ? "opacity-0" : "opacity-100"} ${glass("dark")}`}
             >
               <GlassFill />
-              Click to explore the tour
+              {loaded ? "Click to explore the tour" : "Start the virtual tour"}
             </span>
           </button>
         )}

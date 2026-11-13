@@ -1,5 +1,5 @@
 import Image from "next/image";
-import landscape from "@public/images/client-photos/about-landscape.jpg";
+import landscape from "@public/images/client-photos/about-landscape.webp";
 import { ScrollExpand } from "@/components/bits/ScrollExpand";
 import { SplitText } from "@/components/bits/SplitText";
 import { container } from "@/components/ui";

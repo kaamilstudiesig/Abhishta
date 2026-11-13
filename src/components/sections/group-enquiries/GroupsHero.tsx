@@ -1,4 +1,4 @@
-import audience from "@public/images/client-photos/group-lawn-audience-3.jpg";
+import audience from "@public/images/client-photos/group-lawn-audience-3.webp";
 import { PageHero } from "@/components/sections/PageHero";
 
 /** Group enquiries hero — a group gathered on the amphitheatre's tiers, "Bring your / whole group" drifting as you scroll. */

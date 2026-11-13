@@ -1,4 +1,4 @@
-import landscape from "@public/images/client-photos/about-landscape.jpg";
+import landscape from "@public/images/client-photos/about-landscape.webp";
 import { PageHero } from "@/components/sections/PageHero";
 import { DAY_OUTING_ENQUIRY } from "@/lib/site";
 

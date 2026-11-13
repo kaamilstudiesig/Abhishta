@@ -1,4 +1,4 @@
-import diningHall from "@public/images/client-photos/gallery-dining-hall.jpg";
+import diningHall from "@public/images/client-photos/gallery-dining-hall.webp";
 import { PageHero } from "@/components/sections/PageHero";
 import { DAY_OUTING_ENQUIRY } from "@/lib/site";
 

@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Image, { type StaticImageData } from "next/image";
-import corporate from "@public/images/client-photos/group-corporate-team-1.jpg";
-import school from "@public/images/client-photos/group-students-amphitheatre.jpg";
-import outing from "@public/images/client-photos/group-outing.jpg";
-import events from "@public/images/client-photos/event-lawn-party.jpg";
+import corporate from "@public/images/client-photos/group-corporate-team-1.webp";
+import school from "@public/images/client-photos/group-students-amphitheatre.webp";
+import outing from "@public/images/client-photos/group-outing.webp";
+import events from "@public/images/client-photos/event-lawn-party.webp";
 import { SlideCards } from "@/components/bits/SlideCards";
 import { IconArrow } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";

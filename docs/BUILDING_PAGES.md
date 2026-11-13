@@ -141,8 +141,9 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
 
 - **Copy:** from `docs/SITEMAP.md` and the wireframe's direction; voice is simple, everyday words people relate to (the client asked for this over poetic lines), and honest. Sentence case.
   Never lorem ipsum. Never invent reviews, prices, ratings, awards or facts — ask, or leave a clearly named TODO.
-- **Photos:** the client's final photography is `public/images/client-photos/` (1600 px). Import it
-  (`import x from "@public/images/client-photos/…jpg"`) and render with `next/image` (`fill` + `sizes` +
+- **Photos:** the client's final photography is `public/images/client-photos/` (WebP, 1600 px, quality 72 — convert any new
+  JPG/PNG to WebP with Python PIL before adding it). Import it
+  (`import x from "@public/images/client-photos/…webp"`) and render with `next/image` (`fill` + `sizes` +
   `placeholder="blur"`, or width/height). Every image gets real alt text describing what's actually in it — look
   at the photo first. Not yet used on the homepage (good candidates for inner pages): `about-gate`, `group-event`,
   `stay-cottage-2`, `stay-cottage-3`, `stay-cottage-exterior`, `stay-cottage-sitout`, `stay-dorm-2`.
@@ -178,6 +179,9 @@ From `src/components/bits/` (React Bits, rebuilt in the brand system):
   headings (one `h1` per page); labelled form fields with `autocomplete`, correct input types and `name`s.
 
 ## 9. Before you say it's done
+
+**Hosting:** the live site is a static export (`npm run export` → `out/`, uploaded over FTP). See "Deploying" in README.md.
+
 
 1. `npx tsc --noEmit` and `npm run lint` — clean.
 2. `npm run build` — succeeds.

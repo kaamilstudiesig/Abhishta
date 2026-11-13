@@ -1,6 +1,6 @@
 import type { StaticImageData } from "next/image";
-import cottage from "@public/images/client-photos/cottage-gopala-sitout.jpg";
-import familyRoom from "@public/images/gallery/gopika.jpg";
+import cottage from "@public/images/client-photos/cottage-gopala-sitout.webp";
+import familyRoom from "@public/images/gallery/gopika.webp";
 import { FlipCard } from "@/components/bits/FlipCard";
 import { IconArrow, IconCheck } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";

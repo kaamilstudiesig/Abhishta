@@ -1,9 +1,9 @@
 import type { StaticImageData } from "next/image";
-import markonahalli from "@public/images/nearby/markonahalli-dam.jpg";
-import yediyur from "@public/images/nearby/yediyur-temple.jpg";
-import adichunchanagiri from "@public/images/nearby/adichunchanagiri-mutt.jpg";
-import shravanabelagola from "@public/images/nearby/shravanabelagola.jpg";
-import panchamukhi from "@public/images/nearby/panchamukhi-anjaneya.jpg";
+import markonahalli from "@public/images/nearby/markonahalli-dam.webp";
+import yediyur from "@public/images/nearby/yediyur-temple.webp";
+import adichunchanagiri from "@public/images/nearby/adichunchanagiri-mutt.webp";
+import shravanabelagola from "@public/images/nearby/shravanabelagola.webp";
+import panchamukhi from "@public/images/nearby/panchamukhi-anjaneya.webp";
 
 /**
  * Real photos of the nearby places, from Wikimedia Commons (resized to 900 px),

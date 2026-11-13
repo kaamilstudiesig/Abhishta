@@ -10,7 +10,9 @@
     "ui:classic": "NEXT_PUBLIC_UI_VARIANT=classic NEXT_DIST_DIR=.next-classic next dev -p 3004",
     "ui:classic:build": "NEXT_PUBLIC_UI_VARIANT=classic NEXT_DIST_DIR=.next-classic next build",
     "ui:classic:start": "NEXT_PUBLIC_UI_VARIANT=classic NEXT_DIST_DIR=.next-classic next start -p 3004",
-    "tour:scenes": "node scripts/tour-scenes.mjs"
+    "tour:scenes": "node scripts/tour-scenes.mjs",
+    "export": "STATIC_EXPORT=1 NEXT_DIST_DIR=out next build && node scripts/export-images.mjs && node scripts/export-server-files.mjs",
+    "upload": "python3 scripts/upload-ftp.py"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

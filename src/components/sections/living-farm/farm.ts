@@ -1,5 +1,5 @@
 import type { StaticImageData } from "next/image";
-import cropRows from "@public/images/client-photos/farm-crop-rows.jpg";
+import cropRows from "@public/images/client-photos/farm-crop-rows.webp";
 import { whatsappUrl as whatsapp } from "@/lib/site";
 import type { Tour } from "@/lib/tour";
 

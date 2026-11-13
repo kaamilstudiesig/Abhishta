@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 import Image, { type StaticImageData } from "next/image";
-import dawn from "@public/images/client-photos/day-dawn.jpg";
-import morning from "@public/images/client-photos/day-morning.jpg";
-import midday from "@public/images/client-photos/day-midday.jpg";
-import dusk from "@public/images/client-photos/day-dusk.jpg";
+import dawn from "@public/images/client-photos/day-dawn.webp";
+import morning from "@public/images/client-photos/day-morning.webp";
+import midday from "@public/images/client-photos/day-midday.webp";
+import dusk from "@public/images/client-photos/day-dusk.webp";
 import { ScrollStack } from "@/components/bits/ScrollStack";
 import { IconDawn, IconDusk, IconMidday, IconMorning } from "@/components/icons";
 import { SectionHeader, container } from "@/components/ui";

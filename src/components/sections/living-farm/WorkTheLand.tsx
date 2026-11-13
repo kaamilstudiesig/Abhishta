@@ -1,8 +1,8 @@
 import type { ComponentType, ReactNode } from "react";
 import Image, { type StaticImageData } from "next/image";
-import dawn from "@public/images/client-photos/day-dawn.jpg";
-import cropRows from "@public/images/client-photos/farm-crop-rows.jpg";
-import fieldPath from "@public/images/client-photos/tour-field-path.jpg";
+import dawn from "@public/images/client-photos/day-dawn.webp";
+import cropRows from "@public/images/client-photos/farm-crop-rows.webp";
+import fieldPath from "@public/images/client-photos/tour-field-path.webp";
 import { BentoTile, MagicBento } from "@/components/bits/MagicBento";
 import { TourOrPhoto } from "@/components/TourOrPhoto";
 import { IconFields, IconOrchard, IconPath, IconSprout } from "@/components/icons";

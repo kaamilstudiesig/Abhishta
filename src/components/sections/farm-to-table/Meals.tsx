@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import Image from "next/image";
-import buffet from "@public/images/client-photos/tour-dining-buffet.jpg";
-import pavilionTables from "@public/images/client-photos/dining-pavilion-tables.jpg";
+import buffet from "@public/images/client-photos/tour-dining-buffet.webp";
+import pavilionTables from "@public/images/client-photos/dining-pavilion-tables.webp";
 import { IconDawn, IconDusk, IconMidday, IconMorning } from "@/components/icons";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL, DAY_OUTING_ENQUIRY } from "@/lib/site";

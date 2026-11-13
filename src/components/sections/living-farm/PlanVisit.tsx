@@ -1,6 +1,6 @@
 import Image from "next/image";
-import pool from "@public/images/client-photos/tour-pool.jpg";
-import cottageRow from "@public/images/client-photos/nests-hero-cottage-row.jpg";
+import pool from "@public/images/client-photos/tour-pool.webp";
+import cottageRow from "@public/images/client-photos/nests-hero-cottage-row.webp";
 import { SectionHeader, buttonClass, container, screen } from "@/components/ui";
 import { BOOKING_URL, CONTACT, DAY_OUTING_ENQUIRY } from "@/lib/site";
 import { RATES } from "@/components/sections/our-nests/rooms";

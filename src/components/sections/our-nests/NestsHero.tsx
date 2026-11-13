@@ -1,4 +1,4 @@
-import cottageRow from "@public/images/client-photos/nests-hero-cottage-row.jpg";
+import cottageRow from "@public/images/client-photos/nests-hero-cottage-row.webp";
 import { PageHero } from "@/components/sections/PageHero";
 import { BOOKING_URL } from "@/lib/site";
 

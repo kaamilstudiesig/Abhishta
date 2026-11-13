@@ -1,10 +1,10 @@
 import Image, { type StaticImageData } from "next/image";
-import gir from "@public/images/client-photos/tour-gau-gir.jpg";
-import hallikar from "@public/images/client-photos/tour-gaushaale-hallikar.jpg";
-import holstein from "@public/images/client-photos/tour-gau-holstein.jpg";
-import punganur from "@public/images/client-photos/breed-punganur.jpg";
-import jersey from "@public/images/client-photos/breed-jersey.jpg";
-import kankrej from "@public/images/client-photos/breed-kankrej.jpg";
+import gir from "@public/images/client-photos/tour-gau-gir.webp";
+import hallikar from "@public/images/client-photos/tour-gaushaale-hallikar.webp";
+import holstein from "@public/images/client-photos/tour-gau-holstein.webp";
+import punganur from "@public/images/client-photos/breed-punganur.webp";
+import jersey from "@public/images/client-photos/breed-jersey.webp";
+import kankrej from "@public/images/client-photos/breed-kankrej.webp";
 import { IconCow } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 import { BREEDS } from "@/components/sections/living-farm/farm";

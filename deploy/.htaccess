@@ -1,0 +1,44 @@
+# Apache config for the static site (copied into out/ by `npm run export`).
+
+# Pages are folders with index.html (trailingSlash export): /our-nests -> /our-nests/
+DirectoryIndex index.html
+Options -Indexes
+
+# Branded 404
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # the old name of the virtual tour page
+  RewriteRule ^field-notes/?$ /virtualtour/ [R=301,L]
+  # /page -> /page/ when that folder exists
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
+</IfModule>
+
+# Compress text files
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml text/xml
+</IfModule>
+
+# Cache: hashed build files forever, images and video for a month, pages always fresh
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType video/mp4 "access plus 30 days"
+</IfModule>
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} =~ m#^/_next/static/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+</IfModule>
+
+AddType image/webp .webp
+AddType video/mp4 .mp4

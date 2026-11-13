@@ -106,7 +106,9 @@ export function Footer() {
         className={`${container} grid gap-x-s21 gap-y-s21 pt-s34 sm:grid-cols-2 lg:grid-cols-[1.25fr_1.1fr_1.6fr] lg:gap-x-s55 lg:pt-[clamp(21px,4svh,55px)]`}
       >
         <div className="flex flex-wrap items-center gap-x-s21 gap-y-s13 sm:block">
-          <Logo tone="light" className="h-[40px] sm:h-[44px] lg:h-[42px]" />
+          <span className="inline-block rounded-[14px] bg-paper px-s13 py-[6px]">
+            <Logo className="!h-[48px] sm:!h-[54px] lg:!h-[50px]" />
+          </span>
           <p className="max-w-[22em] text-[14px] leading-[1.4] text-paper/75 sm:mt-s8 sm:text-[15px]">
             A working farm stay 90 km from Bangalore.
           </p>
@@ -184,7 +186,7 @@ export function Footer() {
         </p>
         <div className="flex flex-wrap gap-x-s21 gap-y-[3px] text-[13px] text-paper/70 lg:flex-col lg:pb-[1.1em]">
           <p>© 2026 Abhishta Agri Farm Stay. Jiddigere, Kunigal.</p>
-          <a href="#top" className="tap w-fit text-paper/80 hover:text-gold">
+          <a href="#main" className="tap w-fit text-paper/80 hover:text-gold">
             Back to top
           </a>
         </div>

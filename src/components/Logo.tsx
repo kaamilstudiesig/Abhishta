@@ -1,18 +1,19 @@
 import Image from "next/image";
-// the farm logo, with its transparent margin trimmed
-import logo from "@/assets/brand/logo.png";
+// the farm's new logo (client, 2026-11-13; source: assets/brand/Abhishta Agri Farm Stay Logo.png), trimmed, as WebP
+import logo from "@/assets/brand/logo.webp";
 
 /**
- * The farm's own logo (palm + cow mark, "Abhishta Agri Farm Stay").
- * `tone="light"` renders it as a single paper-white silhouette for dark bands.
+ * The farm's own logo: the house, sun and cows over "Abhishta Agri / Farm Stay".
+ * It's a full-colour illustration, so on dark bands put it on a light backing rather than whitening it.
  */
-export function Logo({ className = "", tone = "color" }: { className?: string; tone?: "color" | "light" }) {
+export function Logo({ className = "" }: { className?: string }) {
   return (
     <Image
       src={logo}
       alt="Abhishta Agri Farm Stay"
       preload
-      className={`h-[44px] w-auto sm:h-[52px] ${tone === "light" ? "brightness-0 invert" : ""} ${className}`}
+      sizes="128px"
+      className={`h-[44px] w-auto sm:h-[52px] ${className}`}
     />
   );
 }

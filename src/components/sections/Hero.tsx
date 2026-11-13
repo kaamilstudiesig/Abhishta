@@ -92,7 +92,7 @@ export function Hero() {
       <video
         ref={videoRef}
         className="absolute inset-0 -z-10 size-full object-cover"
-        poster="/images/hero-poster.jpg"
+        poster="/images/hero-poster.webp"
         autoPlay
         muted
         loop

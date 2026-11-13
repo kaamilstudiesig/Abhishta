@@ -89,9 +89,9 @@ export function Navbar() {
 
         <Link href="/" aria-label="Abhishta Agri Farm Stay — home" className="justify-self-center xl:order-first xl:justify-self-start">
           <span
-            className={`block rounded-full px-s13 py-[3px] transition-colors duration-500 ${dark && !solid ? "bg-[var(--logo-backing-dark)]" : dark ? "bg-paper" : "bg-[var(--logo-backing-light)]"}`}
+            className={`block rounded-[14px] px-[10px] py-[3px] transition-colors duration-500 ${dark && !solid ? "bg-[var(--logo-backing-dark)]" : dark ? "bg-paper" : "bg-[var(--logo-backing-light)]"}`}
           >
-            <Logo className="!h-[36px] sm:!h-[40px]" />
+            <Logo className="!h-[42px] sm:!h-[48px]" />
           </span>
         </Link>
 

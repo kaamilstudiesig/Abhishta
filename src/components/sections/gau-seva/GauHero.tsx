@@ -1,4 +1,4 @@
-import hallikar from "@public/images/client-photos/tour-gaushaale-hallikar.jpg";
+import hallikar from "@public/images/client-photos/tour-gaushaale-hallikar.webp";
 import { PageHero } from "@/components/sections/PageHero";
 import { GAU_SEVA_ENQUIRY } from "@/components/sections/living-farm/farm";
 

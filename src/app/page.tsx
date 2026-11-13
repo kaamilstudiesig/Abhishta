@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { SiteShell } from "@/components/SiteShell";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
@@ -7,6 +8,8 @@ import { DayOnFarm } from "@/components/sections/DayOnFarm";
 import { Groups } from "@/components/sections/Groups";
 import { Reviews } from "@/components/sections/Reviews";
 import { Around } from "@/components/sections/virtual-tour/Around";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
 /**
  * One screen per section. Every [data-snap] element is a page: on desktop

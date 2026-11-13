@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import Image from "next/image";
 import { FlipCard } from "@/components/bits/FlipCard";
-import students from "@public/images/client-photos/group-school-team.jpg";
+import students from "@public/images/client-photos/group-school-team.webp";
 import { IconCompost, IconFields, IconGames, IconGoat, IconPool, IconSprout } from "@/components/icons";
 import { SectionHeader, container, screen } from "@/components/ui";
 

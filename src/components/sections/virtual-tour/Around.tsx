@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ComponentType } from "react";
 import Image, { type StaticImageData } from "next/image";
-import cottages from "@public/images/client-photos/gallery-cottages-path.jpg";
+import cottages from "@public/images/client-photos/gallery-cottages-path.webp";
 import {
   IconArrow,
   IconDam,

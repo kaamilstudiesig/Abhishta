@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
-import logo from "@/assets/brand/logo.png";
+import logo from "@/assets/brand/logo.webp";
 import { markIntroDone } from "@/lib/intro";
 
 const SAFETY_MS = 3800;
@@ -72,7 +72,7 @@ export function IntroVeil() {
       className="intro-veil fixed inset-0 z-[100] items-center justify-center bg-paper"
     >
       <div data-veil-logo="" className="[clip-path:inset(100%_0%_0%_0%)]">
-        <Image src={logo} alt="" preload className="h-auto w-[min(62vw,280px)]" />
+        <Image src={logo} alt="" preload className="h-auto w-[min(70vw,340px)]" />
       </div>
     </div>
   );

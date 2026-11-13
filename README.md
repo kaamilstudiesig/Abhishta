@@ -15,6 +15,18 @@ npm run lint
 npm run tour:scenes   # regenerate public/tour/scenes.xml after adding a 360° scene
 ```
 
+## Deploying (static site over FTP)
+
+The live site is plain files: no Node.js needed on the server.
+
+1. `npm run export` builds `out/`: every page as HTML, photos as WebP in several widths, the videos, `.htaccess`
+   (Apache: 404 page, /field-notes redirect, caching), `robots.txt` and `sitemap.xml`.
+2. `npm run upload` sends `out/` to the server (13.201.236.189, user abhishtaagri-ftp). It asks for the password,
+   which is never saved, and only uploads changed files. Set `FTP_DIR` if the site belongs in a sub-folder.
+3. Check `http://13.201.236.189/`, then the domain once DNS points there (Cloudflare A records @ and www).
+
+Nginx instead of Apache: use `deploy/nginx.conf`.
+
 ## Look
 The site renders the **Meadow** design (`src/app/meadow.css`). Only Meadow is checked now. The original
 "classic" look is still in the code (`npm run ui:classic`, port 3004), but it isn't maintained. See `docs/design-looks.md`.

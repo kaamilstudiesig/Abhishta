@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-// To try the entrance instead: import cover from "@public/images/client-photos/tour-entrance-gate.jpg" (and update the alt below).
-import cover from "@public/images/client-photos/nests-hero-cottage-row.jpg";
+// To try the entrance instead: import cover from "@public/images/client-photos/tour-entrance-gate.webp" (and update the alt below).
+import cover from "@public/images/client-photos/nests-hero-cottage-row.webp";
 import { TourDialog } from "@/components/TourDialog";
 import { CircularText } from "@/components/bits/CircularText";
 import { glass } from "@/components/bits/glass";
