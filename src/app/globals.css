@@ -231,10 +231,12 @@ body {
     visibility: hidden;
   }
 }
+/* The masks clip the rise-in. Fraunces's descenders (y, g, p) hang well below a tight 0.95 line, so each mask
+   gets room for them; the matching negative margin keeps the lines exactly where they were (no extra gap). */
 .split-text .split-word-mask,
 .split-text .split-line-mask {
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
+  padding-bottom: 0.25em;
+  margin-bottom: -0.25em;
 }
 
 /* Intro veil: only with JS (so it can always be dismissed), never with reduced
