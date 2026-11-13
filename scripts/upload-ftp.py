@@ -24,19 +24,21 @@ LOCAL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "out")
 
 
 def connect(password):
+    # Secure FTP first; servers without it answer "AUTH not understood", then we use plain FTP.
     try:
         ftp = ftplib.FTP_TLS(HOST, timeout=30)
+        ftp.auth()
+    except Exception:
+        ftp = None
+    if ftp is not None:
         ftp.login(USER, password)
         ftp.prot_p()
         print(f"Connected to {HOST} (secure FTPS)")
         return ftp
-    except ftplib.error_perm:
-        raise
-    except Exception:
-        ftp = ftplib.FTP(HOST, timeout=30)
-        ftp.login(USER, password)
-        print(f"Connected to {HOST} (plain FTP)")
-        return ftp
+    ftp = ftplib.FTP(HOST, timeout=30)
+    ftp.login(USER, password)
+    print(f"Connected to {HOST} (plain FTP)")
+    return ftp
 
 
 def ensure_dir(ftp, path, made):
