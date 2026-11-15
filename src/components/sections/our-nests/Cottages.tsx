@@ -199,7 +199,7 @@ export function Cottages() {
               </li>
             ))}
           </ul>
-          {/* phones lean on the floating "Book a stay" button instead, so the 360° view can be taller */}
+          {/* phones lean on the floating "Call us" button and the header Enquire instead, so the 360° view can be taller */}
           <div className="mt-s21 flex flex-wrap items-center gap-x-s21 gap-y-s8 max-sm:hidden lg:mt-s34 short:hidden squat:mt-s21">
             <a
               href={BOOKING_URL}

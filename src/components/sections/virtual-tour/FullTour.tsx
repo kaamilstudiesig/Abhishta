@@ -95,7 +95,7 @@ export function FullTour() {
           </button>
         )}
       </div>
-      {/* the right side stays clear for the floating "Book a stay" button */}
+      {/* the right side stays clear for the floating "Call us" button */}
       <div className="flex shrink-0 flex-wrap items-center gap-x-s21 gap-y-s8 px-s21 py-s13 pb-[max(13px,env(safe-area-inset-bottom))] sm:px-s34 sm:pr-[200px]">
         <div className="flex gap-s8">
           <a href="#find-us" className={buttonClass("gold", "min-h-[40px]")}>
