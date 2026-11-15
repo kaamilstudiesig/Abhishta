@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Farm to table — food from the farm | Abhishta Agri Farm Stay",
   description,
   alternates: { canonical: "/farm-to-table" },
-  openGraph: { title: "Farm to table — Abhishta Agri Farm Stay", description, images: ["/images/og.jpg"], locale: "en_IN", type: "website" },
+  openGraph: { title: "Farm to table — Abhishta Agri Farm Stay", description, images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "A shaded veranda with patterned tiles beside the garden at Abhishta Agri Farm Stay" }], locale: "en_IN", type: "website" },
 };
 
 /** Farm to table (2026-11): its own page, one screen per section; The living farm keeps the diagram and links here. */

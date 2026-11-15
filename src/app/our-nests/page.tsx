@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Our nests — Abhishta Agri Farm Stay",
     description,
-    images: ["/images/og.jpg"],
+    images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "A shaded veranda with patterned tiles beside the garden at Abhishta Agri Farm Stay" }],
     locale: "en_IN",
     type: "website",
   },

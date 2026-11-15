@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Virtual Tour | Abhishta Agri Farm Stay",
   description,
   alternates: { canonical: "/virtualtour" },
-  openGraph: { title: "Virtual Tour — Abhishta Agri Farm Stay", description, images: ["/images/og.jpg"], locale: "en_IN", type: "website" },
+  openGraph: { title: "Virtual Tour — Abhishta Agri Farm Stay", description, images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "A shaded veranda with patterned tiles beside the garden at Abhishta Agri Farm Stay" }], locale: "en_IN", type: "website" },
 };
 
 /**

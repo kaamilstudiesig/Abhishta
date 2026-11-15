@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Gallery | Abhishta Agri Farm Stay",
   description,
   alternates: { canonical: "/gallery" },
-  openGraph: { title: "Gallery — Abhishta Agri Farm Stay", description, images: ["/images/og.jpg"], locale: "en_IN", type: "website" },
+  openGraph: { title: "Gallery — Abhishta Agri Farm Stay", description, images: [{ url: "/images/og.jpg", width: 1200, height: 630, alt: "A shaded veranda with patterned tiles beside the garden at Abhishta Agri Farm Stay" }], locale: "en_IN", type: "website" },
 };
 
 /** The gallery (client, 2026-11-07): two one-screen drifting photo walls — #beauty (the property) and #moments (events and guests) — then the footer. */
